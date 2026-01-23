@@ -265,24 +265,26 @@
         /* Project Cards - Clean, editorial */
         .project-item {
             padding: 1rem 0;
+            padding-left: calc(0.75rem + 3px);
             border-bottom: 1px solid var(--paper-darker);
+            border-left: 3px solid transparent;
             cursor: pointer;
-            transition: background 0.15s;
+            transition: background 0.15s, border-left-color 0.15s;
         }
 
         .project-item:hover {
             background: var(--cream);
             margin: 0 -0.75rem;
-            padding-left: 0.75rem;
+            padding-left: calc(0.75rem + 3px);
             padding-right: 0.75rem;
         }
 
         .project-item.selected {
             background: var(--cream);
             margin: 0 -0.75rem;
-            padding-left: 0.75rem;
+            padding-left: calc(0.75rem + 3px);
             padding-right: 0.75rem;
-            border-left: 3px solid var(--accent);
+            border-left-color: var(--accent);
         }
 
         .project-top {
@@ -754,8 +756,7 @@
 
         /* Litigation project styling */
         .project-item.litigation {
-            border-left: 3px solid #dc2626;
-            padding-left: calc(0.75rem + 3px);
+            border-left-color: #dc2626;
         }
 
         .project-case {
