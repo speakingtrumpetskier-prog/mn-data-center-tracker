@@ -119,11 +119,11 @@ const projectData = [
             caseNumber: "19HA-CV-25-5103",
             court: "Dakota County District Court",
             status: "Scheduling order entered Dec 12, 2025",
-            filedDate: "2025-08-11"
+            filedDate: "2025-08-05"
         },
         timeline: [
             { date: "2025-12-12", event: "Court scheduling order for summary judgment briefing" },
-            { date: "2025-08-11", event: "Lawsuit filed" },
+            { date: "2025-08-05", event: "Lawsuit filed" },
             { date: "2025-07-07", event: "Final AUAR approved" }
         ],
         permits: {
@@ -150,18 +150,18 @@ const projectData = [
         lng: -94.0336,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "Lawsuit filed Aug 2025; answer filed Oct 2025",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Opponents contend AUAR process was deficient.",
+        currentStatus: "Lawsuit filed Aug 2025; answers filed Sept 2025",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Opponents contend AUAR process was deficient. Developer Oppidan has paused project.",
         litigation: {
             active: true,
             caseNumber: "52-CV-25-568",
             court: "Nicollet County District Court",
-            status: "Answer filed Oct 7, 2025",
+            status: "Answers filed Sept 2025",
             filedDate: "2025-08-05"
         },
         timeline: [
-            { date: "2025-10-07", event: "Defendants filed answer" },
-            { date: "2025-08-06", event: "30-day appeal period expired" },
+            { date: "2025-09-09", event: "Project Deacon filed answer" },
+            { date: "2025-09-05", event: "City of North Mankato filed answer" },
             { date: "2025-08-05", event: "Lawsuit filed" },
             { date: "2025-07-07", event: "Final AUAR approved" }
         ],
@@ -191,18 +191,20 @@ const projectData = [
         lng: -92.6460,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Lawsuit filed Dec 2025; TRO denied Dec 29, 2025",
-        notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas.",
+        currentStatus: "Lawsuit filed Oct 2025; TRO denied Dec 23, 2025",
+        notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas. Next hearing Feb 2, 2026.",
         litigation: {
             active: true,
-            caseNumber: "25-CV-25-502",
+            caseNumber: "25-CV-25-2298",
             court: "Goodhue County District Court",
-            status: "TRO denied Dec 29, 2025",
-            filedDate: "2025-12-17"
+            status: "TRO denied Dec 23, 2025",
+            filedDate: "2025-10-16"
         },
         timeline: [
-            { date: "2025-12-29", event: "Court denied TRO request" },
-            { date: "2025-12-17", event: "Lawsuit filed" },
+            { date: "2025-12-23", event: "Court denied TRO request" },
+            { date: "2025-12-17", event: "City Council approved preliminary plat" },
+            { date: "2025-12-12", event: "TRO motion filed" },
+            { date: "2025-10-16", event: "Lawsuit filed" },
             { date: "2025-09-16", event: "Revised AUAR approved" }
         ],
         permits: {
