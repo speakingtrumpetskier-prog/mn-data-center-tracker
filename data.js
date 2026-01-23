@@ -549,24 +549,28 @@ const projectData = [
         lng: -93.1669,
         acres: 179,
         sqft: 1350000,
-        currentStatus: "AUAR update approved Nov 5, 2025 (1.2-1.5 million SF)",
-        notes: "Scenario two includes light industrial that 'could include data centers'. Mixed-use redevelopment of former Thomson Reuters campus.",
+        currentStatus: "Final AUAR adopted Oct 29, 2024 (Resolution 24-50)",
+        notes: "Scenario two includes light industrial that 'could include data centers'. Mixed-use redevelopment of former Thomson Reuters campus. 1.2-1.5 million SF proposed.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-11-05", event: "AUAR update approved" }
+            { date: "2024-10-29", event: "Final AUAR adopted (Resolution 24-50)" },
+            { date: "2024-10-08", event: "Final AUAR published in EQB Monitor" },
+            { date: "2024-08-26", event: "Public open house held" },
+            { date: "2024-08-13", event: "Draft AUAR published in EQB Monitor" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR update approved Nov 5, 2025" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR adopted Oct 29, 2024" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Resolution 24-50 (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Resolution_24-50_Adopting-Thomson-Reuters-AUAR.pdf" },
+            { name: "Revised AUAR (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Thomson-Reuters-Revised-AUAR.pdf" },
             { name: "City Environmental Reviews", url: "https://cityofeagan.com/environmental-reviews" },
-            { name: "Project EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259709?siId=259709-PROJ0000000001" },
-            { name: "Final AUAR (PDF)", url: "https://cityofeagan.com/images/CommunityDevelopment/EnvironmentalReviews/TR/Revised-AUAR-Narrative-and-Appendices.pdf" }
+            { name: "Project EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259709?siId=259709-PROJ0000000001" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-01-23"
     },
 
     // ============================================
