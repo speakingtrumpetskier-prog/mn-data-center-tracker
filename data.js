@@ -62,32 +62,35 @@ const projectData = [
         id: 2,
         name: "Hermantown Data Center",
         status: "in_litigation",
+        secondaryStatus: "review_complete",
         city: "Hermantown",
         county: "St. Louis",
         lat: 46.8069,
         lng: -92.2383,
         acres: 403,
         sqft: 1800000,
-        currentStatus: "Lawsuit filed Nov 2025; developer paused applications for public engagement; EQB petition pending",
-        notes: "Fortune 50 company project (Mortenson developer). AUAR previously approved. Developer voluntarily withdrew permit applications Nov 10 for further public engagement. EQB petition filed Oct 17 requesting EAW; city responded Dec 3. Project valued at hundreds of millions initially, potentially billions.",
+        currentStatus: "Lawsuit filed Nov 2025; city denied EAW petition Dec 3 (AUAR already adopted Oct 6); developer paused applications for public engagement",
+        notes: "Fortune 50 company project (Mortenson developer). AUAR adopted Oct 6, 2025 via Resolution 2025-147. EQB petition for EAW filed Oct 17 and denied Dec 3 by city (AUAR already covers area). Developer voluntarily withdrew permit applications Nov 10 for further public engagement. Project valued at hundreds of millions initially, potentially billions.",
         litigation: {
             active: true,
             caseNumber: "69DU-CV-25-3448",
             court: "St. Louis County District Court",
-            status: "City conducting legal review",
+            status: "Lawsuit pending",
             filedDate: "2025-11-05"
         },
         timeline: [
-            { date: "2025-12-03", event: "City submitted response to EQB petition" },
+            { date: "2025-12-03", event: "City denied EAW petition (AUAR already adopted)" },
             { date: "2025-11-10", event: "Mortenson withdrew applications for public engagement" },
             { date: "2025-11-05", event: "Lawsuit filed" },
+            { date: "2025-10-21", event: "City received EQB petition (filed Oct 17)" },
             { date: "2025-10-21", event: "Planning & Zoning meeting postponed" },
             { date: "2025-10-20", event: "Mortenson and MN Power presented to City Council" },
             { date: "2025-10-17", event: "EQB petition filed requesting EAW" },
+            { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" },
             { date: "2025-10-01", event: "Application received by city" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "EAW", detail: "EQB petition pending; city responded Dec 3" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR adopted Oct 6, 2025; EAW petition denied Dec 3" },
             localZoning: { status: "in_progress", detail: "Applications paused by developer" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -95,11 +98,12 @@ const projectData = [
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263202?siId=263202-PROJ0000000001" },
+            { name: "City EAW Denial Letter (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Hermantown-EQB-Response-2025-12-03.pdf" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_Hermantown_MCRO_69DU-CV-25-3448_Complaint-Civil_2025-11-05_20251230104248.pdf" },
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-01-23"
     },
     {
         id: 3,
