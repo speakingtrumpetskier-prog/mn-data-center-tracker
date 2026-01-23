@@ -362,21 +362,21 @@ const projectData = [
         lng: -93.2177,
         acres: null,
         sqft: 1050000,
-        currentStatus: "Revised AUAR approved November 2024; land use application repeatedly delayed, extension granted until Dec 31, 2025",
-        notes: "Existing AUAR updated with technology park scenario in 2024. AUAR revision finalized but part is unclear when land use application will be submitted.",
+        currentStatus: "AUAR revision proposed late 2025, unclear when finalized; land use application repeatedly delayed, extension granted until Dec 31, 2025",
+        notes: "Existing AUAR with technology park scenario. AUAR revision proposed late 2025 but that part is done per Hometown Source.",
         litigation: { active: false },
         timeline: [
             { date: "2024-11-05", event: "Revised AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Tech park scenario added" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR revision proposed late 2025, unclear when finalized, but that part is done" },
             localZoning: { status: "in_progress", detail: "Land use application repeatedly delayed, extension granted until Dec 31, 2025" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Proposed Technology Center Data Center", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center-Data-Center" },
             { name: "City Project Page", url: "https://www.ci.apple-valley.mn.us/1030/Orchard-Place-AUAR" },
-            { name: "Proposed Technology Center", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center" },
             { name: "Hometown Source - Delays", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/data-center-scenario-contemplated-in-apple-valley/article_9aa87462-961d-11ef-beb5-bbe0992cea55.html" }
         ],
         lastUpdated: "2026-01-22"
