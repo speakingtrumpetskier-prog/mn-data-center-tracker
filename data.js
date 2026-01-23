@@ -713,29 +713,32 @@ const projectData = [
     {
         id: 22,
         name: "Microsoft Becker Proposal",
-        status: "suspended",
+        status: "watching",
         city: "Becker",
         county: "Sherburne",
         lat: 45.3936,
         lng: -93.8769,
-        acres: 300,
+        acres: 295,
         sqft: null,
-        currentStatus: "Status uncertain; land purchased but no formal filings",
-        notes: "Microsoft purchased 295 acres in early 2024. NDA signed with city. No environmental review filed.",
+        currentStatus: "Land purchased Feb 2024; no formal plans submitted to city yet",
+        notes: "Microsoft purchased 295 acres from Xcel Energy for $17.7M in February 2024 with intent to build data center. No plans have been officially submitted to the city. Microsoft has not commented publicly on timeline. Site is near closing Sherco power plant. Google had previously backed out of plans for this area in 2022.",
         litigation: { active: false },
         timeline: [
             { date: "2025-12-18", event: "GovTech reports on secrecy concerns" },
-            { date: "2024-01-15", event: "Microsoft land purchase reported" }
+            { date: "2024-02-12", event: "Microsoft closes on 295 acres from Xcel for $17.7M" },
+            { date: "2022-12-01", event: "Google backs out of previous Becker data center plans" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "unknown" },
+            localZoning: { status: "not_started" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "GovTech", url: "https://www.govtech.com/policy/minnesota-data-center-approvals-happening-with-secrecy" },
-            { name: "TechXplore", url: "https://techxplore.com/news/2025-01-mega-centers-minnesota-power-staggering.html" }
+            { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/microsoft-buys-300-acres-in-becker-minnesota/" },
+            { name: "MPR News", url: "https://www.mprnews.org/story/2024/02/21/xcel-energy-sells-land-in-becker-to-microsoft-for-data-center" },
+            { name: "Star Tribune", url: "https://www.startribune.com/microsoft-building-data-center-in-becker-xcel-stress-on-grids/600344079" },
+            { name: "GovTech", url: "https://www.govtech.com/policy/minnesota-data-center-approvals-happening-with-secrecy" }
         ],
         lastUpdated: "2026-01-22"
     }
