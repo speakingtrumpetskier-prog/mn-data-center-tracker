@@ -578,7 +578,7 @@ const projectData = [
         lng: -92.0105,
         acres: 50,
         sqft: null,
-        currentStatus: "Early-stage EDA exploration; annexation discussions ongoing",
+        currentStatus: "Early-stage Economic Development Authority exploration; annexation discussions ongoing",
         notes: "Southeast Minnesota location near Iowa border. No AUAR/EAW filed yet.",
         litigation: { active: false },
         timeline: [
@@ -592,7 +592,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Harmony EDA Project Page", url: "https://harmonymn.gov/eda/ongoing-projects/harmony-eda-project-data-center/" },
+            { name: "Harmony Economic Development Authority Project Page", url: "https://harmonymn.gov/eda/ongoing-projects/harmony-eda-project-data-center/" },
             { name: "Root River Current", url: "https://rootrivercurrent.org/harmony-minnesota-annexs-land-for-possible-data-center/" },
             { name: "Fillmore County Journal", url: "https://fillmorecountyjournal.com/concerns-raised-over-proposed-data-center/" }
         ],
@@ -638,11 +638,11 @@ const projectData = [
         lng: -94.1516,
         acres: null,
         sqft: null,
-        currentStatus: "Early concept; EDA reviewed concept plans Sept 2024",
+        currentStatus: "Early concept; Economic Development Authority reviewed concept plans Sept 2024",
         notes: "Reported as $50-60M AI data center concept.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-09-27", event: "EDA reviewed concept plans" }
+            { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
