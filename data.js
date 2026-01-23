@@ -94,7 +94,7 @@ const projectData = [
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263202" },
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263202?siId=263202-PROJ0000000001" },
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" },
             { name: "WDIO - Lawsuit Response", url: "https://www.wdio.com/front-page/top-stories/hermantown-files-response-to-data-center-lawsuit/" }
@@ -133,7 +133,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261688" },
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261688?siId=261688-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/09/Lakeville_19HA-CV-25-5103_Complaint-Civil_2025-08-11.pdf" },
             { name: "Scheduling Order (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/09/Lakeville_Order_Regarding_Briefing_Schedule_and_Page_Limitations_2025-12-12.pdf" },
             { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/06/group-suing-north-mankato-development/" }
@@ -173,7 +173,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366" },
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366?siId=261366-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/09/North-Mankato_52-CV-25-568_Complaint-Civil_2025-08-05.pdf" },
             { name: "Answer (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/12/North-Mankato_Project-Deacon_52-CV-25-568_Answer_2025-10-07.pdf" },
             { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/06/group-suing-north-mankato-development/" }
@@ -305,7 +305,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/262244" },
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/262244?siId=262244-PROJ0000000001" },
             { name: "City Environmental Review", url: "https://www.cannonfalls.org/environmental_review" },
             { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" }
         ],
@@ -406,7 +406,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259881" },
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259881?siId=259881-PROJ0000000001" },
             { name: "GovTech - Lawsuit", url: "https://www.govtech.com/infrastructure/farmington-minn-residents-sue-to-stop-data-center-park" },
             { name: "Coalition Website", url: "https://www.datacenterresponsibility.com/whatishappening" },
             { name: "Streets.mn Deep Dive", url: "https://streets.mn/2025/11/07/deep-dive-the-farmington-push-for-responsible-hyper-scale-data-centers/" }
