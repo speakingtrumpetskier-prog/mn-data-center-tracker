@@ -455,3 +455,101 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.openProjectDetail = openProjectDetail;
+
+// ============================================
+// Easter Eggs - Shhh!
+// ============================================
+
+// Easter Egg 1: Click title 7 times for swimming loon
+(function() {
+    let clickCount = 0;
+    let clickTimer = null;
+    const title = document.querySelector('.masthead-title h1');
+
+    if (title) {
+        title.addEventListener('click', function() {
+            clickCount++;
+
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+
+            if (clickCount >= 7) {
+                clickCount = 0;
+                summonLoon();
+            }
+        });
+    }
+
+    function summonLoon() {
+        const loon = document.getElementById('loon');
+
+        if (loon && !loon.classList.contains('swimming')) {
+            loon.classList.add('swimming');
+
+            // Synthesize a simple loon-like call
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+
+                // Loon call: haunting descending wail
+                osc.frequency.setValueAtTime(800, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 1.5);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.8);
+
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 2);
+            } catch (e) {}
+
+            setTimeout(() => {
+                loon.classList.remove('swimming');
+            }, 8500);
+        }
+    }
+})();
+
+// Easter Egg 2: Type "ope" anywhere
+(function() {
+    let buffer = '';
+
+    document.addEventListener('keypress', function(e) {
+        // Don't trigger if typing in an input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            return;
+        }
+
+        buffer += e.key.toLowerCase();
+        buffer = buffer.slice(-3);
+
+        if (buffer === 'ope') {
+            buffer = '';
+            showOpe();
+        }
+    });
+
+    function showOpe() {
+        const toast = document.getElementById('ope-toast');
+
+        if (toast && !toast.classList.contains('show')) {
+            toast.classList.add('show');
+
+            // Wiggle a random marker
+            if (markers.length > 0) {
+                const randomMarker = markers[Math.floor(Math.random() * markers.length)];
+                const markerElement = randomMarker.getElement ? randomMarker.getElement() : randomMarker._icon;
+                if (markerElement) {
+                    markerElement.classList.add('marker-wiggle');
+                    setTimeout(() => markerElement.classList.remove('marker-wiggle'), 500);
+                }
+            }
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+    }
+})();
