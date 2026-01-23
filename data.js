@@ -430,21 +430,20 @@ const projectData = [
         lng: -93.1836,
         acres: 329,
         sqft: 3000000,
-        currentStatus: "AUAR ordered adequate on Oct 7, 2024 (Resolution 2024-105 adopted Oct 15)",
-        notes: "AUAR adequacy determined Oct 7, formal adoption resolution passed Oct 15.",
+        currentStatus: "AUAR approved Oct 7, 2024",
+        notes: null,
         litigation: { active: false },
         timeline: [
-            { date: "2024-10-15", event: "AUAR adopted (Resolution 2024-105)" },
-            { date: "2024-10-07", event: "AUAR ordered adequate" }
+            { date: "2024-10-07", event: "AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Oct 2024" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Approved Oct 7, 2024" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Resolution 2024-105 (PDF)", url: "https://www.farmingtonmn.gov/home/showpublisheddocument/21232/638646041196600000" }
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259034?siId=259034-PROJ0000000001" }
         ],
         lastUpdated: "2026-01-22"
     },
