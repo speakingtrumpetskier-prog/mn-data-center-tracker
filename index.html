@@ -877,19 +877,20 @@
         /* Public Version button */
         .public-version-btn {
             font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 0.65rem;
-            padding: 0.25rem 0.5rem;
-            background: transparent;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+            background: var(--paper-dark);
             border: 1px solid var(--paper-darker);
-            color: var(--ink-faint);
+            color: var(--ink-light);
             cursor: pointer;
             transition: all 0.2s ease;
-            opacity: 0.6;
+            border-radius: 3px;
         }
 
         .public-version-btn:hover {
-            opacity: 1;
+            background: var(--paper-darker);
             border-color: var(--ink-faint);
+            color: var(--ink);
         }
 
         /* Title transition */
@@ -968,7 +969,7 @@
     <header class="masthead">
         <div class="masthead-inner">
             <div class="masthead-top">
-                <span class="edition-info">Environmental Review Tracker</span>
+                <span class="edition-info">Project Tracker</span>
                 <button id="public-version-btn" class="public-version-btn">Public Version</button>
                 <span class="edition-info">Updated <span id="last-update">Weekly</span></span>
             </div>

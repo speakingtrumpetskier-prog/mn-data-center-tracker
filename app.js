@@ -557,7 +557,7 @@ window.openProjectDetail = openProjectDetail;
             setTimeout(() => {
                 // Swap text
                 titleSubject.textContent = isPublicVersion ? 'Light Industrial Development' : 'Data Center';
-                btn.textContent = isPublicVersion ? 'Investigative Version' : 'Public Version';
+                btn.textContent = isPublicVersion ? 'Real Version' : 'Public Version';
 
                 // Fade in
                 titleSubject.classList.remove('fade-out');
