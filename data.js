@@ -235,20 +235,24 @@ const projectData = [
         lng: -93.7944,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "AUAR required; city maintaining public timeline for data center ordinance",
-        notes: "Explicitly a data center project. Separate from Scannell Technology Park proposal. Community backlash reported.",
+        currentStatus: "Final AUAR published Jan 6, awaiting city council approval",
+        notes: "Explicitly a data center project. Separate from Scannell Technology Park proposal. Community backlash reported. Open house held Nov 20.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-01-06", event: "Final AUAR published, awaiting city council approval" },
+            { date: "2025-11-20", event: "Open house on AUAR presentation" },
             { date: "2025-11-20", event: "Community backlash reported (KARE 11)" },
-            { date: "2025-01-01", event: "AUAR scoping determined" }
+            { date: "2025-08-05", event: "AUAR scoping began" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "AUAR required, scoping in progress" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Final AUAR published Jan 6, awaiting city council approval" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/264408?siId=264408-PROJ0000000001" },
+            { name: "Open House Presentation", url: "https://www.monticellomn.gov/DocumentCenter/View/8755" },
             { name: "City Environmental Reviews", url: "https://www.monticellomn.gov/712/Environmental-Reviews" },
             { name: "City Data Centers Page", url: "https://monticellomn.gov/728/Data-Centers" },
             { name: "KARE 11 Coverage", url: "https://www.kare11.com/article/news/local/proposed-data-centers-in-monticello-spark-community-backlash/89-9f0aa475-3d16-4ab5-8b06-27f4cea6b408" }
@@ -293,12 +297,12 @@ const projectData = [
         lng: -93.0569,
         acres: 251,
         sqft: 1750000,
-        currentStatus: "Final AUAR approved; 30-day appeal period expired",
+        currentStatus: "Final AUAR approved Sept 16, 2025",
         notes: "One of communities debating data center projects.",
         litigation: { active: false },
         timeline: [
             { date: "2026-01-06", event: "Post Bulletin coverage of local debate" },
-            { date: "2025-10-01", event: "Final AUAR approved" }
+            { date: "2025-09-16", event: "Final AUAR approved" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved" },
@@ -323,11 +327,11 @@ const projectData = [
         lng: -93.0069,
         acres: null,
         sqft: 1500000,
-        currentStatus: "Final AUAR approved April 8, 2025; 30-day appeal period expired",
+        currentStatus: "Final AUAR approved April 15, 2025; 30-day appeal period expired",
         notes: "Refers to a technology park in documentation.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-04-08", event: "Final AUAR approved" },
+            { date: "2025-04-15", event: "Final AUAR approved" },
             { date: "2025-03-25", event: "EQB Monitor notice published" },
             { date: "2024-12-24", event: "EQB Monitor notice - public meeting" }
         ],
@@ -358,20 +362,22 @@ const projectData = [
         lng: -93.2177,
         acres: null,
         sqft: 1050000,
-        currentStatus: "Revised AUAR approved November 2024",
-        notes: "Existing AUAR updated with technology park scenario in 2024.",
+        currentStatus: "Revised AUAR approved November 2024; land use application repeatedly delayed, extension granted until Dec 31, 2025",
+        notes: "Existing AUAR updated with technology park scenario in 2024. AUAR revision finalized but part is unclear when land use application will be submitted.",
         litigation: { active: false },
         timeline: [
             { date: "2024-11-05", event: "Revised AUAR approved" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Tech park scenario added" },
-            localZoning: { status: "unknown" },
+            localZoning: { status: "in_progress", detail: "Land use application repeatedly delayed, extension granted until Dec 31, 2025" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "City Project Page", url: "https://www.ci.apple-valley.mn.us/1030/Orchard-Place-AUAR" }
+            { name: "City Project Page", url: "https://www.ci.apple-valley.mn.us/1030/Orchard-Place-AUAR" },
+            { name: "Proposed Technology Center", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center" },
+            { name: "Hometown Source - Delays", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/data-center-scenario-contemplated-in-apple-valley/article_9aa87462-961d-11ef-beb5-bbe0992cea55.html" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -424,11 +430,12 @@ const projectData = [
         lng: -93.1836,
         acres: 329,
         sqft: 3000000,
-        currentStatus: "AUAR adopted by resolution Oct 15, 2024 (Resolution 2024-105)",
-        notes: null,
+        currentStatus: "AUAR ordered adequate on Oct 7, 2024 (Resolution 2024-105 adopted Oct 15)",
+        notes: "AUAR adequacy determined Oct 7, formal adoption resolution passed Oct 15.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-10-15", event: "AUAR adopted (Resolution 2024-105)" }
+            { date: "2024-10-15", event: "AUAR adopted (Resolution 2024-105)" },
+            { date: "2024-10-07", event: "AUAR ordered adequate" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Oct 2024" },
@@ -464,6 +471,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261731?siId=261731-PROJ0000000001" },
             { name: "City Environmental Reviews", url: "https://www.rosemountmn.gov/467/Environmental-Reviews" },
             { name: "AUAR Order (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7401/Dakota-East-Area-AUAR-Order" }
         ],
@@ -477,21 +485,23 @@ const projectData = [
         county: "Dakota",
         lat: 44.7644,
         lng: -93.0858,
-        acres: null,
+        acres: 333,
         sqft: 2300000,
-        currentStatus: "Final AUAR materials available on city site",
+        currentStatus: "Adopted June 11, 2024 (333 acreage)",
         notes: "New AUAR explicitly targeting data center projects.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-06-01", event: "Final AUAR approved" }
+            { date: "2024-06-11", event: "Final AUAR adopted (333 acres)" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved June 2024" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR adopted June 11, 2024" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City Fix Websit", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
+            { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/257490?siId=257490-PROJ0000000001" },
             { name: "City Environmental Reviews", url: "https://www.rosemountmn.gov/467/Environmental-Reviews" }
         ],
         lastUpdated: "2026-01-22"
@@ -504,13 +514,13 @@ const projectData = [
         county: "Dakota",
         lat: 44.7544,
         lng: -93.1258,
-        acres: null,
+        acres: 235,
         sqft: 4000000,
-        currentStatus: "Updated AUAR and Resolution 2024-85 approved",
+        currentStatus: "Updated AUAR and Resolution 2024-85 approved Aug 6, 2024 (235 acres)",
         notes: "Existing AUAR from 2023, updated with data center scenario in 2024.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-07-01", event: "AUAR update approved (Resolution 2024-85)" },
+            { date: "2024-08-06", event: "AUAR update approved (Resolution 2024-85)" },
             { date: "2023-01-01", event: "Original AUAR approved" }
         ],
         permits: {
@@ -520,7 +530,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261103?siId=261103-PROJ0000000001" },
+            { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/255536?siId=255536-PROJ0000000002" },
             { name: "AUAR Update (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7071/Rosemount-Industrial-AUAR-Update" },
             { name: "Resolution 2024-85 (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7069/Resolution-2024-85" }
         ],
@@ -536,21 +546,22 @@ const projectData = [
         lng: -93.1669,
         acres: 179,
         sqft: 1350000,
-        currentStatus: "Final AUAR approved; data center component reported but not confirmed",
+        currentStatus: "AUAR update approved Nov 5, 2025 (1.2-1.5 million SF)",
         notes: "Scenario two includes light industrial that 'could include data centers'. Mixed-use redevelopment of former Thomson Reuters campus.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-11-04", event: "Final AUAR approved" }
+            { date: "2025-11-05", event: "AUAR update approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved Nov 2024" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR update approved Nov 5, 2025" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Final AUAR (PDF)", url: "https://cityofeagan.com/images/CommunityDevelopment/EnvironmentalReviews/TR/Revised-AUAR-Narrative-and-Appendices.pdf" },
-            { name: "City Environmental Review", url: "https://cityofeagan.com/environmental-review" }
+            { name: "City Environmental Reviews", url: "https://cityofeagan.com/environmental-reviews" },
+            { name: "Project EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259709?siId=259709-PROJ0000000001" },
+            { name: "Final AUAR (PDF)", url: "https://cityofeagan.com/images/CommunityDevelopment/EnvironmentalReviews/TR/Revised-AUAR-Narrative-and-Appendices.pdf" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -572,8 +583,8 @@ const projectData = [
         notes: "Southeast Minnesota location near Iowa border. No AUAR/EAW filed yet.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-10-21", event: "City annexes land for possible data center" },
-            { date: "2025-10-20", event: "Concerns raised at community meeting" }
+            { date: "2025-10-20", event: "Annexation discussed at meeting" },
+            { date: "2025-10-07", event: "Community member raises concerns at meeting" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
