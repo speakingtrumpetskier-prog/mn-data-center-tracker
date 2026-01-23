@@ -62,7 +62,6 @@ const projectData = [
         id: 2,
         name: "Hermantown Data Center",
         status: "in_litigation",
-        secondaryStatus: "in_review",
         city: "Hermantown",
         county: "St. Louis",
         lat: 46.8069,
@@ -70,7 +69,7 @@ const projectData = [
         acres: 403,
         sqft: 1800000,
         currentStatus: "Lawsuit filed Nov 2025; developer paused applications for public engagement; EQB petition pending",
-        notes: "Fortune 50 company project (Mortenson developer). Developer voluntarily withdrew permit applications Nov 10 for further public engagement. EQB petition filed Oct 17 requesting EAW; city responded Dec 3. Project valued at hundreds of millions initially, potentially billions.",
+        notes: "Fortune 50 company project (Mortenson developer). AUAR previously approved. Developer voluntarily withdrew permit applications Nov 10 for further public engagement. EQB petition filed Oct 17 requesting EAW; city responded Dec 3. Project valued at hundreds of millions initially, potentially billions.",
         litigation: {
             active: true,
             caseNumber: "69DU-CV-25-3448",
