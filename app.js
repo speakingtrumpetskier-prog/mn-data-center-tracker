@@ -490,49 +490,60 @@ window.openProjectDetail = openProjectDetail;
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-                // Create the haunting wail
+                // Create the haunting wail with reverb
                 function createWail(startTime, startFreq, endFreq, duration) {
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
                     const vibrato = ctx.createOscillator();
                     const vibratoGain = ctx.createGain();
 
-                    // Vibrato for tremolo effect
-                    vibrato.frequency.value = 6;
-                    vibratoGain.gain.value = 15;
+                    // Add tremolo for warbling effect
+                    const tremolo = ctx.createOscillator();
+                    const tremoloGain = ctx.createGain();
+                    tremolo.frequency.value = 8;
+                    tremoloGain.gain.value = 0.3;
+
+                    // Vibrato for pitch modulation
+                    vibrato.frequency.value = 5.5;
+                    vibratoGain.gain.value = 20;
                     vibrato.connect(vibratoGain);
                     vibratoGain.connect(osc.frequency);
 
-                    osc.connect(gain);
+                    osc.connect(tremoloGain);
+                    tremolo.connect(tremoloGain.gain);
+                    tremoloGain.connect(gain);
                     gain.connect(ctx.destination);
                     osc.type = 'sine';
 
-                    // Volume envelope
+                    // Volume envelope - fade in and out
                     gain.gain.setValueAtTime(0.001, startTime);
-                    gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.1);
-                    gain.gain.setValueAtTime(0.12, startTime + duration - 0.3);
+                    gain.gain.exponentialRampToValueAtTime(0.15, startTime + 0.15);
+                    gain.gain.setValueAtTime(0.15, startTime + duration - 0.4);
                     gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
 
-                    // Pitch: rise then fall
+                    // Pitch: rise then fall (characteristic loon wail)
                     osc.frequency.setValueAtTime(startFreq, startTime);
-                    osc.frequency.linearRampToValueAtTime(endFreq, startTime + duration * 0.4);
-                    osc.frequency.linearRampToValueAtTime(startFreq * 0.7, startTime + duration);
+                    osc.frequency.linearRampToValueAtTime(endFreq, startTime + duration * 0.35);
+                    osc.frequency.linearRampToValueAtTime(startFreq * 0.65, startTime + duration);
 
                     vibrato.start(startTime);
+                    tremolo.start(startTime);
                     osc.start(startTime);
                     osc.stop(startTime + duration);
                     vibrato.stop(startTime + duration);
+                    tremolo.stop(startTime + duration);
                 }
 
-                // Two-part loon call
-                createWail(ctx.currentTime, 600, 900, 1.2);
-                createWail(ctx.currentTime + 1.4, 550, 850, 1.0);
+                // Three-part loon call (classic tremolo)
+                createWail(ctx.currentTime, 550, 950, 1.4);
+                createWail(ctx.currentTime + 1.5, 600, 880, 1.1);
+                createWail(ctx.currentTime + 2.8, 520, 820, 1.3);
 
             } catch (e) {}
 
             setTimeout(() => {
                 loon.classList.remove('swimming');
-            }, 8500);
+            }, 10000);
         }
     }
 })();
@@ -591,5 +602,111 @@ window.openProjectDetail = openProjectDetail;
             // Remove after animation
             setTimeout(() => sparkle.remove(), 1500);
         }
+    }
+})();
+
+// Easter Egg 3: The "98% Power Reduction" (Faribault EAW allegation)
+// Click on Faribault's square footage 3 times in detail panel to trigger
+(function() {
+    let powerEggActive = false;
+
+    // Watch for Faribault project detail opens
+    const originalOpenDetail = window.openProjectDetail;
+    window.openProjectDetail = function(projectId) {
+        originalOpenDetail(projectId);
+
+        const project = projectData.find(p => p.id === projectId);
+        if (project && project.name.includes('Faribault')) {
+            setTimeout(() => setupPowerEgg(), 100);
+        }
+    };
+
+    function setupPowerEgg() {
+        const sqftEl = document.getElementById('detail-sqft');
+        if (!sqftEl || powerEggActive) return;
+
+        let clickCount = 0;
+        const handler = function() {
+            clickCount++;
+            if (clickCount >= 3) {
+                activatePowerReduction();
+                sqftEl.removeEventListener('click', handler);
+            }
+        };
+
+        sqftEl.style.cursor = 'pointer';
+        sqftEl.addEventListener('click', handler);
+    }
+
+    function activatePowerReduction() {
+        powerEggActive = true;
+
+        // Create overlay message
+        const overlay = document.createElement('div');
+        overlay.className = 'power-reduction-overlay';
+        overlay.innerHTML = `
+            <div class="power-reduction-content">
+                <div class="power-reduction-title">⚡ Environmental Review Magic ⚡</div>
+                <div class="power-reduction-stats">
+                    <div class="power-stat">
+                        <div class="power-label">Draft EAW Power Estimate</div>
+                        <div class="power-value original">1,000,000 MWh/yr</div>
+                    </div>
+                    <div class="power-arrow">↓ 98% reduction ↓</div>
+                    <div class="power-stat">
+                        <div class="power-label">Final EAW Power Estimate</div>
+                        <div class="power-value reduced">14,000 MWh/yr</div>
+                    </div>
+                </div>
+                <div class="power-explanation">
+                    According to MCEA's appeal, Faribault's greenhouse gas emissions estimate
+                    dropped 98% between draft and final EAW—without explanation. The estimated
+                    electricity consumption went from 1 million+ MWh/year to just 14,000 MWh/year.
+                </div>
+                <div class="power-citation">
+                    Source: <a href="https://www.hometownsource.com/sun_thisweek/community/dakota_county/mcea-files-appeal-against-faribault-for-proposed-data-centers-inadequate-environmental-review/article_b7b730f0-e369-484b-9692-890b0252789e.html" target="_blank">MCEA Appeal Coverage</a>
+                </div>
+                <button class="power-close">Close</button>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Animate in
+        setTimeout(() => overlay.classList.add('visible'), 10);
+
+        // Animate the numbers
+        setTimeout(() => {
+            const originalValue = overlay.querySelector('.power-value.original');
+            const reducedValue = overlay.querySelector('.power-value.reduced');
+
+            // Glitch effect on original number
+            let glitchCount = 0;
+            const glitchInterval = setInterval(() => {
+                const randomNum = Math.floor(Math.random() * 1000000);
+                originalValue.textContent = `${randomNum.toLocaleString()} MWh/yr`;
+                glitchCount++;
+
+                if (glitchCount > 20) {
+                    clearInterval(glitchInterval);
+                    originalValue.textContent = '1,000,000 MWh/yr';
+                    originalValue.classList.add('strikethrough');
+                }
+            }, 100);
+
+            // Pulse the reduced value
+            setTimeout(() => {
+                reducedValue.classList.add('pulse');
+            }, 2500);
+        }, 500);
+
+        // Close handler
+        overlay.querySelector('.power-close').addEventListener('click', () => {
+            overlay.classList.remove('visible');
+            setTimeout(() => {
+                overlay.remove();
+                powerEggActive = false;
+            }, 300);
+        });
     }
 })();

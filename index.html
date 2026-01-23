@@ -845,32 +845,67 @@
 
         .loon.swimming {
             opacity: 1;
-            animation: swim 8s ease-in-out forwards;
+            animation: swim 10s ease-in-out forwards, bob 2.2s ease-in-out infinite;
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
         }
 
         @keyframes swim {
-            0% { left: -100px; transform: translateY(0); }
-            25% { transform: translateY(-8px); }
-            50% { transform: translateY(0); }
-            75% { transform: translateY(-5px); }
-            100% { left: calc(100% + 100px); transform: translateY(0); }
+            0% { left: -150px; }
+            100% { left: calc(100% + 150px); }
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-12px) rotate(-1deg); }
+            50% { transform: translateY(-4px) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        /* Water ripples behind the loon */
+        .loon.swimming::before {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 20%;
+            width: 80px;
+            height: 15px;
+            background: radial-gradient(ellipse, rgba(100,149,237,0.25) 0%, transparent 60%);
+            transform-origin: left center;
+            animation: wakeTrail 2.2s ease-in-out infinite;
         }
 
         .loon.swimming::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 2px;
             left: 50%;
-            width: 60px;
-            height: 8px;
-            background: radial-gradient(ellipse, rgba(100,149,237,0.3) 0%, transparent 70%);
+            width: 70px;
+            height: 12px;
+            background: radial-gradient(ellipse, rgba(100,149,237,0.35) 0%, transparent 70%);
             transform: translateX(-50%);
-            animation: ripple 0.8s ease-in-out infinite;
+            animation: ripple 1.5s ease-in-out infinite;
         }
 
         @keyframes ripple {
-            0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.5; }
-            50% { transform: translateX(-50%) scaleX(1.3); opacity: 0.3; }
+            0%, 100% {
+                transform: translateX(-50%) scaleX(1) scaleY(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateX(-50%) scaleX(1.5) scaleY(0.8);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes wakeTrail {
+            0%, 100% {
+                transform: scaleX(1) scaleY(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scaleX(1.2) scaleY(0.9);
+                opacity: 0.2;
+            }
         }
 
         .masthead-title h1 {
@@ -965,6 +1000,140 @@
                 opacity: 0;
                 transform: scale(0.5) rotate(360deg) translateY(-30px);
             }
+        }
+
+        /* Power Reduction Easter Egg */
+        .power-reduction-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .power-reduction-overlay.visible {
+            opacity: 1;
+        }
+
+        .power-reduction-content {
+            background: var(--paper);
+            border: 2px solid var(--ink);
+            padding: 2.5rem;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .power-reduction-title {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+        }
+
+        .power-reduction-stats {
+            background: var(--paper-dark);
+            border: 1px solid var(--paper-darker);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .power-stat {
+            margin-bottom: 1rem;
+        }
+
+        .power-stat:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .power-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.35rem;
+        }
+
+        .power-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .power-value.original {
+            color: #dc2626;
+        }
+
+        .power-value.reduced {
+            color: #10b981;
+        }
+
+        .power-value.strikethrough {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .power-value.pulse {
+            animation: powerPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes powerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .power-arrow {
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 1rem 0;
+            color: #fbbf24;
+        }
+
+        .power-explanation {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .power-citation {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            margin-bottom: 1.5rem;
+        }
+
+        .power-citation a {
+            color: var(--ink);
+            text-decoration: underline;
+        }
+
+        .power-citation a:hover {
+            color: var(--ink-light);
+        }
+
+        .power-close {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--ink);
+            color: var(--paper);
+            border: none;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .power-close:hover {
+            background: var(--ink-light);
         }
     </style>
 </head>
