@@ -486,23 +486,48 @@ window.openProjectDetail = openProjectDetail;
         if (loon && !loon.classList.contains('swimming')) {
             loon.classList.add('swimming');
 
-            // Synthesize a simple loon-like call
+            // Synthesize a more realistic loon tremolo call
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.type = 'sine';
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
 
-                // Loon call: haunting descending wail
-                osc.frequency.setValueAtTime(800, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 1.5);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.8);
+                // Create the haunting wail
+                function createWail(startTime, startFreq, endFreq, duration) {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    const vibrato = ctx.createOscillator();
+                    const vibratoGain = ctx.createGain();
 
-                osc.start(ctx.currentTime);
-                osc.stop(ctx.currentTime + 2);
+                    // Vibrato for tremolo effect
+                    vibrato.frequency.value = 6;
+                    vibratoGain.gain.value = 15;
+                    vibrato.connect(vibratoGain);
+                    vibratoGain.connect(osc.frequency);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.type = 'sine';
+
+                    // Volume envelope
+                    gain.gain.setValueAtTime(0.001, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.1);
+                    gain.gain.setValueAtTime(0.12, startTime + duration - 0.3);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+                    // Pitch: rise then fall
+                    osc.frequency.setValueAtTime(startFreq, startTime);
+                    osc.frequency.linearRampToValueAtTime(endFreq, startTime + duration * 0.4);
+                    osc.frequency.linearRampToValueAtTime(startFreq * 0.7, startTime + duration);
+
+                    vibrato.start(startTime);
+                    osc.start(startTime);
+                    osc.stop(startTime + duration);
+                    vibrato.stop(startTime + duration);
+                }
+
+                // Two-part loon call
+                createWail(ctx.currentTime, 600, 900, 1.2);
+                createWail(ctx.currentTime + 1.4, 550, 850, 1.0);
+
             } catch (e) {}
 
             setTimeout(() => {
@@ -512,44 +537,59 @@ window.openProjectDetail = openProjectDetail;
     }
 })();
 
-// Easter Egg 2: Type "ope" anywhere
+// Easter Egg 2: "Public Version" button - toggles to "Light Industrial Development Watch"
 (function() {
-    let buffer = '';
+    const btn = document.getElementById('public-version-btn');
+    const titleSubject = document.getElementById('title-subject');
+    const sparkleContainer = document.getElementById('sparkle-container');
+    let isPublicVersion = false;
 
-    document.addEventListener('keypress', function(e) {
-        // Don't trigger if typing in an input
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-            return;
-        }
+    if (btn && titleSubject) {
+        btn.addEventListener('click', function() {
+            isPublicVersion = !isPublicVersion;
 
-        buffer += e.key.toLowerCase();
-        buffer = buffer.slice(-3);
+            // Create sparkles around the title
+            createSparkles();
 
-        if (buffer === 'ope') {
-            buffer = '';
-            showOpe();
-        }
-    });
-
-    function showOpe() {
-        const toast = document.getElementById('ope-toast');
-
-        if (toast && !toast.classList.contains('show')) {
-            toast.classList.add('show');
-
-            // Wiggle a random marker
-            if (markers.length > 0) {
-                const randomMarker = markers[Math.floor(Math.random() * markers.length)];
-                const markerElement = randomMarker.getElement ? randomMarker.getElement() : randomMarker._icon;
-                if (markerElement) {
-                    markerElement.classList.add('marker-wiggle');
-                    setTimeout(() => markerElement.classList.remove('marker-wiggle'), 500);
-                }
-            }
+            // Fade out
+            titleSubject.classList.add('fade-out');
 
             setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
+                // Swap text
+                titleSubject.textContent = isPublicVersion ? 'Light Industrial Development' : 'Data Center';
+                btn.textContent = isPublicVersion ? 'Investigative Version' : 'Public Version';
+
+                // Fade in
+                titleSubject.classList.remove('fade-out');
+            }, 300);
+        });
+    }
+
+    function createSparkles() {
+        if (!sparkleContainer || !titleSubject) return;
+
+        const rect = titleSubject.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 12; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+
+            // Random position around the title
+            const angle = (i / 12) * Math.PI * 2;
+            const distance = 30 + Math.random() * 50;
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.animationDelay = (Math.random() * 0.3) + 's';
+
+            sparkleContainer.appendChild(sparkle);
+
+            // Remove after animation
+            setTimeout(() => sparkle.remove(), 1500);
         }
     }
 })();
