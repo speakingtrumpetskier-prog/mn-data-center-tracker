@@ -53,8 +53,8 @@ const projectData = [
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263487?siId=263487-PROJ0000000001" },
             { name: "EQB Monitor Notice", url: "https://content.govdelivery.com/accounts/MNEQB/bulletins/3efc446" },
-            { name: "City of Faribault Alert", url: "https://www.ci.faribault.mn.us/CivicAlerts.asp?AID=580&ARC=1452" },
-            { name: "MN Court of Appeals Calendar", url: "https://mncourts.gov/courtofappeals/calendar" }
+            { name: "MCEA Appeal Brief (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Brief-Appellant.pdf" },
+            { name: "City of Faribault Alert", url: "https://www.ci.faribault.mn.us/CivicAlerts.asp?AID=580&ARC=1452" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -95,9 +95,9 @@ const projectData = [
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263202?siId=263202-PROJ0000000001" },
+            { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_Hermantown_MCRO_69DU-CV-25-3448_Complaint-Civil_2025-11-05_20251230104248.pdf" },
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
-            { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" },
-            { name: "WDIO - Lawsuit Response", url: "https://www.wdio.com/front-page/top-stories/hermantown-files-response-to-data-center-lawsuit/" }
+            { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -134,9 +134,8 @@ const projectData = [
         },
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261688?siId=261688-PROJ0000000001" },
-            { name: "Complaint (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/09/Lakeville_19HA-CV-25-5103_Complaint-Civil_2025-08-11.pdf" },
-            { name: "Scheduling Order (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/09/Lakeville_Order_Regarding_Briefing_Schedule_and_Page_Limitations_2025-12-12.pdf" },
-            { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/06/group-suing-north-mankato-development/" }
+            { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/08/Lakeville_MCRO_19HA-CV-25-5103_Complaint-Civil_2025-08-05_20250819063829.pdf" },
+            { name: "Summary Judgment Order (PDF)", url: "https://legalectric.org/f/2025/12/Lakeaville_Order_SJ-Hearing_CV-25-5103_Order-Other_2025-12-12_20251230105817.pdf" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -174,8 +173,9 @@ const projectData = [
         },
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366?siId=261366-PROJ0000000001" },
-            { name: "Complaint (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/09/North-Mankato_52-CV-25-568_Complaint-Civil_2025-08-05.pdf" },
-            { name: "Answer (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/12/North-Mankato_Project-Deacon_52-CV-25-568_Answer_2025-10-07.pdf" },
+            { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_N-Mankato_MCRO_52-CV-25-568_Complaint-Civil_2025-08-05_20251230110142.pdf" },
+            { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
+            { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" },
             { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/06/group-suing-north-mankato-development/" }
         ],
         lastUpdated: "2026-01-22"
@@ -212,8 +212,8 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Complaint (PDF)", url: "https://legalectric.org/wp-content/uploads/2025/12/Pine-Island_Project-Skyway_25-CV-25-502_Complaint-Civil_2025-12-17.pdf" },
-            { name: "TRO Denial Order (PDF)", url: "https://legalectric.org/wp-content/uploads/2026/01/Pine-Island_Project-Skyway_Order_Denying_TRO_2025-12-29.pdf" },
+            { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Pine-Island-Complaint_MCRO_25-CV-25-2298_Complaint-Civil_2025-10-16_20251230105028.pdf" },
+            { name: "TRO Denial Order (PDF)", url: "https://legalectric.org/f/2025/12/Pine-Island_MCRO_25-CV-25-2298_Order-Denying-Motion_2025-12-29_20251230104816.pdf" },
             { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" },
             { name: "Planning & Zoning Packet", url: "https://pineislandmn.gov/wp-content/uploads/2026/01/1.13.26-PZ-Meeting-Packet.pdf" }
         ],
