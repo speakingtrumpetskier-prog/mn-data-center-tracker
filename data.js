@@ -38,11 +38,11 @@ const projectData = [
             caseNumber: "A25-1617",
             court: "MN Court of Appeals",
             status: "Appeal pending",
-            filedDate: "2025-09-01"
+            filedDate: "2025-10-02"
         },
         timeline: [
-            { date: "2025-09-02", event: "Negative EIS declaration issued" },
-            { date: "2025-09-01", event: "Appeal filed in Court of Appeals" }
+            { date: "2025-10-02", event: "Appeal filed in Court of Appeals" },
+            { date: "2025-09-02", event: "Negative EIS declaration issued" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "EAW", detail: "Negative declaration - no EIS needed" },
@@ -124,10 +124,10 @@ const projectData = [
         timeline: [
             { date: "2025-12-12", event: "Court scheduling order for summary judgment briefing" },
             { date: "2025-08-05", event: "Lawsuit filed" },
-            { date: "2025-07-07", event: "Final AUAR approved" }
+            { date: "2025-07-08", event: "Final AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 2025" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 8, 2025" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -191,17 +191,17 @@ const projectData = [
         lng: -92.6460,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Lawsuit filed Oct 2025; TRO denied Dec 23, 2025",
+        currentStatus: "Lawsuit filed Oct 2025; TRO denied Dec 29, 2025",
         notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas. Next hearing Feb 2, 2026.",
         litigation: {
             active: true,
             caseNumber: "25-CV-25-2298",
             court: "Goodhue County District Court",
-            status: "TRO denied Dec 23, 2025",
+            status: "TRO denied Dec 29, 2025",
             filedDate: "2025-10-16"
         },
         timeline: [
-            { date: "2025-12-23", event: "Court denied TRO request" },
+            { date: "2025-12-29", event: "Court denied TRO request (hearing held Dec 23)" },
             { date: "2025-12-17", event: "City Council approved preliminary plat" },
             { date: "2025-12-12", event: "TRO motion filed" },
             { date: "2025-10-16", event: "Lawsuit filed" },
@@ -323,12 +323,11 @@ const projectData = [
         lng: -93.0069,
         acres: null,
         sqft: 1500000,
-        currentStatus: "Final AUAR approved; 30-day appeal period expired",
+        currentStatus: "Final AUAR approved April 8, 2025; 30-day appeal period expired",
         notes: "Refers to a technology park in documentation.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-05-01", event: "Final AUAR approved" },
-            { date: "2025-04-08", event: "Revised AUAR comment period ended" },
+            { date: "2025-04-08", event: "Final AUAR approved" },
             { date: "2025-03-25", event: "EQB Monitor notice published" },
             { date: "2024-12-24", event: "EQB Monitor notice - public meeting" }
         ],
@@ -399,10 +398,10 @@ const projectData = [
         timeline: [
             { date: "2024-11-29", event: "Residents and Coalition file lawsuit/injunction" },
             { date: "2025-01-14", event: "Castle Rock Township votes to file separate legal action" },
-            { date: "2024-11-04", event: "AUAR adopted (Resolution 2024-97)" }
+            { date: "2024-10-07", event: "AUAR adopted (Resolution 2024-97)" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Nov 2024" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Oct 7, 2024" },
             localZoning: { status: "in_progress", detail: "PUD approved but challenged" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -692,11 +691,11 @@ const projectData = [
         acres: null,
         sqft: null,
         currentStatus: "Amazon pulled out after PUC required Certificate of Need for backup generators",
-        notes: "PUC ruled Certificate of Need required for backup generators March 2025. Amazon subsequently withdrew.",
+        notes: "PUC ruled Certificate of Need required for backup generators Feb 28, 2025. Amazon subsequently withdrew May 23, 2025.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-03-08", event: "Amazon pulls out of Becker plans" },
-            { date: "2025-03-04", event: "PUC rules Certificate of Need required" }
+            { date: "2025-05-23", event: "Amazon pulls out of Becker plans" },
+            { date: "2025-02-28", event: "PUC rules Certificate of Need required" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
