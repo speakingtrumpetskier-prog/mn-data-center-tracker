@@ -744,8 +744,8 @@ const projectData = [
 // Status display info
 const statusInfo = {
     in_litigation: { label: "In Litigation", color: "#dc2626", order: 0 },
-    in_review: { label: "In Review", color: "#3b82f6", order: 1 },
-    review_complete: { label: "Review Complete", color: "#8b5cf6", order: 2 },
+    in_review: { label: "In Env. Review", color: "#3b82f6", order: 1 },
+    review_complete: { label: "Env. Review Complete", color: "#8b5cf6", order: 2 },
     construction: { label: "Construction", color: "#f97316", order: 3 },
     operational: { label: "Operational", color: "#10b981", order: 4 },
     watching: { label: "Watching", color: "#6b7280", order: 5 },
