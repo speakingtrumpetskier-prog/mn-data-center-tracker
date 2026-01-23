@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Data Center Watch</title>
+
+    <!-- Fonts - Editorial choices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #7a7a7a;
+            --paper: #fafaf8;
+            --paper-dark: #f0f0ec;
+            --paper-darker: #e5e5e0;
+            --cream: #f5f4f0;
+            --accent: #c44536;
+            --accent-dark: #a33527;
+            --success: #2d6a4f;
+            --warning: #b8860b;
+            --info: #1d3557;
+            --muted: #8d99ae;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Typography */
+        .serif {
+            font-family: 'Newsreader', Georgia, serif;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Header - Newspaper masthead style */
+        .masthead {
+            border-bottom: 1px solid var(--ink);
+            padding: 1rem 0;
+            background: var(--paper);
+        }
+
+        .masthead-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .masthead-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--paper-darker);
+            margin-bottom: 0.75rem;
+        }
+
+        .edition-info {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            letter-spacing: 0.02em;
+        }
+
+        .masthead-title {
+            text-align: center;
+        }
+
+        .masthead-title h1 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 2.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .masthead-subtitle {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .masthead-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--paper-darker);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+        }
+
+        /* Main Layout - Newspaper grid */
+        .main {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 2rem;
+        }
+
+        /* Map Section */
+        .map-container {
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .section-title {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .filter-tab {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--paper-darker);
+            background: var(--paper);
+            color: var(--ink-light);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .filter-tab:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+
+        .filter-tab:last-child {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .filter-tab:hover {
+            background: var(--paper-dark);
+        }
+
+        .filter-tab.active {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+
+        #map {
+            height: 520px;
+            border: 1px solid var(--paper-darker);
+            background: var(--cream);
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--cream);
+            border: 1px solid var(--paper-darker);
+            font-size: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--ink-light);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Project List - Expanded */
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .search-input {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            border: 1px solid var(--paper-darker);
+            background: var(--paper);
+            width: 180px;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--ink-light);
+        }
+
+        .project-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: calc(100vh - 340px);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Project Cards - Clean, editorial */
+        .project-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--paper-darker);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .project-item:hover {
+            background: var(--cream);
+            margin: 0 -0.75rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+
+        .project-item.selected {
+            background: var(--cream);
+            margin: 0 -0.75rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .project-name {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--ink);
+        }
+
+        .project-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            white-space: nowrap;
+            border-radius: 2px;
+        }
+
+        .badge-active { background: #fde8e8; color: var(--accent); }
+        .badge-potential { background: #fef3e2; color: var(--warning); }
+        .badge-approved { background: #e8f5e9; color: var(--success); }
+        .badge-monitoring { background: #e3f2fd; color: var(--info); }
+        .badge-suspended { background: var(--paper-dark); color: var(--ink-faint); }
+
+        .project-meta {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-status {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-top: 0.35rem;
+            font-style: italic;
+        }
+
+        .project-links {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Status Summary Cards */
+        .status-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--paper-darker);
+        }
+
+        .status-card {
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--cream);
+            border: 1px solid var(--paper-darker);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .status-card:hover {
+            border-color: var(--ink-light);
+        }
+
+        .status-card.active {
+            border-color: var(--ink);
+            background: var(--paper);
+        }
+
+        .status-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .status-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+            margin-top: 0.25rem;
+        }
+
+        /* Detail Panel - Side drawer */
+        .detail-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+
+        .detail-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .detail-panel {
+            position: fixed;
+            top: 0;
+            right: -520px;
+            width: 520px;
+            height: 100vh;
+            background: var(--paper);
+            border-left: 1px solid var(--ink);
+            z-index: 1001;
+            transition: right 0.25s ease;
+            overflow-y: auto;
+        }
+
+        .detail-panel.open {
+            right: 0;
+        }
+
+        .detail-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--paper-darker);
+            position: relative;
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--paper-darker);
+            background: var(--paper);
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--ink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-close:hover {
+            background: var(--paper-dark);
+        }
+
+        .detail-title {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            padding-right: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .detail-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid var(--paper-darker);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .detail-field {
+
+        }
+
+        .detail-field-label {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .detail-field-value {
+            font-size: 0.95rem;
+            color: var(--ink);
+            margin-top: 0.15rem;
+        }
+
+        .detail-notes {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--ink-light);
+            padding: 1rem;
+            background: var(--cream);
+            border-left: 3px solid var(--paper-darker);
+        }
+
+        .detail-sources {
+            list-style: none;
+        }
+
+        .detail-sources li {
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--paper-darker);
+        }
+
+        .detail-sources a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .detail-sources a:hover {
+            text-decoration: underline;
+        }
+
+        /* Permits grid */
+        .permits-grid {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .permit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            background: var(--cream);
+            border-left: 3px solid var(--paper-darker);
+        }
+
+        .permit-row.approved {
+            border-left-color: #10b981;
+        }
+
+        .permit-row.in-progress {
+            border-left-color: #3b82f6;
+        }
+
+        .permit-row.not-started {
+            border-left-color: #9ca3af;
+        }
+
+        .permit-name {
+            font-size: 0.85rem;
+            color: var(--ink);
+        }
+
+        .permit-status {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .permit-status.approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .permit-status.in-progress {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .permit-status.not-started {
+            background: var(--paper-dark);
+            color: var(--ink-faint);
+        }
+
+        .permit-status.unknown {
+            background: var(--paper-dark);
+            color: var(--ink-faint);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: var(--paper-darker);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0.35rem 0 0.35rem 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0.6rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--ink-faint);
+            border: 2px solid var(--paper);
+        }
+
+        .timeline-item:first-child::before {
+            background: var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .timeline-event {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--ink);
+            padding: 1rem 0;
+            margin-top: 2rem;
+            background: var(--paper);
+        }
+
+        .footer-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--ink-light);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Leaflet customization */
+        .leaflet-popup-content-wrapper {
+            border-radius: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .leaflet-popup-content {
+            margin: 0.75rem 1rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .popup-title {
+            font-family: 'Newsreader', Georgia, serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .popup-meta {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+        }
+
+        .popup-btn {
+            margin-top: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--ink);
+            color: var(--paper);
+            border: none;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .popup-btn:hover {
+            background: var(--ink-light);
+        }
+
+        /* Custom markers */
+        .marker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* Combo marker ring for secondary status */
+        .combo-marker .marker-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 3px solid;
+            border-style: dashed;
+            opacity: 0.8;
+        }
+
+        /* Project badges container */
+        .project-badges, .detail-badges {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .project-badge.secondary {
+            font-size: 0.6rem;
+            opacity: 0.8;
+        }
+
+        /* Litigation project styling */
+        .project-item.litigation {
+            border-left: 3px solid #dc2626;
+            margin-left: -0.75rem;
+            padding-left: calc(0.75rem + 0.75rem);
+        }
+
+        .project-case {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: #dc2626;
+            margin-top: 0.35rem;
+        }
+
+        /* Permit withdrawn/blocked states */
+        .permit-row.withdrawn {
+            border-left-color: #f59e0b;
+        }
+
+        .permit-status.withdrawn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .permit-row.blocked {
+            border-left-color: #dc2626;
+        }
+
+        .permit-status.blocked {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .project-list {
+                max-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .masthead-title h1 {
+                font-size: 2rem;
+            }
+
+            .masthead-stats {
+                gap: 1.5rem;
+            }
+
+            .main {
+                padding: 1rem;
+            }
+
+            .detail-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        /* Scrollbar */
+        .project-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .project-list::-webkit-scrollbar-track {
+            background: var(--paper-dark);
+        }
+
+        .project-list::-webkit-scrollbar-thumb {
+            background: var(--paper-darker);
+        }
+
+        .project-list::-webkit-scrollbar-thumb:hover {
+            background: var(--ink-faint);
+        }
+    </style>
+</head>
+<body>
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="masthead-top">
+                <span class="edition-info">Environmental Review Tracker</span>
+                <span class="edition-info">Updated <span id="last-update">Weekly</span></span>
+            </div>
+            <div class="masthead-title">
+                <h1>Minnesota Data Center Watch</h1>
+                <p class="masthead-subtitle">Tracking proposed developments across the state</p>
+            </div>
+            <div class="masthead-stats">
+                <div class="stat">
+                    <div class="stat-value" id="total-projects">17</div>
+                    <div class="stat-label">Projects Tracked</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="total-sqft">35M</div>
+                    <div class="stat-label">Square Feet</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="total-acres">4,200</div>
+                    <div class="stat-label">Acres</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="litigation-count">5</div>
+                    <div class="stat-label">In Litigation</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Map Column -->
+        <div class="map-container">
+            <div class="section-header">
+                <h2 class="section-title">Project Locations</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="in_litigation">In Litigation</button>
+                    <button class="filter-tab" data-filter="in_review">In Review</button>
+                    <button class="filter-tab" data-filter="review_complete">Review Complete</button>
+                    <button class="filter-tab" data-filter="watching">Watching</button>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div class="map-legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #dc2626"></div>
+                    <span>In Litigation</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #3b82f6"></div>
+                    <span>In Review</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #8b5cf6"></div>
+                    <span>Review Complete</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #6b7280"></div>
+                    <span>Watching</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #9ca3af"></div>
+                    <span>Suspended</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Column -->
+        <div class="projects-container">
+            <div class="projects-header">
+                <h2 class="section-title">All Projects</h2>
+                <input type="text" class="search-input" id="search-input" placeholder="Search projects...">
+            </div>
+            <div class="project-list" id="project-list">
+                <!-- Populated by JS -->
+            </div>
+            <div class="status-summary">
+                <div class="status-card" data-status="in_litigation">
+                    <div class="status-count" style="color: #dc2626" id="count-litigation">5</div>
+                    <div class="status-label">In Litigation</div>
+                </div>
+                <div class="status-card" data-status="in_review">
+                    <div class="status-count" style="color: #3b82f6" id="count-in-review">4</div>
+                    <div class="status-label">In Review</div>
+                </div>
+                <div class="status-card" data-status="review_complete">
+                    <div class="status-count" style="color: #8b5cf6" id="count-review-complete">6</div>
+                    <div class="status-label">Review Complete</div>
+                </div>
+                <div class="status-card" data-status="watching">
+                    <div class="status-count" style="color: #6b7280" id="count-watching">6</div>
+                    <div class="status-label">Watching</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Detail Panel -->
+    <div class="detail-overlay" id="detail-overlay"></div>
+    <div class="detail-panel" id="detail-panel">
+        <div class="detail-header">
+            <button class="detail-close" id="detail-close">×</button>
+            <h2 class="detail-title" id="detail-title">Project Name</h2>
+            <div class="detail-badges">
+                <span class="project-badge" id="detail-badge">Status</span>
+                <span class="project-badge secondary" id="detail-secondary-badge" style="display: none;">Secondary</span>
+            </div>
+        </div>
+        <div class="detail-body">
+            <div class="detail-section">
+                <h3 class="detail-section-title">Location & Scale</h3>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <div class="detail-field-label">City</div>
+                        <div class="detail-field-value" id="detail-city">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">County</div>
+                        <div class="detail-field-value" id="detail-county">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">Acreage</div>
+                        <div class="detail-field-value" id="detail-acres">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">Building Size</div>
+                        <div class="detail-field-value" id="detail-sqft">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3 class="detail-section-title">Status</h3>
+                <div class="detail-field">
+                    <div class="detail-field-label">Current Status</div>
+                    <div class="detail-field-value" id="detail-status">—</div>
+                </div>
+            </div>
+
+            <div class="detail-section" id="litigation-section" style="display: none;">
+                <h3 class="detail-section-title">Litigation</h3>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <div class="detail-field-label">Case Number</div>
+                        <div class="detail-field-value" id="detail-case-number" style="font-family: 'IBM Plex Mono', monospace;">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">Court</div>
+                        <div class="detail-field-value" id="detail-court">—</div>
+                    </div>
+                </div>
+                <div class="detail-field" style="margin-top: 0.75rem;">
+                    <div class="detail-field-label">Litigation Status</div>
+                    <div class="detail-field-value" id="detail-litigation-status" style="color: #dc2626;">—</div>
+                </div>
+            </div>
+
+            <div class="detail-section" id="permits-section">
+                <h3 class="detail-section-title">Permitting Progress</h3>
+                <div class="permits-grid" id="detail-permits">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="detail-section" id="timeline-section" style="display: none;">
+                <h3 class="detail-section-title">Timeline</h3>
+                <div class="timeline" id="detail-timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="detail-section" id="notes-section" style="display: none;">
+                <h3 class="detail-section-title">Notes</h3>
+                <div class="detail-notes" id="detail-notes"></div>
+            </div>
+
+            <div class="detail-section" id="sources-section">
+                <h3 class="detail-section-title">Sources & Links</h3>
+                <ul class="detail-sources" id="detail-sources"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>Data compiled from EQB Monitor, city councils, and news reports</span>
+            <div class="footer-links">
+                <a href="https://www.eqb.state.mn.us/eqb-monitor" target="_blank">EQB Monitor →</a>
+                <a href="#" id="download-json">Download Data</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
