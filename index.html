@@ -316,19 +316,6 @@
             border-radius: 2px;
         }
 
-        /* Suspended with litigation: blue bg, red outline, gray outline */
-        .project-badge.suspended-with-litigation {
-            background: #2563eb !important;
-            color: white !important;
-            border: 2px solid #dc2626;
-            box-shadow: 0 0 0 1px #9ca3af;
-        }
-
-        .project-badge.secondary.litigation-secondary {
-            border: 2px solid #dc2626;
-            box-shadow: 0 0 0 1px #9ca3af;
-        }
-
         .badge-active { background: #fde8e8; color: var(--accent); }
         .badge-potential { background: #fef3e2; color: var(--warning); }
         .badge-approved { background: #e8f5e9; color: var(--success); }
@@ -751,6 +738,19 @@
             border: 3px solid;
             border-style: dashed;
             opacity: 0.8;
+        }
+
+        /* Suspended with litigation: special triple-ring marker */
+        .suspended-litigation-marker .marker-ring {
+            border-style: solid;
+            opacity: 1;
+        }
+
+        .marker-outer-ring {
+            position: absolute;
+            inset: -7px;
+            border-radius: 50%;
+            border: 2px solid #9ca3af;
         }
 
         /* Project badges container */

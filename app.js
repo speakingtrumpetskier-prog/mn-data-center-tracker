@@ -25,6 +25,21 @@ function createMarkerIcon(project) {
     const color = getMarkerColor(project);
     const hasSecondary = project.secondaryStatus;
 
+    // Special case: Suspended with litigation (blue circle, red outline, gray outer ring)
+    const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
+    if (isSuspendedWithLitigation) {
+        return L.divIcon({
+            className: 'marker-wrapper',
+            html: `<div class="marker combo-marker suspended-litigation-marker" style="background: #2563eb;">
+                <div class="marker-ring" style="border-color: #dc2626;"></div>
+                <div class="marker-outer-ring"></div>
+            </div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -12]
+        });
+    }
+
     // For projects with secondary status, show a combo marker
     if (hasSecondary) {
         const secondaryColor = statusInfo[project.secondaryStatus]?.color || '#6b7280';
@@ -168,22 +183,18 @@ function renderProjectList(filterValue = 'all') {
 
         // Show secondary badge if exists
         let secondaryBadge = '';
-        const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
         if (project.secondaryStatus) {
             const secLabel = statusInfo[project.secondaryStatus]?.label || project.secondaryStatus;
             const secColor = statusInfo[project.secondaryStatus]?.color || '#6b7280';
-            const secClass = isSuspendedWithLitigation ? 'litigation-secondary' : '';
-            secondaryBadge = `<span class="project-badge secondary ${secClass}" style="background: ${secColor}15; color: ${secColor};">${secLabel}</span>`;
+            secondaryBadge = `<span class="project-badge secondary" style="background: ${secColor}15; color: ${secColor};">${secLabel}</span>`;
         }
-
-        const primaryBadgeClass = isSuspendedWithLitigation ? 'suspended-with-litigation' : '';
 
         return `
             <div class="project-item ${isLitigation ? 'litigation' : ''}" data-id="${project.id}" onclick="openProjectDetail(${project.id})">
                 <div class="project-top">
                     <div class="project-name">${project.name}</div>
                     <div class="project-badges">
-                        <span class="project-badge ${primaryBadgeClass}" style="background: ${statusColor}15; color: ${statusColor};">${statusLabel}</span>
+                        <span class="project-badge" style="background: ${statusColor}15; color: ${statusColor};">${statusLabel}</span>
                         ${secondaryBadge}
                     </div>
                 </div>
@@ -238,19 +249,9 @@ function openProjectDetail(projectId) {
 
     // Header
     document.getElementById('detail-title').textContent = project.name;
-    const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
-
-    const detailBadgeEl = document.getElementById('detail-badge');
-    detailBadgeEl.textContent = statusLabel;
-    detailBadgeEl.style.background = `${statusColor}15`;
-    detailBadgeEl.style.color = statusColor;
-
-    // Add special styling for suspended with litigation
-    if (isSuspendedWithLitigation) {
-        detailBadgeEl.className = 'project-badge suspended-with-litigation';
-    } else {
-        detailBadgeEl.className = 'project-badge';
-    }
+    document.getElementById('detail-badge').textContent = statusLabel;
+    document.getElementById('detail-badge').style.background = `${statusColor}15`;
+    document.getElementById('detail-badge').style.color = statusColor;
 
     // Secondary badge
     const secondaryBadgeEl = document.getElementById('detail-secondary-badge');
@@ -261,13 +262,6 @@ function openProjectDetail(projectId) {
         secondaryBadgeEl.style.background = `${secColor}15`;
         secondaryBadgeEl.style.color = secColor;
         secondaryBadgeEl.style.display = 'inline-block';
-
-        // Add special styling for litigation secondary badge
-        if (isSuspendedWithLitigation) {
-            secondaryBadgeEl.className = 'project-badge secondary litigation-secondary';
-        } else {
-            secondaryBadgeEl.className = 'project-badge secondary';
-        }
     } else if (secondaryBadgeEl) {
         secondaryBadgeEl.style.display = 'none';
     }
