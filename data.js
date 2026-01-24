@@ -165,7 +165,7 @@ const projectData = [
             filedDate: "2025-08-05"
         },
         timeline: [
-            { date: "2025-11-01", event: "Oppidan backs out of project (citing generator permit timeline)" },
+            { date: "2025-11-17", event: "Developer withdrawal confirmed in press reports" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
             { date: "2025-09-05", event: "City of North Mankato filed answer" },
             { date: "2025-08-05", event: "Lawsuit filed" },
