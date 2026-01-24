@@ -146,24 +146,25 @@ const projectData = [
     {
         id: 4,
         name: "North Mankato Industrial AUAR (Project Deacon)",
-        status: "in_litigation",
-        secondaryStatus: "review_complete",
+        status: "suspended",
+        secondaryStatus: "in_litigation",
         city: "North Mankato",
         county: "Nicollet",
         lat: 44.1716,
         lng: -94.0336,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "Lawsuit filed Aug 2025; answers filed Sept 2025",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Opponents contend AUAR process was deficient. Developer Oppidan has paused project.",
+        currentStatus: "Developer Oppidan backed out; lawsuit remains active",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenges adequacy. No formal application was ever filed.",
         litigation: {
             active: true,
             caseNumber: "52-CV-25-568",
             court: "Nicollet County District Court",
-            status: "Answers filed Sept 2025",
+            status: "Lawsuit remains active despite developer withdrawal",
             filedDate: "2025-08-05"
         },
         timeline: [
+            { date: "2025-11-01", event: "Oppidan backs out of project (citing generator permit timeline)" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
             { date: "2025-09-05", event: "City of North Mankato filed answer" },
             { date: "2025-08-05", event: "Lawsuit filed" },
@@ -171,18 +172,20 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 2025" },
-            localZoning: { status: "unknown" },
+            localZoning: { status: "withdrawn", detail: "No formal application ever filed; developer withdrew" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Mankato Free Press - Oppidan Backs Out", url: "https://www.mankatofreepress.com/news/local_news/data-center-plans-stalled-in-north-mankato-after-developer-backs-out/article_d0617045-9eed-4633-a055-aed5b0405879.html" },
+            { name: "Star Tribune - Generator Permits", url: "https://www.startribune.com/developer-halts-two-minnesota-data-centers-over-permits-for-backup-generators/601507579" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366?siId=261366-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_N-Mankato_MCRO_52-CV-25-568_Complaint-Civil_2025-08-05_20251230110142.pdf" },
             { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
             { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" },
             { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/06/group-suing-north-mankato-development/" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-01-23"
     },
     {
         id: 5,
