@@ -146,8 +146,9 @@ const projectData = [
     {
         id: 4,
         name: "North Mankato Industrial AUAR (Project Deacon)",
-        status: "suspended",
+        status: "review_complete",
         secondaryStatus: "in_litigation",
+        tertiaryStatus: "suspended",
         city: "North Mankato",
         county: "Nicollet",
         lat: 44.1716,
@@ -788,20 +789,20 @@ function calculateStats() {
         if (p.sqft) totalSqft += p.sqft;
     });
 
-    // Count includes both primary and secondary statuses
-    // (e.g., Hermantown is both in_litigation and review_complete)
+    // Count includes primary, secondary, and tertiary statuses
+    // (e.g., North Mankato is review_complete + in_litigation + suspended)
     return {
         totalProjects: validProjects.length,
         totalAcres: Math.round(totalAcres),
         totalSqft: totalSqft,
         countByStatus: {
-            in_litigation: projectData.filter(p => p.status === 'in_litigation' || p.secondaryStatus === 'in_litigation').length,
-            in_review: projectData.filter(p => p.status === 'in_review' || p.secondaryStatus === 'in_review').length,
-            review_complete: projectData.filter(p => p.status === 'review_complete' || p.secondaryStatus === 'review_complete').length,
-            construction: projectData.filter(p => p.status === 'construction' || p.secondaryStatus === 'construction').length,
-            operational: projectData.filter(p => p.status === 'operational' || p.secondaryStatus === 'operational').length,
-            watching: projectData.filter(p => p.status === 'watching' || p.secondaryStatus === 'watching').length,
-            suspended: projectData.filter(p => p.status === 'suspended' || p.secondaryStatus === 'suspended').length
+            in_litigation: projectData.filter(p => p.status === 'in_litigation' || p.secondaryStatus === 'in_litigation' || p.tertiaryStatus === 'in_litigation').length,
+            in_review: projectData.filter(p => p.status === 'in_review' || p.secondaryStatus === 'in_review' || p.tertiaryStatus === 'in_review').length,
+            review_complete: projectData.filter(p => p.status === 'review_complete' || p.secondaryStatus === 'review_complete' || p.tertiaryStatus === 'review_complete').length,
+            construction: projectData.filter(p => p.status === 'construction' || p.secondaryStatus === 'construction' || p.tertiaryStatus === 'construction').length,
+            operational: projectData.filter(p => p.status === 'operational' || p.secondaryStatus === 'operational' || p.tertiaryStatus === 'operational').length,
+            watching: projectData.filter(p => p.status === 'watching' || p.secondaryStatus === 'watching' || p.tertiaryStatus === 'watching').length,
+            suspended: projectData.filter(p => p.status === 'suspended' || p.secondaryStatus === 'suspended' || p.tertiaryStatus === 'suspended').length
         }
     };
 }

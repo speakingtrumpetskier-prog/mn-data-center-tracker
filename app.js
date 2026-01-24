@@ -25,10 +25,12 @@ function createMarkerIcon(project) {
     const color = getMarkerColor(project);
     const hasSecondary = project.secondaryStatus;
 
-    // Special case: Suspended with review_complete and litigation
+    // Special case: Review complete + litigation + suspended
     // Red core (litigation) + purple ring (review_complete) + gray ring (suspended)
-    const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
-    if (isSuspendedWithLitigation) {
+    const isTripleStatus = project.status === 'review_complete' &&
+                          project.secondaryStatus === 'in_litigation' &&
+                          project.tertiaryStatus === 'suspended';
+    if (isTripleStatus) {
         return L.divIcon({
             className: 'marker-wrapper',
             html: `<div class="marker combo-marker triple-marker" style="background: #dc2626;">
@@ -91,6 +93,7 @@ function initializeMarkers() {
             marker.projectId = project.id;
             marker.status = project.status;
             marker.secondaryStatus = project.secondaryStatus;
+            marker.tertiaryStatus = project.tertiaryStatus;
             markers.push(marker);
             marker.addTo(map);
         }
@@ -105,7 +108,9 @@ function filterMarkers(filterValue) {
         let shouldShow = true;
 
         if (filterValue !== 'all') {
-            shouldShow = marker.status === filterValue || marker.secondaryStatus === filterValue;
+            shouldShow = marker.status === filterValue ||
+                        marker.secondaryStatus === filterValue ||
+                        marker.tertiaryStatus === filterValue;
         }
 
         if (shouldShow) {
@@ -154,7 +159,11 @@ function renderProjectList(filterValue = 'all') {
 
     // Apply status filter
     if (filterValue !== 'all') {
-        filtered = filtered.filter(p => p.status === filterValue || p.secondaryStatus === filterValue);
+        filtered = filtered.filter(p =>
+            p.status === filterValue ||
+            p.secondaryStatus === filterValue ||
+            p.tertiaryStatus === filterValue
+        );
     }
 
     // Apply search
@@ -182,12 +191,19 @@ function renderProjectList(filterValue = 'all') {
         const hasLinks = project.sources && project.sources.some(s => s.url);
         const isLitigation = project.status === 'in_litigation';
 
-        // Show secondary badge if exists
+        // Show secondary and tertiary badges if they exist
         let secondaryBadge = '';
         if (project.secondaryStatus) {
             const secLabel = statusInfo[project.secondaryStatus]?.label || project.secondaryStatus;
             const secColor = statusInfo[project.secondaryStatus]?.color || '#6b7280';
             secondaryBadge = `<span class="project-badge secondary" style="background: ${secColor}15; color: ${secColor};">${secLabel}</span>`;
+        }
+
+        let tertiaryBadge = '';
+        if (project.tertiaryStatus) {
+            const tertLabel = statusInfo[project.tertiaryStatus]?.label || project.tertiaryStatus;
+            const tertColor = statusInfo[project.tertiaryStatus]?.color || '#6b7280';
+            tertiaryBadge = `<span class="project-badge tertiary" style="background: ${tertColor}15; color: ${tertColor};">${tertLabel}</span>`;
         }
 
         return `
@@ -197,6 +213,7 @@ function renderProjectList(filterValue = 'all') {
                     <div class="project-badges">
                         <span class="project-badge" style="background: ${statusColor}15; color: ${statusColor};">${statusLabel}</span>
                         ${secondaryBadge}
+                        ${tertiaryBadge}
                     </div>
                 </div>
                 <div class="project-meta">
@@ -265,6 +282,19 @@ function openProjectDetail(projectId) {
         secondaryBadgeEl.style.display = 'inline-block';
     } else if (secondaryBadgeEl) {
         secondaryBadgeEl.style.display = 'none';
+    }
+
+    // Tertiary badge
+    const tertiaryBadgeEl = document.getElementById('detail-tertiary-badge');
+    if (project.tertiaryStatus && tertiaryBadgeEl) {
+        const tertLabel = statusInfo[project.tertiaryStatus]?.label || project.tertiaryStatus;
+        const tertColor = statusInfo[project.tertiaryStatus]?.color || '#6b7280';
+        tertiaryBadgeEl.textContent = tertLabel;
+        tertiaryBadgeEl.style.background = `${tertColor}15`;
+        tertiaryBadgeEl.style.color = tertColor;
+        tertiaryBadgeEl.style.display = 'inline-block';
+    } else if (tertiaryBadgeEl) {
+        tertiaryBadgeEl.style.display = 'none';
     }
 
     // Location & Scale
