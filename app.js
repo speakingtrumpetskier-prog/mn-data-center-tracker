@@ -383,7 +383,7 @@ function updateStats() {
     document.getElementById('count-litigation').textContent = stats.countByStatus.in_litigation;
     document.getElementById('count-in-review').textContent = stats.countByStatus.in_review;
     document.getElementById('count-review-complete').textContent = stats.countByStatus.review_complete;
-    document.getElementById('count-watching').textContent = stats.countByStatus.watching + stats.countByStatus.suspended;
+    document.getElementById('count-watching').textContent = stats.countByStatus.watching;
 
     // Update last updated date
     const today = new Date();
