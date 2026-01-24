@@ -168,18 +168,22 @@ function renderProjectList(filterValue = 'all') {
 
         // Show secondary badge if exists
         let secondaryBadge = '';
+        const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
         if (project.secondaryStatus) {
             const secLabel = statusInfo[project.secondaryStatus]?.label || project.secondaryStatus;
             const secColor = statusInfo[project.secondaryStatus]?.color || '#6b7280';
-            secondaryBadge = `<span class="project-badge secondary" style="background: ${secColor}15; color: ${secColor};">${secLabel}</span>`;
+            const secClass = isSuspendedWithLitigation ? 'litigation-secondary' : '';
+            secondaryBadge = `<span class="project-badge secondary ${secClass}" style="background: ${secColor}15; color: ${secColor};">${secLabel}</span>`;
         }
+
+        const primaryBadgeClass = isSuspendedWithLitigation ? 'suspended-with-litigation' : '';
 
         return `
             <div class="project-item ${isLitigation ? 'litigation' : ''}" data-id="${project.id}" onclick="openProjectDetail(${project.id})">
                 <div class="project-top">
                     <div class="project-name">${project.name}</div>
                     <div class="project-badges">
-                        <span class="project-badge" style="background: ${statusColor}15; color: ${statusColor};">${statusLabel}</span>
+                        <span class="project-badge ${primaryBadgeClass}" style="background: ${statusColor}15; color: ${statusColor};">${statusLabel}</span>
                         ${secondaryBadge}
                     </div>
                 </div>
@@ -234,9 +238,19 @@ function openProjectDetail(projectId) {
 
     // Header
     document.getElementById('detail-title').textContent = project.name;
-    document.getElementById('detail-badge').textContent = statusLabel;
-    document.getElementById('detail-badge').style.background = `${statusColor}15`;
-    document.getElementById('detail-badge').style.color = statusColor;
+    const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
+
+    const detailBadgeEl = document.getElementById('detail-badge');
+    detailBadgeEl.textContent = statusLabel;
+    detailBadgeEl.style.background = `${statusColor}15`;
+    detailBadgeEl.style.color = statusColor;
+
+    // Add special styling for suspended with litigation
+    if (isSuspendedWithLitigation) {
+        detailBadgeEl.className = 'project-badge suspended-with-litigation';
+    } else {
+        detailBadgeEl.className = 'project-badge';
+    }
 
     // Secondary badge
     const secondaryBadgeEl = document.getElementById('detail-secondary-badge');
@@ -247,6 +261,13 @@ function openProjectDetail(projectId) {
         secondaryBadgeEl.style.background = `${secColor}15`;
         secondaryBadgeEl.style.color = secColor;
         secondaryBadgeEl.style.display = 'inline-block';
+
+        // Add special styling for litigation secondary badge
+        if (isSuspendedWithLitigation) {
+            secondaryBadgeEl.className = 'project-badge secondary litigation-secondary';
+        } else {
+            secondaryBadgeEl.className = 'project-badge secondary';
+        }
     } else if (secondaryBadgeEl) {
         secondaryBadgeEl.style.display = 'none';
     }
