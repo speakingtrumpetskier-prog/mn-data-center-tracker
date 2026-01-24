@@ -440,20 +440,6 @@ function updateStats() {
     });
 }
 
-// Download data
-function downloadData() {
-    const dataStr = JSON.stringify(projectData, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'mn-datacenter-projects.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     initializeMarkers();
@@ -484,12 +470,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close panel listeners
     document.getElementById('detail-close').addEventListener('click', closeDetailPanel);
     document.getElementById('detail-overlay').addEventListener('click', closeDetailPanel);
-
-    // Download link
-    document.getElementById('download-json').addEventListener('click', (e) => {
-        e.preventDefault();
-        downloadData();
-    });
 
     // Escape key
     document.addEventListener('keydown', (e) => {
