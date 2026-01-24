@@ -25,14 +25,15 @@ function createMarkerIcon(project) {
     const color = getMarkerColor(project);
     const hasSecondary = project.secondaryStatus;
 
-    // Special case: Suspended with litigation (blue circle, red outline, gray outer ring)
+    // Special case: Suspended with review_complete and litigation
+    // Red core (litigation) + purple ring (review_complete) + gray ring (suspended)
     const isSuspendedWithLitigation = project.status === 'suspended' && project.secondaryStatus === 'in_litigation';
     if (isSuspendedWithLitigation) {
         return L.divIcon({
             className: 'marker-wrapper',
-            html: `<div class="marker combo-marker suspended-litigation-marker" style="background: #2563eb;">
-                <div class="marker-ring" style="border-color: #dc2626;"></div>
-                <div class="marker-outer-ring"></div>
+            html: `<div class="marker combo-marker triple-marker" style="background: #dc2626;">
+                <div class="marker-ring" style="border-color: #8b5cf6;"></div>
+                <div class="marker-outer-ring" style="border-color: #9ca3af;"></div>
             </div>`,
             iconSize: [24, 24],
             iconAnchor: [12, 12],
