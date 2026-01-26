@@ -199,19 +199,17 @@ const projectData = [
         lng: -92.6460,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Lawsuit filed Oct 2025; TRO denied Dec 29, 2025",
+        currentStatus: "Lawsuit filed Oct 2025",
         notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas. Next hearing Feb 2, 2026.",
         litigation: {
             active: true,
             caseNumber: "25-CV-25-2298",
             court: "Goodhue County District Court",
-            status: "TRO denied Dec 29, 2025",
+            status: "Lawsuit pending",
             filedDate: "2025-10-16"
         },
         timeline: [
-            { date: "2025-12-29", event: "Court denied TRO request (hearing held Dec 23)" },
             { date: "2025-12-17", event: "City Council approved preliminary plat" },
-            { date: "2025-12-12", event: "TRO motion filed" },
             { date: "2025-10-16", event: "Lawsuit filed" },
             { date: "2025-09-16", event: "Revised AUAR approved" }
         ],
@@ -223,7 +221,6 @@ const projectData = [
         },
         sources: [
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Pine-Island-Complaint_MCRO_25-CV-25-2298_Complaint-Civil_2025-10-16_20251230105028.pdf" },
-            { name: "TRO Denial Order (PDF)", url: "https://legalectric.org/f/2025/12/Pine-Island_MCRO_25-CV-25-2298_Order-Denying-Motion_2025-12-29_20251230104816.pdf" },
             { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" },
             { name: "Planning & Zoning Packet", url: "https://pineislandmn.gov/wp-content/uploads/2026/01/1.13.26-PZ-Meeting-Packet.pdf" }
         ],
