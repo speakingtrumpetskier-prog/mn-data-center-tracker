@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Data Center Watch | MCEA</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            /* Official MCEA Brand Colors */
+            --mcea-green: #5f9e43;
+            --mcea-green-rgb: 95, 158, 67;
+            --dark-gray: #2b2b2b;
+            --medium-gray: #545454;
+            --light-gray: #e8e8e8;
+            --off-white: #f5f5f5;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* MCEA Header - exact match */
+        .mcea-header {
+            background: var(--dark-gray);
+            position: relative;
+        }
+
+        .mcea-header-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .mcea-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .mcea-logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        /* MCEA Hexagon Logo */
+        .mcea-hexagon-logo {
+            width: 48px;
+            height: 56px;
+            position: relative;
+        }
+
+        .hexagon-shape {
+            width: 100%;
+            height: 100%;
+            background: var(--mcea-green);
+            clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hexagon-tree {
+            width: 24px;
+            height: 32px;
+            fill: white;
+        }
+
+        .mcea-logo-text {
+            color: var(--white);
+        }
+
+        .mcea-acronym {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1;
+            display: block;
+        }
+
+        .mcea-full-name {
+            font-size: 11px;
+            letter-spacing: 0.3px;
+            display: block;
+            margin-top: 2px;
+            opacity: 0.95;
+        }
+
+        /* Navigation */
+        .mcea-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .mcea-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .mcea-nav a:hover {
+            color: var(--mcea-green);
+        }
+
+        .donate-btn {
+            background: var(--mcea-green);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .donate-btn:hover {
+            background: rgba(var(--mcea-green-rgb), 0.85);
+        }
+
+        .action-alerts {
+            background: transparent;
+            border: 2px solid var(--mcea-green);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .action-alerts:hover {
+            background: var(--mcea-green);
+        }
+
+        .alert-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--mcea-green);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Page Hero Section */
+        .page-hero {
+            background: var(--white);
+            padding: 60px 20px 50px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .page-hero-container {
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: var(--medium-gray);
+            margin-bottom: 40px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--mcea-green);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--medium-gray);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Main Content Area */
+        .main-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 440px;
+            gap: 40px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Map Container */
+        .map-container {
+            background: var(--white);
+        }
+
+        .map-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 18px;
+            border: 2px solid var(--light-gray);
+            background: var(--white);
+            color: var(--medium-gray);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--mcea-green);
+            color: var(--mcea-green);
+        }
+
+        .filter-btn.active {
+            background: var(--mcea-green);
+            color: var(--white);
+            border-color: var(--mcea-green);
+        }
+
+        .map-wrapper {
+            border: 2px solid var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        #map {
+            height: 520px;
+            background: var(--off-white);
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 24px;
+            padding: 16px 20px;
+            background: var(--off-white);
+            border-top: 2px solid var(--light-gray);
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Projects Sidebar */
+        .projects-sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            padding: 10px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 14px;
+            width: 220px;
+            font-family: inherit;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--mcea-green);
+        }
+
+        .projects-list {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 4px;
+            overflow-y: auto;
+            max-height: calc(100vh - 480px);
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+
+        .project-card:hover {
+            background: var(--off-white);
+            border-left-color: var(--mcea-green);
+        }
+
+        .project-card.selected {
+            background: rgba(var(--mcea-green-rgb), 0.08);
+            border-left-color: var(--mcea-green);
+        }
+
+        .project-card:last-child {
+            border-bottom: none;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .project-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            line-height: 1.3;
+            flex: 1;
+            padding-right: 12px;
+        }
+
+        .project-status-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .status-badge {
+            font-size: 10px;
+            padding: 4px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .badge-in_litigation { background: #fecaca; color: #991b1b; }
+        .badge-in_review { background: #bfdbfe; color: #1e40af; }
+        .badge-review_complete { background: #e9d5ff; color: #6b21a8; }
+        .badge-watching { background: #e5e7eb; color: #374151; }
+        .badge-suspended { background: #f3f4f6; color: #6b7280; }
+
+        .project-location {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: var(--medium-gray);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Status Summary Cards */
+        .status-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .status-card {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .status-card:hover {
+            border-color: var(--mcea-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        .status-card.active {
+            border-color: var(--mcea-green);
+            background: rgba(var(--mcea-green-rgb), 0.05);
+            border-width: 3px;
+        }
+
+        .status-card-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--mcea-green);
+            line-height: 1;
+        }
+
+        .status-card-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--medium-gray);
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Detail Panel */
+        .detail-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .detail-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .detail-panel {
+            position: fixed;
+            top: 0;
+            right: -650px;
+            width: 650px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .detail-panel.open {
+            right: 0;
+        }
+
+        .detail-panel-header {
+            background: var(--mcea-green);
+            color: var(--white);
+            padding: 40px 40px 30px;
+            position: relative;
+        }
+
+        .detail-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            cursor: pointer;
+            font-size: 28px;
+            color: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            font-weight: 300;
+        }
+
+        .detail-close-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .detail-title {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            padding-right: 60px;
+            margin-bottom: 16px;
+        }
+
+        .detail-status-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .detail-body {
+            padding: 40px;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+        }
+
+        .detail-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--mcea-green);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--light-gray);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .detail-field-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--medium-gray);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .detail-field-value {
+            font-size: 16px;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .detail-notes-box {
+            background: var(--off-white);
+            padding: 20px;
+            border-left: 4px solid var(--mcea-green);
+            border-radius: 0 4px 4px 0;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--dark-gray);
+        }
+
+        .detail-sources-list {
+            list-style: none;
+        }
+
+        .detail-sources-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .detail-sources-list li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-sources-list a {
+            color: var(--mcea-green);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .detail-sources-list a:hover {
+            color: var(--dark-gray);
+            text-decoration: underline;
+        }
+
+        /* Permits Grid */
+        .permits-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .permit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            background: var(--off-white);
+            border-left: 4px solid var(--light-gray);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .permit-item.approved { border-left-color: #10b981; }
+        .permit-item.in-progress { border-left-color: #3b82f6; }
+        .permit-item.not-started { border-left-color: #9ca3af; }
+        .permit-item.withdrawn { border-left-color: #f59e0b; }
+        .permit-item.blocked { border-left-color: #dc2626; }
+
+        .permit-name {
+            font-size: 15px;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .permit-status-badge {
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .permit-status-badge.approved { background: #d1fae5; color: #065f46; }
+        .permit-status-badge.in-progress { background: #dbeafe; color: #1e40af; }
+        .permit-status-badge.not-started { background: #f3f4f6; color: #6b7280; }
+        .permit-status-badge.withdrawn { background: #fef3c7; color: #92400e; }
+        .permit-status-badge.blocked { background: #fee2e2; color: #991b1b; }
+        .permit-status-badge.unknown { background: #f9fafb; color: #9ca3af; }
+
+        /* Timeline */
+        .timeline-list {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline-list::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: var(--light-gray);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 8px 0 8px 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -18px;
+            top: 14px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--mcea-green);
+        }
+
+        .timeline-item:first-child::before {
+            background: var(--mcea-green);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--medium-gray);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-event {
+            font-size: 15px;
+            color: var(--dark-gray);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .mcea-footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--mcea-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-list {
+                max-height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 36px;
+            }
+
+            .stats-bar {
+                gap: 30px;
+            }
+
+            .mcea-nav {
+                display: none;
+            }
+
+            .detail-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .content-grid {
+                gap: 30px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .projects-list::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .projects-list::-webkit-scrollbar-track {
+            background: var(--off-white);
+        }
+
+        .projects-list::-webkit-scrollbar-thumb {
+            background: var(--light-gray);
+            border-radius: 5px;
+        }
+
+        .projects-list::-webkit-scrollbar-thumb:hover {
+            background: var(--mcea-green);
+        }
+
+        /* Leaflet Popup Customization */
+        .leaflet-popup-content-wrapper {
+            border-radius: 4px;
+        }
+
+        .popup-content {
+            padding: 4px;
+        }
+
+        .popup-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .popup-meta {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-bottom: 12px;
+        }
+
+        .popup-btn {
+            padding: 8px 16px;
+            background: var(--mcea-green);
+            color: var(--white);
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .popup-btn:hover {
+            background: rgba(var(--mcea-green-rgb), 0.85);
+        }
+
+        /* Custom Markers */
+        .marker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .combo-marker .marker-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 3px dashed;
+            opacity: 0.8;
+        }
+
+        .triple-marker .marker-outer-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 3px dashed;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- MCEA Header -->
+    <header class="mcea-header">
+        <div class="mcea-header-container">
+            <div class="mcea-header-top">
+                <a href="https://www.mncenter.org" class="mcea-logo-link">
+                    <div class="mcea-hexagon-logo">
+                        <div class="hexagon-shape">
+                            <svg class="hexagon-tree" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L4 8h6v6H4l8 6h-6v8l6-4 6 4v-8h-6l8-6h-6V8h6z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mcea-logo-text">
+                        <span class="mcea-acronym">MCEA</span>
+                        <span class="mcea-full-name">Minnesota Center for Environmental Advocacy</span>
+                    </div>
+                </a>
+                <nav class="mcea-nav">
+                    <a href="#">About</a>
+                    <a href="#">How We Win</a>
+                    <a href="#">Issues</a>
+                    <a href="#">News & Events</a>
+                    <a href="#">Take Action</a>
+                    <a href="#" class="action-alerts">
+                        <span class="alert-icon"></span>
+                        Get action alerts
+                    </a>
+                    <a href="#" class="donate-btn">Donate Now</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-container">
+            <h1 class="page-title">Minnesota Data Center Watch</h1>
+            <p class="page-subtitle">Tracking proposed data center developments across Minnesota</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-projects">22</span>
+                    <span class="stat-label">Projects Tracked</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="total-sqft">37.0M</span>
+                    <span class="stat-label">Square Feet</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="total-acres">5,174</span>
+                    <span class="stat-label">Acres</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="litigation-count">6</span>
+                    <span class="stat-label">In Litigation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-grid">
+            <!-- Map Section -->
+            <div class="map-container">
+                <div class="map-header">
+                    <h2 class="section-title">Project Locations</h2>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="in_litigation">In Litigation</button>
+                    <button class="filter-btn" data-filter="in_review">In Review</button>
+                    <button class="filter-btn" data-filter="review_complete">Review Complete</button>
+                    <button class="filter-btn" data-filter="watching">Watching</button>
+                </div>
+                <div class="map-wrapper">
+                    <div id="map"></div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #dc2626"></div>
+                            <span>In Litigation</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #3b82f6"></div>
+                            <span>In Env. Review</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #8b5cf6"></div>
+                            <span>Review Complete</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #6b7280"></div>
+                            <span>Watching</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Sidebar -->
+            <div class="projects-sidebar">
+                <div class="projects-header">
+                    <h2 class="section-title">All Projects</h2>
+                    <input type="text" class="search-box" id="search-input" placeholder="Search projects...">
+                </div>
+                <div class="projects-list" id="project-list">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="status-cards">
+                    <div class="status-card" data-status="in_litigation">
+                        <div class="status-card-number" id="count-litigation">6</div>
+                        <div class="status-card-label">In Litigation</div>
+                    </div>
+                    <div class="status-card" data-status="in_review">
+                        <div class="status-card-number" id="count-in-review">4</div>
+                        <div class="status-card-label">In Review</div>
+                    </div>
+                    <div class="status-card" data-status="review_complete">
+                        <div class="status-card-number" id="count-review-complete">7</div>
+                        <div class="status-card-label">Review Complete</div>
+                    </div>
+                    <div class="status-card" data-status="watching">
+                        <div class="status-card-number" id="count-watching">5</div>
+                        <div class="status-card-label">Watching</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Panel -->
+    <div class="detail-overlay" id="detail-overlay"></div>
+    <div class="detail-panel" id="detail-panel">
+        <div class="detail-panel-header">
+            <button class="detail-close-btn" id="detail-close">×</button>
+            <h2 class="detail-title" id="detail-title">Project Name</h2>
+            <div class="detail-status-badges">
+                <span class="status-badge" id="detail-badge">Status</span>
+                <span class="status-badge" id="detail-secondary-badge" style="display: none;">Secondary</span>
+                <span class="status-badge" id="detail-tertiary-badge" style="display: none;">Tertiary</span>
+            </div>
+        </div>
+        <div class="detail-body">
+            <div class="detail-section">
+                <h3 class="detail-section-title">Location & Scale</h3>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <div class="detail-field-label">City</div>
+                        <div class="detail-field-value" id="detail-city">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">County</div>
+                        <div class="detail-field-value" id="detail-county">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">Acreage</div>
+                        <div class="detail-field-value" id="detail-acres">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">Building Size</div>
+                        <div class="detail-field-value" id="detail-sqft">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3 class="detail-section-title">Status</h3>
+                <div class="detail-field">
+                    <div class="detail-field-label">Current Status</div>
+                    <div class="detail-field-value" id="detail-status">—</div>
+                </div>
+            </div>
+
+            <div class="detail-section" id="litigation-section" style="display: none;">
+                <h3 class="detail-section-title">Litigation</h3>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <div class="detail-field-label">Case Number</div>
+                        <div class="detail-field-value" id="detail-case-number">—</div>
+                    </div>
+                    <div class="detail-field">
+                        <div class="detail-field-label">Court</div>
+                        <div class="detail-field-value" id="detail-court">—</div>
+                    </div>
+                </div>
+                <div class="detail-field" style="margin-top: 20px;">
+                    <div class="detail-field-label">Litigation Status</div>
+                    <div class="detail-field-value" id="detail-litigation-status">—</div>
+                </div>
+            </div>
+
+            <div class="detail-section" id="permits-section">
+                <h3 class="detail-section-title">Permitting Progress</h3>
+                <div class="permits-list" id="detail-permits">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="detail-section" id="timeline-section" style="display: none;">
+                <h3 class="detail-section-title">Timeline</h3>
+                <div class="timeline-list" id="detail-timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="detail-section" id="notes-section" style="display: none;">
+                <h3 class="detail-section-title">Notes</h3>
+                <div class="detail-notes-box" id="detail-notes"></div>
+            </div>
+
+            <div class="detail-section" id="sources-section">
+                <h3 class="detail-section-title">Sources & Links</h3>
+                <ul class="detail-sources-list" id="detail-sources"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mcea-footer">
+        <div class="footer-container">
+            <div class="footer-text">
+                Data compiled from EQB Monitor, city websites, and news reports<br>
+                © 2026 Minnesota Center for Environmental Advocacy
+            </div>
+            <div class="footer-links">
+                <a href="https://www.eqb.state.mn.us/eqb-monitor" target="_blank">EQB Monitor →</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

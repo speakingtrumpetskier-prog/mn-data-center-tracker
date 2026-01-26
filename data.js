@@ -777,7 +777,6 @@ const statusInfo = {
 
 // Calculate summary statistics
 function calculateStats() {
-    const validProjects = projectData.filter(p => p.status !== 'suspended');
     let totalAcres = 0;
     let totalSqft = 0;
 
@@ -789,7 +788,7 @@ function calculateStats() {
     // Count includes primary, secondary, and tertiary statuses
     // (e.g., North Mankato is review_complete + in_litigation + suspended)
     return {
-        totalProjects: validProjects.length,
+        totalProjects: projectData.length,
         totalAcres: Math.round(totalAcres),
         totalSqft: totalSqft,
         countByStatus: {
