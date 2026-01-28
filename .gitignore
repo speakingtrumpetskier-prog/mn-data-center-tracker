@@ -1,0 +1,14 @@
+# Secrets
+email_config.json
+*.env
+
+# Scraper output data (local only)
+eqb_data/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

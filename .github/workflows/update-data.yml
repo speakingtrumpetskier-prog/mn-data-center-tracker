@@ -1,13 +1,15 @@
 # Weekly Data Update Workflow
-# This workflow runs every Monday at 9am CT and can also be triggered manually.
+# This workflow runs every Tuesday at 1pm CT and can also be triggered manually.
 # It runs the EQB scraper and updates the site data if changes are found.
+# EQB publishes new editions on Tuesdays around noon CT.
 
 name: Weekly Data Update
 
 on:
   schedule:
-    # Run every Monday at 9am Central Time (3pm UTC in winter, 2pm UTC in summer)
-    - cron: '0 15 * * 1'
+    # Run every Tuesday at 1pm Central Time (7pm UTC)
+    # Runs 30 min after EQB's ~noon Tuesday publication
+    - cron: '0 19 * * 2'
   workflow_dispatch:
     # Allow manual trigger from GitHub UI
 

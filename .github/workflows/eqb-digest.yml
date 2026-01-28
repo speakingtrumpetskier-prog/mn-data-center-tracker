@@ -1,0 +1,44 @@
+# Weekly EQB Monitor Digest
+# Runs every Tuesday at 12:30 PM Central Time and emails an AI-generated
+# analysis of all projects in the latest EQB Monitor publication.
+# EQB publishes new editions on Tuesdays around noon CT.
+
+name: Weekly EQB Digest Email
+
+on:
+  schedule:
+    # Run every Tuesday at 12:30 PM Central Time
+    # CT = UTC-6 (winter) / UTC-5 (summer), so 18:30 UTC covers both
+    - cron: '30 18 * * 2'
+  workflow_dispatch:
+    # Allow manual trigger from GitHub UI
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 PyPDF2 lxml anthropic playwright markdown
+          playwright install chromium
+
+      - name: Run EQB digest scraper
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_SMTP_SERVER: ${{ secrets.EMAIL_SMTP_SERVER }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+        run: |
+          python scripts/eqb_digest.py
