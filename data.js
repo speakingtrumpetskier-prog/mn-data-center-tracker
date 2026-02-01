@@ -339,23 +339,30 @@ const projectData = [
         lng: -93.2177,
         acres: null,
         sqft: 1050000,
-        currentStatus: "AUAR revision proposed late 2025, unclear when finalized; land use application repeatedly delayed, extension granted until Dec 31, 2025",
-        notes: "Existing AUAR with technology park scenario. AUAR revision proposed late 2025 but that part is done per Hometown Source.",
+        currentStatus: "City Council denied comprehensive plan amendment Jan 23, 2026; AUAR adopted Dec 2024 but land use denied",
+        notes: "Rockport LLC / Oppidan Investment proposed 105-acre technology campus with five data center buildings on former Fischer Mining site. AUAR update with data center scenario adopted Dec 2024. Planning Commission recommended denial April 2, 2025 citing water supply, sewer capacity, and comp plan incompatibility. City Council unanimously denied the comp plan amendment Jan 23, 2026. Developer had requested extensions through Jan 31, 2026.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-11-05", event: "Revised AUAR approved" }
+            { date: "2026-01-23", event: "City Council unanimously denied comprehensive plan amendment" },
+            { date: "2025-04-02", event: "Planning Commission recommended denial (5-1)" },
+            { date: "2025-02-05", event: "Planning Commission public hearing; tabled due to site concerns" },
+            { date: "2024-12-30", event: "Complete land use application received by city" },
+            { date: "2024-12-01", event: "AUAR update with technology park scenario adopted" },
+            { date: "2024-10-24", event: "AUAR update released to EQB Monitor for comment" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR revision proposed late 2025, unclear when finalized, but that part is done" },
-            localZoning: { status: "in_progress", detail: "Land use application repeatedly delayed, extension granted until Dec 31, 2025" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR update with data center scenario adopted Dec 2024" },
+            localZoning: { status: "denied", detail: "Comp plan amendment denied by City Council Jan 23, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "City Project Page", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center-Data-Center" },
-            { name: "Hometown Source - Delays", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/data-center-scenario-contemplated-in-apple-valley/article_9aa87462-961d-11ef-beb5-bbe0992cea55.html" }
+            { name: "Hometown Source - AUAR Scenario", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/data-center-scenario-contemplated-in-apple-valley/article_9aa87462-961d-11ef-beb5-bbe0992cea55.html" },
+            { name: "Hometown Source - CPA Denial", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/apple-valley-city-council-denies-land-use-change/article_d4a951aa-8087-4c8f-8df6-09f6b2db2432.html" },
+            { name: "Hometown Source - Planning Commission Denial", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/land-use-change-for-data-center-denied-in-apple-valley/article_d8ed4b90-5341-4544-87a1-08417f5b9d57.html" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-01-31"
     },
     {
         id: 11,
@@ -520,6 +527,7 @@ const projectData = [
         lng: -93.1669,
         acres: 179,
         sqft: 1350000,
+        sqftDisplay: "1.2–1.5M SF",
         currentStatus: "Final AUAR adopted Oct 29, 2024 (Resolution 24-50)",
         notes: "Scenario two includes light industrial that 'could include data centers'. Mixed-use redevelopment of former Thomson Reuters campus. 1.2-1.5 million SF proposed.",
         litigation: { active: false },

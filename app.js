@@ -81,7 +81,7 @@ function initializeMarkers() {
                     <div class="popup-meta">
                         ${project.city}, ${project.county} County<br>
                         <strong>${statusLabel}</strong>
-                        ${project.sqft ? ' · ' + formatSqft(project.sqft) : ''}
+                        ${project.sqft ? ' · ' + (project.sqftDisplay || formatSqft(project.sqft)) : ''}
                     </div>
                     <button class="popup-btn" onclick="openProjectDetail(${project.id})">
                         View Details
@@ -218,7 +218,7 @@ function renderProjectList(filterValue = 'all') {
                 </div>
                 <div class="project-meta">
                     <span>${project.city}, ${project.county}</span>
-                    ${project.sqft ? `<span>${formatSqft(project.sqft)}</span>` : ''}
+                    ${project.sqft ? `<span>${project.sqftDisplay || formatSqft(project.sqft)}</span>` : ''}
                 </div>
                 <div class="project-status">${project.currentStatus}</div>
                 ${project.litigation?.caseNumber ? `<div class="project-case">Case: ${project.litigation.caseNumber}</div>` : ''}
@@ -301,7 +301,7 @@ function openProjectDetail(projectId) {
     document.getElementById('detail-city').textContent = project.city;
     document.getElementById('detail-county').textContent = project.county + ' County';
     document.getElementById('detail-acres').textContent = project.acres ? project.acres + ' acres' : '—';
-    document.getElementById('detail-sqft').textContent = formatSqft(project.sqft);
+    document.getElementById('detail-sqft').textContent = project.sqftDisplay || formatSqft(project.sqft);
 
     // Status
     document.getElementById('detail-status').textContent = project.currentStatus || '—';
