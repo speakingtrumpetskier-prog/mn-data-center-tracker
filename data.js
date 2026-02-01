@@ -184,7 +184,7 @@ const projectData = [
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_N-Mankato_MCRO_52-CV-25-568_Complaint-Civil_2025-08-05_20251230110142.pdf" },
             { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
             { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" },
-            { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/06/group-suing-north-mankato-development/" }
+            { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/19/north-mankato-residents-sound-off-data-center-law-suit/" }
         ],
         lastUpdated: "2026-01-23"
     },
@@ -222,7 +222,7 @@ const projectData = [
         sources: [
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Pine-Island-Complaint_MCRO_25-CV-25-2298_Complaint-Civil_2025-10-16_20251230105028.pdf" },
             { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" },
-            { name: "Planning & Zoning Packet", url: "https://pineislandmn.gov/wp-content/uploads/2026/01/1.13.26-PZ-Meeting-Packet.pdf" }
+            { name: "Planning & Zoning CUP Notice", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/1.13.26_PZ_Notice_-_CUP.pdf" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -265,34 +265,6 @@ const projectData = [
         lastUpdated: "2026-01-22"
     },
     {
-        id: 7,
-        name: "Chaska Big Woods Business Park AUAR",
-        status: "in_review",
-        city: "Chaska",
-        county: "Carver",
-        lat: 44.7894,
-        lng: -93.6022,
-        acres: 359,
-        sqft: 2250000,
-        currentStatus: "Draft AUAR published; comment period ongoing",
-        notes: "Scannell Properties. Likely NOT a data center based on layout and lack of data center indicators in scoping document.",
-        litigation: { active: false },
-        timeline: [
-            { date: "2025-09-23", event: "Draft scoping document released" }
-        ],
-        permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Draft AUAR comment period" },
-            localZoning: { status: "unknown" },
-            buildingPermit: { status: "not_started" },
-            utilities: { status: "unknown" }
-        },
-        sources: [
-            { name: "City AUAR Page", url: "https://www.chaskamn.gov/959/Big-Woods-Business-Park-AUAR" },
-            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/264886?siId=264886-PROJ0000000001" }
-        ],
-        lastUpdated: "2026-01-22"
-    },
-    {
         id: 8,
         name: "Cannon Falls Industrial AUAR",
         status: "review_complete",
@@ -317,7 +289,7 @@ const projectData = [
         },
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/262244?siId=262244-PROJ0000000001" },
-            { name: "City Environmental Review", url: "https://www.cannonfalls.org/environmental_review" },
+            { name: "City AUAR Page", url: "https://www.cannonfallsmn.gov/community/page/auar-alternative-urban-area-review" },
             { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" }
         ],
         lastUpdated: "2026-01-22"
@@ -380,8 +352,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Proposed Technology Center Data Center", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center-Data-Center" },
-            { name: "City Project Page", url: "https://www.ci.apple-valley.mn.us/1030/Orchard-Place-AUAR" },
+            { name: "City Project Page", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center-Data-Center" },
             { name: "Hometown Source - Delays", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/data-center-scenario-contemplated-in-apple-valley/article_9aa87462-961d-11ef-beb5-bbe0992cea55.html" }
         ],
         lastUpdated: "2026-01-22"
@@ -476,7 +447,7 @@ const projectData = [
         },
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261731?siId=261731-PROJ0000000001" },
-            { name: "City Environmental Reviews", url: "https://www.rosemountmn.gov/467/Environmental-Reviews" },
+            { name: "City Environmental Reviews", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
             { name: "AUAR Order (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7401/Dakota-East-Area-AUAR-Order" }
         ],
         lastUpdated: "2026-01-22"
@@ -504,9 +475,8 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "City Fix Websit", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
-            { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/257490?siId=257490-PROJ0000000001" },
-            { name: "City Environmental Reviews", url: "https://www.rosemountmn.gov/467/Environmental-Reviews" }
+            { name: "City Environmental Review", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
+            { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/257490?siId=257490-PROJ0000000001" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -661,7 +631,7 @@ const projectData = [
         },
         sources: [
             { name: "Glencoe News", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-eda-reviews-concept-plans-for-50-60-million-ai-data-center/" },
-            { name: "City Current Projects", url: "https://www.glencoemn.org/departments/streets/current-projects/" }
+            { name: "Glencoe News - Rezoning Approval", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-approves-rezoning-request-for-site-of-revolve-labs-planned-ai-data-center/" }
         ],
         lastUpdated: "2026-01-22"
     },
