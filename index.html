@@ -1066,138 +1066,373 @@
             }
         }
 
-        /* Power Reduction Easter Egg */
-        .power-reduction-overlay {
+        /* Easter Egg 3: 3 MW vs Reality — Lakeville power comparison */
+
+        /* The subtle hint button in Lakeville's detail panel */
+        .power-hint-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: 1px solid var(--paper-darker);
+            border-radius: 3px;
+            padding: 0.15rem 0.4rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            color: var(--ink-faint);
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .power-hint-btn:hover {
+            color: #d97706;
+            border-color: #d97706;
+            background: #fffbeb;
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(217, 119, 6, 0.2);
+        }
+
+        /* Full-screen overlay */
+        .power-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(26, 26, 26, 0.92);
+            backdrop-filter: blur(12px);
             z-index: 10000;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            overflow-y: auto;
+            padding: 2rem;
         }
 
-        .power-reduction-overlay.visible {
+        .power-overlay.visible {
             opacity: 1;
         }
 
-        .power-reduction-content {
+        /* The main content card */
+        .power-stage {
             background: var(--paper);
             border: 2px solid var(--ink);
-            padding: 2.5rem;
-            max-width: 600px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-width: 720px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
         }
 
-        .power-reduction-title {
-            font-family: 'Newsreader', Georgia, serif;
-            font-size: 1.75rem;
-            font-weight: 700;
+        /* Top decorative rule */
+        .power-stage::before {
+            content: '';
+            display: block;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 33%, #d97706 33%, #d97706 66%, var(--accent) 66%);
+        }
+
+        .power-header {
+            padding: 2rem 2.5rem 1.25rem;
             text-align: center;
-            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--paper-darker);
+        }
+
+        .power-kicker {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .power-headline {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 600;
             color: var(--ink);
+            line-height: 1.15;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
         }
 
-        .power-reduction-stats {
-            background: var(--paper-dark);
-            border: 1px solid var(--paper-darker);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .power-subhead {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            line-height: 1.5;
         }
 
-        .power-stat {
-            margin-bottom: 1rem;
+        .power-subhead strong {
+            color: var(--ink);
+            font-weight: 600;
         }
 
-        .power-stat:last-of-type {
-            margin-bottom: 0;
+        /* The side-by-side theater */
+        .power-theater {
+            padding: 1.5rem 2.5rem 1rem;
         }
 
-        .power-label {
-            font-size: 0.7rem;
+        .power-scene {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 0;
+            align-items: start;
+        }
+
+        .power-col {
+            text-align: center;
+            padding: 1rem 0.5rem;
+        }
+
+        .power-col-label {
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--ink-faint);
-            margin-bottom: 0.35rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
-        .power-value {
+        .power-bulb-area {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .power-bulb {
+            opacity: 0.9;
+        }
+
+        .bulb-glow-sm {
+            animation: bulbFlicker 3s ease-in-out infinite;
+        }
+
+        @keyframes bulbFlicker {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .power-number {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 2rem;
             font-weight: 700;
-            color: var(--ink);
+            line-height: 1;
+            margin-top: 0.5rem;
         }
 
-        .power-value.original {
-            color: #dc2626;
+        .power-number-small {
+            font-size: 2.5rem;
+            color: var(--ink-light);
         }
 
-        .power-value.reduced {
-            color: #10b981;
+        .power-number-big {
+            font-size: 2.5rem;
+            color: #d97706;
+            transition: all 0.3s ease;
         }
 
-        .power-value.strikethrough {
-            text-decoration: line-through;
-            opacity: 0.5;
+        .power-unit {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink-faint);
+            margin-top: 0.2rem;
         }
 
-        .power-value.pulse {
-            animation: powerPulse 1s ease-in-out infinite;
+        .power-context {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-top: 0.4rem;
+            min-height: 1.2em;
         }
 
-        @keyframes powerPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        /* Center divider */
+        .power-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.75rem;
+            min-width: 60px;
+            padding-top: 2.5rem;
         }
 
-        .power-arrow {
-            font-size: 1rem;
+        .power-vs {
+            font-family: 'Newsreader', Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--ink-faint);
+        }
+
+        .power-multiplier {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
             font-weight: 700;
-            text-align: center;
-            margin: 1rem 0;
-            color: #fbbf24;
+            color: var(--accent);
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        .power-explanation {
-            font-size: 0.95rem;
+        /* The sun / power visualization */
+        .power-sun-area {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .power-sun {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, #fef3c7 0%, #fbbf24 30%, #d97706 60%, #92400e 100%);
+            box-shadow:
+                0 0 20px rgba(251, 191, 36, 0.3),
+                0 0 40px rgba(217, 119, 6, 0.15),
+                0 0 80px rgba(217, 119, 6, 0.08);
+            transform: scale(0.1);
+            opacity: 0.3;
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        }
+
+        .power-sun.pulsing {
+            animation: sunPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes sunPulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 20px rgba(251, 191, 36, 0.4),
+                    0 0 40px rgba(217, 119, 6, 0.2),
+                    0 0 80px rgba(217, 119, 6, 0.1);
+            }
+            50% {
+                box-shadow:
+                    0 0 30px rgba(251, 191, 36, 0.6),
+                    0 0 60px rgba(217, 119, 6, 0.35),
+                    0 0 100px rgba(217, 119, 6, 0.15),
+                    0 0 140px rgba(217, 119, 6, 0.05);
+            }
+        }
+
+        /* Radiating rays from the sun when pulsing */
+        .power-sun.pulsing::before {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            animation: rayExpand 2s ease-out infinite;
+        }
+
+        .power-sun.pulsing::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(217, 119, 6, 0.15);
+            animation: rayExpand 2s ease-out 0.8s infinite;
+        }
+
+        @keyframes rayExpand {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* Facts section */
+        .power-facts {
+            padding: 0 2.5rem 1rem;
+            border-top: 1px solid var(--paper-darker);
+            margin: 0 0 0;
+            padding-top: 1.25rem;
+        }
+
+        .power-fact-item {
+            font-size: 0.85rem;
             line-height: 1.6;
             color: var(--ink-light);
-            margin-bottom: 1rem;
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--paper-dark);
+            transform: translateY(10px);
         }
 
-        .power-citation {
-            font-size: 0.85rem;
+        .power-fact-item:last-child {
+            border-bottom: none;
+        }
+
+        .power-fact-marker {
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Source citation */
+        .power-source {
+            font-size: 0.75rem;
             color: var(--ink-faint);
-            margin-bottom: 1.5rem;
+            padding: 0.75rem 2.5rem;
+            background: var(--cream);
+            border-top: 1px solid var(--paper-darker);
         }
 
-        .power-citation a {
-            color: var(--ink);
+        .power-source a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .power-source a:hover {
             text-decoration: underline;
         }
 
-        .power-citation a:hover {
-            color: var(--ink-light);
-        }
-
-        .power-close {
+        /* Dismiss button */
+        .power-dismiss {
+            display: block;
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.85rem;
             background: var(--ink);
             color: var(--paper);
             border: none;
             font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: background 0.2s;
+            letter-spacing: 0.02em;
         }
 
-        .power-close:hover {
+        .power-dismiss:hover {
             background: var(--ink-light);
+        }
+
+        @media (max-width: 600px) {
+            .power-stage {
+                margin: 0;
+            }
+            .power-header, .power-theater, .power-facts {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+            .power-headline {
+                font-size: 1.5rem;
+            }
+            .power-scene {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .power-divider {
+                flex-direction: row;
+                gap: 1rem;
+                padding: 0.5rem 0;
+            }
         }
     </style>
 </head>

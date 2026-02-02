@@ -641,108 +641,218 @@ window.openProjectDetail = openProjectDetail;
     }
 })();
 
-// Easter Egg 3: The "98% Power Reduction" (Faribault EAW allegation)
-// Click on Faribault's square footage 3 times in detail panel to trigger
+// Easter Egg 3: "2 MW vs. Reality" (Faribault EAW power assumption)
+// When Faribault detail panel opens, a small ⚡ appears by the status.
+// Click it to trigger a dramatic animated comparison.
 (function() {
     let powerEggActive = false;
 
-    // Watch for Faribault project detail opens
     const originalOpenDetail = window.openProjectDetail;
     window.openProjectDetail = function(projectId) {
         originalOpenDetail(projectId);
 
         const project = projectData.find(p => p.id === projectId);
-        if (project && project.name.includes('Faribault')) {
-            setTimeout(() => setupPowerEgg(), 100);
+        if (project && project.id === 1) { // Faribault
+            setTimeout(() => injectPowerHint(), 150);
         }
     };
 
-    function setupPowerEgg() {
-        const sqftEl = document.getElementById('detail-sqft');
-        if (!sqftEl || powerEggActive) return;
+    function injectPowerHint() {
+        // Don't double-inject
+        if (document.querySelector('.power-hint-btn')) return;
 
-        let clickCount = 0;
-        const handler = function() {
-            clickCount++;
-            if (clickCount >= 3) {
-                activatePowerReduction();
-                sqftEl.removeEventListener('click', handler);
-            }
-        };
+        const statusEl = document.getElementById('detail-status');
+        if (!statusEl) return;
 
-        sqftEl.style.cursor = 'pointer';
-        sqftEl.addEventListener('click', handler);
+        const hint = document.createElement('button');
+        hint.className = 'power-hint-btn';
+        hint.innerHTML = '⚡';
+        hint.title = 'How much power?';
+        statusEl.parentElement.style.position = 'relative';
+        statusEl.parentElement.appendChild(hint);
+
+        hint.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!powerEggActive) launchPowerComparison();
+        });
     }
 
-    function activatePowerReduction() {
+    function launchPowerComparison() {
         powerEggActive = true;
 
-        // Create overlay message
         const overlay = document.createElement('div');
-        overlay.className = 'power-reduction-overlay';
+        overlay.className = 'power-overlay';
         overlay.innerHTML = `
-            <div class="power-reduction-content">
-                <div class="power-reduction-title">⚡ Environmental Review Magic ⚡</div>
-                <div class="power-reduction-stats">
-                    <div class="power-stat">
-                        <div class="power-label">Draft EAW Power Estimate</div>
-                        <div class="power-value original">1,000,000 MWh/yr</div>
+            <div class="power-stage">
+                <div class="power-header">
+                    <div class="power-kicker">From the MCEA Appeal</div>
+                    <h2 class="power-headline">The Power Question</h2>
+                    <p class="power-subhead">Faribault's EAW estimated electricity for 500,000 sq ft of data center at under <strong>2 megawatts</strong>.<br>How does that compare to reality?</p>
+                </div>
+
+                <div class="power-theater">
+                    <!-- The visual comparison area -->
+                    <div class="power-scene">
+                        <div class="power-col power-col-assumed">
+                            <div class="power-col-label">What the AUAR Assumed</div>
+                            <div class="power-bulb-area">
+                                <svg class="power-bulb" viewBox="0 0 100 140" width="60" height="84">
+                                    <defs>
+                                        <radialGradient id="glow-sm" cx="50%" cy="40%" r="50%">
+                                            <stop offset="0%" stop-color="#fde68a" stop-opacity="0.8"/>
+                                            <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="50" cy="50" r="45" fill="url(#glow-sm)" class="bulb-glow-sm"/>
+                                    <circle cx="50" cy="50" r="22" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                                    <line x1="50" y1="72" x2="50" y2="90" stroke="#9ca3af" stroke-width="4" stroke-linecap="round"/>
+                                    <rect x="42" y="90" width="16" height="14" rx="3" fill="#9ca3af"/>
+                                    <line x1="42" y1="96" x2="58" y2="96" stroke="#6b7280" stroke-width="1"/>
+                                    <line x1="42" y1="100" x2="58" y2="100" stroke="#6b7280" stroke-width="1"/>
+                                </svg>
+                            </div>
+                            <div class="power-number power-number-small" id="power-assumed">&lt;2</div>
+                            <div class="power-unit">megawatts</div>
+                            <div class="power-context">Enough for ~1,600 homes</div>
+                        </div>
+
+                        <div class="power-divider">
+                            <div class="power-vs" id="power-vs">vs.</div>
+                            <div class="power-multiplier" id="power-multiplier"></div>
+                        </div>
+
+                        <div class="power-col power-col-actual">
+                            <div class="power-col-label">What Data Centers Need</div>
+                            <div class="power-sun-area" id="power-sun-area">
+                                <div class="power-sun" id="power-sun"></div>
+                            </div>
+                            <div class="power-number power-number-big" id="power-actual">—</div>
+                            <div class="power-unit" id="power-actual-unit"></div>
+                            <div class="power-context" id="power-actual-context"></div>
+                        </div>
                     </div>
-                    <div class="power-arrow">↓ 98% reduction ↓</div>
-                    <div class="power-stat">
-                        <div class="power-label">Final EAW Power Estimate</div>
-                        <div class="power-value reduced">14,000 MWh/yr</div>
+                </div>
+
+                <div class="power-facts" id="power-facts">
+                    <div class="power-fact-item" id="fact-1" style="opacity:0;">
+                        <span class="power-fact-marker">§</span>
+                        The draft EAW estimated electricity consumption at over 1,000,000 MWh/year. The final EAW dropped it to 14,000 MWh/year — a 98% reduction, without explanation.
+                    </div>
+                    <div class="power-fact-item" id="fact-2" style="opacity:0;">
+                        <span class="power-fact-marker">§</span>
+                        14,000 MWh/year works out to under 2 MW of continuous power — roughly what a large grocery store uses, not a 500,000 sq ft data center.
+                    </div>
+                    <div class="power-fact-item" id="fact-3" style="opacity:0;">
+                        <span class="power-fact-marker">§</span>
+                        A facility this size would typically require 60–120 MW, making the final EAW estimate off by a factor of 30–60×.
                     </div>
                 </div>
-                <div class="power-explanation">
-                    According to MCEA's appeal, Faribault's greenhouse gas emissions estimate
-                    dropped 98% between draft and final EAW—without explanation. The estimated
-                    electricity consumption went from 1 million+ MWh/year to just 14,000 MWh/year.
+
+                <div class="power-source">
+                    Source: <a href="https://legalectric.org/f/2025/12/MCEA-Brief-Appellant.pdf" target="_blank">MCEA Appeal Brief</a>
+                    &nbsp;·&nbsp; Case A25-1617, MN Court of Appeals
                 </div>
-                <div class="power-citation">
-                    Source: <a href="https://www.hometownsource.com/sun_thisweek/community/dakota_county/mcea-files-appeal-against-faribault-for-proposed-data-centers-inadequate-environmental-review/article_b7b730f0-e369-484b-9692-890b0252789e.html" target="_blank">MCEA Appeal Coverage</a>
-                </div>
-                <button class="power-close">Close</button>
+
+                <button class="power-dismiss" id="power-dismiss">Close</button>
             </div>
         `;
 
         document.body.appendChild(overlay);
+        requestAnimationFrame(() => {
+            overlay.classList.add('visible');
+            runAnimation(overlay);
+        });
 
-        // Animate in
-        setTimeout(() => overlay.classList.add('visible'), 10);
-
-        // Animate the numbers
-        setTimeout(() => {
-            const originalValue = overlay.querySelector('.power-value.original');
-            const reducedValue = overlay.querySelector('.power-value.reduced');
-
-            // Glitch effect on original number
-            let glitchCount = 0;
-            const glitchInterval = setInterval(() => {
-                const randomNum = Math.floor(Math.random() * 1000000);
-                originalValue.textContent = `${randomNum.toLocaleString()} MWh/yr`;
-                glitchCount++;
-
-                if (glitchCount > 20) {
-                    clearInterval(glitchInterval);
-                    originalValue.textContent = '1,000,000 MWh/yr';
-                    originalValue.classList.add('strikethrough');
-                }
-            }, 100);
-
-            // Pulse the reduced value
-            setTimeout(() => {
-                reducedValue.classList.add('pulse');
-            }, 2500);
-        }, 500);
-
-        // Close handler
-        overlay.querySelector('.power-close').addEventListener('click', () => {
+        overlay.querySelector('#power-dismiss').addEventListener('click', () => {
             overlay.classList.remove('visible');
+            setTimeout(() => { overlay.remove(); powerEggActive = false; }, 400);
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('visible');
+                setTimeout(() => { overlay.remove(); powerEggActive = false; }, 400);
+            }
+        });
+    }
+
+    function runAnimation(overlay) {
+        const sunEl = overlay.querySelector('#power-sun');
+        const actualNum = overlay.querySelector('#power-actual');
+        const actualUnit = overlay.querySelector('#power-actual-unit');
+        const actualContext = overlay.querySelector('#power-actual-context');
+        const multiplier = overlay.querySelector('#power-multiplier');
+
+        // Phase 1: After 1s, start counting up the actual MW
+        setTimeout(() => {
+            let current = 0;
+            const target = 120; // typical for 500k sqft data center
+            const duration = 2500;
+            const start = performance.now();
+
+            // Grow the sun
+            sunEl.classList.add('growing');
+
+            function tick(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                current = Math.round(eased * target);
+
+                actualNum.textContent = current.toLocaleString();
+                actualUnit.textContent = 'megawatts';
+
+                // Update sun size based on progress
+                const scale = 0.1 + (eased * 0.9);
+                sunEl.style.transform = `scale(${scale})`;
+                sunEl.style.opacity = 0.3 + (eased * 0.7);
+
+                // Update context
+                const homes = Math.round(current * 800);
+                if (homes > 0) {
+                    actualContext.textContent = `Enough for ~${homes.toLocaleString()} homes`;
+                }
+
+                // Update multiplier
+                if (current > 0) {
+                    const mult = Math.round(current / 2);
+                    multiplier.textContent = `${mult}×`;
+                    multiplier.style.opacity = '1';
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    // Final state
+                    actualNum.textContent = '60–120';
+                    actualUnit.textContent = 'megawatts';
+                    actualContext.textContent = 'Typical for 500,000 SF data center';
+                    multiplier.textContent = '30–60×';
+                    sunEl.classList.add('pulsing');
+
+                    // Phase 2: Reveal facts one by one
+                    revealFacts(overlay);
+                }
+            }
+
+            requestAnimationFrame(tick);
+        }, 800);
+    }
+
+    function revealFacts(overlay) {
+        const facts = [
+            overlay.querySelector('#fact-1'),
+            overlay.querySelector('#fact-2'),
+            overlay.querySelector('#fact-3')
+        ];
+
+        facts.forEach((fact, i) => {
             setTimeout(() => {
-                overlay.remove();
-                powerEggActive = false;
-            }, 300);
+                fact.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                fact.style.transform = 'translateY(0)';
+                fact.style.opacity = '1';
+            }, 400 + (i * 500));
         });
     }
 })();
