@@ -70,7 +70,7 @@ const projectData = [
         acres: 403,
         sqft: 1800000,
         currentStatus: "Lawsuit filed Nov 2025; city denied EAW petition Dec 3 (AUAR already adopted Oct 6); developer paused applications for public engagement",
-        notes: "Fortune 50 company project (Mortenson developer). AUAR adopted Oct 6, 2025 via Resolution 2025-147. EQB petition for EAW filed Oct 17 and denied Dec 3 by city (AUAR already covers area). Developer voluntarily withdrew permit applications Nov 10 for further public engagement. Project valued at hundreds of millions initially, potentially billions.",
+        notes: "Fortune 50 company project (Mortenson developer). AUAR adopted Oct 6, 2025 via Resolution 2025-147. EQB petition for EAW filed Oct 17 and denied Dec 3 by city (AUAR already covers area). Developer voluntarily withdrew permit applications Nov 10 for further public engagement.",
         litigation: {
             active: true,
             caseNumber: "69DU-CV-25-3448",
@@ -83,11 +83,9 @@ const projectData = [
             { date: "2025-11-10", event: "Mortenson withdrew applications for public engagement" },
             { date: "2025-11-05", event: "Lawsuit filed" },
             { date: "2025-10-21", event: "City received EQB petition (filed Oct 17)" },
-            { date: "2025-10-21", event: "Planning & Zoning meeting postponed" },
             { date: "2025-10-20", event: "Mortenson and MN Power presented to City Council" },
             { date: "2025-10-17", event: "EQB petition filed requesting EAW" },
-            { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" },
-            { date: "2025-10-01", event: "Application received by city" }
+            { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR adopted Oct 6, 2025; EAW petition denied Dec 3" },
@@ -117,7 +115,7 @@ const projectData = [
         acres: 152,
         sqft: 1360000,
         currentStatus: "Lawsuit filed Aug 2025; summary judgment briefing scheduled",
-        notes: "Also known as Olam/Holus site. Opponents challenge AUAR adequacy and process.",
+        notes: "Olam Holdings 1, LLC / Terawatt Infrastructure project. MCEA's summary judgment motion argues the City's AUAR used a vague 'light industrial' description despite internal communications showing a data center was anticipated, and that the AUAR's climate analysis assumed only 3 MW of power when data centers require 100-500 MW.",
         litigation: {
             active: true,
             caseNumber: "19HA-CV-25-5103",
@@ -126,12 +124,13 @@ const projectData = [
             filedDate: "2025-08-05"
         },
         timeline: [
-            { date: "2025-12-12", event: "Court scheduling order for summary judgment briefing" },
+            { date: "2026-01-15", event: "MCEA filed summary judgment motion" },
+            { date: "2025-12-12", event: "Summary judgment scheduling order" },
             { date: "2025-08-05", event: "Lawsuit filed" },
-            { date: "2025-07-08", event: "Final AUAR approved" }
+            { date: "2025-07-07", event: "Final AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 8, 2025" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 7, 2025" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -139,7 +138,8 @@ const projectData = [
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261688?siId=261688-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/08/Lakeville_MCRO_19HA-CV-25-5103_Complaint-Civil_2025-08-05_20250819063829.pdf" },
-            { name: "Summary Judgment Order (PDF)", url: "https://legalectric.org/f/2025/12/Lakeaville_Order_SJ-Hearing_CV-25-5103_Order-Other_2025-12-12_20251230105817.pdf" }
+            { name: "Summary Judgment Scheduling Order (PDF)", url: "https://legalectric.org/f/2025/12/Lakeaville_Order_SJ-Hearing_CV-25-5103_Order-Other_2025-12-12_20251230105817.pdf" },
+            { name: "Summary Judgment Motion (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/2026-01-15-Memo-ISO-SJ-Motion.pdf" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -200,7 +200,7 @@ const projectData = [
         acres: 482,
         sqft: 3000000,
         currentStatus: "Lawsuit filed Oct 2025",
-        notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas. Next hearing Feb 2, 2026.",
+        notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas.",
         litigation: {
             active: true,
             caseNumber: "25-CV-25-2298",
@@ -388,10 +388,10 @@ const projectData = [
         timeline: [
             { date: "2024-11-29", event: "Residents and Coalition file lawsuit/injunction" },
             { date: "2025-01-14", event: "Castle Rock Township votes to file separate legal action" },
-            { date: "2024-10-07", event: "AUAR adopted (Resolution 2024-97)" }
+            { date: "2024-11-04", event: "AUAR adopted (Resolution 2024-97)" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Oct 7, 2024" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Nov 4, 2024" },
             localZoning: { status: "in_progress", detail: "PUD approved but challenged" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -400,7 +400,8 @@ const projectData = [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259881?siId=259881-PROJ0000000001" },
             { name: "GovTech - Lawsuit", url: "https://www.govtech.com/infrastructure/farmington-minn-residents-sue-to-stop-data-center-park" },
             { name: "Coalition Website", url: "https://www.datacenterresponsibility.com/whatishappening" },
-            { name: "Streets.mn Deep Dive", url: "https://streets.mn/2025/11/07/deep-dive-the-farmington-push-for-responsible-hyper-scale-data-centers/" }
+            { name: "Streets.mn Deep Dive", url: "https://streets.mn/2025/11/07/deep-dive-the-farmington-push-for-responsible-hyper-scale-data-centers/" },
+            { name: "Hometown Source - Motion to Dismiss Denied", url: "https://www.hometownsource.com/sun_thisweek/community/dakota_county/judge-denies-farmingtons-motion-to-dismiss-lawsuit/article_54651c1e-c9af-4516-9409-6eaf4c0c83a7.html" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -635,6 +636,7 @@ const projectData = [
         notes: "Reported as $50-60M AI data center concept.",
         litigation: { active: false },
         timeline: [
+            { date: "2025-03-27", event: "Star Tribune reports Revolve Labs focusing on Glencoe expansion" },
             { date: "2024-11-06", event: "City approved rezoning of land" },
             { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
         ],
@@ -646,7 +648,8 @@ const projectData = [
         },
         sources: [
             { name: "Glencoe News", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-eda-reviews-concept-plans-for-50-60-million-ai-data-center/" },
-            { name: "Glencoe News - Rezoning Approval", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-approves-rezoning-request-for-site-of-revolve-labs-planned-ai-data-center/" }
+            { name: "Glencoe News - Rezoning Approval", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-approves-rezoning-request-for-site-of-revolve-labs-planned-ai-data-center/" },
+            { name: "Star Tribune - Glencoe Expansion", url: "https://www.startribune.com/company-wont-build-ai-data-center-in-rural-town-eyes-glencoe-expansion/601246170" }
         ],
         lastUpdated: "2026-01-22"
     },
@@ -686,7 +689,7 @@ const projectData = [
     // ============================================
     {
         id: 21,
-        name: "Becker Amazon Data Center",
+        name: "Amazon Becker Data Center",
         status: "suspended",
         city: "Becker",
         county: "Sherburne",
@@ -695,10 +698,10 @@ const projectData = [
         acres: null,
         sqft: null,
         currentStatus: "Amazon pulled out after PUC required Certificate of Need for backup generators",
-        notes: "PUC ruled Certificate of Need required for backup generators Feb 28, 2025. Amazon subsequently withdrew May 23, 2025.",
+        notes: "PUC ruled Certificate of Need required for backup generators Feb 28, 2025. Amazon subsequently withdrew May 2025.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-05-23", event: "Amazon pulls out of Becker plans" },
+            { date: "2025-05", event: "Amazon pulls out of Becker plans" },
             { date: "2025-02-28", event: "PUC rules Certificate of Need required" }
         ],
         permits: {
@@ -729,7 +732,6 @@ const projectData = [
         notes: "Microsoft purchased 295 acres from Xcel Energy for $17.7M in February 2024 with intent to build data center. No plans have been officially submitted to the city. Microsoft has not commented publicly on timeline. Site is near closing Sherco power plant. Google had previously backed out of plans for this area in 2022.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-12-18", event: "GovTech reports on secrecy concerns" },
             { date: "2024-02-12", event: "Microsoft closes on 295 acres from Xcel for $17.7M" },
             { date: "2022-12-01", event: "Google backs out of previous Becker data center plans" }
         ],
@@ -742,8 +744,7 @@ const projectData = [
         sources: [
             { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/microsoft-buys-300-acres-in-becker-minnesota/" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2024/02/21/xcel-energy-sells-land-in-becker-to-microsoft-for-data-center" },
-            { name: "Star Tribune", url: "https://www.startribune.com/microsoft-building-data-center-in-becker-xcel-stress-on-grids/600344079" },
-            { name: "GovTech", url: "https://www.govtech.com/policy/minnesota-data-center-approvals-happening-with-secrecy" }
+            { name: "Star Tribune", url: "https://www.startribune.com/microsoft-building-data-center-in-becker-xcel-stress-on-grids/600344079" }
         ],
         lastUpdated: "2026-01-22"
     }
