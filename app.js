@@ -687,7 +687,7 @@ window.openProjectDetail = openProjectDetail;
                 <div class="power-header">
                     <div class="power-kicker">From the MCEA Appeal</div>
                     <h2 class="power-headline">The Power Question</h2>
-                    <p class="power-subhead">Faribault's EAW estimated electricity for 500,000 sq ft of data center at under <strong>2 megawatts</strong>.<br>How does that compare to reality?</p>
+                    <p class="power-subhead">Faribault's EAW estimated electricity for a reported 120 MW data center at under <strong>2 megawatts</strong>.<br>How does that compare?</p>
                 </div>
 
                 <div class="power-theater">
@@ -722,7 +722,7 @@ window.openProjectDetail = openProjectDetail;
                         </div>
 
                         <div class="power-col power-col-actual">
-                            <div class="power-col-label">What Data Centers Need</div>
+                            <div class="power-col-label">What Was Actually Planned</div>
                             <div class="power-sun-area" id="power-sun-area">
                                 <div class="power-sun" id="power-sun"></div>
                             </div>
@@ -817,10 +817,10 @@ window.openProjectDetail = openProjectDetail;
                     requestAnimationFrame(tick);
                 } else {
                     // Final state
-                    actualNum.textContent = '60–120';
+                    actualNum.textContent = '120';
                     actualUnit.textContent = 'megawatts';
-                    actualContext.textContent = 'Typical for 500,000 SF data center';
-                    multiplier.textContent = '30–60×';
+                    actualContext.textContent = 'As reported for the Archer campus';
+                    multiplier.textContent = '60×';
                     sunEl.classList.add('pulsing');
 
                     // Phase 2: Reveal facts one by one
