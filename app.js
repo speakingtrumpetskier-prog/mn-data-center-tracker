@@ -666,12 +666,12 @@ window.openProjectDetail = openProjectDetail;
         // Don't double-inject
         if (slot.querySelector('.case-detail-btn')) return;
 
-        const hint = document.createElement('button');
-        hint.className = 'case-detail-btn';
-        hint.innerHTML = '<span class="case-detail-icon">⚡</span> Learn more';
-        slot.appendChild(hint);
+        slot.innerHTML = `
+            <div class="detail-field-label">Learn More</div>
+            <button class="case-detail-btn" title="Key claim from the MCEA appeal">⚡</button>
+        `;
 
-        hint.addEventListener('click', (e) => {
+        slot.querySelector('.case-detail-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             if (!powerEggActive) launchPowerComparison();
         });
