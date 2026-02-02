@@ -310,7 +310,8 @@ const projectData = [
         timeline: [
             { date: "2025-04-15", event: "Final AUAR approved" },
             { date: "2025-03-25", event: "EQB Monitor notice published" },
-            { date: "2024-12-24", event: "EQB Monitor notice - public meeting" }
+            { date: "2025-01-07", event: "Public meeting" },
+            { date: "2024-09-24", event: "AUAR announced in EQB Monitor" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved" },
@@ -444,7 +445,8 @@ const projectData = [
         notes: "Describes 'technology park' scenario, similar approach to North Mankato AUAR.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-07-15", event: "Final AUAR approved" }
+            { date: "2025-07-15", event: "Final AUAR approved" },
+            { date: "2024-12-17", event: "AUAR announced in EQB Monitor" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved" },
@@ -469,11 +471,12 @@ const projectData = [
         lng: -93.0858,
         acres: 333,
         sqft: 2300000,
-        currentStatus: "Adopted June 11, 2024 (333 acreage)",
+        currentStatus: "Adopted June 11, 2024",
         notes: "New AUAR explicitly targeting data center projects.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-06-11", event: "Final AUAR adopted (333 acres)" }
+            { date: "2024-06-11", event: "Final AUAR adopted" },
+            { date: "2023-10-24", event: "AUAR announced in EQB Monitor" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR adopted June 11, 2024" },
@@ -497,12 +500,13 @@ const projectData = [
         lng: -93.1258,
         acres: 235,
         sqft: 4000000,
-        currentStatus: "Updated AUAR and Resolution 2024-85 approved Aug 6, 2024 (235 acres)",
-        notes: "Existing AUAR from 2023, updated with data center scenario in 2024.",
+        currentStatus: "Updated AUAR approved Aug 6, 2024 (235 acres)",
+        notes: "Existing AUAR from 2023, updated in 2024 to explicitly target data centers.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-08-06", event: "AUAR update approved (Resolution 2024-85)" },
-            { date: "2023-01-01", event: "Original AUAR approved" }
+            { date: "2024-08-06", event: "AUAR update approved" },
+            { date: "2024-06-11", event: "AUAR update announced in EQB Monitor" },
+            { date: "2023-11-21", event: "Original AUAR approval announced in EQB Monitor" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Updated with DC scenario July 2024" },
@@ -513,7 +517,7 @@ const projectData = [
         sources: [
             { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/255536?siId=255536-PROJ0000000002" },
             { name: "AUAR Update (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7071/Rosemount-Industrial-AUAR-Update" },
-            { name: "Resolution 2024-85 (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7069/Resolution-2024-85" }
+
         ],
         lastUpdated: "2026-01-22"
     },
@@ -563,14 +567,14 @@ const projectData = [
         county: "Fillmore",
         lat: 43.5541,
         lng: -92.0105,
-        acres: 50,
+        acres: 60,
         sqft: null,
-        currentStatus: "Early-stage Economic Development Authority exploration; annexation discussions ongoing",
+        currentStatus: "Early-stage Economic Development Authority exploration; city voted to annex land Oct 14, 2025",
         notes: "Southeast Minnesota location near Iowa border. No AUAR/EAW filed yet.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-10-20", event: "Annexation discussed at meeting" },
-            { date: "2025-10-07", event: "Community member raises concerns at meeting" }
+            { date: "2025-10-14", event: "City voted to annex land" },
+            { date: "2025-10-07", event: "Community members raise concerns at meeting" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
@@ -595,12 +599,14 @@ const projectData = [
         lng: -93.8144,
         acres: null,
         sqft: 1300000,
-        currentStatus: "Reported early-stage proposal; no AUAR filed yet",
-        notes: "Separate from Monticello Industrial AUAR. 150MW proposal marketed by Cushman Wakefield.",
+        currentStatus: "City Council voted Jan 12, 2026 to re-analyze site land use guidance; comprehensive plan amendment previously approved May 2025",
+        notes: "Separate from Monticello Industrial AUAR. Scannell Properties applied to amend comp plan to reguide ~76 acres to Light Industrial Park (remaining ~30 acres already guided as such). Planning Commission held public hearing May 6, 2025; City Council approved amendment May 27, 2025. Following further discussions about reserving high-amenity areas for single-family housing, City Council voted Jan 12, 2026 to re-analyze the site's land use guidance and directed Planning Commission to hold a public hearing.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-01-12", event: "City Council voted to re-analyze site's land use guidance and directed Planning Commission to hold public hearing" },
             { date: "2025-10-27", event: "Finance & Commerce reports on proposal" },
-            { date: "2025-06-01", event: "Sales brochure published" }
+            { date: "2025-05-27", event: "City Council approved comprehensive plan amendment" },
+            { date: "2025-05-06", event: "Planning Commission held public hearing on comprehensive plan amendment" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
@@ -629,6 +635,7 @@ const projectData = [
         notes: "Reported as $50-60M AI data center concept.",
         litigation: { active: false },
         timeline: [
+            { date: "2024-11-06", event: "City approved rezoning of land" },
             { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
         ],
         permits: {
@@ -646,22 +653,22 @@ const projectData = [
     {
         id: 20,
         name: "Cottage Grove Business Park AUAR",
-        status: "watching",
+        status: "review_complete",
         city: "Cottage Grove",
         county: "Washington",
         lat: 44.8277,
         lng: -92.9438,
         acres: null,
         sqft: null,
-        currentStatus: "Existing AUAR (2018, updated 2022) covers 'major technology center' scenario",
-        notes: "If specific data center proposal emerges, watch for site-specific permits/platting.",
+        currentStatus: "AUAR approved Jan 8, 2018; AUAR update approved March 2, 2022; covers 'major technology center' scenario",
+        notes: "Environmental review complete. If specific data center proposal emerges, watch for site-specific permits/platting.",
         litigation: { active: false },
         timeline: [
-            { date: "2022-02-01", event: "AUAR update approved" },
-            { date: "2018-01-22", event: "Original Business Park AUAR adopted" }
+            { date: "2022-03-02", event: "AUAR update approved" },
+            { date: "2018-01-08", event: "Original Business Park AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "2018 AUAR + 2022 update" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR approved Jan 8, 2018; update approved March 2, 2022" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
