@@ -1066,25 +1066,33 @@
             }
         }
 
-        /* Case detail button — reusable "learn more" link in detail panel */
+        /* Case detail button — reusable "learn more" in litigation section */
         .case-detail-btn {
-            display: inline-block;
-            margin-top: 0.75rem;
-            padding: 0.4rem 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.7rem;
             font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 0.75rem;
-            color: var(--accent);
-            background: none;
-            border: 1px solid var(--accent);
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            background: var(--cream);
+            border: 1px solid var(--paper-darker);
             border-radius: 2px;
             cursor: pointer;
             transition: all 0.2s ease;
             letter-spacing: 0.01em;
+            white-space: nowrap;
         }
 
         .case-detail-btn:hover {
-            background: var(--accent);
-            color: var(--paper);
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #fef2f2;
+        }
+
+        .case-detail-icon {
+            font-size: 0.8rem;
+            line-height: 1;
         }
 
         /* Full-screen overlay */
@@ -1589,9 +1597,14 @@
                         <div class="detail-field-value" id="detail-court">—</div>
                     </div>
                 </div>
-                <div class="detail-field" style="margin-top: 0.75rem;">
-                    <div class="detail-field-label">Litigation Status</div>
-                    <div class="detail-field-value" id="detail-litigation-status" style="color: #dc2626;">—</div>
+                <div class="detail-grid" style="margin-top: 0.75rem;">
+                    <div class="detail-field">
+                        <div class="detail-field-label">Litigation Status</div>
+                        <div class="detail-field-value" id="detail-litigation-status" style="color: #dc2626;">—</div>
+                    </div>
+                    <div class="detail-field" id="case-detail-slot" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                        <!-- Populated by JS for projects with deep-dive content -->
+                    </div>
                 </div>
             </div>
 

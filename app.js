@@ -315,6 +315,8 @@ function openProjectDetail(projectId) {
 
     // Litigation section
     const litigationSection = document.getElementById('litigation-section');
+    const caseDetailSlot = document.getElementById('case-detail-slot');
+    if (caseDetailSlot) caseDetailSlot.innerHTML = ''; // Clear previous deep-dive buttons
     if (project.litigation?.active && litigationSection) {
         litigationSection.style.display = 'block';
         document.getElementById('detail-case-number').textContent = project.litigation.caseNumber || '—';
@@ -658,16 +660,16 @@ window.openProjectDetail = openProjectDetail;
     };
 
     function injectPowerHint() {
-        // Don't double-inject
-        if (document.querySelector('.case-detail-btn')) return;
+        const slot = document.getElementById('case-detail-slot');
+        if (!slot) return;
 
-        const notesEl = document.getElementById('detail-notes');
-        if (!notesEl) return;
+        // Don't double-inject
+        if (slot.querySelector('.case-detail-btn')) return;
 
         const hint = document.createElement('button');
         hint.className = 'case-detail-btn';
-        hint.innerHTML = 'Key claim from appeal →';
-        notesEl.parentElement.appendChild(hint);
+        hint.innerHTML = '<span class="case-detail-icon">⚡</span> Learn more';
+        slot.appendChild(hint);
 
         hint.addEventListener('click', (e) => {
             e.stopPropagation();
