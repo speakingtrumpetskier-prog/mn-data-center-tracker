@@ -233,24 +233,25 @@ const projectData = [
     {
         id: 6,
         name: "Monticello Industrial AUAR",
-        status: "in_review",
+        status: "review_complete",
         city: "Monticello",
         county: "Wright",
         lat: 45.3055,
         lng: -93.7944,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "Final AUAR published Jan 6, awaiting city council approval",
-        notes: "Explicitly a data center project. Separate from Scannell Technology Park proposal. Community backlash reported. Open house held Nov 20.",
+        currentStatus: "AUAR unanimously adopted by city council Jan 26, 2026. DCPUD ordinance review by Planning Commission expected Feb 3.",
+        notes: "Proposed by Monticello Tech LLC. 550 acres south of 85th St and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Separate from Scannell Technology Park proposal. Community backlash reported.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-01-06", event: "Final AUAR published, awaiting city council approval" },
+            { date: "2026-01-26", event: "City council unanimously adopted AUAR" },
+            { date: "2026-01-06", event: "Final AUAR published" },
             { date: "2025-11-20", event: "Open house on AUAR presentation" },
             { date: "2025-11-20", event: "Community backlash reported (KARE 11)" },
             { date: "2025-08-05", event: "AUAR scoping began" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Final AUAR published Jan 6, awaiting city council approval" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -260,9 +261,10 @@ const projectData = [
             { name: "Open House Presentation", url: "https://www.monticellomn.gov/DocumentCenter/View/8755" },
             { name: "City Environmental Reviews", url: "https://www.monticellomn.gov/712/Environmental-Reviews" },
             { name: "City Data Centers Page", url: "https://monticellomn.gov/728/Data-Centers" },
-            { name: "KARE 11 Coverage", url: "https://www.kare11.com/article/news/local/proposed-data-centers-in-monticello-spark-community-backlash/89-9f0aa475-3d16-4ab5-8b06-27f4cea6b408" }
+            { name: "KARE 11 Coverage", url: "https://www.kare11.com/article/news/local/proposed-data-centers-in-monticello-spark-community-backlash/89-9f0aa475-3d16-4ab5-8b06-27f4cea6b408" },
+            { name: "Hometown Source - AUAR Adoption", url: "https://www.hometownsource.com/monticello_times/council-adopts-auar-planning-study-for-possible-data-center/article_df3d6460-7c9e-442d-b460-f1d3585d63cc.html" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-02-02"
     },
     {
         id: 8,
