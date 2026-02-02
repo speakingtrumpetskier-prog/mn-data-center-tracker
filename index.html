@@ -1076,8 +1076,8 @@
             font-size: 1.1rem;
             line-height: 1;
             color: var(--ink-faint);
-            background: var(--cream);
-            border: 1px solid var(--paper-darker);
+            background: transparent;
+            border: 1px solid transparent;
             border-radius: 3px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -1086,10 +1086,9 @@
 
         .case-detail-btn:hover {
             color: #d97706;
-            border-color: #d97706;
+            border-color: var(--paper-darker);
             background: #fffbeb;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(217, 119, 6, 0.15);
+            transform: scale(1.15);
         }
 
         /* Full-screen overlay */
