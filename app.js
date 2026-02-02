@@ -143,9 +143,16 @@ function formatSqft(sqft) {
 
 function formatDate(dateStr) {
     if (!dateStr) return '—';
+    // Handle partial dates like "2025-05" (year-month only)
+    const parts = dateStr.split('-');
+    if (parts.length === 2) {
+        const [year, month] = parts.map(Number);
+        const date = new Date(year, month - 1, 1);
+        return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    }
     // Parse as local date to avoid timezone offset issues
     // Date string format: "YYYY-MM-DD"
-    const [year, month, day] = dateStr.split('-').map(Number);
+    const [year, month, day] = parts.map(Number);
     const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
