@@ -738,14 +738,6 @@ window.openProjectDetail = openProjectDetail;
                         <span class="power-fact-marker">§</span>
                         The draft EAW estimated electricity consumption at over 1,000,000 MWh/year. The final EAW dropped it to 14,000 MWh/year — a 98% reduction, without explanation.
                     </div>
-                    <div class="power-fact-item" id="fact-2" style="opacity:0;">
-                        <span class="power-fact-marker">§</span>
-                        14,000 MWh/year works out to under 2 MW of continuous power — roughly what a large grocery store uses, not a 500,000 sq ft data center.
-                    </div>
-                    <div class="power-fact-item" id="fact-3" style="opacity:0;">
-                        <span class="power-fact-marker">§</span>
-                        A facility this size would typically require 60–120 MW, making the final EAW estimate off by a factor of 30–60×.
-                    </div>
                 </div>
 
                 <div class="power-source">
@@ -841,18 +833,11 @@ window.openProjectDetail = openProjectDetail;
     }
 
     function revealFacts(overlay) {
-        const facts = [
-            overlay.querySelector('#fact-1'),
-            overlay.querySelector('#fact-2'),
-            overlay.querySelector('#fact-3')
-        ];
-
-        facts.forEach((fact, i) => {
-            setTimeout(() => {
-                fact.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                fact.style.transform = 'translateY(0)';
-                fact.style.opacity = '1';
-            }, 400 + (i * 500));
-        });
+        const fact = overlay.querySelector('#fact-1');
+        setTimeout(() => {
+            fact.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fact.style.transform = 'translateY(0)';
+            fact.style.opacity = '1';
+        }, 400);
     }
 })();
