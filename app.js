@@ -659,17 +659,15 @@ window.openProjectDetail = openProjectDetail;
 
     function injectPowerHint() {
         // Don't double-inject
-        if (document.querySelector('.power-hint-btn')) return;
+        if (document.querySelector('.case-detail-btn')) return;
 
-        const statusEl = document.getElementById('detail-status');
-        if (!statusEl) return;
+        const notesEl = document.getElementById('detail-notes');
+        if (!notesEl) return;
 
         const hint = document.createElement('button');
-        hint.className = 'power-hint-btn';
-        hint.innerHTML = '⚡';
-        hint.title = 'How much power?';
-        statusEl.parentElement.style.position = 'relative';
-        statusEl.parentElement.appendChild(hint);
+        hint.className = 'case-detail-btn';
+        hint.innerHTML = 'Key claim from appeal →';
+        notesEl.parentElement.appendChild(hint);
 
         hint.addEventListener('click', (e) => {
             e.stopPropagation();
