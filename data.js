@@ -233,25 +233,33 @@ const projectData = [
     {
         id: 6,
         name: "Monticello Industrial AUAR",
-        status: "review_complete",
+        status: "in_litigation",
+        secondaryStatus: "review_complete",
         city: "Monticello",
         county: "Wright",
         lat: 45.3055,
         lng: -93.7944,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "AUAR unanimously adopted by city council Jan 26, 2026. DCPUD ordinance review by Planning Commission expected Feb 3.",
-        notes: "Proposed by Monticello Tech LLC. 550 acres south of 85th St and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Separate from Scannell Technology Park proposal. Community backlash reported.",
-        litigation: { active: false },
+        currentStatus: "MCEA filed lawsuit Feb 25, 2026 in Wright County District Court challenging the AUAR. MCEA argues review inadequately analyzed water use (250-300M gal/yr), electricity demand, air quality, and cumulative impacts. No injunction sought. City and developer have 21 days to respond.",
+        notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. MCEA's sixth statewide data center AUAR lawsuit. MCEA seeking court to reverse AUAR approval and require additional environmental review. No development expected before Q2 2027. Separate from Scannell Technology Park proposal.",
+        litigation: {
+            active: true,
+            court: "Wright County District Court",
+            status: "Lawsuit filed Feb 25, 2026",
+            filedDate: "2026-02-25"
+        },
         timeline: [
-            { date: "2026-01-26", event: "City council unanimously adopted AUAR" },
+            { date: "2026-02-25", event: "MCEA filed lawsuit in Wright County District Court challenging AUAR adequacy" },
+            { date: "2026-01-26", event: "City council unanimously adopted AUAR and Mitigation Plan" },
             { date: "2026-01-06", event: "Final AUAR published" },
-            { date: "2025-11-20", event: "Open house on AUAR presentation" },
+            { date: "2025-11-10", event: "City Council voted to send draft AUAR to EQB for 30-day public comment" },
+            { date: "2025-11-20", event: "Public open house on AUAR" },
             { date: "2025-11-20", event: "Community backlash reported (KARE 11)" },
             { date: "2025-08-05", event: "AUAR scoping began" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -262,9 +270,11 @@ const projectData = [
             { name: "City Environmental Reviews", url: "https://www.monticellomn.gov/712/Environmental-Reviews" },
             { name: "City Data Centers Page", url: "https://monticellomn.gov/728/Data-Centers" },
             { name: "KARE 11 Coverage", url: "https://www.kare11.com/article/news/local/proposed-data-centers-in-monticello-spark-community-backlash/89-9f0aa475-3d16-4ab5-8b06-27f4cea6b408" },
-            { name: "Hometown Source - AUAR Adoption", url: "https://www.hometownsource.com/monticello_times/council-adopts-auar-planning-study-for-possible-data-center/article_df3d6460-7c9e-442d-b460-f1d3585d63cc.html" }
+            { name: "Hometown Source - AUAR Adoption", url: "https://www.hometownsource.com/monticello_times/council-adopts-auar-planning-study-for-possible-data-center/article_df3d6460-7c9e-442d-b460-f1d3585d63cc.html" },
+            { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
+            { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-02-02"
+        lastUpdated: "2026-02-25"
     },
     {
         id: 8,
