@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Mario Galaxy - Tower Defense Platformer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    overflow: hidden;
+    font-family: 'Press Start 2P', monospace;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+
+  canvas {
+    display: block;
+    margin: 0 auto;
+    cursor: crosshair;
+  }
+
+  #ui-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+  }
+
+  #hud {
+    pointer-events: none;
+    display: flex;
+    gap: 24px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.7);
+    border-bottom: 3px solid #FFD700;
+    border-radius: 0 0 12px 12px;
+    align-items: center;
+  }
+
+  .hud-item {
+    color: #fff;
+    font-size: 11px;
+    text-shadow: 2px 2px #000;
+    white-space: nowrap;
+  }
+
+  .hud-item .label { color: #FFD700; }
+  .hud-item .value { color: #fff; }
+
+  #tower-panel {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.8);
+    border-top: 3px solid #FFD700;
+    z-index: 10;
+  }
+
+  .tower-btn {
+    pointer-events: all;
+    background: linear-gradient(180deg, #2a1a4e, #1a0a2e);
+    border: 2px solid #7B68EE;
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .tower-btn:hover {
+    background: linear-gradient(180deg, #3a2a6e, #2a1a4e);
+    border-color: #FFD700;
+    transform: scale(1.05);
+  }
+
+  .tower-btn.selected {
+    border-color: #FFD700;
+    background: linear-gradient(180deg, #4a3a7e, #3a2a5e);
+    box-shadow: 0 0 12px rgba(255,215,0,0.5);
+  }
+
+  .tower-btn .cost { color: #FFD700; font-size: 8px; margin-top: 4px; }
+  .tower-btn .key-hint { color: #888; font-size: 7px; margin-top: 2px; }
+
+  #start-screen, #game-over-screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, #1a0a3e 0%, #000 70%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    color: #fff;
+    text-align: center;
+  }
+
+  #start-screen h1 {
+    font-size: 28px;
+    color: #FFD700;
+    text-shadow: 3px 3px #D4380D, 0 0 30px rgba(255,215,0,0.5);
+    margin-bottom: 8px;
+  }
+
+  #start-screen h2 {
+    font-size: 14px;
+    color: #7B68EE;
+    margin-bottom: 40px;
+  }
+
+  .start-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    padding: 16px 40px;
+    background: linear-gradient(180deg, #D4380D, #8B0000);
+    border: 3px solid #FFD700;
+    border-radius: 12px;
+    color: #FFD700;
+    cursor: pointer;
+    margin: 8px;
+    transition: all 0.2s;
+  }
+
+  .start-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255,215,0,0.6);
+  }
+
+  .controls-info {
+    margin-top: 30px;
+    font-size: 8px;
+    color: #aaa;
+    line-height: 2;
+  }
+
+  #game-over-screen { display: none; }
+  #game-over-screen h1 { font-size: 32px; color: #ff4444; margin-bottom: 20px; text-shadow: 3px 3px #000; }
+  #game-over-screen .score { font-size: 16px; color: #FFD700; margin-bottom: 30px; }
+
+  #wave-announce {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    color: #FFD700;
+    text-shadow: 3px 3px #000, 0 0 30px rgba(255,215,0,0.8);
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+</style>
+</head>
+<body>
+
+<div id="start-screen">
+  <h1>SUPER MARIO GALAXY</h1>
+  <h2>Tower Defense</h2>
+  <button class="start-btn" onclick="startGame()">START GAME</button>
+  <div class="controls-info">
+    A/D or ARROWS - Move Mario<br>
+    W or SPACE - Jump<br>
+    1-5 - Select Tower<br>
+    CLICK - Place Tower on Platform<br>
+    ESC - Cancel Placement
+  </div>
+</div>
+
+<div id="game-over-screen">
+  <h1>GAME OVER</h1>
+  <div class="score" id="final-score"></div>
+  <button class="start-btn" onclick="startGame()">TRY AGAIN</button>
+</div>
+
+<div id="ui-overlay">
+  <div id="hud">
+    <div class="hud-item"><span class="label">COINS</span> <span class="value" id="hud-coins">50</span></div>
+    <div class="hud-item"><span class="label">LIVES</span> <span class="value" id="hud-lives">♥♥♥♥♥</span></div>
+    <div class="hud-item"><span class="label">WAVE</span> <span class="value" id="hud-wave">1</span></div>
+    <div class="hud-item"><span class="label">SCORE</span> <span class="value" id="hud-score">0</span></div>
+  </div>
+</div>
+
+<div id="tower-panel">
+  <button class="tower-btn" data-tower="fireball" onclick="selectTower('fireball')">
+    🔥 Fire Flower<div class="cost">15 coins</div><div class="key-hint">[1]</div>
+  </button>
+  <button class="tower-btn" data-tower="star" onclick="selectTower('star')">
+    ⭐ Star Bit<div class="cost">25 coins</div><div class="key-hint">[2]</div>
+  </button>
+  <button class="tower-btn" data-tower="ice" onclick="selectTower('ice')">
+    ❄️ Ice Flower<div class="cost">30 coins</div><div class="key-hint">[3]</div>
+  </button>
+  <button class="tower-btn" data-tower="luma" onclick="selectTower('luma')">
+    💫 Luma<div class="cost">40 coins</div><div class="key-hint">[4]</div>
+  </button>
+  <button class="tower-btn" data-tower="rosalina" onclick="selectTower('rosalina')">
+    👑 Rosalina<div class="cost">60 coins</div><div class="key-hint">[5]</div>
+  </button>
+</div>
+
+<div id="wave-announce"></div>
+
+<canvas id="game"></canvas>
+
+<script>
+// ============================================================
+//  SUPER MARIO GALAXY - TOWER DEFENSE PLATFORMER
+// ============================================================
+
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+// Sizing
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+// ---- CONSTANTS ----
+const GRAVITY = 0.6;
+const TILE = 32;
+const GROUND_ROWS = 2;
+
+// ---- GAME STATE ----
+let game = null;
+let animFrame = null;
+let keys = {};
+let selectedTowerType = null;
+let mouseX = 0, mouseY = 0;
+
+// ---- COLORS / PALETTE (Super Mario World + Galaxy) ----
+const PAL = {
+  sky1: '#0B0033',
+  sky2: '#1B1060',
+  sky3: '#2A1A6E',
+  star: '#FFFBE6',
+  ground: '#2E1A47',
+  groundLight: '#3D2A5E',
+  groundDark: '#1E0A2F',
+  platform: '#5B3A8E',
+  platformLight: '#7B5AAE',
+  platformEdge: '#3A1A5E',
+  brick: '#8B5E3C',
+  brickDark: '#6B3E1C',
+  mario: '#E52521',
+  marioSkin: '#FFB89A',
+  marioHat: '#E52521',
+  marioBrown: '#6B3300',
+  coin: '#FFD700',
+  coinDark: '#DAA520',
+  fireOrange: '#FF6600',
+  fireYellow: '#FFCC00',
+  iceBlue: '#66CCFF',
+  iceCyan: '#00FFFF',
+  lumaYellow: '#FFEE88',
+  lumaGlow: 'rgba(255,238,136,0.3)',
+  rosaPink: '#88DDFF',
+  rosaGlow: 'rgba(136,221,255,0.4)',
+  enemyGreen: '#44BB44',
+  enemyShell: '#228822',
+  enemyRed: '#DD3333',
+  goomba: '#A0522D',
+  goombaDark: '#6B3510',
+  bulletBlack: '#222',
+  bulletWhite: '#eee',
+  uiGold: '#FFD700',
+  damage: '#FF0000',
+  nebula1: 'rgba(100,50,180,0.15)',
+  nebula2: 'rgba(50,100,200,0.1)',
+};
+
+// ---- SPRITE DRAWING (Pixel Art) ----
+const Sprites = {
+  drawMario(x, y, w, h, dir, frame) {
+    const faceDir = dir || 1;
+    ctx.save();
+    if (faceDir < 0) {
+      ctx.translate(x + w, y);
+      ctx.scale(-1, 1);
+      x = 0; y = 0;
+    }
+
+    // Boots
+    ctx.fillStyle = PAL.marioBrown;
+    ctx.fillRect(x + 4, y + h - 6, 10, 6);
+    ctx.fillRect(x + w - 14, y + h - 6, 10, 6);
+
+    // Overalls (blue galaxy tint)
+    ctx.fillStyle = '#2244AA';
+    ctx.fillRect(x + 4, y + h/2 + 2, w - 8, h/2 - 8);
+
+    // Buttons
+    ctx.fillStyle = PAL.coin;
+    ctx.fillRect(x + w/2 - 2, y + h/2 + 6, 4, 4);
+
+    // Shirt
+    ctx.fillStyle = PAL.mario;
+    ctx.fillRect(x + 2, y + h/3, w - 4, h/3);
+
+    // Arms
+    const armOff = Math.sin(frame * 0.2) * 3;
+    ctx.fillStyle = PAL.mario;
+    ctx.fillRect(x - 2, y + h/3 + 2 + armOff, 6, 10);
+    ctx.fillRect(x + w - 4, y + h/3 + 2 - armOff, 6, 10);
+    ctx.fillStyle = PAL.marioSkin;
+    ctx.fillRect(x - 2, y + h/3 + 10 + armOff, 6, 4);
+    ctx.fillRect(x + w - 4, y + h/3 + 10 - armOff, 6, 4);
+
+    // Head
+    ctx.fillStyle = PAL.marioSkin;
+    ctx.fillRect(x + 6, y + 8, w - 12, h/3 - 4);
+
+    // Eyes
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + w/2 + 1, y + 12, 6, 6);
+    ctx.fillStyle = '#2244AA';
+    ctx.fillRect(x + w/2 + 3, y + 14, 3, 3);
+
+    // Mustache
+    ctx.fillStyle = PAL.marioBrown;
+    ctx.fillRect(x + w/2 - 2, y + 18, 12, 3);
+
+    // Hat
+    ctx.fillStyle = PAL.marioHat;
+    ctx.fillRect(x + 2, y + 2, w - 4, 10);
+    ctx.fillRect(x + w/2 - 2, y, w/2 + 4, 6);
+
+    // Hat 'M' emblem
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + w/2 + 2, y + 3, 2, 5);
+    ctx.fillRect(x + w/2 + 6, y + 3, 2, 5);
+    ctx.fillRect(x + w/2 + 4, y + 4, 2, 2);
+
+    // Galaxy star sparkle on hat
+    const sparkle = Math.sin(Date.now() * 0.005) * 0.5 + 0.5;
+    ctx.fillStyle = `rgba(255,255,200,${sparkle})`;
+    ctx.fillRect(x + w - 6, y + 1, 3, 3);
+
+    ctx.restore();
+  },
+
+  drawGoomba(x, y, w, h, frame, variant) {
+    const bounce = Math.sin(frame * 0.15) * 2;
+    // Feet
+    ctx.fillStyle = '#111';
+    ctx.fillRect(x + 2, y + h - 5, 8, 5);
+    ctx.fillRect(x + w - 10, y + h - 5, 8, 5);
+    // Body
+    ctx.fillStyle = variant === 'dark' ? '#5A2D0C' : PAL.goomba;
+    ctx.beginPath();
+    ctx.ellipse(x + w/2, y + h/2 + bounce, w/2 - 2, h/2 - 2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Dark top
+    ctx.fillStyle = variant === 'dark' ? '#3A1A00' : PAL.goombaDark;
+    ctx.beginPath();
+    ctx.ellipse(x + w/2, y + h/3 + bounce, w/2 - 4, h/4, 0, Math.PI, Math.PI * 2);
+    ctx.fill();
+    // Eyes (angry)
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + 6, y + h/3 + bounce, 7, 7);
+    ctx.fillRect(x + w - 13, y + h/3 + bounce, 7, 7);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(x + 8, y + h/3 + 2 + bounce, 4, 5);
+    ctx.fillRect(x + w - 12, y + h/3 + 2 + bounce, 4, 5);
+    // Eyebrows
+    ctx.fillStyle = '#000';
+    ctx.fillRect(x + 5, y + h/3 - 2 + bounce, 8, 2);
+    ctx.fillRect(x + w - 13, y + h/3 - 2 + bounce, 8, 2);
+    // Galaxy shimmer
+    if (variant === 'cosmic') {
+      ctx.fillStyle = `rgba(150,100,255,${0.3 + Math.sin(frame * 0.1) * 0.2})`;
+      ctx.beginPath();
+      ctx.ellipse(x + w/2, y + h/2, w/2, h/2, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  },
+
+  drawKoopa(x, y, w, h, frame, color) {
+    const walk = Math.sin(frame * 0.12) * 2;
+    // Feet
+    ctx.fillStyle = '#FFB800';
+    ctx.fillRect(x + 2, y + h - 5, 7, 5);
+    ctx.fillRect(x + w - 9, y + h - 5, 7, 5);
+    // Shell
+    ctx.fillStyle = color || PAL.enemyGreen;
+    ctx.beginPath();
+    ctx.ellipse(x + w/2, y + h/2 + 2 + walk, w/2 - 1, h/3, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Shell pattern
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x + w/2, y + h/3 + walk);
+    ctx.lineTo(x + w/2, y + 2*h/3 + walk);
+    ctx.stroke();
+    // Head
+    ctx.fillStyle = '#88CC44';
+    ctx.fillRect(x + w/2 - 5, y + 4 + walk, 14, 14);
+    // Eyes
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + w/2 + 2, y + 6 + walk, 6, 6);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(x + w/2 + 4, y + 8 + walk, 3, 4);
+  },
+
+  drawBulletBill(x, y, w, h, frame) {
+    // Body
+    ctx.fillStyle = PAL.bulletBlack;
+    ctx.fillRect(x + 4, y + 4, w - 8, h - 8);
+    ctx.beginPath();
+    ctx.ellipse(x + 4, y + h/2, 4, h/2 - 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Nose
+    ctx.fillRect(x + w - 8, y + 6, 8, h - 12);
+    // Eye
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + w/2 + 2, y + h/3, 8, 6);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(x + w/2 + 5, y + h/3 + 1, 4, 4);
+    // Arm band
+    ctx.fillStyle = '#666';
+    ctx.fillRect(x + 8, y + 4, 4, h - 8);
+    // Exhaust
+    const exLen = Math.random() * 8 + 4;
+    ctx.fillStyle = PAL.fireOrange;
+    ctx.fillRect(x - exLen, y + h/3, exLen, h/3);
+    ctx.fillStyle = PAL.fireYellow;
+    ctx.fillRect(x - exLen + 2, y + h/3 + 2, exLen - 4, h/3 - 4);
+  },
+
+  drawBowserJr(x, y, w, h, frame) {
+    const hover = Math.sin(frame * 0.08) * 4;
+    // Body
+    ctx.fillStyle = '#E8C840';
+    ctx.beginPath();
+    ctx.ellipse(x + w/2, y + h/2 + hover, w/2 - 2, h/2 - 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Shell
+    ctx.fillStyle = '#228822';
+    ctx.beginPath();
+    ctx.ellipse(x + w/2, y + h/2 + 2 + hover, w/2 - 4, h/3, 0, 0.3, Math.PI - 0.3);
+    ctx.fill();
+    // Spikes on shell
+    ctx.fillStyle = '#fff';
+    for (let i = 0; i < 3; i++) {
+      const sx = x + w/3 + i * 8;
+      ctx.beginPath();
+      ctx.moveTo(sx, y + h/2 + hover);
+      ctx.lineTo(sx + 3, y + h/2 - 8 + hover);
+      ctx.lineTo(sx + 6, y + h/2 + hover);
+      ctx.fill();
+    }
+    // Head
+    ctx.fillStyle = '#E8C840';
+    ctx.fillRect(x + w/3, y + 2 + hover, w/3 + 4, h/3);
+    // Bandana
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + w/3 - 2, y + 6 + hover, w/3 + 8, 6);
+    // Eyes
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(x + w/2, y + 8 + hover, 8, 7);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(x + w/2 + 3, y + 10 + hover, 4, 4);
+    // Mouth
+    ctx.fillStyle = '#C83030';
+    ctx.fillRect(x + w/2 - 2, y + 18 + hover, 12, 4);
+    // HP bar
+    if (this._bossHP !== undefined) {
+      ctx.fillStyle = '#333';
+      ctx.fillRect(x, y - 10, w, 5);
+      ctx.fillStyle = '#ff3333';
+      ctx.fillRect(x, y - 10, w * this._bossHP, 5);
+    }
+  },
+
+  drawTower(x, y, type, level, frame) {
+    const glow = Math.sin(frame * 0.08) * 0.3 + 0.7;
+
+    switch(type) {
+      case 'fireball':
+        // Fire flower tower
+        ctx.fillStyle = '#228B22';
+        ctx.fillRect(x + 12, y + 14, 8, 18);
+        ctx.fillStyle = `rgba(255,100,0,${glow})`;
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 12, 10 + level * 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = PAL.fireYellow;
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 12, 6 + level, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(x + 14, y + 10, 3, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+
+      case 'star':
+        // Star bit tower
+        ctx.fillStyle = `rgba(255,215,0,${glow})`;
+        this.drawStarShape(x + 16, y + 16, 12 + level * 2, 6);
+        ctx.fillStyle = '#fff';
+        this.drawStarShape(x + 16, y + 16, 6, 3);
+        // Orbiting bits
+        for (let i = 0; i < 3 + level; i++) {
+          const angle = frame * 0.05 + (i * Math.PI * 2 / (3 + level));
+          const ox = x + 16 + Math.cos(angle) * 18;
+          const oy = y + 16 + Math.sin(angle) * 18;
+          ctx.fillStyle = ['#FF6688', '#66FF88', '#6688FF', '#FFFF66'][i % 4];
+          ctx.beginPath();
+          ctx.arc(ox, oy, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        break;
+
+      case 'ice':
+        // Ice flower
+        ctx.fillStyle = '#228B22';
+        ctx.fillRect(x + 12, y + 14, 8, 18);
+        ctx.fillStyle = `rgba(100,200,255,${glow})`;
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 12, 10 + level * 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 12, 6, 0, Math.PI * 2);
+        ctx.fill();
+        // Ice crystals
+        ctx.strokeStyle = PAL.iceCyan;
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 6; i++) {
+          const a = i * Math.PI / 3 + frame * 0.02;
+          ctx.beginPath();
+          ctx.moveTo(x + 16, y + 12);
+          ctx.lineTo(x + 16 + Math.cos(a) * 14, y + 12 + Math.sin(a) * 14);
+          ctx.stroke();
+        }
+        break;
+
+      case 'luma':
+        // Luma tower
+        ctx.fillStyle = `rgba(255,238,136,${glow * 0.4})`;
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 16, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = PAL.lumaYellow;
+        ctx.beginPath();
+        ctx.ellipse(x + 16, y + 16, 12, 10, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.ellipse(x + 16, y + 14, 8, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+        // Eyes
+        ctx.fillStyle = '#111';
+        ctx.beginPath();
+        ctx.arc(x + 12, y + 15, 2.5, 0, Math.PI * 2);
+        ctx.arc(x + 20, y + 15, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        // Crown spike
+        ctx.fillStyle = PAL.coin;
+        ctx.beginPath();
+        ctx.moveTo(x + 16, y + 2);
+        ctx.lineTo(x + 12, y + 10);
+        ctx.lineTo(x + 20, y + 10);
+        ctx.fill();
+        break;
+
+      case 'rosalina':
+        // Rosalina tower
+        ctx.fillStyle = `rgba(136,221,255,${glow * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 16, 24, 0, Math.PI * 2);
+        ctx.fill();
+        // Dress
+        ctx.fillStyle = '#44AACC';
+        ctx.beginPath();
+        ctx.moveTo(x + 6, y + 16);
+        ctx.lineTo(x + 16, y + 8);
+        ctx.lineTo(x + 26, y + 16);
+        ctx.lineTo(x + 28, y + 32);
+        ctx.lineTo(x + 4, y + 32);
+        ctx.fill();
+        // Head
+        ctx.fillStyle = PAL.marioSkin;
+        ctx.beginPath();
+        ctx.arc(x + 16, y + 8, 7, 0, Math.PI * 2);
+        ctx.fill();
+        // Hair
+        ctx.fillStyle = '#FFE47A';
+        ctx.beginPath();
+        ctx.ellipse(x + 14, y + 5, 8, 6, -0.3, Math.PI, Math.PI * 2);
+        ctx.fill();
+        ctx.fillRect(x + 6, y + 5, 4, 16);
+        // Crown star
+        ctx.fillStyle = PAL.coin;
+        this.drawStarShape(x + 16, y, 5, 2.5);
+        // Wand sparkles
+        for (let i = 0; i < 4; i++) {
+          const a = frame * 0.04 + i * Math.PI / 2;
+          const r = 20 + level * 3;
+          ctx.fillStyle = `rgba(255,255,200,${glow})`;
+          ctx.beginPath();
+          ctx.arc(x + 16 + Math.cos(a) * r, y + 16 + Math.sin(a) * r, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        break;
+    }
+
+    // Level indicator
+    if (level > 1) {
+      ctx.fillStyle = PAL.coin;
+      ctx.font = '8px "Press Start 2P"';
+      ctx.fillText('★'.repeat(Math.min(level, 3)), x + 2, y + 38);
+    }
+  },
+
+  drawStarShape(cx, cy, outerR, innerR) {
+    ctx.beginPath();
+    for (let i = 0; i < 10; i++) {
+      const r = i % 2 === 0 ? outerR : innerR;
+      const angle = (i * Math.PI / 5) - Math.PI / 2;
+      if (i === 0) ctx.moveTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+      else ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+    }
+    ctx.closePath();
+    ctx.fill();
+  },
+
+  drawProjectile(x, y, type, frame) {
+    switch(type) {
+      case 'fireball':
+        ctx.fillStyle = PAL.fireOrange;
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = PAL.fireYellow;
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+        // Trail
+        ctx.fillStyle = 'rgba(255,100,0,0.4)';
+        ctx.beginPath();
+        ctx.arc(x - 4, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      case 'star':
+        ctx.fillStyle = PAL.coin;
+        this.drawStarShape(x, y, 5, 2.5);
+        break;
+      case 'ice':
+        ctx.fillStyle = PAL.iceBlue;
+        ctx.fillRect(x - 4, y - 4, 8, 8);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(x - 2, y - 2, 4, 4);
+        break;
+      case 'luma':
+        ctx.fillStyle = PAL.lumaYellow;
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = `rgba(255,238,136,0.5)`;
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      case 'rosalina':
+        // Cosmic magic
+        ctx.fillStyle = PAL.rosaPink;
+        this.drawStarShape(x, y, 7, 3);
+        ctx.fillStyle = '#fff';
+        this.drawStarShape(x, y, 4, 2);
+        ctx.fillStyle = `rgba(136,221,255,0.4)`;
+        ctx.beginPath();
+        ctx.arc(x, y, 12, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+    }
+  },
+
+  drawCoin(x, y, frame) {
+    const stretch = Math.abs(Math.sin(frame * 0.08));
+    ctx.fillStyle = PAL.coin;
+    ctx.beginPath();
+    ctx.ellipse(x, y, 6 * stretch, 8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = PAL.coinDark;
+    ctx.beginPath();
+    ctx.ellipse(x, y, 4 * stretch, 6, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = PAL.coin;
+    if (stretch > 0.3) {
+      ctx.font = '8px "Press Start 2P"';
+      ctx.textAlign = 'center';
+      ctx.fillText('$', x, y + 3);
+    }
+  }
+};
+
+// ---- LEVEL GENERATION ----
+function generateLevel(width) {
+  const groundY = canvas.height - TILE * GROUND_ROWS;
+  const platforms = [];
+
+  // Main ground
+  const ground = { x: 0, y: groundY, w: width, h: TILE * GROUND_ROWS, type: 'ground' };
+
+  // Create platforming area with multiple levels
+  const numPlatforms = Math.floor(width / 200);
+  for (let i = 0; i < numPlatforms; i++) {
+    const px = 120 + i * 190 + Math.random() * 40;
+    const py = groundY - 80 - Math.random() * 160;
+    const pw = 80 + Math.random() * 60;
+    platforms.push({
+      x: px, y: py, w: pw, h: 12,
+      type: 'platform',
+      canPlace: true,
+    });
+  }
+
+  // Add some higher platforms
+  for (let i = 0; i < Math.floor(numPlatforms / 2); i++) {
+    const px = 200 + i * 380 + Math.random() * 60;
+    const py = groundY - 220 - Math.random() * 80;
+    const pw = 60 + Math.random() * 50;
+    platforms.push({
+      x: px, y: py, w: pw, h: 12,
+      type: 'platform',
+      canPlace: true,
+    });
+  }
+
+  return { ground, platforms, width, groundY };
+}
+
+// ---- STAR FIELD ----
+function createStars(count) {
+  const stars = [];
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * 3000,
+      y: Math.random() * canvas.height * 0.8,
+      size: Math.random() * 2 + 0.5,
+      speed: Math.random() * 0.3 + 0.1,
+      twinkle: Math.random() * Math.PI * 2,
+      color: Math.random() > 0.9 ? '#aaddff' : Math.random() > 0.8 ? '#ffe0a0' : '#ffffff',
+    });
+  }
+  return stars;
+}
+
+// ---- ENEMY PATH ----
+function createEnemyPath(level) {
+  // Enemies walk along the ground from right to left
+  return {
+    start: { x: level.width + 40, y: level.groundY - 1 },
+    end: { x: -40, y: level.groundY - 1 },
+  };
+}
+
+// ---- TOWER DEFINITIONS ----
+const TOWER_DEFS = {
+  fireball: { cost: 15, range: 120, damage: 8, fireRate: 40, projSpeed: 5, name: 'Fire Flower' },
+  star:     { cost: 25, range: 150, damage: 15, fireRate: 50, projSpeed: 6, name: 'Star Bit' },
+  ice:      { cost: 30, range: 130, damage: 6, fireRate: 35, projSpeed: 4, name: 'Ice Flower', slow: 0.5 },
+  luma:     { cost: 40, range: 180, damage: 20, fireRate: 60, projSpeed: 7, name: 'Luma' },
+  rosalina: { cost: 60, range: 220, damage: 35, fireRate: 80, projSpeed: 4, name: 'Rosalina', splash: 60 },
+};
+
+// ---- ENEMY WAVES ----
+function getWave(waveNum) {
+  const enemies = [];
+  const base = waveNum;
+
+  if (waveNum % 5 === 0) {
+    // Boss wave
+    enemies.push({ type: 'bowserJr', hp: 80 + waveNum * 20, speed: 0.6, reward: 30, delay: 0, isBoss: true });
+    for (let i = 0; i < base; i++) {
+      enemies.push({ type: 'goomba', hp: 15 + waveNum * 3, speed: 1.2, reward: 3, delay: 800 + i * 400 });
+    }
+  } else {
+    const count = 5 + waveNum * 2;
+    for (let i = 0; i < count; i++) {
+      const roll = Math.random();
+      let type, hp, speed, reward;
+      if (roll < 0.5 || waveNum < 3) {
+        type = waveNum > 6 ? 'goombaDark' : 'goomba';
+        hp = 12 + waveNum * 4;
+        speed = 1 + waveNum * 0.05;
+        reward = 2;
+      } else if (roll < 0.8) {
+        type = waveNum > 8 ? 'koopaRed' : 'koopa';
+        hp = 20 + waveNum * 5;
+        speed = 0.8 + waveNum * 0.04;
+        reward = 4;
+      } else {
+        type = 'bulletBill';
+        hp = 10 + waveNum * 3;
+        speed = 2 + waveNum * 0.08;
+        reward = 5;
+      }
+      enemies.push({ type, hp, speed, reward, delay: i * (500 - Math.min(waveNum * 15, 300)) });
+    }
+  }
+
+  return enemies;
+}
+
+// ---- PARTICLE SYSTEM ----
+class Particle {
+  constructor(x, y, vx, vy, life, color, size) {
+    this.x = x; this.y = y;
+    this.vx = vx; this.vy = vy;
+    this.life = life; this.maxLife = life;
+    this.color = color; this.size = size;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += 0.1;
+    this.life--;
+    return this.life > 0;
+  }
+  draw() {
+    const alpha = this.life / this.maxLife;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+    ctx.globalAlpha = 1;
+  }
+}
+
+// ---- FLOATING TEXT ----
+class FloatingText {
+  constructor(x, y, text, color) {
+    this.x = x; this.y = y;
+    this.text = text; this.color = color;
+    this.life = 40;
+    this.vy = -2;
+  }
+  update() {
+    this.y += this.vy;
+    this.vy *= 0.95;
+    this.life--;
+    return this.life > 0;
+  }
+  draw() {
+    ctx.globalAlpha = this.life / 40;
+    ctx.fillStyle = this.color;
+    ctx.font = '10px "Press Start 2P"';
+    ctx.textAlign = 'center';
+    ctx.fillText(this.text, this.x - (game ? game.camera.x : 0), this.y);
+    ctx.globalAlpha = 1;
+  }
+}
+
+// ---- MAIN GAME CLASS ----
+class Game {
+  constructor() {
+    this.levelWidth = 2400;
+    this.level = generateLevel(this.levelWidth);
+    this.stars = createStars(200);
+    this.path = createEnemyPath(this.level);
+
+    // Mario
+    this.mario = {
+      x: 100, y: this.level.groundY - 40,
+      w: 28, h: 40,
+      vx: 0, vy: 0,
+      onGround: false,
+      dir: 1,
+      frame: 0,
+    };
+
+    this.camera = { x: 0 };
+    this.towers = [];
+    this.enemies = [];
+    this.projectiles = [];
+    this.particles = [];
+    this.floatingTexts = [];
+    this.coins = 50;
+    this.lives = 5;
+    this.score = 0;
+    this.wave = 0;
+    this.waveActive = false;
+    this.waveTimer = 0;
+    this.waveEnemies = [];
+    this.spawnIndex = 0;
+    this.spawnTimer = 0;
+    this.frame = 0;
+    this.gameOver = false;
+    this.betweenWaves = true;
+    this.betweenWaveTimer = 180; // 3 seconds before first wave
+
+    // Nebula positions
+    this.nebulae = [];
+    for (let i = 0; i < 5; i++) {
+      this.nebulae.push({
+        x: Math.random() * this.levelWidth,
+        y: Math.random() * canvas.height * 0.6,
+        r: 60 + Math.random() * 100,
+        color: Math.random() > 0.5 ? PAL.nebula1 : PAL.nebula2,
+      });
+    }
+  }
+
+  update() {
+    if (this.gameOver) return;
+    this.frame++;
+
+    // Mario movement
+    const speed = 3.5;
+    if (keys['ArrowLeft'] || keys['KeyA']) {
+      this.mario.vx = -speed;
+      this.mario.dir = -1;
+    } else if (keys['ArrowRight'] || keys['KeyD']) {
+      this.mario.vx = speed;
+      this.mario.dir = 1;
+    } else {
+      this.mario.vx *= 0.7;
+    }
+
+    if ((keys['Space'] || keys['ArrowUp'] || keys['KeyW']) && this.mario.onGround) {
+      this.mario.vy = -12;
+      this.mario.onGround = false;
+    }
+
+    this.mario.vy += GRAVITY;
+    this.mario.x += this.mario.vx;
+    this.mario.y += this.mario.vy;
+    this.mario.frame++;
+
+    // Clamp mario to level
+    this.mario.x = Math.max(0, Math.min(this.levelWidth - this.mario.w, this.mario.x));
+
+    // Ground collision
+    this.mario.onGround = false;
+    if (this.mario.y + this.mario.h >= this.level.groundY) {
+      this.mario.y = this.level.groundY - this.mario.h;
+      this.mario.vy = 0;
+      this.mario.onGround = true;
+    }
+
+    // Platform collisions
+    for (const p of this.level.platforms) {
+      if (this.mario.vy >= 0 &&
+          this.mario.x + this.mario.w > p.x && this.mario.x < p.x + p.w &&
+          this.mario.y + this.mario.h >= p.y && this.mario.y + this.mario.h <= p.y + p.h + 8) {
+        this.mario.y = p.y - this.mario.h;
+        this.mario.vy = 0;
+        this.mario.onGround = true;
+      }
+    }
+
+    // Camera follow
+    const targetCam = this.mario.x - canvas.width / 2 + this.mario.w / 2;
+    this.camera.x += (targetCam - this.camera.x) * 0.1;
+    this.camera.x = Math.max(0, Math.min(this.levelWidth - canvas.width, this.camera.x));
+
+    // Wave management
+    if (this.betweenWaves) {
+      this.betweenWaveTimer--;
+      if (this.betweenWaveTimer <= 0) {
+        this.startNextWave();
+      }
+    }
+
+    if (this.waveActive) {
+      this.spawnTimer--;
+      if (this.spawnIndex < this.waveEnemies.length) {
+        const nextEnemy = this.waveEnemies[this.spawnIndex];
+        if (this.spawnTimer <= 0) {
+          this.spawnEnemy(nextEnemy);
+          this.spawnIndex++;
+          if (this.spawnIndex < this.waveEnemies.length) {
+            this.spawnTimer = Math.floor((this.waveEnemies[this.spawnIndex].delay - (nextEnemy.delay || 0)) / 16.67);
+          }
+        }
+      }
+
+      // Check wave complete
+      if (this.spawnIndex >= this.waveEnemies.length && this.enemies.length === 0) {
+        this.waveActive = false;
+        this.betweenWaves = true;
+        this.betweenWaveTimer = 240;
+        // Bonus coins
+        this.coins += 5 + this.wave * 2;
+        this.floatingTexts.push(new FloatingText(
+          this.mario.x + this.mario.w/2, this.mario.y - 20,
+          `+${5 + this.wave * 2} COINS!`, PAL.coin
+        ));
+      }
+    }
+
+    // Update enemies
+    for (let i = this.enemies.length - 1; i >= 0; i--) {
+      const e = this.enemies[i];
+      const actualSpeed = e.speed * (e.slowed ? 0.4 : 1);
+      e.x -= actualSpeed;
+      e.frame++;
+
+      if (e.slowed) {
+        e.slowTimer--;
+        if (e.slowTimer <= 0) e.slowed = false;
+      }
+
+      // Enemy reached the end
+      if (e.x < -30) {
+        this.enemies.splice(i, 1);
+        this.lives--;
+        this.updateHUD();
+        if (this.lives <= 0) {
+          this.endGame();
+          return;
+        }
+        // Screen shake effect via particles
+        for (let p = 0; p < 10; p++) {
+          this.particles.push(new Particle(
+            canvas.width/2 + this.camera.x, canvas.height/2,
+            (Math.random()-0.5)*8, (Math.random()-0.5)*8,
+            30, PAL.damage, 4
+          ));
+        }
+      }
+
+      // Check if enemy is dead
+      if (e.hp <= 0) {
+        this.score += e.reward * 10;
+        this.coins += e.reward;
+        this.floatingTexts.push(new FloatingText(e.x, e.y - 10, `+${e.reward}`, PAL.coin));
+
+        // Death particles
+        const colors = [PAL.coin, '#fff', PAL.fireOrange, '#88f'];
+        for (let p = 0; p < 12; p++) {
+          this.particles.push(new Particle(
+            e.x + e.w/2, e.y + e.h/2,
+            (Math.random()-0.5)*6, (Math.random()-1)*5,
+            20 + Math.random()*20,
+            colors[Math.floor(Math.random()*colors.length)],
+            2 + Math.random()*3
+          ));
+        }
+        this.enemies.splice(i, 1);
+        this.updateHUD();
+      }
+    }
+
+    // Update towers (shooting)
+    for (const t of this.towers) {
+      t.cooldown--;
+      if (t.cooldown <= 0) {
+        const def = TOWER_DEFS[t.type];
+        const range = def.range + (t.level - 1) * 20;
+        let target = null;
+        let minDist = range;
+        for (const e of this.enemies) {
+          const dx = (e.x + e.w/2) - (t.x + 16);
+          const dy = (e.y + e.h/2) - (t.y + 16);
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < minDist) {
+            minDist = dist;
+            target = e;
+          }
+        }
+        if (target) {
+          const dx = (target.x + target.w/2) - (t.x + 16);
+          const dy = (target.y + target.h/2) - (t.y + 16);
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          const vx = (dx / dist) * def.projSpeed;
+          const vy = (dy / dist) * def.projSpeed;
+          this.projectiles.push({
+            x: t.x + 16, y: t.y + 16,
+            vx, vy,
+            type: t.type,
+            damage: def.damage + (t.level - 1) * 4,
+            slow: def.slow || 0,
+            splash: def.splash || 0,
+            life: 120,
+          });
+          t.cooldown = Math.max(10, def.fireRate - (t.level - 1) * 5);
+        }
+      }
+    }
+
+    // Update projectiles
+    for (let i = this.projectiles.length - 1; i >= 0; i--) {
+      const p = this.projectiles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life--;
+
+      if (p.life <= 0) {
+        this.projectiles.splice(i, 1);
+        continue;
+      }
+
+      // Hit detection
+      for (const e of this.enemies) {
+        const dx = p.x - (e.x + e.w/2);
+        const dy = p.y - (e.y + e.h/2);
+        if (Math.sqrt(dx*dx + dy*dy) < 18) {
+          e.hp -= p.damage;
+          if (p.slow > 0) {
+            e.slowed = true;
+            e.slowTimer = 90;
+          }
+          // Splash damage
+          if (p.splash > 0) {
+            for (const e2 of this.enemies) {
+              if (e2 === e) continue;
+              const dx2 = p.x - (e2.x + e2.w/2);
+              const dy2 = p.y - (e2.y + e2.h/2);
+              if (Math.sqrt(dx2*dx2 + dy2*dy2) < p.splash) {
+                e2.hp -= Math.floor(p.damage * 0.5);
+              }
+            }
+          }
+          // Hit particles
+          for (let k = 0; k < 5; k++) {
+            this.particles.push(new Particle(
+              p.x, p.y,
+              (Math.random()-0.5)*4, (Math.random()-0.5)*4,
+              15, p.type === 'ice' ? PAL.iceCyan : PAL.fireYellow, 3
+            ));
+          }
+          this.projectiles.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    // Update particles
+    this.particles = this.particles.filter(p => p.update());
+    this.floatingTexts = this.floatingTexts.filter(t => t.update());
+  }
+
+  startNextWave() {
+    this.wave++;
+    this.waveActive = true;
+    this.betweenWaves = false;
+    this.waveEnemies = getWave(this.wave);
+    this.spawnIndex = 0;
+    this.spawnTimer = 1;
+    this.updateHUD();
+
+    // Announce
+    const announce = document.getElementById('wave-announce');
+    announce.textContent = this.wave % 5 === 0 ? `BOSS WAVE ${this.wave}!` : `WAVE ${this.wave}`;
+    announce.style.opacity = 1;
+    setTimeout(() => { announce.style.opacity = 0; }, 2000);
+  }
+
+  spawnEnemy(def) {
+    const e = {
+      x: this.levelWidth + 20,
+      y: this.level.groundY - 32,
+      w: def.type === 'bowserJr' ? 48 : 28,
+      h: def.type === 'bowserJr' ? 48 : 28,
+      type: def.type,
+      hp: def.hp,
+      maxHp: def.hp,
+      speed: def.speed,
+      reward: def.reward,
+      frame: 0,
+      slowed: false,
+      slowTimer: 0,
+      isBoss: def.isBoss || false,
+    };
+    if (def.type === 'bowserJr') {
+      e.y = this.level.groundY - 52;
+    }
+    this.enemies.push(e);
+  }
+
+  placeTower(worldX, worldY) {
+    if (!selectedTowerType) return;
+    const def = TOWER_DEFS[selectedTowerType];
+    if (this.coins < def.cost) {
+      this.floatingTexts.push(new FloatingText(worldX, worldY - 20, 'NOT ENOUGH COINS!', '#ff4444'));
+      return;
+    }
+
+    // Check if placement is on a platform or ground
+    let validPlacement = false;
+    let snapY = worldY;
+
+    // Check platforms
+    for (const p of this.level.platforms) {
+      if (worldX >= p.x && worldX <= p.x + p.w &&
+          Math.abs(worldY - p.y) < 40) {
+        validPlacement = true;
+        snapY = p.y - 32;
+        break;
+      }
+    }
+
+    // Check ground
+    if (!validPlacement && worldY >= this.level.groundY - 50) {
+      validPlacement = true;
+      snapY = this.level.groundY - 32;
+    }
+
+    if (!validPlacement) {
+      this.floatingTexts.push(new FloatingText(worldX, worldY - 20, 'PLACE ON PLATFORM!', '#ff4444'));
+      return;
+    }
+
+    // Check for overlapping towers
+    const tx = worldX - 16;
+    for (const t of this.towers) {
+      if (Math.abs(t.x - tx) < 32 && Math.abs(t.y - snapY) < 32) {
+        // Upgrade existing tower
+        if (t.type === selectedTowerType && t.level < 3) {
+          const upgradeCost = Math.floor(def.cost * t.level * 0.7);
+          if (this.coins >= upgradeCost) {
+            this.coins -= upgradeCost;
+            t.level++;
+            this.floatingTexts.push(new FloatingText(t.x + 16, t.y - 10, `LVL ${t.level}!`, PAL.coin));
+            this.updateHUD();
+          } else {
+            this.floatingTexts.push(new FloatingText(worldX, worldY - 20, 'NOT ENOUGH COINS!', '#ff4444'));
+          }
+          return;
+        }
+        this.floatingTexts.push(new FloatingText(worldX, worldY - 20, 'SPACE TAKEN!', '#ff4444'));
+        return;
+      }
+    }
+
+    this.coins -= def.cost;
+    this.towers.push({
+      x: tx, y: snapY,
+      type: selectedTowerType,
+      level: 1,
+      cooldown: 0,
+    });
+    this.updateHUD();
+
+    // Placement sparkle
+    for (let i = 0; i < 8; i++) {
+      this.particles.push(new Particle(
+        tx + 16, snapY + 16,
+        (Math.random()-0.5)*6, (Math.random()-1)*4,
+        25, PAL.coin, 3
+      ));
+    }
+  }
+
+  updateHUD() {
+    document.getElementById('hud-coins').textContent = this.coins;
+    document.getElementById('hud-lives').textContent = '♥'.repeat(Math.max(0, this.lives));
+    document.getElementById('hud-wave').textContent = this.wave;
+    document.getElementById('hud-score').textContent = this.score;
+  }
+
+  endGame() {
+    this.gameOver = true;
+    document.getElementById('final-score').textContent = `WAVE ${this.wave} | SCORE: ${this.score}`;
+    document.getElementById('game-over-screen').style.display = 'flex';
+  }
+
+  draw() {
+    const cx = this.camera.x;
+
+    // Sky gradient
+    const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    skyGrad.addColorStop(0, '#020010');
+    skyGrad.addColorStop(0.3, '#0B0033');
+    skyGrad.addColorStop(0.6, '#1B1060');
+    skyGrad.addColorStop(1, '#2A1A6E');
+    ctx.fillStyle = skyGrad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Nebulae
+    for (const n of this.nebulae) {
+      const nx = n.x - cx * 0.3;
+      if (nx > -n.r && nx < canvas.width + n.r) {
+        const grad = ctx.createRadialGradient(nx, n.y, 0, nx, n.y, n.r);
+        grad.addColorStop(0, n.color);
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.fillRect(nx - n.r, n.y - n.r, n.r * 2, n.r * 2);
+      }
+    }
+
+    // Stars (parallax)
+    for (const s of this.stars) {
+      const sx = ((s.x - cx * s.speed) % (canvas.width + 20) + canvas.width + 20) % (canvas.width + 20);
+      const twinkle = Math.sin(this.frame * 0.03 + s.twinkle) * 0.4 + 0.6;
+      ctx.globalAlpha = twinkle;
+      ctx.fillStyle = s.color;
+      ctx.fillRect(sx, s.y, s.size, s.size);
+      if (s.size > 1.5) {
+        ctx.fillRect(sx - 1, s.y + s.size/2 - 0.5, s.size + 2, 1);
+        ctx.fillRect(sx + s.size/2 - 0.5, s.y - 1, 1, s.size + 2);
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    // Distant planet (decorative)
+    const planetX = 600 - cx * 0.1;
+    if (planetX > -100 && planetX < canvas.width + 100) {
+      ctx.fillStyle = '#3A1858';
+      ctx.beginPath();
+      ctx.arc(planetX, 120, 60, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#4A2878';
+      ctx.beginPath();
+      ctx.arc(planetX, 120, 60, -0.8, 0.8);
+      ctx.fill();
+      // Ring
+      ctx.strokeStyle = 'rgba(200,180,255,0.3)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.ellipse(planetX, 120, 90, 15, -0.3, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Another small planet
+    const p2x = 1800 - cx * 0.15;
+    if (p2x > -60 && p2x < canvas.width + 60) {
+      ctx.fillStyle = '#8B4513';
+      ctx.beginPath();
+      ctx.arc(p2x, 80, 25, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#A0522D';
+      ctx.beginPath();
+      ctx.arc(p2x - 5, 75, 20, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.save();
+    ctx.translate(-cx, 0);
+
+    // Ground
+    const gY = this.level.groundY;
+
+    // Ground surface pattern
+    ctx.fillStyle = PAL.ground;
+    ctx.fillRect(0, gY, this.levelWidth, TILE * GROUND_ROWS + 100);
+
+    // Ground top edge with galaxy styling
+    const groundGrad = ctx.createLinearGradient(0, gY, 0, gY + 8);
+    groundGrad.addColorStop(0, '#6B4A9E');
+    groundGrad.addColorStop(1, PAL.ground);
+    ctx.fillStyle = groundGrad;
+    ctx.fillRect(0, gY, this.levelWidth, 8);
+
+    // Ground tile pattern
+    ctx.fillStyle = PAL.groundLight;
+    for (let gx = 0; gx < this.levelWidth; gx += TILE) {
+      const row = 0;
+      if ((gx / TILE + row) % 2 === 0) {
+        ctx.fillRect(gx, gY + 8, TILE, TILE - 8);
+      }
+    }
+    ctx.fillStyle = PAL.groundDark;
+    for (let gx = 0; gx < this.levelWidth; gx += TILE) {
+      if ((gx / TILE) % 2 === 1) {
+        ctx.fillRect(gx, gY + TILE, TILE, TILE);
+      }
+    }
+
+    // Galaxy sparkles on ground
+    ctx.fillStyle = 'rgba(150,120,255,0.2)';
+    for (let gx = 0; gx < this.levelWidth; gx += 80) {
+      const sparkle = Math.sin(this.frame * 0.02 + gx * 0.1) * 0.5 + 0.5;
+      ctx.globalAlpha = sparkle * 0.3;
+      ctx.fillRect(gx + 10, gY + 2, 3, 3);
+    }
+    ctx.globalAlpha = 1;
+
+    // Platforms
+    for (const p of this.level.platforms) {
+      // Platform shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.3)';
+      ctx.fillRect(p.x + 3, p.y + 3, p.w, p.h);
+
+      // Platform body
+      const pGrad = ctx.createLinearGradient(p.x, p.y, p.x, p.y + p.h);
+      pGrad.addColorStop(0, PAL.platformLight);
+      pGrad.addColorStop(1, PAL.platformEdge);
+      ctx.fillStyle = pGrad;
+      ctx.fillRect(p.x, p.y, p.w, p.h);
+
+      // Platform top highlight
+      ctx.fillStyle = '#9B7ACE';
+      ctx.fillRect(p.x, p.y, p.w, 3);
+
+      // ? block style dots
+      ctx.fillStyle = 'rgba(255,215,0,0.3)';
+      for (let dx = 8; dx < p.w - 8; dx += 20) {
+        ctx.fillRect(p.x + dx, p.y + 4, 4, 4);
+      }
+
+      // Platform edge bolts
+      ctx.fillStyle = '#888';
+      ctx.fillRect(p.x + 2, p.y + 2, 3, 3);
+      ctx.fillRect(p.x + p.w - 5, p.y + 2, 3, 3);
+    }
+
+    // Enemy path indicator (subtle)
+    ctx.strokeStyle = 'rgba(255,100,100,0.1)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([8, 8]);
+    ctx.beginPath();
+    ctx.moveTo(this.levelWidth + 40, gY - 16);
+    ctx.lineTo(-40, gY - 16);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Towers
+    for (const t of this.towers) {
+      // Range circle when hovering
+      if (selectedTowerType && mouseX + cx > t.x - 5 && mouseX + cx < t.x + 37 &&
+          mouseY > t.y - 5 && mouseY < t.y + 37) {
+        const def = TOWER_DEFS[t.type];
+        const range = def.range + (t.level - 1) * 20;
+        ctx.strokeStyle = 'rgba(255,215,0,0.3)';
+        ctx.beginPath();
+        ctx.arc(t.x + 16, t.y + 16, range, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      Sprites.drawTower(t.x, t.y, t.type, t.level, this.frame);
+    }
+
+    // Enemies
+    for (const e of this.enemies) {
+      // Slow effect
+      if (e.slowed) {
+        ctx.fillStyle = 'rgba(100,200,255,0.3)';
+        ctx.beginPath();
+        ctx.arc(e.x + e.w/2, e.y + e.h/2, 18, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      switch(e.type) {
+        case 'goomba':
+          Sprites.drawGoomba(e.x, e.y, e.w, e.h, e.frame);
+          break;
+        case 'goombaDark':
+          Sprites.drawGoomba(e.x, e.y, e.w, e.h, e.frame, 'dark');
+          break;
+        case 'koopa':
+          Sprites.drawKoopa(e.x, e.y, e.w, e.h, e.frame, PAL.enemyGreen);
+          break;
+        case 'koopaRed':
+          Sprites.drawKoopa(e.x, e.y, e.w, e.h, e.frame, PAL.enemyRed);
+          break;
+        case 'bulletBill':
+          Sprites.drawBulletBill(e.x, e.y, e.w, e.h, e.frame);
+          break;
+        case 'bowserJr':
+          Sprites._bossHP = e.hp / e.maxHp;
+          Sprites.drawBowserJr(e.x, e.y, e.w, e.h, e.frame);
+          break;
+      }
+
+      // HP bar
+      if (e.hp < e.maxHp && !e.isBoss) {
+        const hpPct = e.hp / e.maxHp;
+        ctx.fillStyle = '#333';
+        ctx.fillRect(e.x, e.y - 6, e.w, 4);
+        ctx.fillStyle = hpPct > 0.5 ? '#44CC44' : hpPct > 0.25 ? '#CCCC44' : '#CC4444';
+        ctx.fillRect(e.x, e.y - 6, e.w * hpPct, 4);
+      }
+    }
+
+    // Projectiles
+    for (const p of this.projectiles) {
+      Sprites.drawProjectile(p.x, p.y, p.type, this.frame);
+    }
+
+    // Mario
+    Sprites.drawMario(
+      this.mario.x, this.mario.y,
+      this.mario.w, this.mario.h,
+      this.mario.dir, this.mario.frame
+    );
+
+    // Mario galaxy trail
+    if (Math.abs(this.mario.vx) > 1 || Math.abs(this.mario.vy) > 2) {
+      if (this.frame % 3 === 0) {
+        this.particles.push(new Particle(
+          this.mario.x + this.mario.w/2 + (Math.random()-0.5)*10,
+          this.mario.y + this.mario.h - 5,
+          (Math.random()-0.5)*1, Math.random()*-1,
+          15, `rgba(255,215,0,0.6)`, 2
+        ));
+      }
+    }
+
+    // Particles
+    for (const p of this.particles) {
+      p.draw();
+    }
+
+    ctx.restore();
+
+    // Floating texts (screen-space)
+    for (const t of this.floatingTexts) {
+      t.draw();
+    }
+
+    // Tower placement preview
+    if (selectedTowerType) {
+      const wx = mouseX + cx;
+      const wy = mouseY;
+      ctx.globalAlpha = 0.5;
+      Sprites.drawTower(mouseX - 16, mouseY - 16, selectedTowerType, 1, this.frame);
+      ctx.globalAlpha = 1;
+
+      // Range preview
+      const def = TOWER_DEFS[selectedTowerType];
+      ctx.strokeStyle = 'rgba(255,215,0,0.4)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.arc(mouseX, mouseY, def.range, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // Between waves countdown
+    if (this.betweenWaves && this.wave > 0) {
+      ctx.fillStyle = 'rgba(0,0,0,0.5)';
+      ctx.font = '10px "Press Start 2P"';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#fff';
+      const secs = Math.ceil(this.betweenWaveTimer / 60);
+      ctx.fillText(`NEXT WAVE IN ${secs}...`, canvas.width/2, 60);
+      ctx.textAlign = 'left';
+    }
+  }
+}
+
+// ---- INPUT ----
+window.addEventListener('keydown', e => {
+  keys[e.code] = true;
+
+  // Tower selection hotkeys
+  const towerKeys = { Digit1: 'fireball', Digit2: 'star', Digit3: 'ice', Digit4: 'luma', Digit5: 'rosalina' };
+  if (towerKeys[e.code]) {
+    selectTower(towerKeys[e.code]);
+  }
+  if (e.code === 'Escape') {
+    selectTower(null);
+  }
+});
+window.addEventListener('keyup', e => { keys[e.code] = false; });
+
+canvas.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+canvas.addEventListener('click', e => {
+  if (!game || game.gameOver) return;
+  const worldX = e.clientX + game.camera.x;
+  const worldY = e.clientY;
+  game.placeTower(worldX, worldY);
+});
+
+function selectTower(type) {
+  selectedTowerType = type;
+  document.querySelectorAll('.tower-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.tower === type);
+  });
+}
+
+// ---- GAME LOOP ----
+function gameLoop() {
+  if (!game) return;
+  game.update();
+  game.draw();
+  animFrame = requestAnimationFrame(gameLoop);
+}
+
+function startGame() {
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('game-over-screen').style.display = 'none';
+  selectedTowerType = null;
+  selectTower(null);
+
+  if (animFrame) cancelAnimationFrame(animFrame);
+  game = new Game();
+  game.updateHUD();
+  gameLoop();
+}
+
+// Prevent scrolling with space/arrows
+window.addEventListener('keydown', e => {
+  if (['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)) {
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>
