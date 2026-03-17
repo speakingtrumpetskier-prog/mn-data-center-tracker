@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: January 22, 2026
+// Last updated: March 17, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
