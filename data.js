@@ -778,31 +778,30 @@ const projectData = [
         lng: -93.6170,
         acres: 72,
         sqft: 1400000,
-        mw: 200,
-        currentStatus: "Preliminary site plan and plat approved October 2024; final approval pending. No anchor tenant as of late 2025.",
-        notes: "Site at 2007 Schoolmaster Drive in West Creek Corporate Center. CloudHQ is developer. AUAR environmental review and mitigation plan completed in 2022 (EQB Monitor notice June 7, 2022). Conditional use permit granted October 2023. Preliminary site plan/plat approved 4-1 by council October 2024 over neighborhood opposition (noise, height, berms, property values). Final site plan/plat approval and substation process still pending as of spring 2025. CloudHQ told Chaska late 2025 it still needs a large tech customer before it can move forward. Project would require a new 200 MW substation. Chaska withheld 294 utility/water planning files; MN Commissioner of Administration ruled in June 2025 those records were presumptively public. Projected ~75-100 jobs and ~$1 billion construction cost.",
+        mw: 180,
+        currentStatus: "Well-documented proposal with CUP and preliminary site plan in hand, but no confirmed anchor tenant and final approval still pending — real project, uncertain timeline.",
+        notes: "2007 Schoolmaster Drive, West Creek Corporate Center. 1.4M sq ft, 72 ft tall, 180 MW, ~$1B construction cost; projected 75–100 jobs. AUAR completed 2022; CUP Oct 2023; preliminary site plan/plat approved 4-1 by council Oct 2024 over neighbor opposition (height, noise, berms). Final site plan/plat and a separate 200 MW substation approval still pending as of spring 2025. No confirmed anchor tenant as of spring 2025.",
         litigation: { active: false },
         timeline: [
-            { date: "2022-06-07", event: "AUAR scoping notice published in EQB Monitor" },
             { date: "2022-08", event: "Concept approval by City of Chaska" },
-            { date: "2022", event: "Final AUAR and mitigation plan completed" },
+            { date: "2022", event: "AUAR and mitigation plan completed" },
             { date: "2023-10", event: "Conditional use permit granted" },
             { date: "2024-10", event: "Preliminary site plan and plat approved 4-1 by council" },
-            { date: "2025-05-09", event: "Demolition permit issued for existing residence and tree removal" },
-            { date: "2025-06", event: "MN Commissioner of Administration rules Chaska must disclose CloudHQ utility/water records" },
-            { date: "2025", event: "CloudHQ reports still seeking large tech customer; cannot proceed without one" }
+            { date: "2025-04-15", event: "Daily Reporter: final approval and substation process still pending; no anchor tenant confirmed" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR and mitigation plan completed 2022" },
-            localZoning: { status: "in_progress", detail: "CUP granted Oct 2023; preliminary site plan/plat approved Oct 2024; final approval TBD" },
+            localZoning: { status: "in_progress", detail: "CUP Oct 2023; preliminary site plan/plat Oct 2024; final approval TBD" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "200 MW substation process pending; utility/water planning ongoing" }
+            utilities: { status: "in_progress", detail: "200 MW substation approval process pending" }
         },
         sources: [
-            { name: "City of Chaska Project Page", url: "https://www.chaskamn.com" },
-            { name: "Star Tribune", url: "https://www.startribune.com" },
-            { name: "Finance & Commerce", url: "https://finance-commerce.com" },
-            { name: "CloudHQ", url: "https://cloudhq.com" }
+            { name: "City of Chaska project page", url: "https://www.chaskamn.gov/841/Cloud-HQ" },
+            { name: "Carver County Local News — preliminary approval Oct 2024", url: "https://cclocalnews.org/2024/10/29/despite-resident-objections-data-center-gains-preliminary-ok/" },
+            { name: "Star Tribune — $1B project announced", url: "https://www.startribune.com/1-billion-1-4-million-square-foot-data-center-planned-for-chaska/600201478" },
+            { name: "Daily Reporter — status spring 2025", url: "https://dailyreporter.com/2025/04/15/chaska-data-center-housing-business-park-growth/" },
+            { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/cloudhq-planning-180mw-data-center-campus-in-minneapolis-minnesota/" },
+            { name: "CloudHQ MSP Campus page", url: "https://cloudhq.com/campus/msp-campus/" }
         ],
         lastUpdated: "2026-04-07"
     },
@@ -817,12 +816,11 @@ const projectData = [
         acres: 157,
         sqft: null,
         mw: 300,
-        currentStatus: "Developer-listed pipeline site; no public Minnesota entitlement filings found as of April 2026.",
-        notes: "Cielo (founded 2023, backed by Arroyo Investors) lists a Chisago, MN project as 'active' on its properties page: 157 acres, 80 buildable acres, up to 300 MW. Data Center Dynamics reported the project as part of Cielo's national pipeline in June 2025. No Chisago City project page, planning commission packet, EQB environmental review notice, or local-news coverage of a named Cielo entitlement has been found in public records. August 2025 Chisago City EDA minutes show officials discussing data center review thresholds generally (city administrator noted 500,000 sq ft triggers a study for a tier-3 city), but no named Cielo project referenced. A 157-acre parcel at 10499 Stacy Trail in Chisago City appears in commercial listings marketed for residential development (~179 lots); acreage matches Cielo's published figure but is unconfirmed as the same site.",
+        currentStatus: "Developer pipeline listing only — Cielo self-reports 157 acres/300 MW in Chisago City, but no public Minnesota entitlement record has been found; treat as speculative.",
+        notes: "Cielo Digital Infrastructure (founded 2023, backed by Arroyo Investors) lists Chisago, MN as an active project on its properties page: 157 acres, 80 buildable acres, up to 300 MW. No Chisago City planning file, EQB environmental review notice, or local news coverage of a named Cielo entitlement has been found in public record.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-06", event: "Data Center Dynamics reports Cielo Chisago in developer's national pipeline (157 ac, 300 MW)" },
-            { date: "2025-08", event: "Chisago City EDA discusses data center environmental review thresholds; no named project" }
+            { date: "2025", event: "Cielo lists Chisago as active project on company properties page (157 ac, 300 MW)" }
         ],
         permits: {
             environmentalReview: { status: "not_started", detail: "No EAW, AUAR, or EIS filing found in MN public record" },
@@ -831,8 +829,9 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Cielo Properties", url: "https://www.cielo.com" },
-            { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com" }
+            { name: "Cielo properties page", url: "https://cieloinfra.com/properties/" },
+            { name: "Arroyo Investors — Cielo portfolio page", url: "https://arroyoinvestors.com/investments/cielo-digital-infrastructure/" },
+            { name: "Data Center Dynamics — Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
         ],
         lastUpdated: "2026-04-07"
     }
