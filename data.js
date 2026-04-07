@@ -146,25 +146,27 @@ const projectData = [
     {
         id: 4,
         name: "North Mankato Industrial AUAR (Project Deacon)",
-        status: "review_complete",
-        secondaryStatus: "in_litigation",
-        tertiaryStatus: "suspended",
+        status: "suspended",
+        secondaryStatus: "review_complete",
         city: "North Mankato",
         county: "Nicollet",
         lat: 44.1832,
         lng: -94.0445,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "Developer Oppidan backed out; lawsuit remains active",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenges adequacy. No formal application was ever filed.",
+        currentStatus: "No data center coming per city officials (March 2026); MCEA agreed to dismiss lawsuit August 7, 2026",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato (per KEYC). On August 7, 2026, MCEA agreed to dismiss the lawsuit (case 52-CV-25-568).",
         litigation: {
-            active: true,
+            active: false,
             caseNumber: "52-CV-25-568",
             court: "Nicollet County District Court",
-            status: "Lawsuit remains active despite developer withdrawal",
-            filedDate: "2025-08-05"
+            status: "Dismissed — MCEA agreed to dismiss August 7, 2026",
+            filedDate: "2025-08-05",
+            dismissedDate: "2026-08-07"
         },
         timeline: [
+            { date: "2026-08-07", event: "MCEA agreed to dismiss lawsuit (case 52-CV-25-568)" },
+            { date: "2026-03-18", event: "City Administrator confirms 'no data center' coming to North Mankato at State of the Cities summit (KEYC)" },
             { date: "2025-11-17", event: "Developer withdrawal confirmed in press reports" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
             { date: "2025-09-05", event: "City of North Mankato filed answer" },
@@ -178,15 +180,17 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "KEYC - No data center, no Costco, no Texas Roadhouse (Mar 2026)", url: "https://www.keyc.com/2026/03/18/no-data-center-no-costco-no-texas-roadhouse-city-officials-say-state-cities-summit/" },
+            { name: "KEYC - Residents sound off on data center, lawsuit (Aug 2025)", url: "https://www.keyc.com/2025/08/19/north-mankato-residents-sound-off-data-center-law-suit/" },
             { name: "Mankato Free Press - Oppidan Backs Out", url: "https://www.mankatofreepress.com/news/local_news/data-center-plans-stalled-in-north-mankato-after-developer-backs-out/article_d0617045-9eed-4633-a055-aed5b0405879.html" },
+            { name: "Mankato Free Press - No project, no problem", url: "https://www.mankatofreepress.com/news/local_news/north-mankato-says-no-project-no-problem-in-response-to-mcea-suit/article_9d1da895-e164-4a3a-a53b-e8eb021eb47b.html" },
             { name: "Star Tribune - Generator Permits", url: "https://www.startribune.com/developer-halts-two-minnesota-data-centers-over-permits-for-backup-generators/601507579" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366?siId=261366-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_N-Mankato_MCRO_52-CV-25-568_Complaint-Civil_2025-08-05_20251230110142.pdf" },
             { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
-            { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" },
-            { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/19/north-mankato-residents-sound-off-data-center-law-suit/" }
+            { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" }
         ],
-        lastUpdated: "2026-01-23"
+        lastUpdated: "2026-08-07"
     },
     {
         id: 5,
