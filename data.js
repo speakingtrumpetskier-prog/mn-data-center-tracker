@@ -779,8 +779,8 @@ const projectData = [
         acres: 72,
         sqft: 1400000,
         mw: 180,
-        currentStatus: "Well-documented proposal with CUP and preliminary site plan in hand, but no confirmed anchor tenant and final approval still pending — real project, uncertain timeline.",
-        notes: "2007 Schoolmaster Drive, West Creek Corporate Center. 1.4M sq ft, 72 ft tall, 180 MW, ~$1B construction cost; projected 75–100 jobs. AUAR completed 2022; CUP Oct 2023; preliminary site plan/plat approved 4-1 by council Oct 2024 over neighbor opposition (height, noise, berms). Final site plan/plat and a separate 200 MW substation approval still pending as of spring 2025. No confirmed anchor tenant as of spring 2025.",
+        currentStatus: "2022 proposal for 180 MW data center campus with CUP and preliminary site plan in hand, but no confirmed anchor tenant and final approval pending.",
+        notes: "2007 Schoolmaster Drive, West Creek Corporate Center. 1.4M sq ft, 72 ft tall, 180 MW, ~$1B construction cost; projected 75–100 jobs. AUAR completed 2022; CUP Oct 2023; preliminary site plan/plat approved 4-1 by council Oct 2024 over neighbor opposition (height, noise, berms). Final site plan/plat and a separate 200 MW substation approval pending as of spring 2025. No confirmed anchor tenant as of spring 2025.",
         litigation: { active: false },
         timeline: [
             { date: "2022-08", event: "Concept approval by City of Chaska" },
@@ -816,7 +816,7 @@ const projectData = [
         acres: 157,
         sqft: null,
         mw: 300,
-        currentStatus: "Developer pipeline listing only — Cielo self-reports 157 acres/300 MW in Chisago City, but no public Minnesota entitlement record has been found; treat as speculative.",
+        currentStatus: "Cielo self-reports 157 acres/300 MW in Chisago City, but no public Minnesota entitlement record has been found.",
         notes: "Cielo Digital Infrastructure (founded 2023, backed by Arroyo Investors) lists Chisago, MN as an active project on its properties page: 157 acres, 80 buildable acres, up to 300 MW. No Chisago City planning file, EQB environmental review notice, or local news coverage of a named Cielo entitlement has been found in public record.",
         litigation: { active: false },
         timeline: [
@@ -829,8 +829,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Cielo properties page", url: "https://cieloinfra.com/properties/" },
-            { name: "Arroyo Investors — Cielo portfolio page", url: "https://arroyoinvestors.com/investments/cielo-digital-infrastructure/" },
+            { name: "Cleanview — Cielo Chisago", url: "https://cleanview.co/public/data-centers/minnesota/2043/cielo-chisago-data-center" },
             { name: "Data Center Dynamics — Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
         ],
         lastUpdated: "2026-04-07"
