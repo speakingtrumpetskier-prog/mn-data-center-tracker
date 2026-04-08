@@ -811,13 +811,13 @@ const projectData = [
         status: "watching",
         city: "Chisago City",
         county: "Chisago",
-        lat: 45.3560,
-        lng: -92.8930,
+        lat: 45.3990,
+        lng: -92.9225,
         acres: 157,
         sqft: null,
         mw: 300,
         currentStatus: "Cielo self-reports 157 acres/300 MW in Chisago City, but no public Minnesota entitlement record has been found.",
-        notes: "Cielo Digital Infrastructure (founded 2023, backed by Arroyo Investors) lists Chisago, MN as an active project on its properties page: 157 acres, 80 buildable acres, up to 300 MW. No Chisago City planning file, EQB environmental review notice, or local news coverage of a named Cielo entitlement has been found in public record.",
+        notes: "Cielo Digital Infrastructure (founded 2023, backed by Arroyo Investors) lists Chisago, MN as an active project on its properties page: 157 acres, 80 buildable acres, up to 300 MW. No Chisago City planning file, EQB environmental review notice, or local news coverage of a named Cielo entitlement has been found in public record. Location is approximate (LOW confidence): placed on Stacy Trail (County Road 19 / CSAH 19), zip 55013, based on address interpolation from confirmed anchor points; the specific parcel has not been confirmed in public property records.",
         litigation: { active: false },
         timeline: [
             { date: "2025", event: "Cielo lists Chisago as active project on company properties page (157 ac, 300 MW)" }
