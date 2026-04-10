@@ -833,6 +833,40 @@ const projectData = [
             { name: "Data Center Dynamics — Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
         ],
         lastUpdated: "2026-04-07"
+    },
+    {
+        id: 25,
+        name: "Nobles County Powered Data Park",
+        status: "in_review",
+        city: "Reading",
+        county: "Nobles",
+        lat: 43.703,
+        lng: -95.690,
+        acres: 640,
+        sqft: null,
+        mw: 450,
+        currentStatus: "AUAR environmental review underway; public comment period closes April 16, 2026. Planning Commission voted against allowing the project in ag preservation areas; Nobles County Board of Commissioners has final say.",
+        notes: "Geronimo Power proposes a 400-450 MW data center on 640 acres (Section 19, Elk Township) northeast of Reading, about 6 miles NW of Worthington. Purchase agreement signed with landowners; no end user committed and no land purchased yet. Estimated $4 billion in capital investment. Developer plans to sell finished site to a hyperscaler (e.g., Google, Microsoft, Amazon) and tie power to the planned Summit Lake Solar and Storage project. Coordinates approximate (placed near Reading).",
+        litigation: { active: false },
+        timeline: [
+            { date: "2025", event: "Geronimo Power proposes 400-450 MW data center on farmland near Reading; signs purchase agreement with landowners" },
+            { date: "2026-02", event: "Nobles County commissioners vote 4-1 to send AUAR draft order and scoping document to MN EQB" },
+            { date: "2026-03", event: "Planning Commission votes against allowing data center as conditional use in ag preservation zone; county board vote pending" },
+            { date: "2026-04-16", event: "AUAR public comment period closes" }
+        ],
+        permits: {
+            environmentalReview: { status: "in_progress", detail: "AUAR approved by county commissioners and submitted to MN EQB; comment period open through April 16, 2026" },
+            localZoning: { status: "contested", detail: "Planning Commission voted against ag-preservation conditional use; Nobles County Board of Commissioners vote pending" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "in_progress", detail: "Feasibility study underway with Lincoln Pipestone Rural Water" }
+        },
+        sources: [
+            { name: "Geronimo Power — Nobles County Powered Data Park", url: "https://geronimopower.com/in-development/nobles-county-powered-data-park/" },
+            { name: "Star Tribune — $4 billion data center in farm country", url: "https://www.startribune.com/in-minnesota-farm-country-a-plan-for-a-4-billion-data-center-takes-root-with-vast-wind-solar-and-battery-projects/601512205" },
+            { name: "The Globe — Planning Commission vote", url: "https://www.dglobe.com/news/local/full-story-nobles-county-planning-commission-votes-to-keep-data-center-out-of-ag-preservation-area" },
+            { name: "The Globe — AUAR begins", url: "https://www.dglobe.com/news/local/nobles-county-data-center-begins-environmental-review-process" }
+        ],
+        lastUpdated: "2026-04-10"
     }
 ];
 
