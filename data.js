@@ -245,7 +245,7 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA filed lawsuit Feb 25, 2026 in Wright County District Court challenging the AUAR. MCEA argues review inadequately analyzed water use (250-300M gal/yr), electricity demand, air quality, and cumulative impacts. No injunction sought. City and developer have 21 days to respond.",
+        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Apr 13, 2026: Council approved Resolution 2026-27 affirming Monticello Tech is exempt from March 9 citizen EAW petition; AUAR adopted Jan 26, 2026 qualifies as completed environmental review under Minn. R. 4410.3600.",
         notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. MCEA's sixth statewide data center AUAR lawsuit. MCEA seeking court to reverse AUAR approval and require additional environmental review. No development expected before Q2 2027. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
@@ -254,8 +254,10 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
+            { date: "2026-04-13", event: "Council approved Resolution 2026-27 affirming Monticello Tech exempt from March 9 citizen EAW petition; AUAR serves as completed environmental review" },
+            { date: "2026-03-09", event: "Citizen EAW petition filed with EQB by Andrew Sopher and others; covers both Monticello Tech and Scannell sites" },
             { date: "2026-02-25", event: "MCEA filed lawsuit in Wright County District Court challenging AUAR adequacy" },
-            { date: "2026-01-26", event: "City council unanimously adopted AUAR and Mitigation Plan" },
+            { date: "2026-01-26", event: "City council unanimously adopted AUAR and Mitigation Plan via Resolution 2026-02" },
             { date: "2026-01-06", event: "Final AUAR published" },
             { date: "2025-11-10", event: "City Council voted to send draft AUAR to EQB for 30-day public comment" },
             { date: "2025-11-20", event: "Public open house on AUAR" },
@@ -278,7 +280,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-02-25"
+        lastUpdated: "2026-04-13"
     },
     {
         id: 8,
@@ -614,13 +616,16 @@ const projectData = [
         county: "Wright",
         lat: 45.2780,
         lng: -93.8280,
-        acres: null,
+        acres: 106,
         sqft: 1300000,
-        currentStatus: "City Council voted Jan 12, 2026 to re-analyze site land use guidance; comprehensive plan amendment previously approved May 2025",
-        notes: "Separate from Monticello Industrial AUAR. Scannell Properties applied to amend comp plan to reguide ~76 acres to Light Industrial Park (remaining ~30 acres already guided as such). Planning Commission held public hearing May 6, 2025; City Council approved amendment May 27, 2025. Following further discussions about reserving high-amenity areas for single-family housing, City Council voted Jan 12, 2026 to re-analyze the site's land use guidance and directed Planning Commission to hold a public hearing.",
+        mw: 200,
+        currentStatus: "Comp plan land use re-analysis ongoing (ordered Jan 12, 2026); no annexation petition or project application filed. Apr 13, 2026: Council approved Resolution 2026-28 placing March 9 citizen EAW petition on hold; city cannot act without a specific project application. Petition expires March 9, 2027 if no action.",
+        notes: "Separate from Monticello Industrial AUAR. Scannell Properties (Wayzata, MN) proposes ~1.3M sqft technology park (data center) on 106 acres: between Otter Creek Crossing Industrial Park to the north, 90th Street NW to the south, and abutting Bertram Chain of Lakes Regional Park to the west, within the Monticello Orderly Annexation Area. Estimated 150-200 MW. City council approved comp plan amendment May 27, 2025, but voted Jan 12, 2026 to re-analyze land use guiding. No annexation petition received as of April 2026.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-01-12", event: "City Council voted to re-analyze site's land use guidance and directed Planning Commission to hold public hearing" },
+            { date: "2026-04-13", event: "Council approved Resolution 2026-28 placing citizen EAW petition on hold; city unable to act without annexation petition or specific project application" },
+            { date: "2026-03-09", event: "Citizen EAW petition filed with EQB (combined with Monticello Tech petition); petition on hold, expires March 9, 2027 if no action" },
+            { date: "2026-01-12", event: "City Council voted to re-analyze site land use guidance and directed Planning Commission to hold public hearing" },
             { date: "2025-10-27", event: "Finance & Commerce reports on proposal" },
             { date: "2025-05-27", event: "City Council approved comprehensive plan amendment" },
             { date: "2025-05-06", event: "Planning Commission held public hearing on comprehensive plan amendment" }
@@ -636,7 +641,7 @@ const projectData = [
             { name: "City Data Centers Page", url: "https://monticellomn.gov/728/Data-Centers" },
             { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/two-data-center-projects-planned-for-monticello-minnesota/" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-04-13"
     },
     {
         id: 19,
