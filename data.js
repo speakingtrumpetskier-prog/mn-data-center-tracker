@@ -31,21 +31,22 @@ const projectData = [
         lng: -93.2688,
         acres: 84.3,
         sqft: 500000,
-        currentStatus: "Appeal pending in MN Court of Appeals (A25-1617) challenging negative EIS declaration",
-        notes: "EAW completed with negative declaration (EIS not required). Appeal challenges adequacy of environmental review.",
+        currentStatus: "Oral argument heard in MN Court of Appeals (A25-1617); awaiting decision. Appeal challenges adequacy of EAW and negative EIS declaration.",
+        notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Oral argument completed May 2026.",
         litigation: {
             active: true,
             caseNumber: "A25-1617",
             court: "MN Court of Appeals",
-            status: "Appeal pending",
+            status: "Oral argument heard; awaiting decision",
             filedDate: "2025-10-02"
         },
         timeline: [
+            { date: "2026-05", event: "Oral argument heard in MN Court of Appeals" },
             { date: "2025-10-02", event: "Appeal filed in Court of Appeals" },
             { date: "2025-09-02", event: "Negative EIS declaration issued" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "EAW", detail: "Negative declaration - no EIS needed" },
+            environmentalReview: { status: "review_complete", type: "EAW", detail: "Negative declaration - no EIS needed; under appeal" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -54,9 +55,10 @@ const projectData = [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263487?siId=263487-PROJ0000000001" },
             { name: "EQB Monitor Notice", url: "https://content.govdelivery.com/accounts/MNEQB/bulletins/3efc446" },
             { name: "MCEA Appeal Brief (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Brief-Appellant.pdf" },
-            { name: "City of Faribault Alert", url: "https://www.ci.faribault.mn.us/CivicAlerts.asp?AID=580&ARC=1452" }
+            { name: "City of Faribault Alert", url: "https://www.ci.faribault.mn.us/CivicAlerts.asp?AID=580&ARC=1452" },
+            { name: "SouthernMinn - Lawsuit on Hold Coverage", url: "https://www.southernminn.com/the_kenyon_leader/news/lawsuit-resident-concerns-put-faribault-data-center-on-hold/article_4340814d-1eb0-4a35-a9d5-6aade04eafa2.html" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-05-27"
     },
     {
         id: 2,
@@ -106,31 +108,31 @@ const projectData = [
     {
         id: 3,
         name: "Olam Lakeville Industrial AUAR",
-        status: "in_litigation",
-        secondaryStatus: "review_complete",
+        status: "review_complete",
         city: "Lakeville",
         county: "Dakota",
         lat: 44.6497,
         lng: -93.2427,
         acres: 152,
         sqft: 1360000,
-        currentStatus: "Lawsuit filed Aug 2025; summary judgment briefing scheduled",
-        notes: "Olam Holdings 1, LLC / Terawatt Infrastructure project. MCEA's summary judgment motion argues the City's AUAR used a vague 'light industrial' description despite internal communications showing a data center was anticipated, and that the AUAR's climate analysis assumed only 3 MW of power when data centers require 100-500 MW.",
+        currentStatus: "Judge dismissed MCEA's lawsuit (May 2026). AUAR upheld. Developer Olam Holdings/Terawatt Infrastructure may proceed.",
+        notes: "Olam Holdings 1, LLC / Terawatt Infrastructure project. MCEA alleged the City's AUAR used vague 'light industrial' description to conceal a data center, and that the climate analysis assumed only 3 MW when data centers require 100-500 MW. Judge dismissed the case in May 2026.",
         litigation: {
-            active: true,
+            active: false,
             caseNumber: "19HA-CV-25-5103",
             court: "Dakota County District Court",
-            status: "Scheduling order entered Dec 12, 2025",
+            status: "Dismissed by judge, May 2026",
             filedDate: "2025-08-05"
         },
         timeline: [
+            { date: "2026-05", event: "Judge dismissed MCEA lawsuit; AUAR upheld" },
             { date: "2026-01-15", event: "MCEA filed summary judgment motion" },
-            { date: "2025-12-12", event: "Summary judgment scheduling order" },
+            { date: "2025-12-12", event: "Summary judgment scheduling order entered" },
             { date: "2025-08-05", event: "Lawsuit filed" },
             { date: "2025-07-07", event: "Final AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 7, 2025" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 7, 2025; legal challenge dismissed May 2026" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -139,45 +141,48 @@ const projectData = [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261688?siId=261688-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/08/Lakeville_MCRO_19HA-CV-25-5103_Complaint-Civil_2025-08-05_20250819063829.pdf" },
             { name: "Summary Judgment Scheduling Order (PDF)", url: "https://legalectric.org/f/2025/12/Lakeaville_Order_SJ-Hearing_CV-25-5103_Order-Other_2025-12-12_20251230105817.pdf" },
-            { name: "Summary Judgment Motion (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/2026-01-15-Memo-ISO-SJ-Motion.pdf" }
+            { name: "Summary Judgment Motion (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/2026-01-15-Memo-ISO-SJ-Motion.pdf" },
+            { name: "Hometown Source - Lakeville Defends AUAR", url: "https://www.hometownsource.com/sun_thisweek/community/lakeville/lakeville-defends-its-environmental-review-of-an-alleged-data-center-project/article_64f3b99d-6cef-4669-bac3-6bd1d21b2554.html" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-05-27"
     },
     {
         id: 4,
         name: "North Mankato Industrial AUAR (Project Deacon)",
-        status: "review_complete",
-        secondaryStatus: "in_litigation",
-        tertiaryStatus: "suspended",
+        status: "suspended",
+        secondaryStatus: "review_complete",
         city: "North Mankato",
         county: "Nicollet",
         lat: 44.1716,
         lng: -94.0336,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "Developer Oppidan backed out; lawsuit remains active",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenges adequacy. No formal application was ever filed.",
+        currentStatus: "MCEA voluntarily dismissed lawsuit May 11, 2026 after city confirmed no data center is planned. Developer Oppidan previously withdrew. Project dead.",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. No formal application was ever filed. MCEA voluntarily dismissed its AUAR challenge May 11, 2026 after city confirmed no active data center proposal exists and no such project is currently planned.",
         litigation: {
-            active: true,
+            active: false,
             caseNumber: "52-CV-25-568",
             court: "Nicollet County District Court",
-            status: "Lawsuit remains active despite developer withdrawal",
+            status: "Voluntarily dismissed by MCEA May 11, 2026",
             filedDate: "2025-08-05"
         },
         timeline: [
-            { date: "2025-11-17", event: "Developer withdrawal confirmed in press reports" },
+            { date: "2026-05-11", event: "MCEA voluntarily dismissed lawsuit after city confirmed no data center planned" },
+            { date: "2025-11-17", event: "Developer Oppidan withdrawal confirmed in press reports" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
             { date: "2025-09-05", event: "City of North Mankato filed answer" },
             { date: "2025-08-05", event: "Lawsuit filed" },
             { date: "2025-07-07", event: "Final AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 2025" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 2025; legal challenge dismissed May 2026" },
             localZoning: { status: "withdrawn", detail: "No formal application ever filed; developer withdrew" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Mankato Free Press - MCEA Drops Lawsuit", url: "https://www.mankatofreepress.com/news/local_news/mcea-drops-lawsuit-against-north-mankato/article_0b7c615a-5dbe-41b6-96cf-c5a8d6da6ae6.html" },
+            { name: "KEYC - Lawsuit Dropped", url: "https://www.keyc.com/2026/05/11/lawsuit-challenging-north-mankato-environmental-review-dropped/" },
             { name: "Mankato Free Press - Oppidan Backs Out", url: "https://www.mankatofreepress.com/news/local_news/data-center-plans-stalled-in-north-mankato-after-developer-backs-out/article_d0617045-9eed-4633-a055-aed5b0405879.html" },
             { name: "Star Tribune - Generator Permits", url: "https://www.startribune.com/developer-halts-two-minnesota-data-centers-over-permits-for-backup-generators/601507579" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366?siId=261366-PROJ0000000001" },
@@ -199,32 +204,42 @@ const projectData = [
         lng: -92.6460,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Lawsuit filed Oct 2025",
-        notes: "Significant development near Rochester area. Related land-use items (plat/CUP) on local agendas.",
+        currentStatus: "TRO issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. Google-backed facility (Ryan Companies developer) cannot proceed pending preliminary injunction hearing.",
+        notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records. MCEA posted $2,000 security bond.",
         litigation: {
             active: true,
             caseNumber: "25-CV-25-2298",
             court: "Goodhue County District Court",
-            status: "Lawsuit pending",
+            status: "TRO issued May 22, 2026; construction halted. Preliminary injunction hearing pending.",
             filedDate: "2025-10-16"
         },
         timeline: [
+            { date: "2026-05-22", event: "TRO issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
+            { date: "2026-04-20", event: "Summary judgment hearing (defendants' motion denied)" },
+            { date: "2026-04-06", event: "Summary judgment hearing" },
+            { date: "2026-02", event: "Google publicly confirmed as Project Skyway client" },
+            { date: "2026-01-13", event: "City Council approved CUP for first building (250,000 sqft)" },
             { date: "2025-12-17", event: "City Council approved preliminary plat" },
+            { date: "2025-11", event: "Ryan Companies signed NDA with city on behalf of Google" },
             { date: "2025-10-16", event: "Lawsuit filed" },
             { date: "2025-09-16", event: "Revised AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025" },
-            localZoning: { status: "in_progress", detail: "CUP/plat actions pending" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025; adequacy challenged in court" },
+            localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by TRO May 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "MPR - Construction Halted by Judge", url: "https://www.mprnews.org/story/2026/05/26/pine-island-hyperscale-data-center-construction-halted-by-judge" },
+            { name: "Star Tribune - Work Halted", url: "https://www.startribune.com/minnesota-data-center-pine-island-restraining-order/601849201" },
+            { name: "Post Bulletin - Restraining Order", url: "https://www.postbulletin.com/news/local/court-grants-restraining-order-to-halt-project-skyway-progress-in-pine-island" },
+            { name: "KSTP - Court Pauses Development", url: "https://kstp.com/kstp-news/top-news/court-pauses-development-on-planned-google-data-center-in-pine-island/" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Pine-Island-Complaint_MCRO_25-CV-25-2298_Complaint-Civil_2025-10-16_20251230105028.pdf" },
-            { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" },
+            { name: "Post Bulletin - Flurry of Filings", url: "https://www.postbulletin.com/news/local/flurry-of-filings-come-as-court-dates-draw-near-for-pine-island-data-center" },
             { name: "Planning & Zoning CUP Notice", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/1.13.26_PZ_Notice_-_CUP.pdf" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-05-27"
     },
 
     // ============================================
@@ -568,6 +583,37 @@ const projectData = [
         ],
         lastUpdated: "2026-01-23"
     },
+    {
+        id: 23,
+        name: "Northfield Northwest Business Park AUAR",
+        status: "review_complete",
+        city: "Northfield",
+        county: "Rice",
+        lat: 44.4700,
+        lng: -93.1750,
+        acres: 530,
+        sqft: null,
+        currentStatus: "Xcel Energy/City of Northfield AUAR adopted 2023. City rezoned 265 acres to industrial and passed strictest data center efficiency standards in MN (Dec 2024). No specific developer announced.",
+        notes: "Proactive AUAR completed by City of Northfield in partnership with Xcel Energy for the Northwest Area Business Park (EQB Project 255525). 530 acres total, ~265 acres shovel-ready north of North Ave, east of Holyoke Ave, west of Cedar Ave. Two scenarios analyzed: Scenario A (single large tech/data center user) and Scenario B (multi-user business park per 2008 Comp Plan). 30-day public comment period in 2023 drew 18 citizen responses. City passed zoning ordinance allowing data centers in the Northwest Industrial Area in December 2024 with the highest efficiency standards in Minnesota. Considered a model for transparent, proactive environmental review — AUAR was done before any specific developer applied, not under developer pressure.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2024-12-10", event: "City Council approved zoning allowing data centers in Northwest Industrial Area; highest efficiency standards in MN adopted" },
+            { date: "2023", event: "Xcel Energy/City of Northfield AUAR adopted (30-day public comment period; 18 responses)" }
+        ],
+        permits: {
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Xcel Energy/City of Northfield AUAR adopted 2023 (EQB Project 255525)" },
+            localZoning: { status: "approved", detail: "Data centers permitted in Northwest Industrial Area as of Dec 2024" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/255525?siId=255525-PROJ0000000001" },
+            { name: "City Northwest Business Park Page", url: "https://www.northfieldmn.gov/1578/Xcel-Energy-City-of-Northfield-Alternati" },
+            { name: "KYMN - City Allows Data Centers (Dec 2024)", url: "https://kymnradio.net/2024/12/10/city-allows-data-centers-in-the-northwest-industrial-area-highest-efficency-standards-in-mn-implemented/" },
+            { name: "KYMN - Northfield an Outlier (Apr 2026)", url: "https://kymnradio.net/2026/04/08/northfield-an-outlier-and-potential-model-in-minnesotas-data-center-debacle/" }
+        ],
+        lastUpdated: "2026-05-27"
+    },
 
     // ============================================
     // WATCHING - Early stage / rumored / no formal filings
@@ -707,58 +753,66 @@ const projectData = [
         county: "Sherburne",
         lat: 45.4036,
         lng: -93.8569,
-        acres: null,
+        acres: 348,
         sqft: null,
-        currentStatus: "Amazon pulled out after PUC required Certificate of Need for backup generators",
-        notes: "PUC ruled Certificate of Need required for backup generators Feb 28, 2025. Amazon subsequently withdrew May 2025.",
+        currentStatus: "Amazon pulled out after PUC required Certificate of Need for backup generators. 348-acre site covered by 2023 Xcel/Becker AUAR.",
+        notes: "Amazon Data Services purchased 348 acres near Sherco plant via Elk River Technologies (which bought from Xcel for $7.97M in April 2024; Amazon paid $73.56M). PUC ruled Certificate of Need required for 250 backup diesel generators Feb 28, 2025. Amazon subsequently withdrew May 2025. The Xcel Energy/City of Becker AUAR (adopted January 2023) covered this land as part of its ~2,200-acre study area but critics noted it lacked detailed data center impact analysis.",
         litigation: { active: false },
         timeline: [
             { date: "2025-05", event: "Amazon pulls out of Becker plans" },
-            { date: "2025-02-28", event: "PUC rules Certificate of Need required" }
+            { date: "2025-02-28", event: "PUC rules Certificate of Need required for 250 backup generators" },
+            { date: "2024", event: "Amazon purchased 348-acre site via Elk River Technologies for $73.56M" },
+            { date: "2023-01", event: "Xcel Energy/City of Becker AUAR adopted" }
         ],
         permits: {
-            environmentalReview: { status: "not_started" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Xcel Energy/City of Becker AUAR adopted January 2023; critics noted limited data center impact analysis" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "blocked", detail: "PUC Certificate of Need required" }
+            utilities: { status: "blocked", detail: "PUC Certificate of Need required for backup generators" }
         },
         sources: [
+            { name: "Xcel/Becker AUAR Document", url: "https://www.ci.becker.mn.us/DocumentCenter/View/2689/Xcel-Energy--City-of-Becker-AUAR" },
+            { name: "Star Tribune - Amazon Retreats", url: "https://www.startribune.com/amazon-retreat-from-its-planned-minnesota-data-center-is-latest-gut-punch-for-becker/601371681" },
+            { name: "Star Tribune - Amazon Buys Site", url: "https://www.startribune.com/amazon-data-center-xcel-sherco-becker-minnesota/601180310" },
             { name: "Public Power", url: "https://www.publicpower.org/periodical/article/minnesota-regulators-rule-certificate-need-required-backup-generators-data-center" },
             { name: "E&E News", url: "https://www.eenews.net/articles/amazon-needs-permit-for-minnesota-data-center-backup-power/" },
             { name: "Bring Me The News", url: "https://bringmethenews.com/minnesota-news/amazon-cant-skip-permitting-process-for-data-center-generators-mn-utilities-commission-decides-" },
             { name: "Industrial Info", url: "https://www.industrialinfo.com/iirenergy/industry-news/article/amazon-pulls-out-of-problematic-plans-for-minnesota-data-center--342325" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-05-27"
     },
     {
         id: 22,
         name: "Microsoft Becker Proposal",
         status: "watching",
+        secondaryStatus: "review_complete",
         city: "Becker",
         county: "Sherburne",
         lat: 45.3936,
         lng: -93.8769,
         acres: 295,
         sqft: null,
-        currentStatus: "Land purchased Feb 2024; no formal plans submitted to city yet",
-        notes: "Microsoft purchased 295 acres from Xcel Energy for $17.7M in February 2024 with intent to build data center. No plans have been officially submitted to the city. Microsoft has not commented publicly on timeline. Site is near closing Sherco power plant. Google had previously backed out of plans for this area in 2022.",
+        currentStatus: "Land purchased Feb 2024; no formal plans submitted to city. Site covered by 2023 Xcel/Becker AUAR.",
+        notes: "Microsoft purchased 295 acres directly from Xcel Energy for $17.7M in February 2024. No formal development plans submitted to city; Microsoft has not commented publicly on timeline. Site is adjacent to the closing Sherco coal plant. The Xcel Energy/City of Becker AUAR (adopted January 2023) covers the broader ~2,200-acre Xcel land area including this parcel. Google had previously backed out of plans for this area in 2022.",
         litigation: { active: false },
         timeline: [
             { date: "2024-02-12", event: "Microsoft closes on 295 acres from Xcel for $17.7M" },
+            { date: "2023-01", event: "Xcel Energy/City of Becker AUAR adopted, covering broader site area" },
             { date: "2022-12-01", event: "Google backs out of previous Becker data center plans" }
         ],
         permits: {
-            environmentalReview: { status: "not_started" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Xcel Energy/City of Becker AUAR adopted January 2023 covers site area" },
             localZoning: { status: "not_started" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Xcel/Becker AUAR Document", url: "https://www.ci.becker.mn.us/DocumentCenter/View/2689/Xcel-Energy--City-of-Becker-AUAR" },
             { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/microsoft-buys-300-acres-in-becker-minnesota/" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2024/02/21/xcel-energy-sells-land-in-becker-to-microsoft-for-data-center" },
             { name: "Star Tribune", url: "https://www.startribune.com/microsoft-building-data-center-in-becker-xcel-stress-on-grids/600344079" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-05-27"
     }
 ];
 
