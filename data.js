@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: January 22, 2026
+// Last updated: March 17, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -27,12 +27,14 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "Faribault",
         county: "Rice",
-        lat: 44.2950,
-        lng: -93.2688,
+        lat: 44.3671,
+        lng: -93.2845,
         acres: 84.3,
         sqft: 500000,
         currentStatus: "Oral argument heard in MN Court of Appeals (A25-1617); awaiting decision. Appeal challenges adequacy of EAW and negative EIS declaration.",
         notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Oral argument completed May 2026.",
+        currentStatus: "Appeal pending in MN Court of Appeals (A25-1617) challenging negative EIS declaration",
+        notes: "EAW completed with negative declaration (EIS not required). Appeal challenges adequacy of environmental review. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park.",
         litigation: {
             active: true,
             caseNumber: "A25-1617",
@@ -67,8 +69,8 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "Hermantown",
         county: "St. Louis",
-        lat: 46.8069,
-        lng: -92.2383,
+        lat: 46.7730,
+        lng: -92.2950,
         acres: 403,
         sqft: 1800000,
         currentStatus: "Lawsuit filed Nov 2025; city denied EAW petition Dec 3 (AUAR already adopted Oct 6); developer paused applications for public engagement",
@@ -111,8 +113,8 @@ const projectData = [
         status: "review_complete",
         city: "Lakeville",
         county: "Dakota",
-        lat: 44.6497,
-        lng: -93.2427,
+        lat: 44.6045,
+        lng: -93.2310,
         acres: 152,
         sqft: 1360000,
         currentStatus: "Judge dismissed MCEA's lawsuit (May 2026). AUAR upheld. Developer Olam Holdings/Terawatt Infrastructure may proceed.",
@@ -153,12 +155,14 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "North Mankato",
         county: "Nicollet",
-        lat: 44.1716,
-        lng: -94.0336,
+        lat: 44.1832,
+        lng: -94.0445,
         acres: 678,
         sqft: 4000000,
         currentStatus: "MCEA voluntarily dismissed lawsuit May 11, 2026 after city confirmed no data center is planned. Developer Oppidan previously withdrew. Project dead.",
         notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. No formal application was ever filed. MCEA voluntarily dismissed its AUAR challenge May 11, 2026 after city confirmed no active data center proposal exists and no such project is currently planned.",
+        currentStatus: "No data center coming per city officials (March 2026); MCEA agreed to dismiss lawsuit August 7, 2026",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato (per KEYC). On August 7, 2026, MCEA agreed to dismiss the lawsuit (case 52-CV-25-568).",
         litigation: {
             active: false,
             caseNumber: "52-CV-25-568",
@@ -169,6 +173,14 @@ const projectData = [
         timeline: [
             { date: "2026-05-11", event: "MCEA voluntarily dismissed lawsuit after city confirmed no data center planned" },
             { date: "2025-11-17", event: "Developer Oppidan withdrawal confirmed in press reports" },
+            status: "Dismissed — MCEA agreed to dismiss August 7, 2026",
+            filedDate: "2025-08-05",
+            dismissedDate: "2026-08-07"
+        },
+        timeline: [
+            { date: "2026-08-07", event: "MCEA agreed to dismiss lawsuit (case 52-CV-25-568)" },
+            { date: "2026-03-18", event: "City Administrator confirms 'no data center' coming to North Mankato at State of the Cities summit (KEYC)" },
+            { date: "2025-11-17", event: "Developer withdrawal confirmed in press reports" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
             { date: "2025-09-05", event: "City of North Mankato filed answer" },
             { date: "2025-08-05", event: "Lawsuit filed" },
@@ -183,15 +195,17 @@ const projectData = [
         sources: [
             { name: "Mankato Free Press - MCEA Drops Lawsuit", url: "https://www.mankatofreepress.com/news/local_news/mcea-drops-lawsuit-against-north-mankato/article_0b7c615a-5dbe-41b6-96cf-c5a8d6da6ae6.html" },
             { name: "KEYC - Lawsuit Dropped", url: "https://www.keyc.com/2026/05/11/lawsuit-challenging-north-mankato-environmental-review-dropped/" },
+            { name: "KEYC - No data center, no Costco, no Texas Roadhouse (Mar 2026)", url: "https://www.keyc.com/2026/03/18/no-data-center-no-costco-no-texas-roadhouse-city-officials-say-state-cities-summit/" },
+            { name: "KEYC - Residents sound off on data center, lawsuit (Aug 2025)", url: "https://www.keyc.com/2025/08/19/north-mankato-residents-sound-off-data-center-law-suit/" },
             { name: "Mankato Free Press - Oppidan Backs Out", url: "https://www.mankatofreepress.com/news/local_news/data-center-plans-stalled-in-north-mankato-after-developer-backs-out/article_d0617045-9eed-4633-a055-aed5b0405879.html" },
+            { name: "Mankato Free Press - No project, no problem", url: "https://www.mankatofreepress.com/news/local_news/north-mankato-says-no-project-no-problem-in-response-to-mcea-suit/article_9d1da895-e164-4a3a-a53b-e8eb021eb47b.html" },
             { name: "Star Tribune - Generator Permits", url: "https://www.startribune.com/developer-halts-two-minnesota-data-centers-over-permits-for-backup-generators/601507579" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261366?siId=261366-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_N-Mankato_MCRO_52-CV-25-568_Complaint-Civil_2025-08-05_20251230110142.pdf" },
             { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
-            { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" },
-            { name: "KEYC Coverage", url: "https://www.keyc.com/2025/08/19/north-mankato-residents-sound-off-data-center-law-suit/" }
+            { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" }
         ],
-        lastUpdated: "2026-01-23"
+        lastUpdated: "2026-08-07"
     },
     {
         id: 5,
@@ -200,8 +214,8 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "Pine Island",
         county: "Goodhue",
-        lat: 44.2019,
-        lng: -92.6460,
+        lat: 44.2130,
+        lng: -92.6180,
         acres: 482,
         sqft: 3000000,
         currentStatus: "TRO issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. Google-backed facility (Ryan Companies developer) cannot proceed pending preliminary injunction hearing.",
@@ -252,11 +266,11 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "Monticello",
         county: "Wright",
-        lat: 45.3055,
-        lng: -93.7944,
+        lat: 45.2750,
+        lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA filed lawsuit Feb 25, 2026 in Wright County District Court challenging the AUAR. MCEA argues review inadequately analyzed water use (250-300M gal/yr), electricity demand, air quality, and cumulative impacts. No injunction sought. City and developer have 21 days to respond.",
+        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Apr 13, 2026: Council approved Resolution 2026-27 affirming Monticello Tech is exempt from March 9 citizen EAW petition; AUAR adopted Jan 26, 2026 qualifies as completed environmental review under Minn. R. 4410.3600.",
         notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. MCEA's sixth statewide data center AUAR lawsuit. MCEA seeking court to reverse AUAR approval and require additional environmental review. No development expected before Q2 2027. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
@@ -265,8 +279,10 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
+            { date: "2026-04-13", event: "Council approved Resolution 2026-27 affirming Monticello Tech exempt from March 9 citizen EAW petition; AUAR serves as completed environmental review" },
+            { date: "2026-03-09", event: "Citizen EAW petition filed with EQB by Andrew Sopher and others; covers both Monticello Tech and Scannell sites" },
             { date: "2026-02-25", event: "MCEA filed lawsuit in Wright County District Court challenging AUAR adequacy" },
-            { date: "2026-01-26", event: "City council unanimously adopted AUAR and Mitigation Plan" },
+            { date: "2026-01-26", event: "City council unanimously adopted AUAR and Mitigation Plan via Resolution 2026-02" },
             { date: "2026-01-06", event: "Final AUAR published" },
             { date: "2025-11-10", event: "City Council voted to send draft AUAR to EQB for 30-day public comment" },
             { date: "2025-11-20", event: "Public open house on AUAR" },
@@ -289,7 +305,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-02-25"
+        lastUpdated: "2026-04-13"
     },
     {
         id: 8,
@@ -297,8 +313,8 @@ const projectData = [
         status: "review_complete",
         city: "Cannon Falls",
         county: "Goodhue",
-        lat: 44.5069,
-        lng: -93.0569,
+        lat: 44.5330,
+        lng: -92.9060,
         acres: 251,
         sqft: 1750000,
         currentStatus: "Final AUAR approved Sept 16, 2025",
@@ -327,8 +343,8 @@ const projectData = [
         status: "review_complete",
         city: "Hampton",
         county: "Dakota",
-        lat: 44.6075,
-        lng: -93.0069,
+        lat: 44.6120,
+        lng: -92.9900,
         acres: null,
         sqft: 1500000,
         currentStatus: "Final AUAR approved April 15, 2025; 30-day appeal period expired",
@@ -363,8 +379,8 @@ const projectData = [
         status: "review_complete",
         city: "Apple Valley",
         county: "Dakota",
-        lat: 44.7319,
-        lng: -93.2177,
+        lat: 44.7250,
+        lng: -93.2050,
         acres: null,
         sqft: 1050000,
         currentStatus: "City Council denied comprehensive plan amendment Jan 23, 2026; AUAR adopted Dec 2024 but land use denied",
@@ -399,8 +415,8 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "Farmington",
         county: "Dakota",
-        lat: 44.6402,
-        lng: -93.1436,
+        lat: 44.6165,
+        lng: -93.1540,
         acres: 347,
         sqft: 2530000,
         currentStatus: "Lawsuit filed Nov 2024 challenging city approval; injunction paused negotiations",
@@ -438,8 +454,8 @@ const projectData = [
         status: "review_complete",
         city: "Farmington",
         county: "Dakota",
-        lat: 44.6402,
-        lng: -93.1836,
+        lat: 44.6300,
+        lng: -93.1800,
         acres: 329,
         sqft: 3000000,
         currentStatus: "AUAR approved Oct 7, 2024",
@@ -465,8 +481,8 @@ const projectData = [
         status: "review_complete",
         city: "Rosemount",
         county: "Dakota",
-        lat: 44.7394,
-        lng: -93.0558,
+        lat: 44.7415,
+        lng: -93.0200,
         acres: 447,
         sqft: 2300000,
         currentStatus: "Final AUAR approved; materials hosted on city site",
@@ -495,8 +511,8 @@ const projectData = [
         status: "review_complete",
         city: "Rosemount",
         county: "Dakota",
-        lat: 44.7644,
-        lng: -93.0858,
+        lat: 44.7500,
+        lng: -93.0250,
         acres: 333,
         sqft: 2300000,
         currentStatus: "Adopted June 11, 2024",
@@ -524,8 +540,8 @@ const projectData = [
         status: "review_complete",
         city: "Rosemount",
         county: "Dakota",
-        lat: 44.7544,
-        lng: -93.1258,
+        lat: 44.7650,
+        lng: -93.1350,
         acres: 235,
         sqft: 4000000,
         currentStatus: "Updated AUAR approved Aug 6, 2024 (235 acres)",
@@ -555,8 +571,8 @@ const projectData = [
         status: "review_complete",
         city: "Eagan",
         county: "Dakota",
-        lat: 44.8041,
-        lng: -93.1669,
+        lat: 44.8260,
+        lng: -93.1143,
         acres: 179,
         sqft: 1350000,
         sqftDisplay: "1.2–1.5M SF",
@@ -624,8 +640,8 @@ const projectData = [
         status: "watching",
         city: "Harmony",
         county: "Fillmore",
-        lat: 43.5541,
-        lng: -92.0105,
+        lat: 43.5440,
+        lng: -92.0080,
         acres: 60,
         sqft: null,
         currentStatus: "Early-stage Economic Development Authority exploration; city voted to annex land Oct 14, 2025",
@@ -654,15 +670,18 @@ const projectData = [
         status: "watching",
         city: "Monticello",
         county: "Wright",
-        lat: 45.2855,
-        lng: -93.8144,
-        acres: null,
+        lat: 45.2780,
+        lng: -93.8280,
+        acres: 106,
         sqft: 1300000,
-        currentStatus: "City Council voted Jan 12, 2026 to re-analyze site land use guidance; comprehensive plan amendment previously approved May 2025",
-        notes: "Separate from Monticello Industrial AUAR. Scannell Properties applied to amend comp plan to reguide ~76 acres to Light Industrial Park (remaining ~30 acres already guided as such). Planning Commission held public hearing May 6, 2025; City Council approved amendment May 27, 2025. Following further discussions about reserving high-amenity areas for single-family housing, City Council voted Jan 12, 2026 to re-analyze the site's land use guidance and directed Planning Commission to hold a public hearing.",
+        mw: 200,
+        currentStatus: "Comp plan land use re-analysis ongoing (ordered Jan 12, 2026); no annexation petition or project application filed. Apr 13, 2026: Council approved Resolution 2026-28 placing March 9 citizen EAW petition on hold; city cannot act without a specific project application. Petition expires March 9, 2027 if no action.",
+        notes: "Separate from Monticello Industrial AUAR. Scannell Properties (Wayzata, MN) proposes ~1.3M sqft technology park (data center) on 106 acres: between Otter Creek Crossing Industrial Park to the north, 90th Street NW to the south, and abutting Bertram Chain of Lakes Regional Park to the west, within the Monticello Orderly Annexation Area. Estimated 150-200 MW. City council approved comp plan amendment May 27, 2025, but voted Jan 12, 2026 to re-analyze land use guiding. No annexation petition received as of April 2026.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-01-12", event: "City Council voted to re-analyze site's land use guidance and directed Planning Commission to hold public hearing" },
+            { date: "2026-04-13", event: "Council approved Resolution 2026-28 placing citizen EAW petition on hold; city unable to act without annexation petition or specific project application" },
+            { date: "2026-03-09", event: "Citizen EAW petition filed with EQB (combined with Monticello Tech petition); petition on hold, expires March 9, 2027 if no action" },
+            { date: "2026-01-12", event: "City Council voted to re-analyze site land use guidance and directed Planning Commission to hold public hearing" },
             { date: "2025-10-27", event: "Finance & Commerce reports on proposal" },
             { date: "2025-05-27", event: "City Council approved comprehensive plan amendment" },
             { date: "2025-05-06", event: "Planning Commission held public hearing on comprehensive plan amendment" }
@@ -678,7 +697,7 @@ const projectData = [
             { name: "City Data Centers Page", url: "https://monticellomn.gov/728/Data-Centers" },
             { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/two-data-center-projects-planned-for-monticello-minnesota/" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-04-13"
     },
     {
         id: 19,
@@ -686,8 +705,8 @@ const projectData = [
         status: "watching",
         city: "Glencoe",
         county: "McLeod",
-        lat: 44.7680,
-        lng: -94.1516,
+        lat: 44.7650,
+        lng: -94.1400,
         acres: null,
         sqft: null,
         currentStatus: "Early concept; Economic Development Authority reviewed concept plans Sept 2024",
@@ -717,8 +736,8 @@ const projectData = [
         status: "review_complete",
         city: "Cottage Grove",
         county: "Washington",
-        lat: 44.8277,
-        lng: -92.9438,
+        lat: 44.8050,
+        lng: -92.9300,
         acres: null,
         sqft: null,
         currentStatus: "AUAR approved Jan 8, 2018; AUAR update approved March 2, 2022; covers 'major technology center' scenario",
@@ -754,6 +773,9 @@ const projectData = [
         lat: 45.4036,
         lng: -93.8569,
         acres: 348,
+        lat: 45.3900,
+        lng: -93.8800,
+        acres: null,
         sqft: null,
         currentStatus: "Amazon pulled out after PUC required Certificate of Need for backup generators. 348-acre site covered by 2023 Xcel/Becker AUAR.",
         notes: "Amazon Data Services purchased 348 acres near Sherco plant via Elk River Technologies (which bought from Xcel for $7.97M in April 2024; Amazon paid $73.56M). PUC ruled Certificate of Need required for 250 backup diesel generators Feb 28, 2025. Amazon subsequently withdrew May 2025. The Xcel Energy/City of Becker AUAR (adopted January 2023) covered this land as part of its ~2,200-acre study area but critics noted it lacked detailed data center impact analysis.",
@@ -788,8 +810,8 @@ const projectData = [
         secondaryStatus: "review_complete",
         city: "Becker",
         county: "Sherburne",
-        lat: 45.3936,
-        lng: -93.8769,
+        lat: 45.3830,
+        lng: -93.8750,
         acres: 295,
         sqft: null,
         currentStatus: "Land purchased Feb 2024; no formal plans submitted to city. Site covered by 2023 Xcel/Becker AUAR.",
@@ -813,6 +835,111 @@ const projectData = [
             { name: "Star Tribune", url: "https://www.startribune.com/microsoft-building-data-center-in-becker-xcel-stress-on-grids/600344079" }
         ],
         lastUpdated: "2026-05-27"
+        lastUpdated: "2026-01-22"
+    },
+
+    // ============================================
+    // WATCHING - Early stage / no formal filings
+    // ============================================
+    {
+        id: 23,
+        name: "CloudHQ MSP Campus",
+        status: "review_complete",
+        city: "Chaska",
+        county: "Carver",
+        lat: 44.8172,
+        lng: -93.6364,
+        acres: 72,
+        sqft: 1400000,
+        mw: 180,
+        currentStatus: "2022 proposal for 180 MW data center campus with CUP and preliminary site plan in hand, but no confirmed anchor tenant and final approval pending.",
+        notes: "2007 Schoolmaster Drive, West Creek Corporate Center. 1.4M sq ft, 72 ft tall, 180 MW, ~$1B construction cost; projected 75–100 jobs. AUAR completed 2022; CUP Oct 2023; preliminary site plan/plat approved 4-1 by council Oct 2024 over neighbor opposition (height, noise, berms). Final site plan/plat and a separate 200 MW substation approval pending as of spring 2025. No confirmed anchor tenant as of spring 2025.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2022-08", event: "Concept approval by City of Chaska" },
+            { date: "2022", event: "AUAR and mitigation plan completed" },
+            { date: "2023-10", event: "Conditional use permit granted" },
+            { date: "2024-10", event: "Preliminary site plan and plat approved 4-1 by council" },
+            { date: "2025-04-15", event: "Daily Reporter: final approval and substation process still pending; no anchor tenant confirmed" }
+        ],
+        permits: {
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR and mitigation plan completed 2022" },
+            localZoning: { status: "in_progress", detail: "CUP Oct 2023; preliminary site plan/plat Oct 2024; final approval TBD" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "in_progress", detail: "200 MW substation approval process pending" }
+        },
+        sources: [
+            { name: "City of Chaska project page", url: "https://www.chaskamn.gov/841/Cloud-HQ" },
+            { name: "Carver County Local News — preliminary approval Oct 2024", url: "https://cclocalnews.org/2024/10/29/despite-resident-objections-data-center-gains-preliminary-ok/" },
+            { name: "Star Tribune — $1B project announced", url: "https://www.startribune.com/1-billion-1-4-million-square-foot-data-center-planned-for-chaska/600201478" },
+            { name: "Daily Reporter — status spring 2025", url: "https://dailyreporter.com/2025/04/15/chaska-data-center-housing-business-park-growth/" },
+            { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/cloudhq-planning-180mw-data-center-campus-in-minneapolis-minnesota/" },
+            { name: "CloudHQ MSP Campus page", url: "https://cloudhq.com/campus/msp-campus/" }
+        ],
+        lastUpdated: "2026-04-07"
+    },
+    {
+        id: 24,
+        name: "Cielo Chisago",
+        status: "watching",
+        city: "Chisago City",
+        county: "Chisago",
+        lat: 45.3990,
+        lng: -92.9225,
+        acres: 157,
+        sqft: null,
+        mw: 300,
+        currentStatus: "Cielo self-reports 157 acres/300 MW in Chisago City, but no public Minnesota entitlement record has been found.",
+        notes: "Cielo Digital Infrastructure (founded 2023, backed by Arroyo Investors) lists Chisago, MN as an active project on its properties page: 157 acres, 80 buildable acres, up to 300 MW. No Chisago City planning file, EQB environmental review notice, or local news coverage of a named Cielo entitlement has been found in public record. To check for a filed EQB review, search the EQB Environmental Review Projects Database (https://webapp.pca.state.mn.us/eqb-search/projects). Location is approximate (LOW confidence): placed on Stacy Trail (County Road 19 / CSAH 19), zip 55013, based on address interpolation from confirmed anchor points; the specific parcel has not been confirmed in public property records.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2025", event: "Cielo lists Chisago as active project on company properties page (157 ac, 300 MW)" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started", detail: "No EAW, AUAR, or EIS filing found in MN public record" },
+            localZoning: { status: "not_started" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "Cleanview — Cielo Chisago", url: "https://cleanview.co/public/data-centers/minnesota/2043/cielo-chisago-data-center" },
+            { name: "Data Center Dynamics — Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
+        ],
+        lastUpdated: "2026-04-07"
+    },
+    {
+        id: 25,
+        name: "Nobles County Powered Data Park",
+        status: "in_review",
+        city: "Reading",
+        county: "Nobles",
+        lat: 43.703,
+        lng: -95.690,
+        acres: 640,
+        sqft: null,
+        mw: 450,
+        currentStatus: "AUAR environmental review underway; public comment period closes April 16, 2026. Planning Commission voted against allowing the project in ag preservation areas; Nobles County Board of Commissioners has final say.",
+        notes: "Geronimo Power proposes a 400-450 MW data center on 640 acres (Section 19, Elk Township) northeast of Reading, about 6 miles NW of Worthington. Purchase agreement signed with landowners; no end user committed and no land purchased yet. Estimated $4 billion in capital investment. Developer plans to sell finished site to a hyperscaler (e.g., Google, Microsoft, Amazon) and tie power to the planned Summit Lake Solar and Storage project. Coordinates approximate (placed near Reading).",
+        litigation: { active: false },
+        timeline: [
+            { date: "2025", event: "Geronimo Power proposes 400-450 MW data center on farmland near Reading; signs purchase agreement with landowners" },
+            { date: "2026-02", event: "Nobles County commissioners vote 4-1 to send AUAR draft order and scoping document to MN EQB" },
+            { date: "2026-03", event: "Planning Commission votes against allowing data center as conditional use in ag preservation zone; county board vote pending" },
+            { date: "2026-04-16", event: "AUAR public comment period closes" }
+        ],
+        permits: {
+            environmentalReview: { status: "in_progress", detail: "AUAR approved by county commissioners and submitted to MN EQB; comment period open through April 16, 2026" },
+            localZoning: { status: "contested", detail: "Planning Commission voted against ag-preservation conditional use; Nobles County Board of Commissioners vote pending" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "in_progress", detail: "Feasibility study underway with Lincoln Pipestone Rural Water" }
+        },
+        sources: [
+            { name: "Geronimo Power — Nobles County Powered Data Park", url: "https://geronimopower.com/in-development/nobles-county-powered-data-park/" },
+            { name: "Star Tribune — $4 billion data center in farm country", url: "https://www.startribune.com/in-minnesota-farm-country-a-plan-for-a-4-billion-data-center-takes-root-with-vast-wind-solar-and-battery-projects/601512205" },
+            { name: "The Globe — Planning Commission vote", url: "https://www.dglobe.com/news/local/full-story-nobles-county-planning-commission-votes-to-keep-data-center-out-of-ag-preservation-area" },
+            { name: "The Globe — AUAR begins", url: "https://www.dglobe.com/news/local/nobles-county-data-center-begins-environmental-review-process" }
+        ],
+        lastUpdated: "2026-04-10"
     }
 ];
 
