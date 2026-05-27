@@ -32,9 +32,7 @@ const projectData = [
         acres: 84.3,
         sqft: 500000,
         currentStatus: "Oral argument heard in MN Court of Appeals (A25-1617); awaiting decision. Appeal challenges adequacy of EAW and negative EIS declaration.",
-        notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Oral argument completed May 2026.",
-        currentStatus: "Appeal pending in MN Court of Appeals (A25-1617) challenging negative EIS declaration",
-        notes: "EAW completed with negative declaration (EIS not required). Appeal challenges adequacy of environmental review. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park.",
+        notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. Oral argument completed May 2026.",
         litigation: {
             active: true,
             caseNumber: "A25-1617",
@@ -159,28 +157,19 @@ const projectData = [
         lng: -94.0445,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "MCEA voluntarily dismissed lawsuit May 11, 2026 after city confirmed no data center is planned. Developer Oppidan previously withdrew. Project dead.",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. No formal application was ever filed. MCEA voluntarily dismissed its AUAR challenge May 11, 2026 after city confirmed no active data center proposal exists and no such project is currently planned.",
-        currentStatus: "No data center coming per city officials (March 2026); MCEA agreed to dismiss lawsuit August 7, 2026",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato (per KEYC). On August 7, 2026, MCEA agreed to dismiss the lawsuit (case 52-CV-25-568).",
+        currentStatus: "No data center coming per city officials (March 2026); MCEA agreed to dismiss lawsuit August 7, 2026. Project dead.",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato. On August 7, 2026, MCEA agreed to dismiss the lawsuit (case 52-CV-25-568).",
         litigation: {
             active: false,
             caseNumber: "52-CV-25-568",
             court: "Nicollet County District Court",
-            status: "Voluntarily dismissed by MCEA May 11, 2026",
+            status: "Dismissed August 7, 2026",
             filedDate: "2025-08-05"
-        },
-        timeline: [
-            { date: "2026-05-11", event: "MCEA voluntarily dismissed lawsuit after city confirmed no data center planned" },
-            { date: "2025-11-17", event: "Developer Oppidan withdrawal confirmed in press reports" },
-            status: "Dismissed — MCEA agreed to dismiss August 7, 2026",
-            filedDate: "2025-08-05",
-            dismissedDate: "2026-08-07"
         },
         timeline: [
             { date: "2026-08-07", event: "MCEA agreed to dismiss lawsuit (case 52-CV-25-568)" },
             { date: "2026-03-18", event: "City Administrator confirms 'no data center' coming to North Mankato at State of the Cities summit (KEYC)" },
-            { date: "2025-11-17", event: "Developer withdrawal confirmed in press reports" },
+            { date: "2025-11-17", event: "Developer Oppidan withdrawal confirmed in press reports" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
             { date: "2025-09-05", event: "City of North Mankato filed answer" },
             { date: "2025-08-05", event: "Lawsuit filed" },
@@ -835,7 +824,6 @@ const projectData = [
             { name: "Star Tribune", url: "https://www.startribune.com/microsoft-building-data-center-in-becker-xcel-stress-on-grids/600344079" }
         ],
         lastUpdated: "2026-05-27"
-        lastUpdated: "2026-01-22"
     },
 
     // ============================================
