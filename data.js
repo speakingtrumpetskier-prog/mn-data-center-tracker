@@ -108,14 +108,15 @@ const projectData = [
     {
         id: 3,
         name: "Olam Lakeville Industrial AUAR",
-        status: "review_complete",
+        status: "watching",
+        secondaryStatus: "review_complete",
         city: "Lakeville",
         county: "Dakota",
         lat: 44.6045,
         lng: -93.2310,
         acres: 152,
         sqft: 1360000,
-        currentStatus: "Judge dismissed MCEA's lawsuit (May 2026). AUAR upheld. Developer Olam Holdings/Terawatt Infrastructure may proceed.",
+        currentStatus: "Data center plans inactive. Judge ruled AUAR is adequate. MCEA watching for future data center projects.",
         notes: "Olam Holdings 1, LLC / Terawatt Infrastructure project. MCEA alleged the City's AUAR used vague 'light industrial' description to conceal a data center, and that the climate analysis assumed only 3 MW when data centers require 100-500 MW. Judge dismissed the case in May 2026.",
         litigation: {
             active: false,
@@ -208,7 +209,7 @@ const projectData = [
         acres: 482,
         sqft: 3000000,
         currentStatus: "TRO issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. Google-backed facility (Ryan Companies developer) cannot proceed pending preliminary injunction hearing.",
-        notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records. MCEA posted $2,000 security bond.",
+        notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records.",
         litigation: {
             active: true,
             caseNumber: "25-CV-25-2298",
@@ -598,8 +599,8 @@ const projectData = [
         lng: -93.1750,
         acres: 530,
         sqft: null,
-        currentStatus: "Xcel Energy/City of Northfield AUAR adopted 2023. City rezoned 265 acres to industrial and passed strictest data center efficiency standards in MN (Dec 2024). No specific developer announced.",
-        notes: "Proactive AUAR completed by City of Northfield in partnership with Xcel Energy for the Northwest Area Business Park (EQB Project 255525). 530 acres total, ~265 acres shovel-ready north of North Ave, east of Holyoke Ave, west of Cedar Ave. Two scenarios analyzed: Scenario A (single large tech/data center user) and Scenario B (multi-user business park per 2008 Comp Plan). 30-day public comment period in 2023 drew 18 citizen responses. City passed zoning ordinance allowing data centers in the Northwest Industrial Area in December 2024 with the highest efficiency standards in Minnesota. Considered a model for transparent, proactive environmental review — AUAR was done before any specific developer applied, not under developer pressure.",
+        currentStatus: "Xcel Energy/City of Northfield AUAR adopted 2023. City passed data center zoning standards in December 2024. No specific developer announced.",
+        notes: "Proactive AUAR completed by City of Northfield in partnership with Xcel Energy for the Northwest Area Business Park (EQB Project 255525). 530 acres total, ~265 acres shovel-ready for data center development.",
         litigation: { active: false },
         timeline: [
             { date: "2024-12-10", event: "City Council approved zoning allowing data centers in Northwest Industrial Area; highest efficiency standards in MN adopted" },
@@ -757,11 +758,9 @@ const projectData = [
         id: 21,
         name: "Amazon Becker Data Center",
         status: "suspended",
+        secondaryStatus: "review_complete",
         city: "Becker",
         county: "Sherburne",
-        lat: 45.4036,
-        lng: -93.8569,
-        acres: 348,
         lat: 45.3900,
         lng: -93.8800,
         acres: null,
@@ -807,9 +806,9 @@ const projectData = [
         notes: "Microsoft purchased 295 acres directly from Xcel Energy for $17.7M in February 2024. No formal development plans submitted to city; Microsoft has not commented publicly on timeline. Site is adjacent to the closing Sherco coal plant. The Xcel Energy/City of Becker AUAR (adopted January 2023) covers the broader ~2,200-acre Xcel land area including this parcel. Google had previously backed out of plans for this area in 2022.",
         litigation: { active: false },
         timeline: [
-            { date: "2024-02-12", event: "Microsoft closes on 295 acres from Xcel for $17.7M" },
+            { date: "2024-02", event: "Microsoft closes on 295 acres from Xcel for $17.7M" },
             { date: "2023-01", event: "Xcel Energy/City of Becker AUAR adopted, covering broader site area" },
-            { date: "2022-12-01", event: "Google backs out of previous Becker data center plans" }
+            { date: "2022-12", event: "Google backs out of previous Becker data center plans" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Xcel Energy/City of Becker AUAR adopted January 2023 covers site area" },
