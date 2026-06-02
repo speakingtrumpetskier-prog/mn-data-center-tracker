@@ -839,8 +839,8 @@ const projectData = [
         acres: 72,
         sqft: 1400000,
         mw: 180,
-        currentStatus: "2022 proposal for 180 MW data center campus with CUP and preliminary site plan in hand, but no confirmed anchor tenant and final approval pending.",
-        notes: "2007 Schoolmaster Drive, West Creek Corporate Center. 1.4M sq ft, 72 ft tall, 180 MW, ~$1B construction cost; projected 75–100 jobs. AUAR completed 2022; CUP Oct 2023; preliminary site plan/plat approved 4-1 by council Oct 2024 over neighbor opposition (height, noise, berms). Final site plan/plat and a separate 200 MW substation approval pending as of spring 2025. No confirmed anchor tenant as of spring 2025.",
+        currentStatus: "180 MW campus; final approval and anchor tenant pending.",
+        notes: "West Creek Corporate Center. CUP Oct 2023; preliminary site plan approved Oct 2024; final approval and 200 MW substation pending.",
         litigation: { active: false },
         timeline: [
             { date: "2022-08", event: "Concept approval by City of Chaska" },
@@ -876,8 +876,8 @@ const projectData = [
         acres: 157,
         sqft: null,
         mw: 300,
-        currentStatus: "Cielo self-reports 157 acres/300 MW in Chisago City, but no public Minnesota entitlement record has been found.",
-        notes: "Cielo Digital Infrastructure (founded 2023, backed by Arroyo Investors) lists Chisago, MN as an active project on its properties page: 157 acres, 80 buildable acres, up to 300 MW. No Chisago City planning file, EQB environmental review notice, or local news coverage of a named Cielo entitlement has been found in public record. To check for a filed EQB review, search the EQB Environmental Review Projects Database (https://webapp.pca.state.mn.us/eqb-search/projects). Location is approximate (LOW confidence): placed on Stacy Trail (County Road 19 / CSAH 19), zip 55013, based on address interpolation from confirmed anchor points; the specific parcel has not been confirmed in public property records.",
+        currentStatus: "Cielo self-reports 157 acres/300 MW; no public entitlement record found.",
+        notes: "Cielo Digital Infrastructure lists Chisago as active: 157 acres, 300 MW. No planning file or EQB notice found. Location approximate.",
         litigation: { active: false },
         timeline: [
             { date: "2025", event: "Cielo lists Chisago as active project on company properties page (157 ac, 300 MW)" }
