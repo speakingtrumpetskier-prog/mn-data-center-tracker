@@ -533,6 +533,7 @@ const projectData = [
         notes: "Describes 'technology park' scenario, similar approach to North Mankato AUAR.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-04-21", event: "City adopts one-year data center moratorium while studying local regulations" },
             { date: "2025-07-15", event: "Final AUAR approved" },
             { date: "2024-12-17", event: "AUAR announced in EQB Monitor" }
         ],
@@ -545,9 +546,10 @@ const projectData = [
         sources: [
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261731?siId=261731-PROJ0000000001" },
             { name: "City Environmental Reviews", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
-            { name: "AUAR Order (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7401/Dakota-East-Area-AUAR-Order" }
+            { name: "AUAR Order (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7401/Dakota-East-Area-AUAR-Order" },
+            { name: "Rosemount Data Center Moratorium Ordinance", url: "https://www.rosemountmn.gov/DocumentCenter/View/8294/Interim-Ordinance-Data-Centers?bidId=" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 14,
@@ -563,6 +565,7 @@ const projectData = [
         notes: "New AUAR explicitly targeting data center projects.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-04-21", event: "City adopts one-year data center moratorium while studying local regulations" },
             { date: "2024-06-11", event: "Final AUAR adopted" },
             { date: "2023-10-24", event: "AUAR announced in EQB Monitor" }
         ],
@@ -574,9 +577,10 @@ const projectData = [
         },
         sources: [
             { name: "City Environmental Review", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
-            { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/257490?siId=257490-PROJ0000000001" }
+            { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/257490?siId=257490-PROJ0000000001" },
+            { name: "Rosemount Data Center Moratorium Ordinance", url: "https://www.rosemountmn.gov/DocumentCenter/View/8294/Interim-Ordinance-Data-Centers?bidId=" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 15,
@@ -592,6 +596,7 @@ const projectData = [
         notes: "Existing AUAR from 2023, updated in 2024 to explicitly target data centers.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-04-21", event: "City adopts one-year data center moratorium while studying local regulations" },
             { date: "2024-08-06", event: "AUAR update approved" },
             { date: "2024-06-11", event: "AUAR update announced in EQB Monitor" },
             { date: "2023-11-21", event: "Original AUAR approval announced in EQB Monitor" }
@@ -605,9 +610,9 @@ const projectData = [
         sources: [
             { name: "EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/255536?siId=255536-PROJ0000000002" },
             { name: "AUAR Update (PDF)", url: "https://www.rosemountmn.gov/DocumentCenter/View/7071/Rosemount-Industrial-AUAR-Update" },
-
+            { name: "Rosemount Data Center Moratorium Ordinance", url: "https://www.rosemountmn.gov/DocumentCenter/View/8294/Interim-Ordinance-Data-Centers?bidId=" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 16,
