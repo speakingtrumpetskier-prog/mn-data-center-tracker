@@ -692,33 +692,35 @@ const projectData = [
     {
         id: 19,
         name: "Glencoe AI Data Center",
-        status: "watching",
+        status: "construction",
         city: "Glencoe",
         county: "McLeod",
         lat: 44.7650,
         lng: -94.1400,
-        acres: null,
+        acres: 6.2,
         sqft: null,
-        currentStatus: "Early concept; Economic Development Authority reviewed concept plans Sept 2024",
-        notes: "Reported as $50-60M AI data center concept.",
+        currentStatus: "Under construction as of Nov 2025. Phase 1: up to 20 MW AI/colocation. Revolve Labs (Colorado). $40-60M total investment.",
+        notes: "Revolve Labs AI and colocation data center on 6.2 acres of former Seneca Foods land on west side of Glencoe. Phase 1 targets 20 MW AI workloads. Company pivoting from crypto mining to AI hosting. City rezoning approved Nov 2024. Local utility and renewable energy partnerships planned.",
         litigation: { active: false },
         timeline: [
+            { date: "2025-11", event: "Construction begins on Phase 1 facility" },
             { date: "2025-03-27", event: "Star Tribune reports Revolve Labs focusing on Glencoe expansion" },
-            { date: "2024-11-06", event: "City approved rezoning of land" },
+            { date: "2024-11-06", event: "City approved rezoning of 6.2-acre site" },
             { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "unknown" },
-            buildingPermit: { status: "not_started" },
+            localZoning: { status: "approved", detail: "Rezoning approved Nov 6, 2024" },
+            buildingPermit: { status: "unknown" },
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Glencoe News", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-eda-reviews-concept-plans-for-50-60-million-ai-data-center/" },
+            { name: "Glencoe News - New Data Center Announced", url: "https://www.glencoenews.com/articles/featured-mcc/revolve-labs-announces-new-high-performance-data-center-in-glencoe/" },
+            { name: "Glencoe News - EDA Concept Review", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-eda-reviews-concept-plans-for-50-60-million-ai-data-center/" },
             { name: "Glencoe News - Rezoning Approval", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-approves-rezoning-request-for-site-of-revolve-labs-planned-ai-data-center/" },
             { name: "Star Tribune - Glencoe Expansion", url: "https://www.startribune.com/company-wont-build-ai-data-center-in-rural-town-eyes-glencoe-expansion/601246170" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 20,
