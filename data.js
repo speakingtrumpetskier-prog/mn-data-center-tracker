@@ -385,7 +385,7 @@ const projectData = [
         acres: 280,
         sqft: 715000,
         currentStatus: "Meta's UMore Park data center is under construction in Rosemount and is expected to open in 2026.",
-        notes: "Formerly code-named Project Bigfoot / Jimnist. The 280-acre UMore Park campus is a separate named project from the Rosemount Industrial, Rich Valley East, and Dakota East AUAR areas already tracked elsewhere on the map. Public materials describe an $800 million investment, approximately 715,000 square feet, 100 permanent jobs, and at least 1,000 construction jobs at peak construction.",
+        notes: "Formerly code-named Project Bigfoot / Jimnist. The 280-acre UMore Park campus is a separate named project from the Rosemount Industrial, Rich Valley East, and Dakota East AUAR areas already tracked elsewhere on the map.",
         litigation: { active: false },
         timeline: [
             { date: "2026", event: "Expected opening year" },
