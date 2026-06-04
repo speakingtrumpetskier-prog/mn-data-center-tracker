@@ -69,18 +69,23 @@ const projectData = [
         county: "St. Louis",
         lat: 46.7730,
         lng: -92.2950,
-        acres: 403,
+        acres: 278,
         sqft: 1800000,
-        currentStatus: "Lawsuit filed Nov 2025; city denied EAW petition Dec 3 (AUAR already adopted Oct 6); developer paused applications for public engagement",
-        notes: "Fortune 50 company project (Mortenson developer). AUAR adopted Oct 6, 2025 via Resolution 2025-147. EQB petition for EAW filed Oct 17 and denied Dec 3 by city (AUAR already covers area). Developer voluntarily withdrew permit applications Nov 10 for further public engagement.",
+        currentStatus: "Google-backed data center campus undergoing updated AUAR scoping. Lawsuit is on hold while city completes updated AUAR; project proposer has indicated it will not move forward while that review is underway.",
+        notes: "Google confirmed as company behind proposed Hermantown data center in March 2026. City and Google agreed to update the AUAR with greater specificity; updated study area covers 26 parcels totaling approximately 278 acres in southwest Hermantown, smaller than the initial AUAR adopted Oct 6, 2025. Scoping comment period opened Mar 31 and closed Apr 30, 2026. Proposed project would require at least 700 MW of new energy resources.",
         litigation: {
             active: true,
             caseNumber: "69DU-CV-25-3448",
             court: "St. Louis County District Court",
-            status: "Lawsuit pending",
+            status: "Lawsuit on hold while updated AUAR proceeds",
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-04-30", event: "Updated AUAR scoping comment period closed" },
+            { date: "2026-03-31", event: "City opened updated AUAR scoping comment period for Google data center campus" },
+            { date: "2026-03-16", event: "City Council approved third-party technical review contract for updated AUAR" },
+            { date: "2026-03-12", event: "Mayor announced updated AUAR process in partnership with Google" },
+            { date: "2026-03-03", event: "Google publicly confirmed as company behind proposed Hermantown data center" },
             { date: "2025-12-03", event: "City denied EAW petition (AUAR already adopted)" },
             { date: "2025-11-10", event: "Mortenson withdrew applications for public engagement" },
             { date: "2025-11-05", event: "Lawsuit filed" },
@@ -90,20 +95,23 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR adopted Oct 6, 2025; EAW petition denied Dec 3" },
-            localZoning: { status: "in_progress", detail: "Applications paused by developer" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific AUAR scoping opened Mar 31, 2026" },
+            localZoning: { status: "in_progress", detail: "Applications paused while updated AUAR proceeds" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "unknown" }
+            utilities: { status: "in_progress", detail: "Google/Minnesota Power announcement references at least 700 MW of new energy resources" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
+            { name: "City AUAR Scoping Release", url: "https://hermantownmn.com/community/community-highlights/scoping-document-comment-period-opens-for-google-data-center/" },
+            { name: "MCEA Legal Update", url: "https://www.mncenter.org/legal-updates-mceas-data-center-cases" },
+            { name: "KAXE - Google Confirmed", url: "https://www.kaxe.org/local-news/2026-03-03/google-proposed-data-center-hermantown-minnesota-power" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263202?siId=263202-PROJ0000000001" },
             { name: "City EAW Denial Letter (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Hermantown-EQB-Response-2025-12-03.pdf" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_Hermantown_MCRO_69DU-CV-25-3448_Complaint-Civil_2025-11-05_20251230104248.pdf" },
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-01-23"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 3,
@@ -158,17 +166,18 @@ const projectData = [
         lng: -94.0445,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "No data center coming per city officials (March 2026); MCEA agreed to dismiss lawsuit August 7, 2026. Project dead.",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato. On August 7, 2026, MCEA agreed to dismiss the lawsuit (case 52-CV-25-568).",
+        currentStatus: "No data center coming per city officials; MCEA voluntarily dismissed lawsuit in May 2026 because no data center proposal is active. Project remains dead unless facts change.",
+        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato. In May 2026, MCEA agreed to voluntarily dismiss the lawsuit without prejudice because no data center was proposed at the site; dismissal did not decide the merits of AUAR adequacy.",
         litigation: {
             active: false,
             caseNumber: "52-CV-25-568",
             court: "Nicollet County District Court",
-            status: "Dismissed August 7, 2026",
+            status: "Voluntarily dismissed without prejudice, May 2026",
             filedDate: "2025-08-05"
         },
         timeline: [
-            { date: "2026-08-07", event: "MCEA agreed to dismiss lawsuit (case 52-CV-25-568)" },
+            { date: "2026-05-15", event: "MCEA published legal update explaining voluntary dismissal without prejudice because no data center was proposed" },
+            { date: "2026-05-11", event: "KEYC reported lawsuit challenging North Mankato AUAR was dropped" },
             { date: "2026-03-18", event: "City Administrator confirms 'no data center' coming to North Mankato at State of the Cities summit (KEYC)" },
             { date: "2025-11-17", event: "Developer Oppidan withdrawal confirmed in press reports" },
             { date: "2025-09-09", event: "Project Deacon filed answer" },
@@ -195,7 +204,7 @@ const projectData = [
             { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
             { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" }
         ],
-        lastUpdated: "2026-08-07"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 5,
@@ -260,8 +269,8 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Apr 13, 2026: Council approved Resolution 2026-27 affirming Monticello Tech is exempt from March 9 citizen EAW petition; AUAR adopted Jan 26, 2026 qualifies as completed environmental review under Minn. R. 4410.3600.",
-        notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. MCEA's sixth statewide data center AUAR lawsuit. MCEA seeking court to reverse AUAR approval and require additional environmental review. No development expected before Q2 2027. Separate from Scannell Technology Park proposal.",
+        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Apr 27, 2026: Council approved Data Center Ordinance regulating future data center and technology campus applications; no specific project approved.",
+        notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
             court: "Wright County District Court",
@@ -269,6 +278,7 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
+            { date: "2026-04-27", event: "Council approved Data Center Ordinance regulating future data center and technology campus applications" },
             { date: "2026-04-13", event: "Council approved Resolution 2026-27 affirming Monticello Tech exempt from March 9 citizen EAW petition; AUAR serves as completed environmental review" },
             { date: "2026-03-09", event: "Citizen EAW petition filed with EQB by Andrew Sopher and others; covers both Monticello Tech and Scannell sites" },
             { date: "2026-02-25", event: "MCEA filed lawsuit in Wright County District Court challenging AUAR adequacy" },
@@ -290,12 +300,13 @@ const projectData = [
             { name: "Open House Presentation", url: "https://www.monticellomn.gov/DocumentCenter/View/8755" },
             { name: "City Environmental Reviews", url: "https://www.monticellomn.gov/712/Environmental-Reviews" },
             { name: "City Data Centers Page", url: "https://monticellomn.gov/728/Data-Centers" },
+            { name: "MPR - Data Center Ordinance Approved", url: "https://www.mprnews.org/story/2026/04/28/monticello-ordinance-data-centers-face-new-restrictions-open-door-to-building" },
             { name: "KARE 11 Coverage", url: "https://www.kare11.com/article/news/local/proposed-data-centers-in-monticello-spark-community-backlash/89-9f0aa475-3d16-4ab5-8b06-27f4cea6b408" },
             { name: "Hometown Source - AUAR Adoption", url: "https://www.hometownsource.com/monticello_times/council-adopts-auar-planning-study-for-possible-data-center/article_df3d6460-7c9e-442d-b460-f1d3585d63cc.html" },
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-04-13"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 8,
@@ -907,28 +918,31 @@ const projectData = [
         acres: 640,
         sqft: null,
         mw: 450,
-        currentStatus: "AUAR environmental review underway; public comment period closes April 16, 2026. Planning Commission voted against allowing the project in ag preservation areas; Nobles County Board of Commissioners has final say.",
-        notes: "Geronimo Power proposes a 400-450 MW data center on 640 acres (Section 19, Elk Township) northeast of Reading, about 6 miles NW of Worthington. Purchase agreement signed with landowners; no end user committed and no land purchased yet. Estimated $4 billion in capital investment. Developer plans to sell finished site to a hyperscaler (e.g., Google, Microsoft, Amazon) and tie power to the planned Summit Lake Solar and Storage project. Coordinates approximate (placed near Reading).",
+        currentStatus: "AUAR environmental review underway; public comment period closed April 16, 2026. Nobles County Board voted against zoning text amendment on April 21, creating a major local approval setback, but project is not yet marked suspended.",
+        notes: "Geronimo Power proposes a 400-450 MW data center on 640 acres (Section 19, Elk Township) northeast of Reading, about 6 miles NW of Worthington. Purchase agreement signed with landowners; no end user committed and no land purchased yet. Estimated $4 billion in capital investment. Developer plans to sell finished site to a hyperscaler (e.g., Google, Microsoft, Amazon) and tie power to the planned Summit Lake Solar and Storage project. On Apr 21, 2026, Nobles County Board voted against adding data centers as a conditional use in agricultural preservation areas, leaving the current site path uncertain. Coordinates approximate (placed near Reading).",
         litigation: { active: false },
         timeline: [
+            { date: "2026-04-21", event: "Nobles County Board voted against zoning text amendment that would allow data centers as conditional use in agricultural preservation areas" },
+            { date: "2026-04-16", event: "AUAR public comment period closed" },
             { date: "2025", event: "Geronimo Power proposes 400-450 MW data center on farmland near Reading; signs purchase agreement with landowners" },
             { date: "2026-02", event: "Nobles County commissioners vote 4-1 to send AUAR draft order and scoping document to MN EQB" },
-            { date: "2026-03", event: "Planning Commission votes against allowing data center as conditional use in ag preservation zone; county board vote pending" },
-            { date: "2026-04-16", event: "AUAR public comment period closes" }
+            { date: "2026-03", event: "Planning Commission votes against allowing data center as conditional use in ag preservation zone" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", detail: "AUAR approved by county commissioners and submitted to MN EQB; comment period open through April 16, 2026" },
-            localZoning: { status: "contested", detail: "Planning Commission voted against ag-preservation conditional use; Nobles County Board of Commissioners vote pending" },
+            environmentalReview: { status: "in_progress", detail: "AUAR approved by county commissioners and submitted to MN EQB; comment period closed April 16, 2026" },
+            localZoning: { status: "contested", detail: "Planning Commission and County Board voted against allowing data centers as conditional use in agricultural preservation areas" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Feasibility study underway with Lincoln Pipestone Rural Water" }
         },
         sources: [
             { name: "Geronimo Power — Nobles County Powered Data Park", url: "https://geronimopower.com/in-development/nobles-county-powered-data-park/" },
+            { name: "MPR - Nobles County Board Vote", url: "https://www.mprnews.org/story/2026/04/21/nobles-county-board-to-vote-on-whether-to-allow-massive-data-centers-on-farm-land" },
+            { name: "Data Center Dynamics - County Vote", url: "https://www.datacenterdynamics.com/en/news/4bn-data-center-rejected-by-nobles-county-minnesota/" },
             { name: "Star Tribune — $4 billion data center in farm country", url: "https://www.startribune.com/in-minnesota-farm-country-a-plan-for-a-4-billion-data-center-takes-root-with-vast-wind-solar-and-battery-projects/601512205" },
             { name: "The Globe — Planning Commission vote", url: "https://www.dglobe.com/news/local/full-story-nobles-county-planning-commission-votes-to-keep-data-center-out-of-ag-preservation-area" },
             { name: "The Globe — AUAR begins", url: "https://www.dglobe.com/news/local/nobles-county-data-center-begins-environmental-review-process" }
         ],
-        lastUpdated: "2026-04-10"
+        lastUpdated: "2026-06-04"
     }
 ];
 
