@@ -710,11 +710,10 @@ const projectData = [
         lng: -94.1400,
         acres: 6.2,
         sqft: null,
-        currentStatus: "Planned/monitoring: City approved Industrial-1 zoning Nov 6, 2024 for a proposed $40-60M Revolve Labs AI/colocation expansion, but no reliable public source was found confirming the AI data center is under construction.",
-        notes: "Revolve Labs operates an existing crypto/high-performance compute facility in Glencoe and has proposed an AI and colocation data center expansion on 6.2 acres of former Seneca Foods land on the west side of Glencoe. City rezoning was approved Nov 2024 and city staff were working with Revolve Labs on water and sanitary sewer extensions. Treat as planned/monitoring until a building permit, construction start, or other direct construction evidence is confirmed.",
+        currentStatus: "Planned/monitoring: City approved Industrial-1 zoning Nov 6, 2024 for a proposed $40-60M Revolve Labs AI/colocation expansion. Public records show zoning and utility-extension coordination, not a confirmed construction start.",
+        notes: "Revolve Labs operates an existing crypto/high-performance compute facility in Glencoe and has proposed an AI and colocation data center expansion on 6.2 acres of former Seneca Foods land on the west side of Glencoe. City rezoning was approved Nov 2024 and city staff were working with Revolve Labs on water and sanitary sewer extensions. Construction start not confirmed.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-06-04", event: "Construction status reviewed; no reliable public source found confirming AI data center construction start" },
             { date: "2025-03-27", event: "Star Tribune reports Revolve Labs focusing on Glencoe expansion" },
             { date: "2024-11-06", event: "City approved rezoning of 6.2-acre site" },
             { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
