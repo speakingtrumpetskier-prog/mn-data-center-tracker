@@ -558,7 +558,8 @@ const projectData = [
     {
         id: 16,
         name: "Thomson Reuters Redevelopment Project",
-        status: "review_complete",
+        status: "construction",
+        secondaryStatus: "review_complete",
         city: "Eagan",
         county: "Dakota",
         lat: 44.8260,
@@ -566,10 +567,11 @@ const projectData = [
         acres: 179,
         sqft: 1350000,
         sqftDisplay: "1.2–1.5M SF",
-        currentStatus: "Final AUAR adopted Oct 29, 2024 (Resolution 24-50)",
-        notes: "Scenario two includes light industrial that 'could include data centers'. Mixed-use redevelopment of former Thomson Reuters campus. 1.2-1.5 million SF proposed.",
+        currentStatus: "Under construction. Centra MSP1 data center broke ground August 2025. 12MW capacity, ~150k sqft. Opening targeted Q2 2026.",
+        notes: "Centra (formerly CloudHQ) data center MSP1 under construction at 610 Opperman Drive — redevelopment of former Thomson Reuters campus. 12MW initial capacity, ~150k sqft. AUAR adopted Oct 2024 included data center scenario.",
         litigation: { active: false },
         timeline: [
+            { date: "2025-08", event: "Centra MSP1 groundbreaking at 610 Opperman Drive" },
             { date: "2024-10-29", event: "Final AUAR adopted (Resolution 24-50)" },
             { date: "2024-10-08", event: "Final AUAR published in EQB Monitor" },
             { date: "2024-08-26", event: "Public open house held" },
@@ -577,20 +579,55 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR adopted Oct 29, 2024" },
-            localZoning: { status: "unknown" },
-            buildingPermit: { status: "not_started" },
+            localZoning: { status: "approved" },
+            buildingPermit: { status: "approved" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Data Center Dynamics — Centra MSP1 Groundbreaking", url: "https://www.datacenterdynamics.com/en/news/centra-breaks-ground-on-msp1-data-center-in-eagan-minnesota/" },
             { name: "Resolution 24-50 (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Resolution_24-50_Adopting-Thomson-Reuters-AUAR.pdf" },
             { name: "Revised AUAR (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Thomson-Reuters-Revised-AUAR.pdf" },
             { name: "City Environmental Reviews", url: "https://cityofeagan.com/environmental-reviews" },
             { name: "Project EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259709?siId=259709-PROJ0000000001" }
         ],
-        lastUpdated: "2026-01-23"
+        lastUpdated: "2026-06-04"
     },
     {
-        id: 23,
+        id: 27,
+        name: "Meta Rosemount Data Center",
+        status: "construction",
+        secondaryStatus: "review_complete",
+        city: "Rosemount",
+        county: "Dakota",
+        lat: 44.7370,
+        lng: -93.1380,
+        acres: 280,
+        sqft: 715000,
+        currentStatus: "Under construction. $800M, 715k sqft campus at UMore Park. Contractor Mortenson. Opening 2026.",
+        notes: "Meta data center at 1367 145th St E on former University of Minnesota UMore Park land, east of Dakota County Technical College. 280 acres purchased from U of M. Rosemount City Council approved Dec 2023 (unanimous). Environmental review under existing UMore Park AUAR. 100% renewable energy commitment; targeting LEED Gold.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2023-12", event: "Rosemount City Council unanimously approved Meta data center on UMore Park land" },
+            { date: "2024-03", event: "Meta publicly announced $800M Rosemount data center" },
+            { date: "2024", event: "Construction begins; Mortenson as contractor" },
+            { date: "2026", event: "Opening expected" }
+        ],
+        permits: {
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "UMore Park AUAR (Univ. of Minnesota, updated 2018)" },
+            localZoning: { status: "approved", detail: "City Council approval Dec 2023" },
+            buildingPermit: { status: "approved" },
+            utilities: { status: "approved", detail: "Xcel Energy 100% renewable" }
+        },
+        sources: [
+            { name: "Governor Walz announcement", url: "https://mn.gov/governor/newsroom/press-releases/?id=1055-614120" },
+            { name: "MPR News — Meta to open data center in Rosemount in 2026", url: "https://www.mprnews.org/story/2024/03/14/meta-to-open-data-center-in-rosemount-in-2026" },
+            { name: "MN Daily — UMore Park from hazardous legacy to tech sale", url: "https://mndaily.com/top-story/umore-park-from-hazardous-legacy-to-tech-sale/10/27/2025/" },
+            { name: "City of Rosemount — UMore Development", url: "https://www.rosemountmn.gov/188/UMore-Development" }
+        ],
+        lastUpdated: "2026-06-04"
+    },
+    {
+        id: 26,
         name: "Northfield Northwest Business Park AUAR",
         status: "review_complete",
         city: "Northfield",
@@ -692,18 +729,19 @@ const projectData = [
     {
         id: 19,
         name: "Glencoe AI Data Center",
-        status: "construction",
+        status: "watching",
         city: "Glencoe",
         county: "McLeod",
         lat: 44.7650,
         lng: -94.1400,
         acres: 6.2,
         sqft: null,
-        currentStatus: "Under construction as of Nov 2025. Phase 1: up to 20 MW AI/colocation. Revolve Labs (Colorado). $40-60M total investment.",
-        notes: "Revolve Labs AI and colocation data center on 6.2 acres of former Seneca Foods land on west side of Glencoe. Phase 1 targets 20 MW AI workloads. Company pivoting from crypto mining to AI hosting. City rezoning approved Nov 2024. Local utility and renewable energy partnerships planned.",
+        currentStatus: "Active development. Power sales agreement amended Dec 2025; substation/MISO interconnection planning underway. No confirmed construction start.",
+        notes: "Revolve Labs (Colorado) AI and colocation data center on 6.2 acres of former Seneca Foods land, west side of Glencoe. Phase 1 targets up to 20 MW AI workloads; $40-60M total investment. Pivoting from crypto mining to AI hosting. City rezoning approved Nov 2024. Baxtel lists as planned/future facility.",
         litigation: { active: false },
         timeline: [
-            { date: "2025-11", event: "Construction begins on Phase 1 facility" },
+            { date: "2025-12-22", event: "Glencoe Light & Power approved amendment to Revolve Labs power sales agreement" },
+            { date: "2025-11-12", event: "Revolve Labs announces new high-performance data center in Glencoe (Glencoe News)" },
             { date: "2025-03-27", event: "Star Tribune reports Revolve Labs focusing on Glencoe expansion" },
             { date: "2024-11-06", event: "City approved rezoning of 6.2-acre site" },
             { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
@@ -711,8 +749,8 @@ const projectData = [
         permits: {
             environmentalReview: { status: "not_started" },
             localZoning: { status: "approved", detail: "Rezoning approved Nov 6, 2024" },
-            buildingPermit: { status: "unknown" },
-            utilities: { status: "unknown" }
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "in_progress", detail: "Power sales agreement amended Dec 2025; MISO substation review pending" }
         },
         sources: [
             { name: "Glencoe News - New Data Center Announced", url: "https://www.glencoenews.com/articles/featured-mcc/revolve-labs-announces-new-high-performance-data-center-in-glencoe/" },
