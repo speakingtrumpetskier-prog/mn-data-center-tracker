@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: March 17, 2026
+// Last updated: June 4, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -372,6 +372,44 @@ const projectData = [
     },
 
     // ============================================
+    // CONSTRUCTION - Actively under construction
+    // ============================================
+    {
+        id: 26,
+        name: "Meta Rosemount Data Center",
+        status: "construction",
+        city: "Rosemount",
+        county: "Dakota",
+        lat: 44.7388,
+        lng: -93.0743,
+        acres: 280,
+        sqft: 715000,
+        currentStatus: "Meta's UMore Park data center is under construction in Rosemount and is expected to open in 2026.",
+        notes: "Formerly code-named Project Bigfoot / Jimnist. The 280-acre UMore Park campus is a separate named project from the Rosemount Industrial, Rich Valley East, and Dakota East AUAR areas already tracked elsewhere on the map. Public materials describe an $800 million investment, approximately 715,000 square feet, 100 permanent jobs, and at least 1,000 construction jobs at peak construction.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026", event: "Expected opening year" },
+            { date: "2024-03-14", event: "State publicly announces Meta's Rosemount data center" },
+            { date: "2023-12-21", event: "Rosemount City Council approves Project Bigfoot / Jimnist application" },
+            { date: "2023-09", event: "University of Minnesota approves sale of UMore Park land for data center site" }
+        ],
+        permits: {
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "UMore Park AUAR update covers the Project Bigfoot area" },
+            localZoning: { status: "approved", detail: "City approvals issued for Project Bigfoot / Jimnist" },
+            buildingPermit: { status: "in_progress" },
+            utilities: { status: "in_progress", detail: "Xcel and city infrastructure upgrades planned for the UMore area" }
+        },
+        sources: [
+            { name: "MN DEED - Meta Announcement", url: "https://mn.gov/deed/newscenter/press-releases/?id=1045-614051" },
+            { name: "City of Rosemount - Development Page", url: "https://rosemountmn.gov/progress" },
+            { name: "City of Rosemount - Environmental Review", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
+            { name: "UMore Park AUAR Update", url: "https://www.rosemountmn.gov/DocumentCenter/View/6791/UMore-Park-AUAR-2023-Draft" },
+            { name: "Data Center Dynamics - Council Approval", url: "https://www.datacenterdynamics.com/en/news/rosemount-city-council-approves-meta-data-center-project/" }
+        ],
+        lastUpdated: "2026-06-04"
+    },
+
+    // ============================================
     // APPROVED - Environmental review complete
     // ============================================
     {
@@ -420,34 +458,39 @@ const projectData = [
         lng: -93.1540,
         acres: 347,
         sqft: 2530000,
-        currentStatus: "Lawsuit filed Nov 2024 challenging city approval; injunction paused negotiations",
-        notes: "Tract's proposed $5B hyperscale campus (12 buildings, 708MW). Lawsuit challenges annexation agreement violation, environmental impacts. Castle Rock Township also filed separate legal action.",
+        currentStatus: "Legal challenge remains active. City approvals continue to move forward: the court denied the city's motion to dismiss in Nov 2025, and the City Council approved a final-plat split and updated development contracts in Apr 2026.",
+        notes: "Tract's proposed $5B hyperscale campus (12 buildings, 708MW). Lawsuit challenges annexation agreement violation and environmental impacts. Castle Rock Township also filed separate legal action. The city says it has not received an application for a specific development proposal within the Technology Park area.",
         litigation: {
             active: true,
             caseNumber: "Dakota County District Court",
             court: "Dakota County District Court",
-            status: "Injunction filed Nov 29, 2024",
+            status: "Motion to dismiss denied Nov 13, 2025; legal proceedings continue",
             filedDate: "2024-11-29"
         },
         timeline: [
-            { date: "2024-11-29", event: "Residents and Coalition file lawsuit/injunction" },
+            { date: "2026-04-20", event: "City Council approves final-plat split into two additions and updated development contracts" },
+            { date: "2026-04-14", event: "Planning Commission recommends approval of final-plat split" },
+            { date: "2025-11-13", event: "Dakota County judge denies city's motion to dismiss" },
+            { date: "2025-05-14", event: "Metropolitan Council approves comprehensive plan amendment" },
             { date: "2025-01-14", event: "Castle Rock Township votes to file separate legal action" },
+            { date: "2024-11-29", event: "Residents and Coalition file lawsuit/injunction" },
             { date: "2024-11-04", event: "AUAR adopted (Resolution 2024-97)" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Nov 4, 2024" },
-            localZoning: { status: "in_progress", detail: "PUD approved but challenged" },
+            localZoning: { status: "in_progress", detail: "PUD/final plat approved; final plat split and updated development contracts approved Apr 20, 2026; approvals challenged in litigation" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City of Farmington Project Page", url: "https://www.farmingtonmn.gov/473/Data-Center-Farmington-Technology-Park" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259881?siId=259881-PROJ0000000001" },
             { name: "GovTech - Lawsuit", url: "https://www.govtech.com/infrastructure/farmington-minn-residents-sue-to-stop-data-center-park" },
             { name: "Coalition Website", url: "https://www.datacenterresponsibility.com/whatishappening" },
             { name: "Streets.mn Deep Dive", url: "https://streets.mn/2025/11/07/deep-dive-the-farmington-push-for-responsible-hyper-scale-data-centers/" },
             { name: "Hometown Source - Motion to Dismiss Denied", url: "https://www.hometownsource.com/sun_thisweek/community/dakota_county/judge-denies-farmingtons-motion-to-dismiss-lawsuit/article_54651c1e-c9af-4516-9409-6eaf4c0c83a7.html" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 12,
@@ -568,19 +611,21 @@ const projectData = [
     },
     {
         id: 16,
-        name: "Thomson Reuters Redevelopment Project",
-        status: "review_complete",
+        name: "Centra MSP1 / Thomson Reuters Redevelopment",
+        status: "construction",
         city: "Eagan",
         county: "Dakota",
         lat: 44.8260,
         lng: -93.1143,
         acres: 179,
         sqft: 1350000,
-        sqftDisplay: "1.2–1.5M SF",
-        currentStatus: "Final AUAR adopted Oct 29, 2024 (Resolution 24-50)",
-        notes: "Scenario two includes light industrial that 'could include data centers'. Mixed-use redevelopment of former Thomson Reuters campus. 1.2-1.5 million SF proposed.",
+        mw: 12,
+        sqftDisplay: "1.2-1.5M SF",
+        currentStatus: "Centra announced groundbreaking for MSP1, a 12 MW carrier-neutral data center at the former Thomson Reuters site in Eagan, in Aug 2025.",
+        notes: "Scenario two in the Thomson Reuters AUAR includes light industrial that could include data centers. Centra's MSP1 reuses and upgrades an existing data center building at 610 Opperman Drive while Ryan Companies redevelops the broader former Thomson Reuters campus.",
         litigation: { active: false },
         timeline: [
+            { date: "2025-08-06", event: "Centra announces groundbreaking for 12 MW MSP1 facility" },
             { date: "2024-10-29", event: "Final AUAR adopted (Resolution 24-50)" },
             { date: "2024-10-08", event: "Final AUAR published in EQB Monitor" },
             { date: "2024-08-26", event: "Public open house held" },
@@ -589,16 +634,17 @@ const projectData = [
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR adopted Oct 29, 2024" },
             localZoning: { status: "unknown" },
-            buildingPermit: { status: "not_started" },
+            buildingPermit: { status: "in_progress", detail: "Groundbreaking announced Aug 2025 for MSP1" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Data Center Dynamics - Centra MSP1 Groundbreaking", url: "https://www.datacenterdynamics.com/en/news/centra-breaks-ground-on-data-center-redevelopment-in-minneapolis-minnesota/" },
             { name: "Resolution 24-50 (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Resolution_24-50_Adopting-Thomson-Reuters-AUAR.pdf" },
             { name: "Revised AUAR (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Thomson-Reuters-Revised-AUAR.pdf" },
             { name: "City Environmental Reviews", url: "https://cityofeagan.com/environmental-reviews" },
             { name: "Project EQB Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/259709?siId=259709-PROJ0000000001" }
         ],
-        lastUpdated: "2026-01-23"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 23,
@@ -843,7 +889,7 @@ const projectData = [
     // WATCHING - Early stage / no formal filings
     // ============================================
     {
-        id: 23,
+        id: 27,
         name: "CloudHQ MSP Campus",
         status: "review_complete",
         city: "Chaska",
@@ -851,33 +897,35 @@ const projectData = [
         lat: 44.8172,
         lng: -93.6364,
         acres: 72,
-        sqft: 1400000,
-        mw: 180,
-        currentStatus: "180 MW campus; final approval and anchor tenant pending.",
-        notes: "West Creek Corporate Center. CUP Oct 2023; preliminary site plan approved Oct 2024; final approval and 200 MW substation pending.",
+        sqft: 1100000,
+        sqftDisplay: "1.1M SF developer-listed; city describes approximately 1.5M SF",
+        mw: 200,
+        currentStatus: "Preliminary site plan/plat approved in Oct 2024. Final site plan/plat application has not been submitted, and there is no final-review timeline.",
+        notes: "West Creek Corporate Center. CUP Oct 2023; preliminary site plan/plat approved Oct 2024. CloudHQ lists up to 200 MW critical IT load. City materials describe approximately 1.5 million square feet and state the project cannot move forward until the preliminary system impact study is complete.",
         litigation: { active: false },
         timeline: [
             { date: "2022-08", event: "Concept approval by City of Chaska" },
             { date: "2022", event: "AUAR and mitigation plan completed" },
             { date: "2023-10", event: "Conditional use permit granted" },
             { date: "2024-10", event: "Preliminary site plan and plat approved 4-1 by council" },
-            { date: "2025-04-15", event: "Daily Reporter: final approval and substation process still pending; no anchor tenant confirmed" }
+            { date: "2025-04-15", event: "Daily Reporter: final approval and substation process still pending; no anchor tenant confirmed" },
+            { date: "2026", event: "City project page states no final application has been submitted and utility system impact study remains underway" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR and mitigation plan completed 2022" },
-            localZoning: { status: "in_progress", detail: "CUP Oct 2023; preliminary site plan/plat Oct 2024; final approval TBD" },
+            localZoning: { status: "in_progress", detail: "CUP Oct 2023; preliminary site plan/plat Oct 2024; final site plan/plat application not submitted" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "200 MW substation approval process pending" }
+            utilities: { status: "in_progress", detail: "Preliminary system impact study underway; project cannot move forward until study is complete" }
         },
         sources: [
             { name: "City of Chaska project page", url: "https://www.chaskamn.gov/841/Cloud-HQ" },
-            { name: "Carver County Local News — preliminary approval Oct 2024", url: "https://cclocalnews.org/2024/10/29/despite-resident-objections-data-center-gains-preliminary-ok/" },
-            { name: "Star Tribune — $1B project announced", url: "https://www.startribune.com/1-billion-1-4-million-square-foot-data-center-planned-for-chaska/600201478" },
-            { name: "Daily Reporter — status spring 2025", url: "https://dailyreporter.com/2025/04/15/chaska-data-center-housing-business-park-growth/" },
+            { name: "Carver County Local News - preliminary approval Oct 2024", url: "https://cclocalnews.org/2024/10/29/despite-resident-objections-data-center-gains-preliminary-ok/" },
+            { name: "Star Tribune - $1B project announced", url: "https://www.startribune.com/1-billion-1-4-million-square-foot-data-center-planned-for-chaska/600201478" },
+            { name: "Daily Reporter - status spring 2025", url: "https://dailyreporter.com/2025/04/15/chaska-data-center-housing-business-park-growth/" },
             { name: "Data Center Dynamics", url: "https://www.datacenterdynamics.com/en/news/cloudhq-planning-180mw-data-center-campus-in-minneapolis-minnesota/" },
             { name: "CloudHQ MSP Campus page", url: "https://cloudhq.com/campus/msp-campus/" }
         ],
-        lastUpdated: "2026-04-07"
+        lastUpdated: "2026-06-04"
     },
     {
         id: 24,
@@ -903,8 +951,8 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
-            { name: "Cleanview — Cielo Chisago", url: "https://cleanview.co/public/data-centers/minnesota/2043/cielo-chisago-data-center" },
-            { name: "Data Center Dynamics — Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
+            { name: "Cleanview - Cielo Chisago", url: "https://cleanview.co/public/data-centers/minnesota/2043/cielo-chisago-data-center" },
+            { name: "Data Center Dynamics - Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
         ],
         lastUpdated: "2026-04-07"
     },
@@ -936,12 +984,48 @@ const projectData = [
             utilities: { status: "in_progress", detail: "Feasibility study underway with Lincoln Pipestone Rural Water" }
         },
         sources: [
-            { name: "Geronimo Power — Nobles County Powered Data Park", url: "https://geronimopower.com/in-development/nobles-county-powered-data-park/" },
+            { name: "Geronimo Power - Nobles County Powered Data Park", url: "https://geronimopower.com/in-development/nobles-county-powered-data-park/" },
             { name: "MPR - Nobles County Board Vote", url: "https://www.mprnews.org/story/2026/04/21/nobles-county-board-to-vote-on-whether-to-allow-massive-data-centers-on-farm-land" },
             { name: "Data Center Dynamics - County Vote", url: "https://www.datacenterdynamics.com/en/news/4bn-data-center-rejected-by-nobles-county-minnesota/" },
-            { name: "Star Tribune — $4 billion data center in farm country", url: "https://www.startribune.com/in-minnesota-farm-country-a-plan-for-a-4-billion-data-center-takes-root-with-vast-wind-solar-and-battery-projects/601512205" },
-            { name: "The Globe — Planning Commission vote", url: "https://www.dglobe.com/news/local/full-story-nobles-county-planning-commission-votes-to-keep-data-center-out-of-ag-preservation-area" },
-            { name: "The Globe — AUAR begins", url: "https://www.dglobe.com/news/local/nobles-county-data-center-begins-environmental-review-process" }
+            { name: "Star Tribune - $4 billion data center in farm country", url: "https://www.startribune.com/in-minnesota-farm-country-a-plan-for-a-4-billion-data-center-takes-root-with-vast-wind-solar-and-battery-projects/601512205" },
+            { name: "The Globe - Planning Commission vote", url: "https://www.dglobe.com/news/local/full-story-nobles-county-planning-commission-votes-to-keep-data-center-out-of-ag-preservation-area" },
+            { name: "The Globe - AUAR begins", url: "https://www.dglobe.com/news/local/nobles-county-data-center-begins-environmental-review-process" }
+        ],
+        lastUpdated: "2026-06-04"
+    },
+    {
+        id: 28,
+        name: "Inver Grove Heights Travel Tags Data Center",
+        status: "watching",
+        city: "Inver Grove Heights",
+        county: "Dakota",
+        lat: 44.8629567,
+        lng: -93.0398372,
+        acres: null,
+        sqft: 54070,
+        sqftDisplay: "54,000-55,000 SF",
+        mw: 5,
+        currentStatus: "Proposed data center at the former Travel Tags site on Carmen Avenue East; City Council approved a one-year data center moratorium that includes the proposal.",
+        notes: "The city is reviewing a major site plan request for the former Travel Tags property. City materials describe a roughly 50,000-square-foot building with anticipated 5 MW power use; council materials describe an approximately 54,070-square-foot data center. The May 11, 2026 moratorium includes the proposed data center while the city studies data center impacts and regulations.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-05-26", event: "City Council tables moratorium second reading to June 8 and site plan request to a meeting before July 1" },
+            { date: "2026-05-11", event: "City Council approves interim ordinance studying data centers and imposing moratorium including proposed data center" },
+            { date: "2026-04-27", event: "Major site plan request presented to City Council" },
+            { date: "2026-04-07", event: "Planning Commission public hearing held" },
+            { date: "2026-03-26", event: "Developer hosts neighborhood meeting" }
+        ],
+        permits: {
+            environmentalReview: { status: "unknown" },
+            localZoning: { status: "in_progress", detail: "Major site plan request tabled; moratorium includes proposed data center" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "City of Inver Grove Heights - Proposed Data Center Development", url: "https://www.ighmn.gov/CivicAlerts.aspx?AID=2896" },
+            { name: "May 11, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20014/2026-05-11-City-Council-Actions" },
+            { name: "May 26, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20051/2026-05-26-Council-Actions?bidId=" },
+            { name: "Data Center Dynamics - Inver Grove Heights Moratorium", url: "https://www.datacenterdynamics.com/en/news/one-year-data-center-moratorium-approved-in-city-near-minneapolis/" }
         ],
         lastUpdated: "2026-06-04"
     }
