@@ -621,38 +621,16 @@ window.openProjectDetail = openProjectDetail;
         if (!project) return;
 
         pineEggActive = true;
-        showPineToast();
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             launchStopSignFlight(project, triggerButton);
         } else {
-            popPineMarker(project);
+            settlePineStopMarker(project);
         }
 
         setTimeout(() => {
             pineEggActive = false;
-        }, 1800);
-    }
-
-    function showPineToast() {
-        const existingToast = document.querySelector('.pine-injunction-toast');
-        if (existingToast) existingToast.remove();
-
-        const toast = document.createElement('div');
-        toast.className = 'pine-injunction-toast';
-        toast.setAttribute('role', 'status');
-        toast.innerHTML = `
-            <div class="pine-injunction-toast-title">Temporary injunction granted</div>
-            <div class="pine-injunction-toast-copy">Pine Island construction and pre-construction activity are paused by court order.</div>
-        `;
-
-        document.body.appendChild(toast);
-        requestAnimationFrame(() => toast.classList.add('visible'));
-
-        setTimeout(() => {
-            toast.classList.remove('visible');
-            setTimeout(() => toast.remove(), 280);
-        }, 3600);
+        }, 2600);
     }
 
     function popPineMarker(project) {
@@ -664,6 +642,14 @@ window.openProjectDetail = openProjectDetail;
         marker._icon.classList.add('injunction-pop');
     }
 
+    function settlePineStopMarker(project) {
+        const marker = markers.find(m => m.projectId === project.id);
+        if (!marker || !marker._icon) return;
+
+        marker._icon.classList.add('pine-stop-marker');
+        popPineMarker(project);
+    }
+
     function launchStopSignFlight(project, triggerButton) {
         const start = getButtonScreenPoint(triggerButton);
         const target = getProjectScreenPoint(project);
@@ -673,9 +659,13 @@ window.openProjectDetail = openProjectDetail;
         layer.className = 'pine-stop-layer';
         document.body.appendChild(layer);
 
-        const mid = {
-            x: start.x + ((target.x - start.x) * 0.42),
-            y: Math.min(start.y, target.y) - 90
+        const midA = {
+            x: start.x + ((target.x - start.x) * 0.28) - 24,
+            y: Math.min(start.y, target.y) - 115
+        };
+        const midB = {
+            x: start.x + ((target.x - start.x) * 0.68) + 20,
+            y: target.y - 70
         };
 
         const stopSign = document.createElement('div');
@@ -688,8 +678,10 @@ window.openProjectDetail = openProjectDetail;
         [stopSign, glow].forEach(element => {
             element.style.setProperty('--start-x', `${start.x}px`);
             element.style.setProperty('--start-y', `${start.y}px`);
-            element.style.setProperty('--mid-x', `${mid.x}px`);
-            element.style.setProperty('--mid-y', `${mid.y}px`);
+            element.style.setProperty('--mid-a-x', `${midA.x}px`);
+            element.style.setProperty('--mid-a-y', `${midA.y}px`);
+            element.style.setProperty('--mid-b-x', `${midB.x}px`);
+            element.style.setProperty('--mid-b-y', `${midB.y}px`);
             element.style.setProperty('--target-x', `${target.x}px`);
             element.style.setProperty('--target-y', `${target.y}px`);
         });
@@ -697,9 +689,9 @@ window.openProjectDetail = openProjectDetail;
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        setTimeout(() => popPineMarker(project), 1320);
+        setTimeout(() => settlePineStopMarker(project), 2050);
 
-        setTimeout(() => layer.remove(), 2500);
+        setTimeout(() => layer.remove(), 3300);
     }
 
     function getButtonScreenPoint(button) {
