@@ -630,7 +630,7 @@ window.openProjectDetail = openProjectDetail;
 
         setTimeout(() => {
             pineEggActive = false;
-        }, 6200);
+        }, 9000);
     }
 
     function popPineMarker(project) {
@@ -701,9 +701,9 @@ window.openProjectDetail = openProjectDetail;
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        setTimeout(() => settlePineStopMarker(project), 4820);
+        setTimeout(() => settlePineStopMarker(project), 7500);
 
-        setTimeout(() => layer.remove(), 6400);
+        setTimeout(() => layer.remove(), 9400);
     }
 
     function getButtonScreenPoint(button) {
@@ -711,7 +711,7 @@ window.openProjectDetail = openProjectDetail;
         const rect = button.getBoundingClientRect();
         return {
             x: rect.left + (rect.width / 2),
-            y: rect.top + (rect.height / 2)
+            y: rect.top + (rect.height * 0.72)
         };
     }
 
