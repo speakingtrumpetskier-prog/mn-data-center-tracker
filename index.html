@@ -1098,6 +1098,107 @@
             transform: scale(1.15);
         }
 
+        .pine-injunction-btn {
+            color: #2d6a4f;
+            border-color: rgba(45, 106, 79, 0.2);
+            background: rgba(45, 106, 79, 0.08);
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+        }
+
+        .pine-injunction-btn:hover {
+            color: #1b4332;
+            border-color: rgba(45, 106, 79, 0.45);
+            background: rgba(45, 106, 79, 0.14);
+        }
+
+        .pine-confetti-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .pine-confetti-piece {
+            position: absolute;
+            left: var(--start-x);
+            top: var(--start-y);
+            width: 8px;
+            height: 14px;
+            background: var(--piece-color);
+            opacity: 0;
+            border-radius: 1px;
+            transform: translate(-50%, -50%) rotate(var(--spin));
+            animation: pine-confetti-pop 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: var(--delay);
+        }
+
+        .pine-injunction-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 2rem;
+            z-index: 10000;
+            width: min(28rem, calc(100vw - 2rem));
+            padding: 1rem 1.1rem;
+            color: var(--ink);
+            background: var(--paper);
+            border: 2px solid #2d6a4f;
+            box-shadow: 0 18px 50px rgba(26, 26, 26, 0.24);
+            transform: translate(-50%, 1rem);
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: auto;
+        }
+
+        .pine-injunction-toast.visible {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        .pine-injunction-toast-title {
+            display: inline-block;
+            margin-bottom: 0.45rem;
+            padding: 0.2rem 0.45rem;
+            color: #1b4332;
+            border: 2px solid #2d6a4f;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transform: rotate(-1.5deg);
+        }
+
+        .pine-injunction-toast-copy {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+
+        .marker-icon.injunction-pop {
+            animation: pine-marker-pop 0.7s ease;
+        }
+
+        @keyframes pine-confetti-pop {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.5) rotate(var(--spin));
+            }
+            72% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(calc(var(--spin) + 260deg));
+            }
+        }
+
+        @keyframes pine-marker-pop {
+            0%, 100% { transform: scale(1); }
+            35% { transform: scale(1.35); }
+            65% { transform: scale(0.94); }
+        }
+
         /* Full-screen overlay */
         .power-overlay {
             position: fixed;
