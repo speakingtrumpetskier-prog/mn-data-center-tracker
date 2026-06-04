@@ -612,11 +612,11 @@ window.openProjectDetail = openProjectDetail;
 
         slot.querySelector('.pine-injunction-btn').addEventListener('click', (event) => {
             event.stopPropagation();
-            if (!pineEggActive) launchPineInjunctionCelebration();
+            if (!pineEggActive) launchPineInjunctionCelebration(event.currentTarget);
         });
     }
 
-    function launchPineInjunctionCelebration() {
+    function launchPineInjunctionCelebration(triggerButton) {
         const project = projectData.find(p => p.id === pineProjectId);
         if (!project) return;
 
@@ -624,8 +624,9 @@ window.openProjectDetail = openProjectDetail;
         showPineToast();
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            launchStopSignFlight(project, triggerButton);
+        } else {
             popPineMarker(project);
-            burstConfettiFromProject(project);
         }
 
         setTimeout(() => {
@@ -663,38 +664,51 @@ window.openProjectDetail = openProjectDetail;
         marker._icon.classList.add('injunction-pop');
     }
 
-    function burstConfettiFromProject(project) {
-        const origin = getProjectScreenPoint(project);
-        if (!origin) return;
+    function launchStopSignFlight(project, triggerButton) {
+        const start = getButtonScreenPoint(triggerButton);
+        const target = getProjectScreenPoint(project);
+        if (!start || !target) return;
 
         const layer = document.createElement('div');
-        layer.className = 'pine-confetti-layer';
+        layer.className = 'pine-stop-layer';
         document.body.appendChild(layer);
 
-        const colors = ['#2d6a4f', '#f97316', '#facc15', '#3b82f6', '#c44536'];
-        const pieces = 44;
+        const mid = {
+            x: start.x + ((target.x - start.x) * 0.42),
+            y: Math.min(start.y, target.y) - 90
+        };
 
-        for (let i = 0; i < pieces; i++) {
-            const piece = document.createElement('div');
-            piece.className = 'pine-confetti-piece';
+        const stopSign = document.createElement('div');
+        stopSign.className = 'pine-stop-sign';
+        stopSign.innerHTML = '<div class="pine-stop-face">STOP</div>';
 
-            const angle = (Math.PI * 2 * i) / pieces + (Math.random() * 0.45);
-            const distance = 90 + Math.random() * 150;
-            const dx = Math.cos(angle) * distance;
-            const dy = Math.sin(angle) * distance + 60 + Math.random() * 40;
+        const glow = document.createElement('div');
+        glow.className = 'pine-settle-glow';
 
-            piece.style.setProperty('--start-x', `${origin.x}px`);
-            piece.style.setProperty('--start-y', `${origin.y}px`);
-            piece.style.setProperty('--dx', `${dx}px`);
-            piece.style.setProperty('--dy', `${dy}px`);
-            piece.style.setProperty('--spin', `${Math.random() * 180}deg`);
-            piece.style.setProperty('--delay', `${Math.random() * 0.12}s`);
-            piece.style.setProperty('--piece-color', colors[i % colors.length]);
+        [stopSign, glow].forEach(element => {
+            element.style.setProperty('--start-x', `${start.x}px`);
+            element.style.setProperty('--start-y', `${start.y}px`);
+            element.style.setProperty('--mid-x', `${mid.x}px`);
+            element.style.setProperty('--mid-y', `${mid.y}px`);
+            element.style.setProperty('--target-x', `${target.x}px`);
+            element.style.setProperty('--target-y', `${target.y}px`);
+        });
 
-            layer.appendChild(piece);
-        }
+        layer.appendChild(stopSign);
+        layer.appendChild(glow);
 
-        setTimeout(() => layer.remove(), 1800);
+        setTimeout(() => popPineMarker(project), 1320);
+
+        setTimeout(() => layer.remove(), 2500);
+    }
+
+    function getButtonScreenPoint(button) {
+        if (!button) return null;
+        const rect = button.getBoundingClientRect();
+        return {
+            x: rect.left + (rect.width / 2),
+            y: rect.top + (rect.height / 2)
+        };
     }
 
     function getProjectScreenPoint(project) {

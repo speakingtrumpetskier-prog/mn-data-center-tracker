@@ -1112,7 +1112,7 @@
             background: rgba(45, 106, 79, 0.14);
         }
 
-        .pine-confetti-layer {
+        .pine-stop-layer {
             position: fixed;
             inset: 0;
             z-index: 9999;
@@ -1120,18 +1120,33 @@
             overflow: hidden;
         }
 
-        .pine-confetti-piece {
+        .pine-stop-sign {
             position: absolute;
-            left: var(--start-x);
-            top: var(--start-y);
-            width: 8px;
-            height: 14px;
-            background: var(--piece-color);
+            left: 0;
+            top: 0;
+            width: 8.5rem;
+            height: 8.5rem;
             opacity: 0;
-            border-radius: 1px;
-            transform: translate(-50%, -50%) rotate(var(--spin));
-            animation: pine-confetti-pop 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: var(--delay);
+            transform: translate(var(--start-x), var(--start-y)) translate(-50%, -50%) scale(0.1) rotate(-7deg);
+            animation: pine-stop-float 1.65s cubic-bezier(0.2, 0.9, 0.18, 1) forwards;
+        }
+
+        .pine-stop-face {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            background: #dc2626;
+            border: 0.45rem solid #fff;
+            clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%);
+            box-shadow: 0 0 0 0.22rem #991b1b, 0 1.1rem 2.5rem rgba(26, 26, 26, 0.34);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .pine-injunction-toast {
@@ -1176,20 +1191,59 @@
         }
 
         .marker-icon.injunction-pop {
-            animation: pine-marker-pop 0.7s ease;
+            animation: pine-marker-pop 0.75s ease;
         }
 
-        @keyframes pine-confetti-pop {
+        .pine-settle-glow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 7rem;
+            height: 7rem;
+            border-radius: 50%;
+            opacity: 0;
+            transform: translate(var(--target-x), var(--target-y)) translate(-50%, -50%) scale(0.25);
+            background:
+                radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 8%, rgba(250, 204, 21, 0.62) 9% 24%, rgba(250, 204, 21, 0.18) 25% 48%, transparent 58%),
+                conic-gradient(from 0deg, transparent 0 8%, rgba(250, 204, 21, 0.95) 9% 12%, transparent 13% 22%, rgba(255, 255, 255, 0.9) 23% 26%, transparent 27% 39%, rgba(250, 204, 21, 0.8) 40% 43%, transparent 44% 58%, rgba(255, 255, 255, 0.85) 59% 62%, transparent 63% 76%, rgba(250, 204, 21, 0.82) 77% 80%, transparent 81%);
+            animation: pine-settle-glow 0.95s ease-out 1.4s forwards;
+        }
+
+        @keyframes pine-stop-float {
             0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(0.5) rotate(var(--spin));
+                opacity: 0;
+                transform: translate(var(--start-x), var(--start-y)) translate(-50%, -50%) scale(0.1) rotate(-7deg);
             }
-            72% {
+            18% {
                 opacity: 1;
+                transform: translate(var(--start-x), var(--start-y)) translate(-50%, -50%) scale(1.08) rotate(2deg);
+            }
+            48% {
+                opacity: 1;
+                transform: translate(var(--mid-x), var(--mid-y)) translate(-50%, -50%) scale(1) rotate(-2deg);
+            }
+            82% {
+                opacity: 1;
+                transform: translate(var(--target-x), var(--target-y)) translate(-50%, -50%) scale(0.34) rotate(0deg);
             }
             100% {
                 opacity: 0;
-                transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(calc(var(--spin) + 260deg));
+                transform: translate(var(--target-x), var(--target-y)) translate(-50%, -50%) scale(0.18) rotate(0deg);
+            }
+        }
+
+        @keyframes pine-settle-glow {
+            0% {
+                opacity: 0;
+                transform: translate(var(--target-x), var(--target-y)) translate(-50%, -50%) scale(0.25) rotate(0deg);
+            }
+            38% {
+                opacity: 1;
+                transform: translate(var(--target-x), var(--target-y)) translate(-50%, -50%) scale(1.12) rotate(12deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--target-x), var(--target-y)) translate(-50%, -50%) scale(1.55) rotate(30deg);
             }
         }
 
