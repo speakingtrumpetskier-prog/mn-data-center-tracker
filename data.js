@@ -217,17 +217,17 @@ const projectData = [
         lng: -92.6180,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "TRO issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. Google-backed facility (Ryan Companies developer) cannot proceed pending preliminary injunction hearing.",
+        currentStatus: "Temporary injunction issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. Google-backed facility (Ryan Companies developer) cannot proceed while the injunction remains in effect.",
         notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records.",
         litigation: {
             active: true,
             caseNumber: "25-CV-25-2298",
             court: "Goodhue County District Court",
-            status: "TRO issued May 22, 2026; construction halted. Preliminary injunction hearing pending.",
+            status: "Temporary injunction issued May 22, 2026; construction halted.",
             filedDate: "2025-10-16"
         },
         timeline: [
-            { date: "2026-05-22", event: "TRO issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
+            { date: "2026-05-22", event: "Temporary injunction issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
             { date: "2026-04-20", event: "Summary judgment hearing (defendants' motion denied)" },
             { date: "2026-04-06", event: "Summary judgment hearing" },
             { date: "2026-02", event: "Google publicly confirmed as Project Skyway client" },
@@ -239,7 +239,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025; adequacy challenged in court" },
-            localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by TRO May 2026" },
+            localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by temporary injunction May 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },

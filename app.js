@@ -586,6 +586,131 @@ window.openProjectDetail = openProjectDetail;
     }
 })();
 
+// Easter Egg 4: Pine Island temporary injunction
+// Open Pine Island, then click the small injunction button in the litigation grid.
+(function() {
+    const pineProjectId = 5;
+    let pineEggActive = false;
+
+    const originalOpenDetail = window.openProjectDetail;
+    window.openProjectDetail = function(projectId) {
+        originalOpenDetail(projectId);
+
+        if (projectId === pineProjectId) {
+            setTimeout(() => injectPineInjunctionButton(), 150);
+        }
+    };
+
+    function injectPineInjunctionButton() {
+        const slot = document.getElementById('case-detail-slot');
+        if (!slot || slot.querySelector('.pine-injunction-btn')) return;
+
+        slot.innerHTML = `
+            <div class="detail-field-label">Injunction</div>
+            <button class="case-detail-btn pine-injunction-btn" title="Temporary injunction easter egg">!</button>
+        `;
+
+        slot.querySelector('.pine-injunction-btn').addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (!pineEggActive) launchPineInjunctionCelebration();
+        });
+    }
+
+    function launchPineInjunctionCelebration() {
+        const project = projectData.find(p => p.id === pineProjectId);
+        if (!project) return;
+
+        pineEggActive = true;
+        showPineToast();
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            popPineMarker(project);
+            burstConfettiFromProject(project);
+        }
+
+        setTimeout(() => {
+            pineEggActive = false;
+        }, 1800);
+    }
+
+    function showPineToast() {
+        const existingToast = document.querySelector('.pine-injunction-toast');
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement('div');
+        toast.className = 'pine-injunction-toast';
+        toast.setAttribute('role', 'status');
+        toast.innerHTML = `
+            <div class="pine-injunction-toast-title">Temporary injunction granted</div>
+            <div class="pine-injunction-toast-copy">Pine Island construction and pre-construction activity are paused by court order.</div>
+        `;
+
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('visible'));
+
+        setTimeout(() => {
+            toast.classList.remove('visible');
+            setTimeout(() => toast.remove(), 280);
+        }, 3600);
+    }
+
+    function popPineMarker(project) {
+        const marker = markers.find(m => m.projectId === project.id);
+        if (!marker || !marker._icon) return;
+
+        marker._icon.classList.remove('injunction-pop');
+        void marker._icon.offsetWidth;
+        marker._icon.classList.add('injunction-pop');
+    }
+
+    function burstConfettiFromProject(project) {
+        const origin = getProjectScreenPoint(project);
+        if (!origin) return;
+
+        const layer = document.createElement('div');
+        layer.className = 'pine-confetti-layer';
+        document.body.appendChild(layer);
+
+        const colors = ['#2d6a4f', '#f97316', '#facc15', '#3b82f6', '#c44536'];
+        const pieces = 44;
+
+        for (let i = 0; i < pieces; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'pine-confetti-piece';
+
+            const angle = (Math.PI * 2 * i) / pieces + (Math.random() * 0.45);
+            const distance = 90 + Math.random() * 150;
+            const dx = Math.cos(angle) * distance;
+            const dy = Math.sin(angle) * distance + 60 + Math.random() * 40;
+
+            piece.style.setProperty('--start-x', `${origin.x}px`);
+            piece.style.setProperty('--start-y', `${origin.y}px`);
+            piece.style.setProperty('--dx', `${dx}px`);
+            piece.style.setProperty('--dy', `${dy}px`);
+            piece.style.setProperty('--spin', `${Math.random() * 180}deg`);
+            piece.style.setProperty('--delay', `${Math.random() * 0.12}s`);
+            piece.style.setProperty('--piece-color', colors[i % colors.length]);
+
+            layer.appendChild(piece);
+        }
+
+        setTimeout(() => layer.remove(), 1800);
+    }
+
+    function getProjectScreenPoint(project) {
+        if (!map || !project.lat || !project.lng) return null;
+
+        const mapContainer = map.getContainer();
+        const rect = mapContainer.getBoundingClientRect();
+        const point = map.latLngToContainerPoint([project.lat, project.lng]);
+
+        return {
+            x: rect.left + point.x,
+            y: rect.top + point.y
+        };
+    }
+})();
+
 // Easter Egg 2: "Public Version" button - toggles to "Light Industrial Development Watch"
 (function() {
     const btn = document.getElementById('public-version-btn');
