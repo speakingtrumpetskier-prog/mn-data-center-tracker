@@ -630,7 +630,7 @@ window.openProjectDetail = openProjectDetail;
 
         setTimeout(() => {
             pineEggActive = false;
-        }, 2600);
+        }, 6200);
     }
 
     function popPineMarker(project) {
@@ -660,12 +660,20 @@ window.openProjectDetail = openProjectDetail;
         document.body.appendChild(layer);
 
         const midA = {
-            x: start.x + ((target.x - start.x) * 0.28) - 24,
-            y: Math.min(start.y, target.y) - 115
+            x: start.x + ((target.x - start.x) * 0.24) - 36,
+            y: Math.min(start.y, target.y) - 135
         };
         const midB = {
-            x: start.x + ((target.x - start.x) * 0.68) + 20,
-            y: target.y - 70
+            x: start.x + ((target.x - start.x) * 0.48) + 34,
+            y: Math.min(start.y, target.y) - 98
+        };
+        const midC = {
+            x: start.x + ((target.x - start.x) * 0.68) - 24,
+            y: target.y - 92
+        };
+        const midD = {
+            x: start.x + ((target.x - start.x) * 0.84) + 14,
+            y: target.y - 48
         };
 
         const stopSign = document.createElement('div');
@@ -682,6 +690,10 @@ window.openProjectDetail = openProjectDetail;
             element.style.setProperty('--mid-a-y', `${midA.y}px`);
             element.style.setProperty('--mid-b-x', `${midB.x}px`);
             element.style.setProperty('--mid-b-y', `${midB.y}px`);
+            element.style.setProperty('--mid-c-x', `${midC.x}px`);
+            element.style.setProperty('--mid-c-y', `${midC.y}px`);
+            element.style.setProperty('--mid-d-x', `${midD.x}px`);
+            element.style.setProperty('--mid-d-y', `${midD.y}px`);
             element.style.setProperty('--target-x', `${target.x}px`);
             element.style.setProperty('--target-y', `${target.y}px`);
         });
@@ -689,9 +701,9 @@ window.openProjectDetail = openProjectDetail;
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        setTimeout(() => settlePineStopMarker(project), 2050);
+        setTimeout(() => settlePineStopMarker(project), 4820);
 
-        setTimeout(() => layer.remove(), 3300);
+        setTimeout(() => layer.remove(), 6400);
     }
 
     function getButtonScreenPoint(button) {
