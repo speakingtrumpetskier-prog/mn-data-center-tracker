@@ -663,15 +663,9 @@ window.openProjectDetail = openProjectDetail;
         stopSign.className = 'pine-stop-sign';
         stopSign.innerHTML = '<div class="pine-stop-face">STOP</div>';
 
-        const pump = document.createElement('div');
-        pump.className = 'pine-air-pump';
-        pump.innerHTML = `
-            <div class="pine-pump-handle"></div>
-            <div class="pine-pump-post">!</div>
-            <div class="pine-pump-base"></div>
-        `;
-        pump.style.transform = `translate(${start.x}px, ${start.y}px) translate(-50%, -100%)`;
         triggerButton.classList.add('pine-pump-active');
+        triggerButton.style.setProperty('--pump-down', '0px');
+        triggerButton.style.setProperty('--pump-squash', '1');
 
         const glow = document.createElement('div');
         glow.className = 'pine-settle-glow';
@@ -679,14 +673,13 @@ window.openProjectDetail = openProjectDetail;
         glow.style.setProperty('--target-x', `${target.x}px`);
         glow.style.setProperty('--target-y', `${target.y}px`);
 
-        layer.appendChild(pump);
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        animateStopSignFlight({ stopSign, pump, triggerButton, glow, layer, project, start, target });
+        animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target });
     }
 
-    function animateStopSignFlight({ stopSign, pump, triggerButton, glow, layer, project, start, target }) {
+    function animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target }) {
         const duration = 15000;
         const pumpSeatEnd = 0.075;
         const pumpEnd = 0.3;
@@ -740,12 +733,13 @@ window.openProjectDetail = openProjectDetail;
 
             const pumpT = clamp((t - pumpSeatEnd) / (pumpEnd - pumpSeatEnd), 0, 1);
             const pumpDown = Math.pow(Math.sin(pumpT * Math.PI * 4), 2) * (1 - (pumpT * 0.16));
-            pump.style.opacity = String(clamp((travelStart + 0.05 - t) / 0.08, 0, 1));
-            pump.style.setProperty('--pump-down', `${pumpDown * 13}px`);
-            pump.style.setProperty('--pump-squash', `${1 - (pumpDown * 0.08)}`);
+            triggerButton.style.setProperty('--pump-down', `${pumpDown * 8}px`);
+            triggerButton.style.setProperty('--pump-squash', `${1 - (pumpDown * 0.1)}`);
             if (!pumpReleased && t >= travelStart + 0.05) {
                 pumpReleased = true;
                 triggerButton.classList.remove('pine-pump-active');
+                triggerButton.style.removeProperty('--pump-down');
+                triggerButton.style.removeProperty('--pump-squash');
             }
 
             let scale;
@@ -792,6 +786,8 @@ window.openProjectDetail = openProjectDetail;
                 landingTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
                 stopSign.style.transform = getCenteredStopTransform(landingTarget, 0.16, measureStopFaceOffset(stopSign, landingTarget, 0.16), 0);
                 triggerButton.classList.remove('pine-pump-active');
+                triggerButton.style.removeProperty('--pump-down');
+                triggerButton.style.removeProperty('--pump-squash');
                 setTimeout(() => layer.remove(), 1200);
             }
         }
@@ -853,7 +849,7 @@ window.openProjectDetail = openProjectDetail;
         const rect = button.getBoundingClientRect();
         return {
             x: rect.left + (rect.width / 2),
-            y: rect.top + (rect.height * 0.72)
+            y: rect.top + 2
         };
     }
 
