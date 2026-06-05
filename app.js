@@ -659,23 +659,6 @@ window.openProjectDetail = openProjectDetail;
         layer.className = 'pine-stop-layer';
         document.body.appendChild(layer);
 
-        const midA = {
-            x: start.x + ((target.x - start.x) * 0.24),
-            y: Math.min(start.y, target.y) - 128
-        };
-        const midB = {
-            x: start.x + ((target.x - start.x) * 0.46),
-            y: Math.min(start.y, target.y) - 112
-        };
-        const midC = {
-            x: start.x + ((target.x - start.x) * 0.68),
-            y: target.y - 82
-        };
-        const midD = {
-            x: start.x + ((target.x - start.x) * 0.86),
-            y: target.y - 48
-        };
-
         const stopSign = document.createElement('div');
         stopSign.className = 'pine-stop-sign';
         stopSign.innerHTML = '<div class="pine-stop-face">STOP</div>';
@@ -683,27 +666,106 @@ window.openProjectDetail = openProjectDetail;
         const glow = document.createElement('div');
         glow.className = 'pine-settle-glow';
 
-        [stopSign, glow].forEach(element => {
-            element.style.setProperty('--start-x', `${start.x}px`);
-            element.style.setProperty('--start-y', `${start.y}px`);
-            element.style.setProperty('--mid-a-x', `${midA.x}px`);
-            element.style.setProperty('--mid-a-y', `${midA.y}px`);
-            element.style.setProperty('--mid-b-x', `${midB.x}px`);
-            element.style.setProperty('--mid-b-y', `${midB.y}px`);
-            element.style.setProperty('--mid-c-x', `${midC.x}px`);
-            element.style.setProperty('--mid-c-y', `${midC.y}px`);
-            element.style.setProperty('--mid-d-x', `${midD.x}px`);
-            element.style.setProperty('--mid-d-y', `${midD.y}px`);
-            element.style.setProperty('--target-x', `${target.x}px`);
-            element.style.setProperty('--target-y', `${target.y}px`);
-        });
+        glow.style.setProperty('--target-x', `${target.x}px`);
+        glow.style.setProperty('--target-y', `${target.y}px`);
 
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        setTimeout(() => settlePineStopMarker(project), 7500);
+        animateStopSignFlight({ stopSign, glow, layer, project, start, target });
+    }
 
-        setTimeout(() => layer.remove(), 9400);
+    function animateStopSignFlight({ stopSign, glow, layer, project, start, target }) {
+        const duration = 9000;
+        const inflationEnd = 0.34;
+        const travelStart = 0.24;
+        const lift = Math.min(170, Math.max(95, Math.abs(target.x - start.x) * 0.22));
+        const controlOne = {
+            x: start.x + ((target.x - start.x) * 0.18),
+            y: Math.min(start.y, target.y) - lift
+        };
+        const controlTwo = {
+            x: start.x + ((target.x - start.x) * 0.78),
+            y: target.y - (lift * 0.55)
+        };
+        let settled = false;
+        let startTime = null;
+
+        function frame(now) {
+            if (!startTime) startTime = now;
+            const t = Math.min((now - startTime) / duration, 1);
+            const travelT = clamp((t - travelStart) / (1 - travelStart), 0, 1);
+            const travel = easeInOutSine(travelT);
+            const point = cubicBezier(start, controlOne, controlTwo, target, travel);
+
+            const bobFade = Math.sin(Math.PI * travelT);
+            const windX = Math.sin(travelT * Math.PI * 2.1) * 13 * bobFade;
+            const windY = Math.sin(travelT * Math.PI * 3.2 + 0.8) * 5 * bobFade;
+            const x = travelT >= 1 ? target.x : point.x + windX;
+            const y = travelT >= 1 ? target.y : point.y + windY;
+
+            let scale;
+            if (t < inflationEnd) {
+                scale = lerp(0.04, 1.34, easeOutBack(t / inflationEnd));
+            } else {
+                const shrink = easeInOutSine((t - inflationEnd) / (1 - inflationEnd));
+                scale = lerp(1.24, 0.16, shrink);
+            }
+
+            const rotation = travelT >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65));
+            const anchorY = t < inflationEnd ? -88 : lerp(-88, -50, easeInOutSine((t - inflationEnd) / (1 - inflationEnd)));
+            const opacity = t < 0.02 ? t / 0.02 : (t > 0.98 ? (1 - t) / 0.02 : 1);
+
+            if (!settled && t >= 0.96) {
+                settled = true;
+                settlePineStopMarker(project);
+                glow.classList.add('burst');
+            }
+
+            stopSign.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+            stopSign.style.transform = settled
+                ? `translate(${target.x}px, ${target.y}px) translate(-50%, -50%) scale(0.16) rotate(0deg)`
+                : `translate(${x}px, ${y}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
+
+            if (t < 1) {
+                requestAnimationFrame(frame);
+            } else {
+                stopSign.style.opacity = '0';
+                stopSign.style.transform = `translate(${target.x}px, ${target.y}px) translate(-50%, -50%) scale(0.16) rotate(0deg)`;
+                setTimeout(() => layer.remove(), 1200);
+            }
+        }
+
+        requestAnimationFrame(frame);
+    }
+
+    function cubicBezier(p0, p1, p2, p3, t) {
+        const inv = 1 - t;
+        const inv2 = inv * inv;
+        const t2 = t * t;
+        return {
+            x: (inv2 * inv * p0.x) + (3 * inv2 * t * p1.x) + (3 * inv * t2 * p2.x) + (t2 * t * p3.x),
+            y: (inv2 * inv * p0.y) + (3 * inv2 * t * p1.y) + (3 * inv * t2 * p2.y) + (t2 * t * p3.y)
+        };
+    }
+
+    function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    function lerp(start, end, t) {
+        return start + ((end - start) * t);
+    }
+
+    function easeInOutSine(t) {
+        return -(Math.cos(Math.PI * clamp(t, 0, 1)) - 1) / 2;
+    }
+
+    function easeOutBack(t) {
+        const c1 = 1.70158;
+        const c3 = c1 + 1;
+        const x = clamp(t, 0, 1) - 1;
+        return 1 + (c3 * x * x * x) + (c1 * x * x);
     }
 
     function getButtonScreenPoint(button) {
