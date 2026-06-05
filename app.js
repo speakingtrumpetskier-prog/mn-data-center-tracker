@@ -652,7 +652,7 @@ window.openProjectDetail = openProjectDetail;
 
     function launchStopSignFlight(project, triggerButton) {
         const start = getButtonScreenPoint(triggerButton);
-        const target = getProjectScreenPoint(project);
+        const target = getMarkerScreenPoint(project) || getProjectScreenPoint(project);
         if (!start || !target) return;
 
         const layer = document.createElement('div');
@@ -676,17 +676,18 @@ window.openProjectDetail = openProjectDetail;
     }
 
     function animateStopSignFlight({ stopSign, glow, layer, project, start, target }) {
-        const duration = 9000;
+        const duration = 9800;
         const inflationEnd = 0.34;
         const travelStart = 0.24;
-        const lift = Math.min(170, Math.max(95, Math.abs(target.x - start.x) * 0.22));
+        const balloonMaxScale = 1.34;
+        const lift = Math.min(215, Math.max(120, Math.abs(target.x - start.x) * 0.28));
         const controlOne = {
-            x: start.x + ((target.x - start.x) * 0.18),
+            x: start.x + ((target.x - start.x) * 0.08),
             y: Math.min(start.y, target.y) - lift
         };
         const controlTwo = {
-            x: start.x + ((target.x - start.x) * 0.78),
-            y: target.y - (lift * 0.55)
+            x: start.x + ((target.x - start.x) * 0.72),
+            y: target.y - (lift * 0.74)
         };
         let settled = false;
         let startTime = null;
@@ -699,17 +700,23 @@ window.openProjectDetail = openProjectDetail;
             const point = cubicBezier(start, controlOne, controlTwo, target, travel);
 
             const bobFade = Math.sin(Math.PI * travelT);
-            const windX = Math.sin(travelT * Math.PI * 2.1) * 13 * bobFade;
-            const windY = Math.sin(travelT * Math.PI * 3.2 + 0.8) * 5 * bobFade;
+            const landingFade = Math.pow(1 - travelT, 0.85);
+            const windX = Math.sin(travelT * Math.PI * 2.05) * 16 * bobFade * landingFade;
+            const windY = (
+                Math.sin(travelT * Math.PI * 3.15 + 0.8) * 13 +
+                Math.sin(travelT * Math.PI * 1.35) * 8
+            ) * bobFade * landingFade;
             const x = travelT >= 1 ? target.x : point.x + windX;
             const y = travelT >= 1 ? target.y : point.y + windY;
 
             let scale;
             if (t < inflationEnd) {
-                scale = lerp(0.04, 1.34, easeOutBack(t / inflationEnd));
+                const inflate = easeOutCubic(t / inflationEnd);
+                const breath = Math.sin(inflate * Math.PI) * 0.025;
+                scale = lerp(0.04, balloonMaxScale, inflate) + breath;
             } else {
                 const shrink = easeInOutSine((t - inflationEnd) / (1 - inflationEnd));
-                scale = lerp(1.24, 0.16, shrink);
+                scale = lerp(balloonMaxScale, 0.16, shrink);
             }
 
             const rotation = travelT >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65));
@@ -761,11 +768,8 @@ window.openProjectDetail = openProjectDetail;
         return -(Math.cos(Math.PI * clamp(t, 0, 1)) - 1) / 2;
     }
 
-    function easeOutBack(t) {
-        const c1 = 1.70158;
-        const c3 = c1 + 1;
-        const x = clamp(t, 0, 1) - 1;
-        return 1 + (c3 * x * x * x) + (c1 * x * x);
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - clamp(t, 0, 1), 3);
     }
 
     function getButtonScreenPoint(button) {
@@ -787,6 +791,17 @@ window.openProjectDetail = openProjectDetail;
         return {
             x: rect.left + point.x,
             y: rect.top + point.y
+        };
+    }
+
+    function getMarkerScreenPoint(project) {
+        const marker = markers.find(m => m.projectId === project.id);
+        if (!marker || !marker._icon) return null;
+
+        const rect = marker._icon.getBoundingClientRect();
+        return {
+            x: rect.left + (rect.width / 2),
+            y: rect.top + (rect.height / 2)
         };
     }
 })();
