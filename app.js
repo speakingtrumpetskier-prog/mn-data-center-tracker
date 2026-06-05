@@ -681,7 +681,6 @@ window.openProjectDetail = openProjectDetail;
         const travelStart = 0.2;
         const balloonMaxScale = 1.34;
         let landingTarget = target;
-        let settleOffset = { x: 0, y: 0 };
         let settled = false;
         let startTime = null;
 
@@ -735,32 +734,34 @@ window.openProjectDetail = openProjectDetail;
                 scale = lerp(balloonMaxScale, 0.16, shrink);
             }
 
-            const rotation = travelT >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65));
+            const finalApproach = easeInOutSine(clamp((t - 0.78) / 0.18, 0, 1));
+            const rotation = finalApproach >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65)) * (1 - finalApproach);
             const anchorY = t < inflationEnd ? -88 : lerp(-88, -50, easeInOutSine((t - inflationEnd) / (1 - inflationEnd)));
-            const opacity = t < 0.02 ? t / 0.02 : (t > 0.98 ? (1 - t) / 0.02 : 1);
+            const opacity = t < 0.02 ? t / 0.02 : 1;
+            const movingTransform = finalApproach > 0
+                ? getCenteredStopTransform({ x, y }, scale, measureStopFaceOffset(stopSign, { x, y }, scale), rotation)
+                : `translate(${x}px, ${y}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
 
-            if (!settled && t >= 0.96) {
+            if (!settled && t >= 0.995) {
                 settled = true;
                 landingTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
                 glow.style.setProperty('--target-x', `${landingTarget.x}px`);
                 glow.style.setProperty('--target-y', `${landingTarget.y}px`);
-                settleOffset = measureStopFaceOffset(stopSign, landingTarget, 0.16);
                 settlePineStopMarker(project);
                 glow.classList.add('burst');
             }
 
             stopSign.style.opacity = String(Math.max(0, Math.min(1, opacity)));
             stopSign.style.transform = settled
-                ? getCenteredStopTransform(landingTarget, 0.16, settleOffset)
-                : `translate(${x}px, ${y}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
+                ? getCenteredStopTransform(landingTarget, 0.16, measureStopFaceOffset(stopSign, landingTarget, 0.16), 0)
+                : movingTransform;
 
             if (t < 1) {
                 requestAnimationFrame(frame);
             } else {
                 stopSign.style.opacity = '0';
                 landingTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
-                settleOffset = measureStopFaceOffset(stopSign, landingTarget, 0.16);
-                stopSign.style.transform = getCenteredStopTransform(landingTarget, 0.16, settleOffset);
+                stopSign.style.transform = getCenteredStopTransform(landingTarget, 0.16, measureStopFaceOffset(stopSign, landingTarget, 0.16), 0);
                 setTimeout(() => layer.remove(), 1200);
             }
         }
@@ -768,8 +769,8 @@ window.openProjectDetail = openProjectDetail;
         requestAnimationFrame(frame);
     }
 
-    function getCenteredStopTransform(target, scale, offset) {
-        return `translate(${target.x + offset.x}px, ${target.y + offset.y}px) translate(-50%, -50%) scale(${scale}) rotate(0deg)`;
+    function getCenteredStopTransform(target, scale, offset, rotation = 0) {
+        return `translate(${target.x + offset.x}px, ${target.y + offset.y}px) translate(-50%, -50%) scale(${scale}) rotate(${rotation}deg)`;
     }
 
     function measureStopFaceOffset(stopSign, target, scale) {
