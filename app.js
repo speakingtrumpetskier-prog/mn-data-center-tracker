@@ -630,7 +630,7 @@ window.openProjectDetail = openProjectDetail;
 
         setTimeout(() => {
             pineEggActive = false;
-        }, 9000);
+        }, 14000);
     }
 
     function popPineMarker(project) {
@@ -676,19 +676,12 @@ window.openProjectDetail = openProjectDetail;
     }
 
     function animateStopSignFlight({ stopSign, glow, layer, project, start, target }) {
-        const duration = 9800;
-        const inflationEnd = 0.34;
-        const travelStart = 0.24;
+        const duration = 12800;
+        const inflationEnd = 0.3;
+        const travelStart = 0.2;
         const balloonMaxScale = 1.34;
-        const lift = Math.min(215, Math.max(120, Math.abs(target.x - start.x) * 0.28));
-        const controlOne = {
-            x: start.x + ((target.x - start.x) * 0.08),
-            y: Math.min(start.y, target.y) - lift
-        };
-        const controlTwo = {
-            x: start.x + ((target.x - start.x) * 0.72),
-            y: target.y - (lift * 0.74)
-        };
+        let landingTarget = target;
+        let settleOffset = { x: 0, y: 0 };
         let settled = false;
         let startTime = null;
 
@@ -697,17 +690,40 @@ window.openProjectDetail = openProjectDetail;
             const t = Math.min((now - startTime) / duration, 1);
             const travelT = clamp((t - travelStart) / (1 - travelStart), 0, 1);
             const travel = easeInOutSine(travelT);
-            const point = cubicBezier(start, controlOne, controlTwo, target, travel);
+            const markerTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
+            landingTarget = t >= 0.94 ? markerTarget : {
+                x: lerp(landingTarget.x, markerTarget.x, 0.16),
+                y: lerp(landingTarget.y, markerTarget.y, 0.16)
+            };
+            glow.style.setProperty('--target-x', `${landingTarget.x}px`);
+            glow.style.setProperty('--target-y', `${landingTarget.y}px`);
+
+            const distanceX = landingTarget.x - start.x;
+            const direction = distanceX < 0 ? -1 : 1;
+            const lift = Math.min(285, Math.max(150, Math.abs(distanceX) * 0.34));
+            const sweep = Math.min(95, Math.max(42, Math.abs(distanceX) * 0.13));
+            const controlOne = {
+                x: start.x + (distanceX * 0.06) - (direction * sweep),
+                y: Math.min(start.y, landingTarget.y) - lift
+            };
+            const controlTwo = {
+                x: start.x + (distanceX * 0.66) + (direction * sweep),
+                y: landingTarget.y - (lift * 0.82)
+            };
+            const point = cubicBezier(start, controlOne, controlTwo, landingTarget, travel);
 
             const bobFade = Math.sin(Math.PI * travelT);
-            const landingFade = Math.pow(1 - travelT, 0.85);
-            const windX = Math.sin(travelT * Math.PI * 2.05) * 16 * bobFade * landingFade;
-            const windY = (
-                Math.sin(travelT * Math.PI * 3.15 + 0.8) * 13 +
-                Math.sin(travelT * Math.PI * 1.35) * 8
+            const landingFade = Math.pow(1 - travelT, 1.08);
+            const windX = (
+                Math.sin(travelT * Math.PI * 2.4) * 24 +
+                Math.sin(travelT * Math.PI * 4.1 + 0.7) * 9
             ) * bobFade * landingFade;
-            const x = travelT >= 1 ? target.x : point.x + windX;
-            const y = travelT >= 1 ? target.y : point.y + windY;
+            const windY = (
+                Math.sin(travelT * Math.PI * 3.4 + 0.65) * 24 +
+                Math.sin(travelT * Math.PI * 1.45) * 18
+            ) * bobFade * landingFade;
+            const x = travelT >= 1 ? landingTarget.x : point.x + windX;
+            const y = travelT >= 1 ? landingTarget.y : point.y + windY;
 
             let scale;
             if (t < inflationEnd) {
@@ -725,25 +741,46 @@ window.openProjectDetail = openProjectDetail;
 
             if (!settled && t >= 0.96) {
                 settled = true;
+                landingTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
+                glow.style.setProperty('--target-x', `${landingTarget.x}px`);
+                glow.style.setProperty('--target-y', `${landingTarget.y}px`);
+                settleOffset = measureStopFaceOffset(stopSign, landingTarget, 0.16);
                 settlePineStopMarker(project);
                 glow.classList.add('burst');
             }
 
             stopSign.style.opacity = String(Math.max(0, Math.min(1, opacity)));
             stopSign.style.transform = settled
-                ? `translate(${target.x}px, ${target.y}px) translate(-50%, -50%) scale(0.16) rotate(0deg)`
+                ? getCenteredStopTransform(landingTarget, 0.16, settleOffset)
                 : `translate(${x}px, ${y}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
 
             if (t < 1) {
                 requestAnimationFrame(frame);
             } else {
                 stopSign.style.opacity = '0';
-                stopSign.style.transform = `translate(${target.x}px, ${target.y}px) translate(-50%, -50%) scale(0.16) rotate(0deg)`;
+                landingTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
+                settleOffset = measureStopFaceOffset(stopSign, landingTarget, 0.16);
+                stopSign.style.transform = getCenteredStopTransform(landingTarget, 0.16, settleOffset);
                 setTimeout(() => layer.remove(), 1200);
             }
         }
 
         requestAnimationFrame(frame);
+    }
+
+    function getCenteredStopTransform(target, scale, offset) {
+        return `translate(${target.x + offset.x}px, ${target.y + offset.y}px) translate(-50%, -50%) scale(${scale}) rotate(0deg)`;
+    }
+
+    function measureStopFaceOffset(stopSign, target, scale) {
+        stopSign.style.transform = getCenteredStopTransform(target, scale, { x: 0, y: 0 });
+
+        const face = stopSign.querySelector('.pine-stop-face') || stopSign;
+        const rect = face.getBoundingClientRect();
+        return {
+            x: target.x - (rect.left + (rect.width / 2)),
+            y: target.y - (rect.top + (rect.height / 2))
+        };
     }
 
     function cubicBezier(p0, p1, p2, p3, t) {
@@ -798,7 +835,8 @@ window.openProjectDetail = openProjectDetail;
         const marker = markers.find(m => m.projectId === project.id);
         if (!marker || !marker._icon) return null;
 
-        const rect = marker._icon.getBoundingClientRect();
+        const targetElement = marker._icon.querySelector('.marker') || marker._icon;
+        const rect = targetElement.getBoundingClientRect();
         return {
             x: rect.left + (rect.width / 2),
             y: rect.top + (rect.height / 2)
