@@ -660,19 +660,19 @@ window.openProjectDetail = openProjectDetail;
         document.body.appendChild(layer);
 
         const midA = {
-            x: start.x + ((target.x - start.x) * 0.24) - 36,
-            y: Math.min(start.y, target.y) - 135
+            x: start.x + ((target.x - start.x) * 0.24),
+            y: Math.min(start.y, target.y) - 128
         };
         const midB = {
-            x: start.x + ((target.x - start.x) * 0.48) + 34,
-            y: Math.min(start.y, target.y) - 98
+            x: start.x + ((target.x - start.x) * 0.46),
+            y: Math.min(start.y, target.y) - 112
         };
         const midC = {
-            x: start.x + ((target.x - start.x) * 0.68) - 24,
-            y: target.y - 92
+            x: start.x + ((target.x - start.x) * 0.68),
+            y: target.y - 82
         };
         const midD = {
-            x: start.x + ((target.x - start.x) * 0.84) + 14,
+            x: start.x + ((target.x - start.x) * 0.86),
             y: target.y - 48
         };
 
