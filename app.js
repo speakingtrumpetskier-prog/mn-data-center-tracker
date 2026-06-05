@@ -630,7 +630,7 @@ window.openProjectDetail = openProjectDetail;
 
         setTimeout(() => {
             pineEggActive = false;
-        }, 14000);
+        }, 17000);
     }
 
     function popPineMarker(project) {
@@ -663,25 +663,39 @@ window.openProjectDetail = openProjectDetail;
         stopSign.className = 'pine-stop-sign';
         stopSign.innerHTML = '<div class="pine-stop-face">STOP</div>';
 
+        const pump = document.createElement('div');
+        pump.className = 'pine-air-pump';
+        pump.innerHTML = `
+            <div class="pine-pump-handle"></div>
+            <div class="pine-pump-post">!</div>
+            <div class="pine-pump-base"></div>
+        `;
+        pump.style.transform = `translate(${start.x}px, ${start.y}px) translate(-50%, -100%)`;
+        triggerButton.classList.add('pine-pump-active');
+
         const glow = document.createElement('div');
         glow.className = 'pine-settle-glow';
 
         glow.style.setProperty('--target-x', `${target.x}px`);
         glow.style.setProperty('--target-y', `${target.y}px`);
 
+        layer.appendChild(pump);
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        animateStopSignFlight({ stopSign, glow, layer, project, start, target });
+        animateStopSignFlight({ stopSign, pump, triggerButton, glow, layer, project, start, target });
     }
 
-    function animateStopSignFlight({ stopSign, glow, layer, project, start, target }) {
-        const duration = 12800;
-        const inflationEnd = 0.3;
-        const travelStart = 0.2;
+    function animateStopSignFlight({ stopSign, pump, triggerButton, glow, layer, project, start, target }) {
+        const duration = 15000;
+        const pumpSeatEnd = 0.075;
+        const pumpEnd = 0.3;
+        const travelStart = 0.36;
+        const shrinkStart = 0.42;
         const balloonMaxScale = 1.34;
         let landingTarget = target;
         let settled = false;
+        let pumpReleased = false;
         let startTime = null;
 
         function frame(now) {
@@ -724,23 +738,38 @@ window.openProjectDetail = openProjectDetail;
             const x = travelT >= 1 ? landingTarget.x : point.x + windX;
             const y = travelT >= 1 ? landingTarget.y : point.y + windY;
 
+            const pumpT = clamp((t - pumpSeatEnd) / (pumpEnd - pumpSeatEnd), 0, 1);
+            const pumpDown = Math.pow(Math.sin(pumpT * Math.PI * 4), 2) * (1 - (pumpT * 0.16));
+            pump.style.opacity = String(clamp((travelStart + 0.05 - t) / 0.08, 0, 1));
+            pump.style.setProperty('--pump-down', `${pumpDown * 13}px`);
+            pump.style.setProperty('--pump-squash', `${1 - (pumpDown * 0.08)}`);
+            if (!pumpReleased && t >= travelStart + 0.05) {
+                pumpReleased = true;
+                triggerButton.classList.remove('pine-pump-active');
+            }
+
             let scale;
-            if (t < inflationEnd) {
-                const inflate = easeOutCubic(t / inflationEnd);
-                const breath = Math.sin(inflate * Math.PI) * 0.025;
-                scale = lerp(0.04, balloonMaxScale, inflate) + breath;
+            if (t < pumpSeatEnd) {
+                scale = 0.075;
+            } else if (t < pumpEnd) {
+                const inflate = getPumpInflateProgress(pumpT);
+                const breath = Math.sin(pumpT * Math.PI * 8) * 0.018 * (1 - pumpT);
+                scale = lerp(0.09, balloonMaxScale, inflate) + breath;
+            } else if (t < shrinkStart) {
+                scale = balloonMaxScale;
             } else {
-                const shrink = easeInOutSine((t - inflationEnd) / (1 - inflationEnd));
+                const shrink = easeInOutSine((t - shrinkStart) / (1 - shrinkStart));
                 scale = lerp(balloonMaxScale, 0.16, shrink);
             }
 
             const finalApproach = easeInOutSine(clamp((t - 0.78) / 0.18, 0, 1));
             const rotation = finalApproach >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65)) * (1 - finalApproach);
-            const anchorY = t < inflationEnd ? -88 : lerp(-88, -50, easeInOutSine((t - inflationEnd) / (1 - inflationEnd)));
+            const anchorY = t < shrinkStart ? -88 : lerp(-88, -50, easeInOutSine((t - shrinkStart) / (1 - shrinkStart)));
             const opacity = t < 0.02 ? t / 0.02 : 1;
+            const seatedY = t < pumpSeatEnd ? lerp(start.y - 58, start.y, easeInOutSine(t / pumpSeatEnd)) : y;
             const movingTransform = finalApproach > 0
                 ? getCenteredStopTransform({ x, y }, scale, measureStopFaceOffset(stopSign, { x, y }, scale), rotation)
-                : `translate(${x}px, ${y}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
+                : `translate(${x}px, ${seatedY}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
 
             if (!settled && t >= 0.995) {
                 settled = true;
@@ -762,11 +791,20 @@ window.openProjectDetail = openProjectDetail;
                 stopSign.style.opacity = '0';
                 landingTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
                 stopSign.style.transform = getCenteredStopTransform(landingTarget, 0.16, measureStopFaceOffset(stopSign, landingTarget, 0.16), 0);
+                triggerButton.classList.remove('pine-pump-active');
                 setTimeout(() => layer.remove(), 1200);
             }
         }
 
         requestAnimationFrame(frame);
+    }
+
+    function getPumpInflateProgress(progress) {
+        const pumps = 4;
+        const step = Math.min(pumps - 1, Math.floor(progress * pumps));
+        const local = (progress * pumps) - step;
+        const easedLocal = easeOutCubic(clamp((local - 0.22) / 0.62, 0, 1));
+        return Math.min(1, (step + easedLocal) / pumps);
     }
 
     function getCenteredStopTransform(target, scale, offset, rotation = 0) {
