@@ -1149,7 +1149,7 @@
             height: 10rem;
             opacity: 0;
             transform: translate(var(--start-x), var(--start-y)) translate(-50%, -88%) scale(0.04) rotate(-4deg);
-            animation: pine-stop-float 8.2s linear forwards;
+            animation: pine-stop-float 8.2s cubic-bezier(0.36, 0, 0.22, 1) forwards;
             transform-origin: center 88%;
         }
 
@@ -1234,27 +1234,27 @@
             }
             30% {
                 opacity: 1;
-                transform: translate(calc(var(--start-x) - 4px), calc(var(--start-y) - 12px)) translate(-50%, -88%) scale(1.36) rotate(2deg);
+                transform: translate(calc(var(--start-x) - 4px), calc(var(--start-y) - 12px)) translate(-50%, -88%) scale(1.36) rotate(1deg);
             }
             38% {
                 opacity: 1;
-                transform: translate(calc(var(--start-x) + 7px), calc(var(--start-y) - 16px)) translate(-50%, -88%) scale(1.24) rotate(-3deg);
+                transform: translate(calc(var(--start-x) + 2px), calc(var(--start-y) - 16px)) translate(-50%, -88%) scale(1.24) rotate(-2deg);
             }
             48% {
                 opacity: 1;
-                transform: translate(var(--mid-a-x), var(--mid-a-y)) translate(-50%, -56%) scale(1) rotate(3deg);
+                transform: translate(var(--mid-a-x), var(--mid-a-y)) translate(-50%, -56%) scale(1) rotate(2deg);
             }
             60% {
                 opacity: 1;
-                transform: translate(var(--mid-b-x), var(--mid-b-y)) translate(-50%, -54%) scale(0.8) rotate(-4deg);
+                transform: translate(var(--mid-b-x), var(--mid-b-y)) translate(-50%, -54%) scale(0.8) rotate(-2deg);
             }
             72% {
                 opacity: 1;
-                transform: translate(var(--mid-c-x), var(--mid-c-y)) translate(-50%, -52%) scale(0.58) rotate(3deg);
+                transform: translate(var(--mid-c-x), var(--mid-c-y)) translate(-50%, -52%) scale(0.58) rotate(1.5deg);
             }
             86% {
                 opacity: 1;
-                transform: translate(var(--mid-d-x), var(--mid-d-y)) translate(-50%, -50%) scale(0.38) rotate(-2deg);
+                transform: translate(var(--mid-d-x), var(--mid-d-y)) translate(-50%, -50%) scale(0.38) rotate(-1deg);
             }
             94% {
                 opacity: 1;
