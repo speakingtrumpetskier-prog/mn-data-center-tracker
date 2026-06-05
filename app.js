@@ -799,7 +799,7 @@ window.openProjectDetail = openProjectDetail;
         const pumps = 4;
         const step = Math.min(pumps - 1, Math.floor(progress * pumps));
         const local = (progress * pumps) - step;
-        const easedLocal = easeOutCubic(clamp((local - 0.22) / 0.62, 0, 1));
+        const easedLocal = easeOutCubic(clamp((local - 0.34) / 0.52, 0, 1));
         return Math.min(1, (step + easedLocal) / pumps);
     }
 
