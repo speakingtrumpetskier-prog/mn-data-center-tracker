@@ -685,6 +685,8 @@ window.openProjectDetail = openProjectDetail;
         const pumpEnd = 0.3;
         const travelStart = 0.36;
         const shrinkStart = 0.42;
+        const anchorSettleEnd = 0.78;
+        const finalApproachStart = 0.78;
         const balloonMaxScale = 1.34;
         let landingTarget = target;
         let settled = false;
@@ -756,14 +758,23 @@ window.openProjectDetail = openProjectDetail;
                 scale = lerp(balloonMaxScale, 0.16, shrink);
             }
 
-            const finalApproach = easeInOutSine(clamp((t - 0.78) / 0.18, 0, 1));
+            const finalApproach = easeInOutSine(clamp((t - finalApproachStart) / 0.18, 0, 1));
             const rotation = finalApproach >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65)) * (1 - finalApproach);
-            const anchorY = t < shrinkStart ? -88 : lerp(-88, -50, easeInOutSine((t - shrinkStart) / (1 - shrinkStart)));
+            const anchorSettle = clamp((t - shrinkStart) / (anchorSettleEnd - shrinkStart), 0, 1);
+            const anchorY = t < shrinkStart ? -88 : lerp(-88, -50, easeInOutSine(anchorSettle));
             const opacity = t < 0.02 ? t / 0.02 : 1;
             const seatedY = t < pumpSeatEnd ? lerp(start.y - 58, start.y, easeInOutSine(t / pumpSeatEnd)) : y;
-            const movingTransform = finalApproach > 0
-                ? getCenteredStopTransform({ x, y }, scale, measureStopFaceOffset(stopSign, { x, y }, scale), rotation)
-                : `translate(${x}px, ${seatedY}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
+            const anchoredTransform = `translate(${x}px, ${seatedY}px) translate(-50%, ${anchorY}%) scale(${scale}) rotate(${rotation}deg)`;
+            let movingTransform = anchoredTransform;
+            if (finalApproach > 0) {
+                stopSign.style.transform = anchoredTransform;
+                const anchoredCenter = getStopFaceCenter(stopSign);
+                const correctedCenter = {
+                    x: lerp(anchoredCenter.x, x, finalApproach),
+                    y: lerp(anchoredCenter.y, y, finalApproach)
+                };
+                movingTransform = getCenteredStopTransform(correctedCenter, scale, measureStopFaceOffset(stopSign, correctedCenter, scale), rotation);
+            }
 
             if (!settled && t >= 0.995) {
                 settled = true;
@@ -815,6 +826,15 @@ window.openProjectDetail = openProjectDetail;
         return {
             x: target.x - (rect.left + (rect.width / 2)),
             y: target.y - (rect.top + (rect.height / 2))
+        };
+    }
+
+    function getStopFaceCenter(stopSign) {
+        const face = stopSign.querySelector('.pine-stop-face') || stopSign;
+        const rect = face.getBoundingClientRect();
+        return {
+            x: rect.left + (rect.width / 2),
+            y: rect.top + (rect.height / 2)
         };
     }
 
