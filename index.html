@@ -1133,12 +1133,75 @@
             background: rgba(45, 106, 79, 0.14);
         }
 
+        .pine-injunction-btn.pine-pump-active {
+            color: transparent;
+            border-color: rgba(45, 106, 79, 0.38);
+            background: rgba(45, 106, 79, 0.12);
+        }
+
         .pine-stop-layer {
             position: fixed;
             inset: 0;
             z-index: 9999;
             pointer-events: none;
             overflow: hidden;
+        }
+
+        .pine-air-pump {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.35rem;
+            height: 3.15rem;
+            opacity: 1;
+            transform-origin: center bottom;
+            transition: opacity 0.18s ease;
+            will-change: transform, opacity;
+        }
+
+        .pine-pump-handle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 1.55rem;
+            height: 0.42rem;
+            border-radius: 999px;
+            background: #1b4332;
+            box-shadow: 0 0.12rem 0 rgba(27, 67, 50, 0.2);
+            transform: translate(-50%, var(--pump-down, 0px));
+        }
+
+        .pine-pump-post {
+            position: absolute;
+            left: 50%;
+            top: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.05rem;
+            height: 2.15rem;
+            color: #fff;
+            background: #2d6a4f;
+            border: 0.12rem solid #1b4332;
+            border-radius: 999px 999px 0.38rem 0.38rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1;
+            transform: translateX(-50%) scaleY(var(--pump-squash, 1));
+            transform-origin: center bottom;
+        }
+
+        .pine-pump-base {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 2.25rem;
+            height: 0.36rem;
+            border-radius: 999px;
+            background: #1b4332;
+            transform: translateX(-50%);
+            box-shadow: 0 0.2rem 0.45rem rgba(26, 26, 26, 0.18);
         }
 
         .pine-stop-sign {
