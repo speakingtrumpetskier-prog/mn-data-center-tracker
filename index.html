@@ -1151,13 +1151,6 @@
             overflow: hidden;
         }
 
-        .pine-arrow-stage {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
         .pine-stop-sign {
             position: absolute;
             left: 0;
@@ -1168,7 +1161,6 @@
             transform: translate(0, 0) translate(-50%, -88%) scale(0.04) rotate(-4deg);
             transform-origin: center 88%;
             will-change: transform, opacity;
-            z-index: 2;
         }
 
         .pine-stop-sign::after {
@@ -1216,163 +1208,6 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.22);
             transform: rotate(-26deg);
-        }
-
-        .pine-google-archer {
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.92);
-            will-change: transform, opacity;
-        }
-
-        .pine-google-archer-right {
-            flex-direction: row-reverse;
-        }
-
-        .pine-google-archer-right .pine-bow {
-            transform: scaleX(-1);
-        }
-
-        .pine-google-logo {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 0.42rem;
-            background: #fff;
-            box-shadow: 0 0.24rem 0.65rem rgba(26, 26, 26, 0.18);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .pine-logo-google {
-            color: #4285f4;
-            border: 0.14rem solid #34a853;
-            box-shadow:
-                inset 0.42rem 0 0 rgba(251, 188, 5, 0.52),
-                inset -0.42rem 0 0 rgba(234, 67, 53, 0.48),
-                0 0.24rem 0.65rem rgba(26, 26, 26, 0.18);
-        }
-
-        .pine-logo-gmail {
-            color: #b3261e;
-            border: 0.13rem solid #d93025;
-        }
-
-        .pine-logo-gmail::before,
-        .pine-logo-gmail::after {
-            content: '';
-            position: absolute;
-            top: 0.46rem;
-            width: 0.78rem;
-            height: 0.13rem;
-            background: #d93025;
-        }
-
-        .pine-logo-gmail::before {
-            left: 0.36rem;
-            transform: rotate(34deg);
-        }
-
-        .pine-logo-gmail::after {
-            right: 0.36rem;
-            transform: rotate(-34deg);
-        }
-
-        .pine-logo-youtube {
-            width: 2.25rem;
-            color: #fff;
-            background: #ff0033;
-            border-radius: 0.55rem;
-        }
-
-        .pine-logo-youtube::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 0.38rem solid transparent;
-            border-bottom: 0.38rem solid transparent;
-            border-left: 0.62rem solid #fff;
-            transform: translateX(0.06rem);
-        }
-
-        .pine-bow {
-            position: relative;
-            display: inline-block;
-            width: 1.15rem;
-            height: 2.2rem;
-            border: 0.13rem solid currentColor;
-            border-left: 0;
-            border-radius: 0 999px 999px 0;
-            color: #4b5563;
-        }
-
-        .pine-bow::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 1.05rem;
-            border-top: 0.08rem solid currentColor;
-            transform: translateY(-50%);
-            opacity: 0.55;
-        }
-
-        .pine-arrow {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 5.7rem;
-            height: 0.85rem;
-            opacity: 0;
-            transform-origin: 100% 50%;
-            will-change: transform, opacity;
-        }
-
-        .pine-arrow::before {
-            content: '';
-            position: absolute;
-            right: 0.55rem;
-            top: 50%;
-            width: 4.9rem;
-            height: 0.15rem;
-            background: currentColor;
-            border-radius: 999px;
-            transform: translateY(-50%);
-            box-shadow: 0 0.16rem 0.34rem rgba(26, 26, 26, 0.18);
-        }
-
-        .pine-arrow::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border-top: 0.34rem solid transparent;
-            border-bottom: 0.34rem solid transparent;
-            border-left: 0.72rem solid currentColor;
-            transform: translateY(-50%);
-        }
-
-        .pine-arrow-youtube {
-            color: #ff0033;
-        }
-
-        .pine-arrow-gmail {
-            color: #d93025;
-        }
-
-        .pine-arrow-google {
-            color: #4285f4;
         }
 
         .marker-wrapper.injunction-pop .marker {

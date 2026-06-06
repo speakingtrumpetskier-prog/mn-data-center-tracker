@@ -630,7 +630,7 @@ window.openProjectDetail = openProjectDetail;
 
         setTimeout(() => {
             pineEggActive = false;
-        }, 22000);
+        }, 17000);
     }
 
     function popPineMarker(project) {
@@ -663,10 +663,6 @@ window.openProjectDetail = openProjectDetail;
         stopSign.className = 'pine-stop-sign';
         stopSign.innerHTML = '<div class="pine-stop-face">STOP</div>';
 
-        const arrowStage = document.createElement('div');
-        arrowStage.className = 'pine-arrow-stage';
-        const arrowAttacks = createPineArrowAttacks(arrowStage);
-
         triggerButton.classList.add('pine-pump-active');
         triggerButton.style.setProperty('--pump-down', '0px');
         triggerButton.style.setProperty('--pump-squash', '1');
@@ -677,21 +673,20 @@ window.openProjectDetail = openProjectDetail;
         glow.style.setProperty('--target-x', `${target.x}px`);
         glow.style.setProperty('--target-y', `${target.y}px`);
 
-        layer.appendChild(arrowStage);
         layer.appendChild(stopSign);
         layer.appendChild(glow);
 
-        animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target, arrowAttacks });
+        animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target });
     }
 
-    function animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target, arrowAttacks }) {
-        const duration = 19000;
-        const pumpSeatEnd = 0.059;
-        const pumpEnd = 0.237;
-        const travelStart = 0.3;
-        const shrinkStart = 0.68;
-        const anchorSettleEnd = 0.86;
-        const finalApproachStart = 0.86;
+    function animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target }) {
+        const duration = 15000;
+        const pumpSeatEnd = 0.075;
+        const pumpEnd = 0.3;
+        const travelStart = 0.36;
+        const shrinkStart = 0.42;
+        const anchorSettleEnd = 0.78;
+        const finalApproachStart = 0.78;
         const balloonMaxScale = 1.34;
         let landingTarget = target;
         let settled = false;
@@ -735,12 +730,8 @@ window.openProjectDetail = openProjectDetail;
                 Math.sin(travelT * Math.PI * 3.4 + 0.65) * 24 +
                 Math.sin(travelT * Math.PI * 1.45) * 18
             ) * bobFade * landingFade;
-            const baseX = travelT >= 1 ? landingTarget.x : point.x + windX;
-            const baseY = travelT >= 1 ? landingTarget.y : point.y + windY;
-            const dodgeGust = getPineDodgeGust(t, direction);
-            const x = travelT >= 1 ? landingTarget.x : baseX + dodgeGust.x;
-            const y = travelT >= 1 ? landingTarget.y : baseY + dodgeGust.y;
-            renderPineArrowAttacks(arrowAttacks, t, { x: baseX, y: baseY }, { x, y }, direction);
+            const x = travelT >= 1 ? landingTarget.x : point.x + windX;
+            const y = travelT >= 1 ? landingTarget.y : point.y + windY;
 
             const pumpT = clamp((t - pumpSeatEnd) / (pumpEnd - pumpSeatEnd), 0, 1);
             const pumpDown = Math.pow(Math.sin(pumpT * Math.PI * 4), 2) * (1 - (pumpT * 0.16));
@@ -768,10 +759,7 @@ window.openProjectDetail = openProjectDetail;
             }
 
             const finalApproach = easeInOutSine(clamp((t - finalApproachStart) / 0.18, 0, 1));
-            const rotation = finalApproach >= 1 ? 0 : (
-                Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65)) +
-                dodgeGust.tilt
-            ) * (1 - finalApproach);
+            const rotation = finalApproach >= 1 ? 0 : Math.sin(travelT * Math.PI * 2.4) * 2.2 * (1 - (travelT * 0.65)) * (1 - finalApproach);
             const anchorSettle = clamp((t - shrinkStart) / (anchorSettleEnd - shrinkStart), 0, 1);
             const anchorY = t < shrinkStart ? -88 : lerp(-88, -50, easeInOutSine(anchorSettle));
             const opacity = t < 0.02 ? t / 0.02 : 1;
@@ -818,96 +806,6 @@ window.openProjectDetail = openProjectDetail;
         requestAnimationFrame(frame);
     }
 
-    function createPineArrowAttacks(stage) {
-        return [
-            { theme: 'youtube', label: 'YT', side: 'right', start: 0.405, end: 0.535, originY: -84, targetX: 8, targetY: -6 },
-            { theme: 'gmail', label: 'M', side: 'left', start: 0.51, end: 0.64, originY: 72, targetX: -6, targetY: 8 },
-            { theme: 'google', label: 'G', side: 'right', start: 0.605, end: 0.735, originY: -36, targetX: 10, targetY: -4 }
-        ].map(spec => {
-            const archer = document.createElement('div');
-            archer.className = `pine-google-archer pine-google-archer-${spec.theme} pine-google-archer-${spec.side}`;
-            archer.innerHTML = `
-                <span class="pine-google-logo pine-logo-${spec.theme}">${spec.theme === 'youtube' ? '' : spec.label}</span>
-                <span class="pine-bow"></span>
-            `;
-
-            const arrow = document.createElement('div');
-            arrow.className = `pine-arrow pine-arrow-${spec.theme}`;
-
-            stage.appendChild(archer);
-            stage.appendChild(arrow);
-
-            return { ...spec, archer, arrow, aim: null };
-        });
-    }
-
-    function getPineDodgeGust(t, direction) {
-        const gusts = [
-            { start: 0.395, end: 0.535, x: -direction * 54, y: -62, tilt: -direction * 4.2 },
-            { start: 0.505, end: 0.645, x: direction * 64, y: 46, tilt: direction * 3.8 },
-            { start: 0.605, end: 0.745, x: -direction * 48, y: -42, tilt: -direction * 3.4 }
-        ];
-
-        return gusts.reduce((total, gust) => {
-            const pulse = smoothPulse(t, gust.start, gust.end);
-            total.x += gust.x * pulse;
-            total.y += gust.y * pulse;
-            total.tilt += gust.tilt * pulse;
-            return total;
-        }, { x: 0, y: 0, tilt: 0 });
-    }
-
-    function renderPineArrowAttacks(attacks, t, basePoint, balloonPoint, direction) {
-        if (!attacks) return;
-
-        attacks.forEach(attack => {
-            const armStart = attack.start - 0.035;
-            const fadeEnd = attack.end + 0.055;
-            const isVisible = t >= armStart && t <= fadeEnd;
-
-            if (!isVisible) {
-                attack.archer.style.opacity = '0';
-                attack.arrow.style.opacity = '0';
-                return;
-            }
-
-            if (!attack.aim && t >= armStart) {
-                const fromRight = attack.side === 'right';
-                const origin = {
-                    x: fromRight ? window.innerWidth - 72 : 72,
-                    y: basePoint.y + attack.originY
-                };
-                const target = {
-                    x: basePoint.x + (attack.targetX * direction),
-                    y: basePoint.y + attack.targetY
-                };
-                attack.aim = { origin, target };
-            }
-
-            if (!attack.aim) return;
-
-            const { origin, target } = attack.aim;
-            const archerNudge = smoothPulse(t, attack.start, attack.start + 0.05) * 9;
-            const archerOpacity = t < attack.end ? 0.92 : 0.92 * (1 - clamp((t - attack.end) / 0.055, 0, 1));
-            const archerScale = 0.9 + (smoothPulse(t, armStart, attack.start + 0.06) * 0.12);
-            const archerDirection = attack.side === 'right' ? -1 : 1;
-            attack.archer.style.opacity = String(archerOpacity);
-            attack.archer.style.transform = `translate(${origin.x + (archerDirection * archerNudge)}px, ${origin.y}px) translate(-50%, -50%) scale(${archerScale})`;
-
-            const arrowT = clamp((t - attack.start) / (attack.end - attack.start), 0, 1);
-            const arrowEase = easeInOutSine(arrowT);
-            const arrowX = lerp(origin.x, target.x, arrowEase);
-            const arrowY = lerp(origin.y, target.y, arrowEase);
-            const angle = Math.atan2(target.y - origin.y, target.x - origin.x);
-            const arrowFade = arrowT < 1
-                ? easeOutCubic(clamp(arrowT / 0.12, 0, 1))
-                : 1 - clamp((t - attack.end) / 0.055, 0, 1);
-            const nearMiss = Math.max(0, 1 - (distanceBetween({ x: arrowX, y: arrowY }, balloonPoint) / 130));
-            attack.arrow.style.opacity = String(Math.max(0, Math.min(0.96, arrowFade * (0.72 + (nearMiss * 0.24)))));
-            attack.arrow.style.transform = `translate(${arrowX}px, ${arrowY}px) translate(-100%, -50%) rotate(${angle}rad)`;
-        });
-    }
-
     function getPumpInflateProgress(progress) {
         const pumps = 4;
         const step = Math.min(pumps - 1, Math.floor(progress * pumps));
@@ -952,15 +850,6 @@ window.openProjectDetail = openProjectDetail;
 
     function clamp(value, min, max) {
         return Math.max(min, Math.min(max, value));
-    }
-
-    function smoothPulse(value, start, end) {
-        const progress = clamp((value - start) / (end - start), 0, 1);
-        return Math.pow(Math.sin(progress * Math.PI), 2);
-    }
-
-    function distanceBetween(a, b) {
-        return Math.hypot(a.x - b.x, a.y - b.y);
     }
 
     function lerp(start, end, t) {
