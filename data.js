@@ -63,24 +63,28 @@ const projectData = [
     {
         id: 2,
         name: "Hermantown Data Center",
-        status: "in_litigation",
-        secondaryStatus: "review_complete",
+        status: "in_review",
+        secondaryStatus: "in_litigation",
+        tertiaryStatus: "review_complete",
         city: "Hermantown",
         county: "St. Louis",
         lat: 46.7730,
         lng: -92.2950,
         acres: 278,
         sqft: 1800000,
-        currentStatus: "Google-backed data center campus undergoing updated AUAR scoping. Lawsuit is on hold while city completes updated AUAR; project proposer has indicated it will not move forward while that review is underway.",
+        currentStatus: "Google-backed data center campus is in updated AUAR review. City Council accepted the updated scoping document May 18, 2026, after tabling Google tax-abatement and development agreements May 4. A separate resident lawsuit was filed Apr 29, while the MCEA case remains on hold during the updated AUAR.",
         notes: "Google confirmed as company behind proposed Hermantown data center in March 2026. City and Google agreed to update the AUAR with greater specificity; updated study area covers 26 parcels totaling approximately 278 acres in southwest Hermantown, smaller than the initial AUAR adopted Oct 6, 2025. Scoping comment period opened Mar 31 and closed Apr 30, 2026. Proposed project would require at least 700 MW of new energy resources.",
         litigation: {
             active: true,
             caseNumber: "69DU-CV-25-3448",
             court: "St. Louis County District Court",
-            status: "Lawsuit on hold while updated AUAR proceeds",
+            status: "MCEA lawsuit on hold while updated AUAR proceeds; separate resident lawsuit filed Apr 29, 2026",
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-05-18", event: "City Council accepted updated scoping document and authorized work toward draft AUAR" },
+            { date: "2026-05-04", event: "City Council tabled Google tax-abatement and development agreements" },
+            { date: "2026-04-29", event: "Hermantown residents filed separate lawsuit over city actions related to the proposed data center" },
             { date: "2026-04-30", event: "Updated AUAR scoping comment period closed" },
             { date: "2026-03-31", event: "City opened updated AUAR scoping comment period for Google data center campus" },
             { date: "2026-03-16", event: "City Council approved third-party technical review contract for updated AUAR" },
@@ -95,13 +99,16 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific AUAR scoping opened Mar 31, 2026" },
-            localZoning: { status: "in_progress", detail: "Applications paused while updated AUAR proceeds" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific AUAR scoping opened Mar 31, 2026; scoping document accepted May 18, 2026" },
+            localZoning: { status: "in_progress", detail: "Applications paused while updated AUAR proceeds; tax-abatement and development agreements tabled May 4, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Google/Minnesota Power announcement references at least 700 MW of new energy resources" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
+            { name: "KAXE - May Agreements and AUAR Update", url: "https://www.kaxe.org/local-news/2026-05-20/more-details-emerge-as-google-hermantown-work-out-data-center-agreements" },
+            { name: "MPR - Resident Lawsuit", url: "https://www.mprnews.org/story/2026/04/29/hermantown-residents-sue-to-block-proposed-google-data-center" },
+            { name: "MPR - Vote Tabled", url: "https://www.mprnews.org/story/2026/05/05/hermantown-google-data-center-vote-tabled" },
             { name: "City AUAR Scoping Release", url: "https://hermantownmn.com/community/community-highlights/scoping-document-comment-period-opens-for-google-data-center/" },
             { name: "MCEA Legal Update", url: "https://www.mncenter.org/legal-updates-mceas-data-center-cases" },
             { name: "KAXE - Google Confirmed", url: "https://www.kaxe.org/local-news/2026-03-03/google-proposed-data-center-hermantown-minnesota-power" },
@@ -111,7 +118,7 @@ const projectData = [
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-06-08"
     },
     {
         id: 3,
