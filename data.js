@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: June 4, 2026
+// Last updated: June 15, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -23,30 +23,31 @@ const projectData = [
     {
         id: 1,
         name: "Archer Datacenters Faribault Campus",
-        status: "in_litigation",
-        secondaryStatus: "review_complete",
+        status: "in_review",
+        secondaryStatus: "in_litigation",
         city: "Faribault",
         county: "Rice",
         lat: 44.3671,
         lng: -93.2845,
         acres: 84.3,
         sqft: 500000,
-        currentStatus: "Oral argument heard in MN Court of Appeals (A25-1617); awaiting decision. Appeal challenges adequacy of EAW and negative EIS declaration.",
+        currentStatus: "Minnesota Court of Appeals reversed the city's negative declaration on June 8, 2026, and remanded the project for further environmental review. The appeal remains active while the city revises the review.",
         notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. Oral argument completed May 2026.",
         litigation: {
             active: true,
             caseNumber: "A25-1617",
             court: "MN Court of Appeals",
-            status: "Oral argument heard; awaiting decision",
+            status: "Court of Appeals reversed negative declaration and remanded project for further environmental review",
             filedDate: "2025-10-02"
         },
         timeline: [
+            { date: "2026-06-08", event: "Minnesota Court of Appeals reversed the negative declaration and remanded the project for further environmental review" },
             { date: "2026-05", event: "Oral argument heard in MN Court of Appeals" },
             { date: "2025-10-02", event: "Appeal filed in Court of Appeals" },
             { date: "2025-09-02", event: "Negative EIS declaration issued" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "EAW", detail: "Negative declaration - no EIS needed; under appeal" },
+            environmentalReview: { status: "in_progress", type: "EAW", detail: "Court of Appeals reversed the negative declaration June 8, 2026, and sent the project back for further environmental review" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
@@ -56,9 +57,11 @@ const projectData = [
             { name: "EQB Monitor Notice", url: "https://content.govdelivery.com/accounts/MNEQB/bulletins/3efc446" },
             { name: "MCEA Appeal Brief (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Brief-Appellant.pdf" },
             { name: "City of Faribault Alert", url: "https://www.ci.faribault.mn.us/CivicAlerts.asp?AID=580&ARC=1452" },
+            { name: "KEYC - City Will Revise Environmental Review", url: "https://www.keyc.com/2026/06/10/city-faribault-revise-environmental-review-after-minnesota-court-appeals-case/" },
+            { name: "KAAL - Court Orders Further Study", url: "https://www.kaaltv.com/news/minnesota-court-of-appeals-rules-full-impact-study-is-needed-for-proposed-faribault-data-center/" },
             { name: "SouthernMinn - Lawsuit on Hold Coverage", url: "https://www.southernminn.com/the_kenyon_leader/news/lawsuit-resident-concerns-put-faribault-data-center-on-hold/article_4340814d-1eb0-4a35-a9d5-6aade04eafa2.html" }
         ],
-        lastUpdated: "2026-05-27"
+        lastUpdated: "2026-06-15"
     },
     {
         id: 2,
@@ -72,7 +75,7 @@ const projectData = [
         lng: -92.2950,
         acres: 278,
         sqft: 1800000,
-        currentStatus: "Google-backed data center campus is in updated AUAR review. City Council accepted the updated scoping document May 18, 2026, after tabling Google tax-abatement and development agreements May 4. A separate resident lawsuit was filed Apr 29, while the MCEA case remains on hold during the updated AUAR.",
+        currentStatus: "Google-backed data center campus is in updated AUAR review. The city posted the draft AUAR and mitigation plan June 11, 2026, with comments open through July 16. A separate resident lawsuit remains active while the MCEA case stays on hold during the updated AUAR.",
         notes: "Google confirmed as company behind proposed Hermantown data center in March 2026. City and Google agreed to update the AUAR with greater specificity; updated study area covers 26 parcels totaling approximately 278 acres in southwest Hermantown, smaller than the initial AUAR adopted Oct 6, 2025. Scoping comment period opened Mar 31 and closed Apr 30, 2026. Proposed project would require at least 700 MW of new energy resources.",
         litigation: {
             active: true,
@@ -82,6 +85,7 @@ const projectData = [
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-06-11", event: "City posted draft AUAR and mitigation plan and opened comment period through July 16, 2026" },
             { date: "2026-05-18", event: "City Council accepted updated scoping document and authorized work toward draft AUAR" },
             { date: "2026-05-04", event: "City Council tabled Google tax-abatement and development agreements" },
             { date: "2026-04-29", event: "Hermantown residents filed separate lawsuit over city actions related to the proposed data center" },
@@ -99,7 +103,7 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific AUAR scoping opened Mar 31, 2026; scoping document accepted May 18, 2026" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific draft AUAR and mitigation plan posted June 11, 2026; comments open through July 16, 2026" },
             localZoning: { status: "in_progress", detail: "Applications paused while updated AUAR proceeds; tax-abatement and development agreements tabled May 4, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Google/Minnesota Power announcement references at least 700 MW of new energy resources" }
@@ -118,7 +122,7 @@ const projectData = [
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-06-08"
+        lastUpdated: "2026-06-15"
     },
     {
         id: 3,
@@ -971,7 +975,7 @@ const projectData = [
     {
         id: 25,
         name: "Nobles County Powered Data Park",
-        status: "in_review",
+        status: "suspended",
         city: "Reading",
         county: "Nobles",
         lat: 43.703,
@@ -979,10 +983,11 @@ const projectData = [
         acres: 640,
         sqft: null,
         mw: 450,
-        currentStatus: "AUAR environmental review underway; public comment period closed April 16, 2026. Nobles County Board voted against zoning text amendment on April 21, creating a major local approval setback, but project is not yet marked suspended.",
+        currentStatus: "Nobles County and Geronimo Power ended the current AUAR study on May 20, 2026, after the county rejected the needed zoning text amendment on April 21. The current site path is paused.",
         notes: "Geronimo Power proposes a 400-450 MW data center on 640 acres (Section 19, Elk Township) northeast of Reading, about 6 miles NW of Worthington. Purchase agreement signed with landowners; no end user committed and no land purchased yet. Estimated $4 billion in capital investment. Developer plans to sell finished site to a hyperscaler (e.g., Google, Microsoft, Amazon) and tie power to the planned Summit Lake Solar and Storage project. On Apr 21, 2026, Nobles County Board voted against adding data centers as a conditional use in agricultural preservation areas, leaving the current site path uncertain. Coordinates approximate (placed near Reading).",
         litigation: { active: false },
         timeline: [
+            { date: "2026-05-20", event: "Nobles County Board acknowledged a mutual termination agreement ending the current AUAR study" },
             { date: "2026-04-21", event: "Nobles County Board voted against zoning text amendment that would allow data centers as conditional use in agricultural preservation areas" },
             { date: "2026-04-16", event: "AUAR public comment period closed" },
             { date: "2025", event: "Geronimo Power proposes 400-450 MW data center on farmland near Reading; signs purchase agreement with landowners" },
@@ -990,20 +995,23 @@ const projectData = [
             { date: "2026-03", event: "Planning Commission votes against allowing data center as conditional use in ag preservation zone" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", detail: "AUAR approved by county commissioners and submitted to MN EQB; comment period closed April 16, 2026" },
+            environmentalReview: { status: "withdrawn", detail: "Current AUAR study ended by mutual termination agreement acknowledged May 20, 2026" },
             localZoning: { status: "contested", detail: "Planning Commission and County Board voted against allowing data centers as conditional use in agricultural preservation areas" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Feasibility study underway with Lincoln Pipestone Rural Water" }
         },
         sources: [
             { name: "Geronimo Power - Nobles County Powered Data Park", url: "https://geronimopower.com/in-development/nobles-county-powered-data-park/" },
+            { name: "Nobles County - Data Center Information", url: "https://www.co.nobles.mn.us/data-center-information/" },
+            { name: "Nobles County - Board Agendas & Minutes", url: "https://www.co.nobles.mn.us/commissioners/board-agendas-minutes/" },
             { name: "MPR - Nobles County Board Vote", url: "https://www.mprnews.org/story/2026/04/21/nobles-county-board-to-vote-on-whether-to-allow-massive-data-centers-on-farm-land" },
             { name: "Data Center Dynamics - County Vote", url: "https://www.datacenterdynamics.com/en/news/4bn-data-center-rejected-by-nobles-county-minnesota/" },
             { name: "Star Tribune - $4 billion data center in farm country", url: "https://www.startribune.com/in-minnesota-farm-country-a-plan-for-a-4-billion-data-center-takes-root-with-vast-wind-solar-and-battery-projects/601512205" },
+            { name: "The Globe - AUAR Ended", url: "https://www.dglobe.com/news/local/nobles-county-commissioners-end-auar-study-for-data-center" },
             { name: "The Globe - Planning Commission vote", url: "https://www.dglobe.com/news/local/full-story-nobles-county-planning-commission-votes-to-keep-data-center-out-of-ag-preservation-area" },
             { name: "The Globe - AUAR begins", url: "https://www.dglobe.com/news/local/nobles-county-data-center-begins-environmental-review-process" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-06-15"
     },
     {
         id: 28,
