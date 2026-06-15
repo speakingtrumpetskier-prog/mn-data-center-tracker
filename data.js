@@ -41,7 +41,7 @@ const projectData = [
             filedDate: "2025-10-02"
         },
         timeline: [
-            { date: "2026-06-08", event: "Minnesota Court of Appeals reversed the negative declaration and remanded the project for further environmental review" },
+            { date: "2026-06-08", event: "Minnesota Court of Appeals overturns City's approval of environmental review" },
             { date: "2026-05", event: "Oral argument heard in MN Court of Appeals" },
             { date: "2025-10-02", event: "Appeal filed in Court of Appeals" },
             { date: "2025-09-02", event: "Negative EIS declaration issued" }
