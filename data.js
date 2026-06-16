@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: June 15, 2026
+// Last updated: June 16, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -1048,6 +1048,36 @@ const projectData = [
             { name: "Data Center Dynamics - Inver Grove Heights Moratorium", url: "https://www.datacenterdynamics.com/en/news/one-year-data-center-moratorium-approved-in-city-near-minneapolis/" }
         ],
         lastUpdated: "2026-06-04"
+    },
+    {
+        id: 29,
+        name: "Elk River Industrial Blvd Data Center",
+        status: "watching",
+        city: "Elk River",
+        county: "Sherburne",
+        lat: 45.3186,
+        lng: -93.5863,
+        acres: 3.223,
+        sqft: 58000,
+        currentStatus: "City is considering a zoning text amendment and CUP for a proposed data center at 19178 Industrial Blvd NW. The City Council continued its June 15, 2026 hearing to July 6, and the Planning Commission is scheduled to review the applications June 23.",
+        notes: "Applicant Michael Margulies, representing Elk River Capital LLC (Swervo Development), seeks to repurpose part of an existing industrial building into a 58,000-square-foot data center. City materials describe demolition of about 5,000 square feet to improve the loading dock area and closed-loop glycol cooling equipment at the southwest corner of the building.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-06-15", event: "City Council public hearing opened and was continued to July 6, 2026" },
+            { date: "2026-05-26", event: "Planning Commission held initial public hearing on ordinance amendment and CUP applications" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started" },
+            localZoning: { status: "in_progress", detail: "Ordinance amendment to allow data centers in the I-1 district and CUP for 19178 Industrial Blvd NW are under review" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "City of Elk River - Public Hearings", url: "https://www.elkrivermn.gov/1678/Public-Hearings" },
+            { name: "City Council Request for Action (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/2026-06-15-Elk-River-RFA.pdf" },
+            { name: "CUP Narrative (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/2026-06-15-Elk-River-CUP-Narrative.pdf" }
+        ],
+        lastUpdated: "2026-06-16"
     }
 ];
 
