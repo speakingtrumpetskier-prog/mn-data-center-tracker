@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: June 22, 2026
+// Last updated: June 29, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -1025,10 +1025,12 @@ const projectData = [
         sqft: 54070,
         sqftDisplay: "54,000-55,000 SF",
         mw: 5,
-        currentStatus: "Proposed data center at the former Travel Tags site on Carmen Avenue East; City Council approved a one-year data center moratorium that includes the proposal.",
+        currentStatus: "City Council approved a one-year moratorium on June 26, 2026 that includes the proposed 5 MW data center at the former Travel Tags site. A June 25 EAW petition pauses action on the site plan while the city reviews the petition.",
         notes: "The city is reviewing a major site plan request for the former Travel Tags property. City materials describe a roughly 50,000-square-foot building with anticipated 5 MW power use; council materials describe an approximately 54,070-square-foot data center. The May 11, 2026 moratorium includes the proposed data center while the city studies data center impacts and regulations.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-06-26", event: "City Council approved a one-year moratorium covering the proposed data center" },
+            { date: "2026-06-25", event: "Residents filed an EAW petition for the proposed data center" },
             { date: "2026-05-26", event: "City Council tables moratorium second reading to June 8 and site plan request to a meeting before July 1" },
             { date: "2026-05-11", event: "City Council approves interim ordinance studying data centers and imposing moratorium including proposed data center" },
             { date: "2026-04-27", event: "Major site plan request presented to City Council" },
@@ -1036,18 +1038,19 @@ const projectData = [
             { date: "2026-03-26", event: "Developer hosts neighborhood meeting" }
         ],
         permits: {
-            environmentalReview: { status: "unknown" },
-            localZoning: { status: "in_progress", detail: "Major site plan request tabled; moratorium includes proposed data center" },
+            environmentalReview: { status: "in_progress", type: "EAW", detail: "Residents filed an EAW petition June 25, 2026; city review is underway and site-plan action is paused pending the determination" },
+            localZoning: { status: "in_progress", detail: "One-year moratorium approved June 26, 2026; site plan vote tabled until after the EAW determination" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "City of Inver Grove Heights - Proposed Data Center Development", url: "https://www.ighmn.gov/CivicAlerts.aspx?AID=2896" },
+            { name: "June 26, 2026 Item 7D Moratorium Packet (PDF)", url: "https://www.ighmn.gov/DocumentCenter/View/20108/June-26---Item-7D---Third-Reading-of-an-Interim-Ordinance-Authoring-Study-of-Data-Centers" },
             { name: "May 11, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20014/2026-05-11-City-Council-Actions" },
             { name: "May 26, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20051/2026-05-26-Council-Actions?bidId=" },
             { name: "Data Center Dynamics - Inver Grove Heights Moratorium", url: "https://www.datacenterdynamics.com/en/news/one-year-data-center-moratorium-approved-in-city-near-minneapolis/" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-06-29"
     },
     {
         id: 29,
