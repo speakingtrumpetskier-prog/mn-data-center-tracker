@@ -280,7 +280,7 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Apr 27, 2026: Council approved Data Center Ordinance regulating future data center and technology campus applications; no specific project approved.",
+        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Monticello Tech LLC submitted data center development applications on July 6, 2026; the city is reviewing them for completeness. No public hearing dates are set.",
         notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
@@ -289,6 +289,7 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
+            { date: "2026-07-06", event: "City received data center development applications from Monticello Tech LLC; completeness review underway" },
             { date: "2026-04-27", event: "Council approved Data Center Ordinance regulating future data center and technology campus applications" },
             { date: "2026-04-13", event: "Council approved Resolution 2026-27 affirming Monticello Tech exempt from March 9 citizen EAW petition; AUAR serves as completed environmental review" },
             { date: "2026-03-09", event: "Citizen EAW petition filed with EQB by Andrew Sopher and others; covers both Monticello Tech and Scannell sites" },
@@ -302,7 +303,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
-            localZoning: { status: "unknown" },
+            localZoning: { status: "in_progress", detail: "City received data center development applications July 6, 2026; materials are under completeness review and no hearing dates are set" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -317,7 +318,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-07-16"
     },
     {
         id: 8,
@@ -1062,24 +1063,27 @@ const projectData = [
         lng: -93.5863,
         acres: 3.223,
         sqft: 58000,
-        currentStatus: "City is considering a zoning text amendment and CUP for a proposed data center at 19178 Industrial Blvd NW. The City Council continued its June 15, 2026 hearing to July 6, and the Planning Commission is scheduled to review the applications June 23.",
+        currentStatus: "On July 6, 2026, City Council rejected the zoning text amendment that would have allowed a data center. The conditional use permit for 19178 Industrial Blvd NW remains under review.",
         notes: "Applicant Michael Margulies, representing Elk River Capital LLC (Swervo Development), seeks to repurpose part of an existing industrial building into a 58,000-square-foot data center. City materials describe demolition of about 5,000 square feet to improve the loading dock area and closed-loop glycol cooling equipment at the southwest corner of the building.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-07-06", event: "City Council rejected the ordinance amendment that would have allowed a data center; conditional use permit remains under review" },
             { date: "2026-06-15", event: "City Council public hearing opened and was continued to July 6, 2026" },
             { date: "2026-05-26", event: "Planning Commission held initial public hearing on ordinance amendment and CUP applications" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "Ordinance amendment to allow data centers in the I-1 district and CUP for 19178 Industrial Blvd NW are under review" },
+            localZoning: { status: "in_progress", detail: "City Council rejected the ordinance amendment to allow data centers in the I-1 district; CUP for 19178 Industrial Blvd NW remains under review" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City Council Meeting - July 6, 2026", url: "https://elkriver.viebit.com/watch?hash=wyb78XEL9d2ntnS5" },
+            { name: "MPR - Elk River Rejects Data Center Ordinance Change", url: "https://www.mprnews.org/story/2026/07/07/elk-river-rejects-changing-rules-to-allow-data-centers" },
             { name: "City of Elk River - Public Hearings", url: "https://www.elkrivermn.gov/1678/Public-Hearings" },
             { name: "Notice of Public Hearing (PDF)", url: "https://www.elkrivermn.gov/DocumentCenter/View/19540/Notice-of-Public-Hearing-Conditional-Use-Permit-and-Ordinance-Amendment-for-Michael-Margulies---data-center" }
         ],
-        lastUpdated: "2026-06-22"
+        lastUpdated: "2026-07-16"
     }
 ];
 
