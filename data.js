@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: July 07, 2026
+// Last updated: July 20, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -75,7 +75,7 @@ const projectData = [
         lng: -92.2950,
         acres: 278,
         sqft: 1800000,
-        currentStatus: "Google-backed data center campus is in updated AUAR review. The city posted the draft AUAR and mitigation plan June 11, 2026, with comments open through July 16. A separate resident lawsuit remains active while the MCEA case stays on hold during the updated AUAR.",
+        currentStatus: "Google-backed data center campus remains in updated AUAR review. The draft AUAR and mitigation plan comment period closed July 16, 2026. A separate resident lawsuit remains active while the MCEA case stays on hold during the updated AUAR.",
         notes: "Google confirmed as company behind proposed Hermantown data center in March 2026. City and Google agreed to update the AUAR with greater specificity; updated study area covers 26 parcels totaling approximately 278 acres in southwest Hermantown, smaller than the initial AUAR adopted Oct 6, 2025. Scoping comment period opened Mar 31 and closed Apr 30, 2026. Proposed project would require at least 700 MW of new energy resources.",
         litigation: {
             active: true,
@@ -85,6 +85,7 @@ const projectData = [
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-07-16", event: "Draft AUAR and mitigation plan comment period closed" },
             { date: "2026-06-11", event: "City posted draft AUAR and mitigation plan and opened comment period through July 16, 2026" },
             { date: "2026-05-18", event: "City Council accepted updated scoping document and authorized work toward draft AUAR" },
             { date: "2026-05-04", event: "City Council tabled Google tax-abatement and development agreements" },
@@ -103,10 +104,10 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific draft AUAR and mitigation plan posted June 11, 2026; comments open through July 16, 2026" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific draft AUAR and mitigation plan posted June 11, 2026; comment period closed July 16, 2026" },
             localZoning: { status: "in_progress", detail: "Applications paused while updated AUAR proceeds; tax-abatement and development agreements tabled May 4, 2026" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "Google/Minnesota Power announcement references at least 700 MW of new energy resources" }
+            utilities: { status: "in_progress", detail: "Minnesota Power filed PUC electric service agreement docket 26-159 for Harmony Group LLC on Mar. 26, 2026; comments open through Aug. 28, 2026" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
@@ -117,12 +118,13 @@ const projectData = [
             { name: "MCEA Legal Update", url: "https://www.mncenter.org/legal-updates-mceas-data-center-cases" },
             { name: "KAXE - Google Confirmed", url: "https://www.kaxe.org/local-news/2026-03-03/google-proposed-data-center-hermantown-minnesota-power" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263202?siId=263202-PROJ0000000001" },
+            { name: "Minnesota PUC - Data Center Dockets", url: "https://mn.gov/puc/activities/v-l-e-c/data-centers/" },
             { name: "City EAW Denial Letter (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/Hermantown-EQB-Response-2025-12-03.pdf" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA_Hermantown_MCRO_69DU-CV-25-3448_Complaint-Civil_2025-11-05_20251230104248.pdf" },
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-06-15"
+        lastUpdated: "2026-07-20"
     },
     {
         id: 3,
@@ -240,6 +242,7 @@ const projectData = [
         timeline: [
             { date: "2026-05-22", event: "Temporary injunction issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
             { date: "2026-04-20", event: "Summary judgment hearing (defendants' motion denied)" },
+            { date: "2026-04-14", event: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC" },
             { date: "2026-04-06", event: "Summary judgment hearing" },
             { date: "2026-02", event: "Google publicly confirmed as Project Skyway client" },
             { date: "2026-01-13", event: "City Council approved CUP for first building (250,000 sqft)" },
@@ -252,7 +255,7 @@ const projectData = [
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025; adequacy challenged in court" },
             localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by temporary injunction May 2026" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "unknown" }
+            utilities: { status: "in_progress", detail: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC on Apr. 14, 2026; comments open through Sept. 8, 2026" }
         },
         sources: [
             { name: "MPR - Construction Halted by Judge", url: "https://www.mprnews.org/story/2026/05/26/pine-island-hyperscale-data-center-construction-halted-by-judge" },
@@ -261,9 +264,10 @@ const projectData = [
             { name: "KSTP - Court Pauses Development", url: "https://kstp.com/kstp-news/top-news/court-pauses-development-on-planned-google-data-center-in-pine-island/" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Pine-Island-Complaint_MCRO_25-CV-25-2298_Complaint-Civil_2025-10-16_20251230105028.pdf" },
             { name: "Post Bulletin - Flurry of Filings", url: "https://www.postbulletin.com/news/local/flurry-of-filings-come-as-court-dates-draw-near-for-pine-island-data-center" },
+            { name: "Minnesota PUC - Data Center Dockets", url: "https://mn.gov/puc/activities/v-l-e-c/data-centers/" },
             { name: "Planning & Zoning CUP Notice", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/1.13.26_PZ_Notice_-_CUP.pdf" }
         ],
-        lastUpdated: "2026-05-27"
+        lastUpdated: "2026-07-20"
     },
 
     // ============================================
@@ -1063,27 +1067,29 @@ const projectData = [
         lng: -93.5863,
         acres: 3.223,
         sqft: 58000,
-        currentStatus: "On July 6, 2026, City Council rejected the zoning text amendment that would have allowed a data center. The conditional use permit for 19178 Industrial Blvd NW remains under review.",
+        currentStatus: "After City Council rejected the zoning text amendment on July 6, 2026, the applicant withdrew both the ordinance amendment and CUP applications on July 10. No city approval for a data center at 19178 Industrial Blvd NW is pending.",
         notes: "Applicant Michael Margulies, representing Elk River Capital LLC (Swervo Development), seeks to repurpose part of an existing industrial building into a 58,000-square-foot data center. City materials describe demolition of about 5,000 square feet to improve the loading dock area and closed-loop glycol cooling equipment at the southwest corner of the building.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-07-06", event: "City Council rejected the ordinance amendment that would have allowed a data center; conditional use permit remains under review" },
+            { date: "2026-07-10", event: "Applicant withdrew ordinance amendment and conditional use permit applications" },
+            { date: "2026-07-06", event: "City Council rejected the ordinance amendment that would have allowed a data center; conditional use permit remained pending at that point" },
             { date: "2026-06-15", event: "City Council public hearing opened and was continued to July 6, 2026" },
             { date: "2026-05-26", event: "Planning Commission held initial public hearing on ordinance amendment and CUP applications" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "City Council rejected the ordinance amendment to allow data centers in the I-1 district; CUP for 19178 Industrial Blvd NW remains under review" },
+            localZoning: { status: "withdrawn", detail: "Applicant withdrew the ordinance amendment and CUP applications July 10, 2026 after City Council rejected the ordinance amendment July 6" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Elk River Data Center - Timeline", url: "https://elkriverdatacenter.com/timeline/" },
             { name: "City Council Meeting - July 6, 2026", url: "https://elkriver.viebit.com/watch?hash=wyb78XEL9d2ntnS5" },
             { name: "MPR - Elk River Rejects Data Center Ordinance Change", url: "https://www.mprnews.org/story/2026/07/07/elk-river-rejects-changing-rules-to-allow-data-centers" },
             { name: "City of Elk River - Public Hearings", url: "https://www.elkrivermn.gov/1678/Public-Hearings" },
             { name: "Notice of Public Hearing (PDF)", url: "https://www.elkrivermn.gov/DocumentCenter/View/19540/Notice-of-Public-Hearing-Conditional-Use-Permit-and-Ordinance-Amendment-for-Michael-Margulies---data-center" }
         ],
-        lastUpdated: "2026-07-16"
+        lastUpdated: "2026-07-20"
     }
 ];
 
