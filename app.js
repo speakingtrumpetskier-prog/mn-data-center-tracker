@@ -1,7 +1,3 @@
-Exit code: 0
-Wall time: 1 seconds
-Total output lines: 1160
-Output:
 // Minnesota Data Center Tracker - Application Logic
 
 // Initialize map with light tiles
