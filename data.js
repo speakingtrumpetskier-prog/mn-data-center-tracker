@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: July 20, 2026
+// Last updated: July 27, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -31,7 +31,7 @@ const projectData = [
         lng: -93.2845,
         acres: 84.3,
         sqft: 500000,
-        currentStatus: "Minnesota Court of Appeals reversed the city's negative declaration on June 8, 2026, and remanded the project for further environmental review. The appeal remains active while the city revises the review.",
+        currentStatus: "Minnesota Court of Appeals reversed the city's negative declaration on June 8, 2026, and remanded the project for further environmental review. The City Council formally gave Archer through March 31, 2027, to prepare a supplemental EAW.",
         notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. Oral argument completed May 2026.",
         litigation: {
             active: true,
@@ -41,18 +41,21 @@ const projectData = [
             filedDate: "2025-10-02"
         },
         timeline: [
+            { date: "2026-07-14", event: "City Council formally granted an extension through March 31, 2027, for the supplemental EAW" },
+            { date: "2026-07-07", event: "City Council agreed to extend the supplemental EAW schedule to March 2027" },
             { date: "2026-06-08", event: "Minnesota Court of Appeals overturns City's approval of environmental review" },
             { date: "2026-05", event: "Oral argument heard in MN Court of Appeals" },
             { date: "2025-10-02", event: "Appeal filed in Court of Appeals" },
             { date: "2025-09-02", event: "Negative EIS declaration issued" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "EAW", detail: "Court of Appeals reversed the negative declaration June 8, 2026, and sent the project back for further environmental review" },
+            environmentalReview: { status: "in_progress", type: "EAW", detail: "Court of Appeals remanded the review; City Council granted Archer through March 31, 2027, to prepare a supplemental EAW" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City of Faribault - Archer Datacenters", url: "https://www.faribaultmn.gov/815/Archer-Datacenters" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/263487?siId=263487-PROJ0000000001" },
             { name: "EQB Monitor Notice", url: "https://content.govdelivery.com/accounts/MNEQB/bulletins/3efc446" },
             { name: "MCEA Appeal Brief (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Brief-Appellant.pdf" },
@@ -61,7 +64,7 @@ const projectData = [
             { name: "KAAL - Court Orders Further Study", url: "https://www.kaaltv.com/news/minnesota-court-of-appeals-rules-full-impact-study-is-needed-for-proposed-faribault-data-center/" },
             { name: "SouthernMinn - Lawsuit on Hold Coverage", url: "https://www.southernminn.com/the_kenyon_leader/news/lawsuit-resident-concerns-put-faribault-data-center-on-hold/article_4340814d-1eb0-4a35-a9d5-6aade04eafa2.html" }
         ],
-        lastUpdated: "2026-06-15"
+        lastUpdated: "2026-07-27"
     },
     {
         id: 2,
@@ -284,7 +287,7 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA lawsuit active in Wright County District Court (filed Feb 25, 2026) challenging AUAR adequacy. Monticello Tech LLC submitted data center development applications on July 6, 2026; the city is reviewing them for completeness. No public hearing dates are set.",
+        currentStatus: "MCEA lawsuit remains active in Wright County District Court challenging AUAR adequacy. The city found Monticello Tech LLC's July 6 development applications incomplete on July 20 and sent additional clarification July 23. The applications will not be processed until complete, and no public hearing dates are set.",
         notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
@@ -293,7 +296,9 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
-            { date: "2026-07-06", event: "City received data center development applications from Monticello Tech LLC; completeness review underway" },
+            { date: "2026-07-23", event: "City sent the applicant additional clarification regarding incomplete application items" },
+            { date: "2026-07-20", event: "City determined the July 6 development applications were incomplete" },
+            { date: "2026-07-06", event: "City received rezoning, conditional use permit, and plat applications from Monticello Tech LLC" },
             { date: "2026-04-27", event: "Council approved Data Center Ordinance regulating future data center and technology campus applications" },
             { date: "2026-04-13", event: "Council approved Resolution 2026-27 affirming Monticello Tech exempt from March 9 citizen EAW petition; AUAR serves as completed environmental review" },
             { date: "2026-03-09", event: "Citizen EAW petition filed with EQB by Andrew Sopher and others; covers both Monticello Tech and Scannell sites" },
@@ -307,7 +312,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
-            localZoning: { status: "in_progress", detail: "City received data center development applications July 6, 2026; materials are under completeness review and no hearing dates are set" },
+            localZoning: { status: "in_progress", detail: "City found the July 6 applications incomplete; they will not be processed and hearings will not be scheduled until a complete submission is received" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -322,7 +327,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-07-16"
+        lastUpdated: "2026-07-27"
     },
     {
         id: 8,
@@ -334,25 +339,30 @@ const projectData = [
         lng: -92.9060,
         acres: 251,
         sqft: 1750000,
-        currentStatus: "Final AUAR approved Sept 16, 2025",
-        notes: "One of communities debating data center projects.",
+        currentStatus: "Final AUAR approved in September 2025. The City Council approved a conditional use permit for the technology park in November 2025, and a Tract-linked entity purchased the site in May 2026.",
+        notes: "Proposed technology park on approximately 251 acres north of Cannon Falls. The AUAR evaluates up to 1.75 million square feet of industrial or technology-park development.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-05", event: "Tract-linked entity purchased the proposed technology park site" },
             { date: "2026-01-06", event: "Post Bulletin coverage of local debate" },
+            { date: "2025-11-05", event: "City Council approved conditional use permit for the technology park" },
             { date: "2025-09-16", event: "Final AUAR approved" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved" },
-            localZoning: { status: "unknown" },
+            localZoning: { status: "approved", detail: "City Council approved a conditional use permit November 5, 2025" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City - Cannon Falls Technology Park", url: "https://www.cannonfallsmn.gov/1245/Cannon-Falls-Technology-Park" },
+            { name: "City Council Minutes - Nov. 5, 2025", url: "https://www.cannonfallsmn.gov/AgendaCenter/ViewFile/ArchivedMinutes/_11182025-17" },
+            { name: "Finance & Commerce - Tract Land Purchase", url: "https://finance-commerce.com/2026/05/cannon-falls-data-center-land-sale-tract-15-2m/" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/262244?siId=262244-PROJ0000000001" },
             { name: "City AUAR Page", url: "https://www.cannonfallsmn.gov/community/page/auar-alternative-urban-area-review" },
             { name: "Post Bulletin Coverage", url: "https://www.postbulletin.com/news/local/data-centers-become-big-news-for-pine-island-cannon-falls-and-opposition" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-07-27"
     },
     {
         id: 9,
@@ -400,10 +410,11 @@ const projectData = [
         lng: -93.0743,
         acres: 280,
         sqft: 715000,
-        currentStatus: "Meta's UMore Park data center is under construction in Rosemount and is expected to open in 2026.",
+        currentStatus: "Meta's UMore Park data center remains under construction, with July 2026 reports of construction nearing completion.",
         notes: "Formerly code-named Project Bigfoot / Jimnist. The 280-acre UMore Park campus is a separate named project from the Rosemount Industrial, Rich Valley East, and Dakota East AUAR areas already tracked elsewhere on the map.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-07", event: "Reports describe construction as nearing completion" },
             { date: "2026", event: "Expected opening year" },
             { date: "2024-03-14", event: "State publicly announces Meta's Rosemount data center" },
             { date: "2023-12-21", event: "Rosemount City Council approves Project Bigfoot / Jimnist application" },
@@ -416,13 +427,14 @@ const projectData = [
             utilities: { status: "in_progress", detail: "Xcel and city infrastructure upgrades planned for the UMore area" }
         },
         sources: [
+            { name: "Courier Minnesota - Rosemount Construction Update", url: "https://couriermn.com/news/environment/where-are-data-centers-being-proposed-in-minnesota-we-are-tracking-them/" },
             { name: "MN DEED - Meta Announcement", url: "https://mn.gov/deed/newscenter/press-releases/?id=1045-614051" },
             { name: "City of Rosemount - Development Page", url: "https://rosemountmn.gov/progress" },
             { name: "City of Rosemount - Environmental Review", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
             { name: "UMore Park AUAR Update", url: "https://www.rosemountmn.gov/DocumentCenter/View/6791/UMore-Park-AUAR-2023-Draft" },
             { name: "Data Center Dynamics - Council Approval", url: "https://www.datacenterdynamics.com/en/news/rosemount-city-council-approves-meta-data-center-project/" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-07-27"
     },
 
     // ============================================
@@ -431,17 +443,22 @@ const projectData = [
     {
         id: 10,
         name: "Apple Valley AUAR (Orchard Place)",
-        status: "review_complete",
+        status: "suspended",
+        secondaryStatus: "review_complete",
         city: "Apple Valley",
         county: "Dakota",
         lat: 44.7250,
         lng: -93.2050,
         acres: null,
         sqft: 1050000,
-        currentStatus: "City Council denied comprehensive plan amendment Jan 23, 2026; AUAR adopted Dec 2024 but land use denied",
-        notes: "Rockport LLC / Oppidan Investment proposed 105-acre technology campus with five data center buildings on former Fischer Mining site. AUAR update with data center scenario adopted Dec 2024. Planning Commission recommended denial April 2, 2025 citing water supply, sewer capacity, and comp plan incompatibility. City Council unanimously denied the comp plan amendment Jan 23, 2026. Developer had requested extensions through Jan 31, 2026.",
+        currentStatus: "City Council denied the site plan, preliminary plat, and conditional use permit on March 26, 2026, after the rezoning request was withdrawn. The city adopted a temporary data center moratorium July 9.",
+        notes: "Rockport LLC / Oppidan Investment proposed a technology campus with five data center buildings on a former mining site. The AUAR update with a data center scenario remains complete, but the project's land-use approvals were denied.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-07-09", event: "City Council adopted a temporary moratorium on establishing or expanding data centers" },
+            { date: "2026-03-26", event: "City Council denied the site plan, preliminary plat, and conditional use permit" },
+            { date: "2026-03-18", event: "Planning Commission recommended denial of the remaining project applications" },
+            { date: "2026-03-06", event: "Applicant withdrew the rezoning request" },
             { date: "2026-01-23", event: "City Council unanimously denied comprehensive plan amendment" },
             { date: "2025-04-02", event: "Planning Commission recommended denial (5-1)" },
             { date: "2025-02-05", event: "Planning Commission public hearing; tabled due to site concerns" },
@@ -451,17 +468,20 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "AUAR update with data center scenario adopted Dec 2024" },
-            localZoning: { status: "denied", detail: "Comp plan amendment denied by City Council Jan 23, 2026" },
+            localZoning: { status: "denied", detail: "Rezoning request withdrawn; City Council denied the site plan, preliminary plat, and conditional use permit March 26, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City - March Development Update", url: "https://www.applevalleymn.gov/CivicAlerts.asp?AID=4155" },
+            { name: "Data Center Dynamics - Project Denied", url: "https://www.datacenterdynamics.com/en/news/oppidan-data-center-outside-minneapolis-rejected/" },
+            { name: "City - Data Center Moratorium", url: "https://www.applevalleymn.gov/CivicAlerts.aspx?AID=4237&ARC=6369" },
             { name: "City Project Page", url: "https://www.applevalleymn.gov/1024/Proposed-Technology-Center-Data-Center" },
             { name: "Hometown Source - AUAR Scenario", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/data-center-scenario-contemplated-in-apple-valley/article_9aa87462-961d-11ef-beb5-bbe0992cea55.html" },
             { name: "Hometown Source - CPA Denial", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/apple-valley-city-council-denies-land-use-change/article_d4a951aa-8087-4c8f-8df6-09f6b2db2432.html" },
             { name: "Hometown Source - Planning Commission Denial", url: "https://www.hometownsource.com/sun_thisweek/community/apple_valley/land-use-change-for-data-center-denied-in-apple-valley/article_d8ed4b90-5341-4544-87a1-08417f5b9d57.html" }
         ],
-        lastUpdated: "2026-01-31"
+        lastUpdated: "2026-07-27"
     },
     {
         id: 11,

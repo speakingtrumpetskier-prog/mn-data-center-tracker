@@ -440,9 +440,12 @@ function updateStats() {
     document.getElementById('count-review-complete').textContent = stats.countByStatus.review_complete;
     document.getElementById('count-watching').textContent = stats.countByStatus.watching;
 
-    // Update last updated date
-    const today = new Date();
-    document.getElementById('last-update').textContent = today.toLocaleDateString('en-US', {
+    // Show the newest project-data update, not the viewer's current date.
+    const latestUpdate = projectData.reduce((latest, project) => {
+        const projectDate = new Date(`${project.lastUpdated}T00:00:00`);
+        return Number.isNaN(projectDate.getTime()) || projectDate <= latest ? latest : projectDate;
+    }, new Date(0));
+    document.getElementById('last-update').textContent = latestUpdate.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric'
