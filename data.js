@@ -1,7 +1,3 @@
-Exit code: 0
-Wall time: 1.2 seconds
-Total output lines: 1159
-Output:
 // Minnesota Data Center Tracker - Project Data
 // Last updated: July 27, 2026
 // Auto-updated weekly via GitHub Actions
