@@ -81,7 +81,7 @@ function initializeMarkers() {
                     <div class="popup-meta">
                         ${project.city}, ${project.county} County<br>
                         <strong>${statusLabel}</strong>
-                        ${project.sqft ? ' Â· ' + (project.sqftDisplay || formatSqft(project.sqft)) : ''}
+                        ${project.sqft ? ' · ' + (project.sqftDisplay || formatSqft(project.sqft)) : ''}
                     </div>
                     <button class="popup-btn" onclick="openProjectDetail(${project.id})">
                         View Details
@@ -136,13 +136,13 @@ function formatNumber(num) {
 }
 
 function formatSqft(sqft) {
-    if (!sqft) return 'â€”';
+    if (!sqft) return '—';
     if (sqft >= 1000000) return (sqft / 1000000).toFixed(1) + 'M SF';
     return formatNumber(sqft) + ' SF';
 }
 
 function formatDate(dateStr) {
-    if (!dateStr) return 'â€”';
+    if (!dateStr) return '—';
     // Handle partial dates like "2025-05" (year-month only)
     const parts = dateStr.split('-');
     if (parts.length === 2) {
@@ -232,7 +232,7 @@ function renderProjectList(filterValue = 'all') {
                 ${hasLinks ? `
                     <div class="project-links">
                         ${project.sources.filter(s => s.url).slice(0, 2).map(s =>
-                            `<a href="${s.url}" class="project-link" target="_blank" onclick="event.stopPropagation();">${s.name} â†’</a>`
+                            `<a href="${s.url}" class="project-link" target="_blank" onclick="event.stopPropagation();">${s.name} →</a>`
                         ).join('')}
                     </div>
                 ` : ''}
@@ -307,11 +307,11 @@ function openProjectDetail(projectId) {
     // Location & Scale
     document.getElementById('detail-city').textContent = project.city;
     document.getElementById('detail-county').textContent = project.county + ' County';
-    document.getElementById('detail-acres').textContent = project.acres ? project.acres + ' acres' : 'â€”';
+    document.getElementById('detail-acres').textContent = project.acres ? project.acres + ' acres' : '—';
     document.getElementById('detail-sqft').textContent = project.sqftDisplay || formatSqft(project.sqft);
 
     // Status
-    document.getElementById('detail-status').textContent = project.currentStatus || 'â€”';
+    document.getElementById('detail-status').textContent = project.currentStatus || '—';
 
     // Litigation section
     const litigationSection = document.getElementById('litigation-section');
@@ -319,9 +319,9 @@ function openProjectDetail(projectId) {
     if (caseDetailSlot) caseDetailSlot.innerHTML = ''; // Clear previous deep-dive buttons
     if (project.litigation?.active && litigationSection) {
         litigationSection.style.display = 'block';
-        document.getElementById('detail-case-number').textContent = project.litigation.caseNumber || 'â€”';
-        document.getElementById('detail-court').textContent = project.litigation.court || 'â€”';
-        document.getElementById('detail-litigation-status').textContent = project.litigation.status || 'â€”';
+        document.getElementById('detail-case-number').textContent = project.litigation.caseNumber || '—';
+        document.getElementById('detail-court').textContent = project.litigation.court || '—';
+        document.getElementById('detail-litigation-status').textContent = project.litigation.status || '—';
     } else if (litigationSection) {
         litigationSection.style.display = 'none';
     }
@@ -387,7 +387,7 @@ function openProjectDetail(projectId) {
     if (project.sources && project.sources.length > 0) {
         sourcesList.innerHTML = project.sources.map(source => {
             if (source.url) {
-                return `<li><a href="${source.url}" target="_blank">${source.name} â†’</a></li>`;
+                return `<li><a href="${source.url}" target="_blank">${source.name} →</a></li>`;
             } else {
                 return `<li><span style="color: var(--ink-faint);">${source.name}</span></li>`;
             }
@@ -960,7 +960,7 @@ window.openProjectDetail = openProjectDetail;
 })();
 
 // Easter Egg 3: "2 MW vs. Reality" (Faribault EAW power assumption)
-// When Faribault detail panel opens, a small âš¡ appears by the status.
+// When Faribault detail panel opens, a small ⚡ appears by the status.
 // Click it to trigger a dramatic animated comparison.
 (function() {
     let powerEggActive = false;
@@ -984,7 +984,7 @@ window.openProjectDetail = openProjectDetail;
 
         slot.innerHTML = `
             <div class="detail-field-label">Learn More</div>
-            <button class="case-detail-btn" title="Key claim from the MCEA appeal">âš¡</button>
+            <button class="case-detail-btn" title="Key claim from the MCEA appeal">⚡</button>
         `;
 
         slot.querySelector('.case-detail-btn').addEventListener('click', (e) => {
@@ -1042,7 +1042,7 @@ window.openProjectDetail = openProjectDetail;
                             <div class="power-sun-area" id="power-sun-area">
                                 <div class="power-sun" id="power-sun"></div>
                             </div>
-                            <div class="power-number power-number-big" id="power-actual">â€”</div>
+                            <div class="power-number power-number-big" id="power-actual">—</div>
                             <div class="power-unit" id="power-actual-unit"></div>
                             <div class="power-context" id="power-actual-context"></div>
                         </div>
@@ -1051,14 +1051,14 @@ window.openProjectDetail = openProjectDetail;
 
                 <div class="power-facts" id="power-facts">
                     <div class="power-fact-item" id="fact-1" style="opacity:0;">
-                        <span class="power-fact-marker">Â§</span>
-                        The draft EAW estimated electricity consumption at over 1,000,000 MWh/year. The final EAW dropped it to 14,000 MWh/year â€” a 98% reduction, without explanation.
+                        <span class="power-fact-marker">§</span>
+                        The draft EAW estimated electricity consumption at over 1,000,000 MWh/year. The final EAW dropped it to 14,000 MWh/year — a 98% reduction, without explanation.
                     </div>
                 </div>
 
                 <div class="power-source">
                     Source: <a href="https://legalectric.org/f/2025/12/MCEA-Brief-Appellant.pdf" target="_blank">MCEA Appeal Brief</a>
-                    &nbsp;Â·&nbsp; Case A25-1617, MN Court of Appeals
+                    &nbsp;·&nbsp; Case A25-1617, MN Court of Appeals
                 </div>
 
                 <button class="power-dismiss" id="power-dismiss">Close</button>
@@ -1125,7 +1125,7 @@ window.openProjectDetail = openProjectDetail;
                 // Update multiplier
                 if (current > 0) {
                     const mult = Math.round(current / 2);
-                    multiplier.textContent = `${mult}Ã—`;
+                    multiplier.textContent = `${mult}×`;
                     multiplier.style.opacity = '1';
                 }
 
@@ -1136,7 +1136,7 @@ window.openProjectDetail = openProjectDetail;
                     actualNum.textContent = '120';
                     actualUnit.textContent = 'megawatts';
                     actualContext.textContent = 'As reported for the Archer campus';
-                    multiplier.textContent = '60Ã—';
+                    multiplier.textContent = '60×';
                     sunEl.classList.add('pulsing');
 
                     // Phase 2: Reveal facts one by one
