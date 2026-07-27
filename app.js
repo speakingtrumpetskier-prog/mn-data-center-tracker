@@ -481,7 +481,235 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close panel listeners
     document.getElementById('detail-close').addEventListener('click', closeDetailPanel);
-    document.getEleme…2205 tokens truncated…Target.x - start.x;
+    document.getElementById('detail-overlay').addEventListener('click', closeDetailPanel);
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDetailPanel();
+    });
+
+    // Fit map to markers
+    if (markers.length > 0) {
+        const group = new L.featureGroup(markers);
+        map.fitBounds(group.getBounds().pad(0.1));
+    }
+});
+
+window.openProjectDetail = openProjectDetail;
+
+// ============================================
+// Easter Eggs - Shhh!
+// ============================================
+
+// Easter Egg 1: Click title 7 times for swimming loon
+(function() {
+    let clickCount = 0;
+    let clickTimer = null;
+    const title = document.querySelector('.masthead-title h1');
+
+    if (title) {
+        title.addEventListener('click', function() {
+            clickCount++;
+
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+
+            if (clickCount >= 7) {
+                clickCount = 0;
+                summonLoon();
+            }
+        });
+    }
+
+    function summonLoon() {
+        const loon = document.getElementById('loon');
+
+        if (loon && !loon.classList.contains('swimming')) {
+            loon.classList.add('swimming');
+
+            // Synthesize a more realistic loon tremolo call
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Create the haunting wail with reverb
+                function createWail(startTime, startFreq, endFreq, duration) {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    const vibrato = ctx.createOscillator();
+                    const vibratoGain = ctx.createGain();
+
+                    // Add tremolo for warbling effect
+                    const tremolo = ctx.createOscillator();
+                    const tremoloGain = ctx.createGain();
+                    tremolo.frequency.value = 8;
+                    tremoloGain.gain.value = 0.3;
+
+                    // Vibrato for pitch modulation
+                    vibrato.frequency.value = 5.5;
+                    vibratoGain.gain.value = 20;
+                    vibrato.connect(vibratoGain);
+                    vibratoGain.connect(osc.frequency);
+
+                    osc.connect(tremoloGain);
+                    tremolo.connect(tremoloGain.gain);
+                    tremoloGain.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.type = 'sine';
+
+                    // Volume envelope - fade in and out
+                    gain.gain.setValueAtTime(0.001, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.15, startTime + 0.15);
+                    gain.gain.setValueAtTime(0.15, startTime + duration - 0.4);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+                    // Pitch: rise then fall (characteristic loon wail)
+                    osc.frequency.setValueAtTime(startFreq, startTime);
+                    osc.frequency.linearRampToValueAtTime(endFreq, startTime + duration * 0.35);
+                    osc.frequency.linearRampToValueAtTime(startFreq * 0.65, startTime + duration);
+
+                    vibrato.start(startTime);
+                    tremolo.start(startTime);
+                    osc.start(startTime);
+                    osc.stop(startTime + duration);
+                    vibrato.stop(startTime + duration);
+                    tremolo.stop(startTime + duration);
+                }
+
+                // Three-part loon call (classic tremolo)
+                createWail(ctx.currentTime, 550, 950, 1.4);
+                createWail(ctx.currentTime + 1.5, 600, 880, 1.1);
+                createWail(ctx.currentTime + 2.8, 520, 820, 1.3);
+
+            } catch (e) {}
+
+            setTimeout(() => {
+                loon.classList.remove('swimming');
+            }, 10000);
+        }
+    }
+})();
+
+// Easter Egg 4: Pine Island temporary injunction
+// Open Pine Island, then click the small injunction button in the litigation grid.
+(function() {
+    const pineProjectId = 5;
+    let pineEggActive = false;
+
+    const originalOpenDetail = window.openProjectDetail;
+    window.openProjectDetail = function(projectId) {
+        originalOpenDetail(projectId);
+
+        if (projectId === pineProjectId) {
+            setTimeout(() => injectPineInjunctionButton(), 150);
+        }
+    };
+
+    function injectPineInjunctionButton() {
+        const slot = document.getElementById('case-detail-slot');
+        if (!slot || slot.querySelector('.pine-injunction-btn')) return;
+
+        slot.innerHTML = `
+            <div class="detail-field-label">Injunction</div>
+            <button class="case-detail-btn pine-injunction-btn" title="Temporary injunction easter egg">!</button>
+        `;
+
+        slot.querySelector('.pine-injunction-btn').addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (!pineEggActive) launchPineInjunctionCelebration(event.currentTarget);
+        });
+    }
+
+    function launchPineInjunctionCelebration(triggerButton) {
+        const project = projectData.find(p => p.id === pineProjectId);
+        if (!project) return;
+
+        pineEggActive = true;
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            launchStopSignFlight(project, triggerButton);
+        } else {
+            settlePineStopMarker(project);
+        }
+
+        setTimeout(() => {
+            pineEggActive = false;
+        }, 17000);
+    }
+
+    function popPineMarker(project) {
+        const marker = markers.find(m => m.projectId === project.id);
+        if (!marker || !marker._icon) return;
+
+        marker._icon.classList.remove('injunction-pop');
+        void marker._icon.offsetWidth;
+        marker._icon.classList.add('injunction-pop');
+    }
+
+    function settlePineStopMarker(project) {
+        const marker = markers.find(m => m.projectId === project.id);
+        if (!marker || !marker._icon) return;
+
+        marker._icon.classList.add('pine-stop-marker');
+        popPineMarker(project);
+    }
+
+    function launchStopSignFlight(project, triggerButton) {
+        const start = getButtonScreenPoint(triggerButton);
+        const target = getMarkerScreenPoint(project) || getProjectScreenPoint(project);
+        if (!start || !target) return;
+
+        const layer = document.createElement('div');
+        layer.className = 'pine-stop-layer';
+        document.body.appendChild(layer);
+
+        const stopSign = document.createElement('div');
+        stopSign.className = 'pine-stop-sign';
+        stopSign.innerHTML = '<div class="pine-stop-face">STOP</div>';
+
+        triggerButton.classList.add('pine-pump-active');
+        triggerButton.style.setProperty('--pump-down', '0px');
+        triggerButton.style.setProperty('--pump-squash', '1');
+
+        const glow = document.createElement('div');
+        glow.className = 'pine-settle-glow';
+
+        glow.style.setProperty('--target-x', `${target.x}px`);
+        glow.style.setProperty('--target-y', `${target.y}px`);
+
+        layer.appendChild(stopSign);
+        layer.appendChild(glow);
+
+        animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target });
+    }
+
+    function animateStopSignFlight({ stopSign, triggerButton, glow, layer, project, start, target }) {
+        const duration = 15000;
+        const pumpSeatEnd = 0.075;
+        const pumpEnd = 0.3;
+        const travelStart = 0.36;
+        const shrinkStart = 0.42;
+        const anchorSettleEnd = 0.78;
+        const finalApproachStart = 0.78;
+        const balloonMaxScale = 1.34;
+        let landingTarget = target;
+        let settled = false;
+        let pumpReleased = false;
+        let startTime = null;
+
+        function frame(now) {
+            if (!startTime) startTime = now;
+            const t = Math.min((now - startTime) / duration, 1);
+            const travelT = clamp((t - travelStart) / (1 - travelStart), 0, 1);
+            const travel = easeInOutSine(travelT);
+            const markerTarget = getMarkerScreenPoint(project) || getProjectScreenPoint(project) || landingTarget;
+            landingTarget = t >= 0.94 ? markerTarget : {
+                x: lerp(landingTarget.x, markerTarget.x, 0.16),
+                y: lerp(landingTarget.y, markerTarget.y, 0.16)
+            };
+            glow.style.setProperty('--target-x', `${landingTarget.x}px`);
+            glow.style.setProperty('--target-y', `${landingTarget.y}px`);
+
+            const distanceX = landingTarget.x - start.x;
             const direction = distanceX < 0 ? -1 : 1;
             const lift = Math.min(285, Math.max(150, Math.abs(distanceX) * 0.34));
             const sweep = Math.min(95, Math.max(42, Math.abs(distanceX) * 0.13));
@@ -929,4 +1157,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 400);
     }
 })();
-
