@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: July 27, 2026
+// Last updated: July 30, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -24,7 +24,6 @@ const projectData = [
         id: 1,
         name: "Archer Datacenters Faribault Campus",
         status: "in_review",
-        secondaryStatus: "in_litigation",
         city: "Faribault",
         county: "Rice",
         lat: 44.3671,
@@ -32,12 +31,12 @@ const projectData = [
         acres: 84.3,
         sqft: 500000,
         currentStatus: "Minnesota Court of Appeals reversed the city's negative declaration on June 8, 2026, and remanded the project for further environmental review. The City Council formally gave Archer through March 31, 2027, to prepare a supplemental EAW.",
-        notes: "EAW completed with negative declaration (EIS not required). MCEA appeal argues environmental review vastly underreported facility's impact on climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. Oral argument completed May 2026.",
+        notes: "MCEA successfully challenged the city's negative declaration, arguing that the environmental review understated impacts to climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. The appellate case concluded with reversal and remand on June 8, 2026."
         litigation: {
-            active: true,
+            active: false,
             caseNumber: "A25-1617",
             court: "MN Court of Appeals",
-            status: "Court of Appeals reversed negative declaration and remanded project for further environmental review",
+            status: "Court of Appeals case concluded June 8, 2026, with reversal and remand for further environmental review",
             filedDate: "2025-10-02"
         },
         timeline: [
@@ -64,7 +63,7 @@ const projectData = [
             { name: "KAAL - Court Orders Further Study", url: "https://www.kaaltv.com/news/minnesota-court-of-appeals-rules-full-impact-study-is-needed-for-proposed-faribault-data-center/" },
             { name: "SouthernMinn - Lawsuit on Hold Coverage", url: "https://www.southernminn.com/the_kenyon_leader/news/lawsuit-resident-concerns-put-faribault-data-center-on-hold/article_4340814d-1eb0-4a35-a9d5-6aade04eafa2.html" }
         ],
-        lastUpdated: "2026-07-27"
+        lastUpdated: "2026-07-30"
     },
     {
         id: 2,
