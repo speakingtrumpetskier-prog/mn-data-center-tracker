@@ -31,7 +31,7 @@ const projectData = [
         acres: 84.3,
         sqft: 500000,
         currentStatus: "Minnesota Court of Appeals reversed the city's negative declaration on June 8, 2026, and remanded the project for further environmental review. The City Council formally gave Archer through March 31, 2027, to prepare a supplemental EAW.",
-        notes: "MCEA successfully challenged the city's negative declaration, arguing that the environmental review understated impacts to climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. The appellate case concluded with reversal and remand on June 8, 2026."
+        notes: "MCEA successfully challenged the city's negative declaration, arguing that the environmental review understated impacts to climate change and Minnesota's electricity grid. Site at 15339 Acorn Trail, south of 150th St W in Northern Industrial Park. The appellate case concluded with reversal and remand on June 8, 2026.",
         litigation: {
             active: false,
             caseNumber: "A25-1617",
