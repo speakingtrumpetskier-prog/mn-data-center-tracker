@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: July 30, 2026
+// Last updated: August 3, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -968,9 +968,38 @@ const projectData = [
         lastUpdated: "2026-06-04"
     },
     {
+        id: 30,
+        name: "Legacy / Star Tribune Heritage Data Center",
+        status: "watching",
+        city: "Minneapolis",
+        county: "Hennepin",
+        lat: 44.9910,
+        lng: -93.2810,
+        acres: 13,
+        sqft: 396559,
+        mw: 20,
+        currentStatus: "Legacy Investing has a purchase agreement for the former Star Tribune Heritage printing plant at 800 N. 1st St. and plans a mixed-use redevelopment centered on a data center. Closing is expected in the fourth quarter of 2026, subject to conditions including city approval of a conditional use permit.",
+        notes: "Legacy expects approximately 20 MW of data center capacity over two to three years. The existing printing-plant property covers approximately 13 acres. The developer has discussed housing or retail as possible additional uses, but no final site plan has been approved. Coordinates mark the approximate site location.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-07-29", event: "Star Tribune reported that Legacy Investing signed a purchase agreement for the Heritage printing plant and plans a mixed-use redevelopment centered on a data center" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started" },
+            localZoning: { status: "in_progress", detail: "Expected closing is subject to conditions including city approval of a conditional use permit" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "Minnesota Star Tribune - Legacy Purchase Agreement", url: "https://www.startribune.com/data-center-developer-signs-deal-to-buy-minnesota-star-tribunes-shuttered-north-loop-printing-plant/601872895" },
+            { name: "Heritage Building Property Listing", url: "https://warehousespaces.com/warehouse-for-rent/United-States/MN/Minneapolis/800-North-1st-Street-Minneapolis-MN-55401/" }
+        ],
+        lastUpdated: "2026-08-03"
+    },
+    {
         id: 24,
         name: "Cielo Chisago",
-        status: "watching",
+        status: "suspended",
         city: "Chisago City",
         county: "Chisago",
         lat: 45.3990,
@@ -978,23 +1007,25 @@ const projectData = [
         acres: 157,
         sqft: null,
         mw: 300,
-        currentStatus: "Cielo self-reports 157 acres/300 MW; no public entitlement record found.",
-        notes: "Cielo Digital Infrastructure lists Chisago as active: 157 acres, 300 MW. No planning file or EQB notice found. Location approximate.",
+        currentStatus: "The prospective data center company withdrew its land purchase agreement after learning Xcel Energy could not provide the required service capacity for at least a couple of years. City staff reported no active data center inquiries on March 24, 2026.",
+        notes: "The prospective project was previously reported as a 157-acre, 300 MW Cielo Digital Infrastructure site. Chisago City had discussed environmental-review requirements with the company, but no planning application or EQB notice was filed before the purchase agreement was withdrawn. Location approximate.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-03-24", event: "City staff disclosed that the prospective data center company withdrew its purchase agreement because required Xcel Energy capacity would not be available for at least a couple of years" },
             { date: "2025", event: "Cielo lists Chisago as active project on company properties page (157 ac, 300 MW)" }
         ],
         permits: {
             environmentalReview: { status: "not_started", detail: "No EAW, AUAR, or EIS filing found in MN public record" },
-            localZoning: { status: "not_started" },
+            localZoning: { status: "withdrawn", detail: "Prospective developer withdrew its land purchase agreement before filing a public planning application" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "unknown" }
+            utilities: { status: "unavailable", detail: "City staff said Xcel Energy could not provide the required service capacity for at least a couple of years" }
         },
         sources: [
+            { name: "Chisago City Council Minutes - March 24, 2026", url: "https://www.ci.chisago.mn.us/vertical/sites/%7B4CF416A7-935D-4E3F-82DF-F3E06B5985B0%7D/uploads/CC_MINUTES_03.24.26.pdf" },
             { name: "Cleanview - Cielo Chisago", url: "https://cleanview.co/public/data-centers/minnesota/2043/cielo-chisago-data-center" },
             { name: "Data Center Dynamics - Cielo national pipeline", url: "https://www.datacenterdynamics.com/en/news/cielo-digital-infrastructure-plans-300mw-data-center-campus-in-south-carolina/" }
         ],
-        lastUpdated: "2026-04-07"
+        lastUpdated: "2026-08-03"
     },
     {
         id: 25,
