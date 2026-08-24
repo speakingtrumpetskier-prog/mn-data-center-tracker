@@ -244,6 +244,7 @@ function renderProjectList(filterValue = 'all') {
 // Get permit status class
 function getPermitStatusClass(status) {
     if (status === 'approved') return 'approved';
+    if (status === 'exempt') return 'approved';
     if (status === 'in_progress') return 'in-progress';
     if (status === 'not_started') return 'not-started';
     if (status === 'withdrawn') return 'withdrawn';
@@ -255,6 +256,7 @@ function getPermitStatusClass(status) {
 function getPermitStatusLabel(status) {
     const labels = {
         approved: 'Approved',
+        exempt: 'Exempt',
         in_progress: 'In Progress',
         not_started: 'Not Started',
         withdrawn: 'Withdrawn',
