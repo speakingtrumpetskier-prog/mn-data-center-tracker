@@ -75,10 +75,10 @@ const projectData = [
         county: "St. Louis",
         lat: 46.7730,
         lng: -92.2950,
-        acres: 278,
-        sqft: 1800000,
-        currentStatus: "Google-backed data center campus remains in updated AUAR review. The draft AUAR and mitigation plan comment period closed July 16, 2026. A separate resident lawsuit remains active while the MCEA case stays on hold during the updated AUAR.",
-        notes: "Google confirmed as company behind proposed Hermantown data center in March 2026. City and Google agreed to update the AUAR with greater specificity; updated study area covers 26 parcels totaling approximately 278 acres in southwest Hermantown, smaller than the initial AUAR adopted Oct 6, 2025. Scoping comment period opened Mar 31 and closed Apr 30, 2026. Proposed project would require at least 700 MW of new energy resources.",
+        acres: 234,
+        sqft: 1635000,
+        currentStatus: "The city submitted the final updated AUAR to EQB on Aug. 4 and posted updated project application materials Aug. 12. August city meetings are informational; no project action will occur until environmental review is complete. Separate resident litigation remains active.",
+        notes: "Google confirmed as the company behind the proposed Hermantown data center in March 2026. The filed special-use permit application covers approximately 234 acres. Site plans show three 375,000-square-foot data center buildings, three 150,000-square-foot mechanical buildings, a 30,000-square-foot office building, and two 15,000-square-foot support buildings, totaling 1.635 million square feet. The final updated AUAR continues to analyze a broader 278-acre, 1.8-million-square-foot maximum-build scenario.",
         litigation: {
             active: true,
             caseNumber: "69DU-CV-25-3448",
@@ -87,6 +87,8 @@ const projectData = [
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-08-12", event: "City posted updated special-use permit application and site-development materials; August meetings are informational" },
+            { date: "2026-08-04", event: "City submitted the final updated AUAR to the Environmental Quality Board" },
             { date: "2026-07-16", event: "Draft AUAR and mitigation plan comment period closed" },
             { date: "2026-06-11", event: "City posted draft AUAR and mitigation plan and opened comment period through July 16, 2026" },
             { date: "2026-05-18", event: "City Council accepted updated scoping document and authorized work toward draft AUAR" },
@@ -106,13 +108,16 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Initial AUAR adopted Oct 6, 2025; updated Google-specific draft AUAR and mitigation plan posted June 11, 2026; comment period closed July 16, 2026" },
-            localZoning: { status: "in_progress", detail: "Applications paused while updated AUAR proceeds; tax-abatement and development agreements tabled May 4, 2026" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "City submitted the final updated AUAR to EQB on Aug. 4, 2026; environmental review must be completed before project action" },
+            localZoning: { status: "in_progress", detail: "Updated special-use permit application and site-development materials posted Aug. 12, 2026; August meetings are informational pending environmental-review completion" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Minnesota Power filed PUC electric service agreement docket 26-159 for Harmony Group LLC on Mar. 26, 2026; comments open through Aug. 28, 2026" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
+            { name: "Final Updated AUAR (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/2026-08-04-Hermantown-Industrial-Final-AUAR-1.pdf" },
+            { name: "Special Use Permit Application (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/Application-SUP.pdf" },
+            { name: "Site Development Plans (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/Site-Development-Plans.pdf" },
             { name: "KAXE - May Agreements and AUAR Update", url: "https://www.kaxe.org/local-news/2026-05-20/more-details-emerge-as-google-hermantown-work-out-data-center-agreements" },
             { name: "MPR - Resident Lawsuit", url: "https://www.mprnews.org/story/2026/04/29/hermantown-residents-sue-to-block-proposed-google-data-center" },
             { name: "MPR - Vote Tabled", url: "https://www.mprnews.org/story/2026/05/05/hermantown-google-data-center-vote-tabled" },
@@ -126,7 +131,7 @@ const projectData = [
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-07-20"
+        lastUpdated: "2026-08-17"
     },
     {
         id: 3,
@@ -1081,19 +1086,26 @@ const projectData = [
     {
         id: 28,
         name: "Inver Grove Heights Travel Tags Data Center",
-        status: "watching",
+        status: "in_litigation",
         city: "Inver Grove Heights",
         county: "Dakota",
         lat: 44.8629567,
         lng: -93.0398372,
-        acres: null,
+        acres: 13.9,
         sqft: 54070,
         sqftDisplay: "54,000-55,000 SF",
         mw: 5,
-        currentStatus: "City Council approved a one-year moratorium on June 26, 2026 that includes the proposed 5 MW data center at the former Travel Tags site. A June 25 EAW petition pauses action on the site plan while the city reviews the petition.",
-        notes: "The city is reviewing a major site plan request for the former Travel Tags property. City materials describe a roughly 50,000-square-foot building with anticipated 5 MW power use; council materials describe an approximately 54,070-square-foot data center. The May 11, 2026 moratorium includes the proposed data center while the city studies data center impacts and regulations.",
-        litigation: { active: false },
+        currentStatus: "The city denied the EAW petition July 27 after finding the project exempt from mandatory environmental review. QLevr and FIG Ion Timber are suing the city over the moratorium. Council gave first reading Aug. 10 to a settlement ordinance excluding this application; two readings and final site-plan action remain.",
+        notes: "QLevr proposes a 54,070-square-foot, 5 MW data center on the 13.9-acre former Travel Tags property at 5890 Carmen Avenue. The city's one-year data center moratorium includes the application unless the proposed ordinance amendment completes adoption. The settlement schedule calls for additional ordinance readings Aug. 24 and Sept. 14 and final site-plan action by Oct. 4, 2026.",
+        litigation: {
+            active: true,
+            caseNumber: "19HA-CV-26-4605",
+            court: "Dakota County District Court",
+            status: "Active; proposed settlement would dismiss the case if the city exempts the application from the moratorium and approves the major site plan"
+        },
         timeline: [
+            { date: "2026-08-10", event: "City Council gave first reading to an ordinance excluding the application from the moratorium as part of a proposed lawsuit settlement" },
+            { date: "2026-07-27", event: "City Council denied the EAW petition after finding the project exempt from mandatory environmental review" },
             { date: "2026-06-26", event: "City Council approved a one-year moratorium covering the proposed data center" },
             { date: "2026-06-25", event: "Residents filed an EAW petition for the proposed data center" },
             { date: "2026-05-26", event: "City Council tables moratorium second reading to June 8 and site plan request to a meeting before July 1" },
@@ -1103,19 +1115,23 @@ const projectData = [
             { date: "2026-03-26", event: "Developer hosts neighborhood meeting" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "EAW", detail: "Residents filed an EAW petition June 25, 2026; city review is underway and site-plan action is paused pending the determination" },
-            localZoning: { status: "in_progress", detail: "One-year moratorium approved June 26, 2026; site plan vote tabled until after the EAW determination" },
+            environmentalReview: { status: "exempt", type: "EAW", detail: "City Council denied the EAW petition July 27, 2026 after finding the project exempt from mandatory environmental review" },
+            localZoning: { status: "in_progress", detail: "Moratorium remains in effect; first reading of an ordinance excluding the application passed Aug. 10, with additional readings scheduled Aug. 24 and Sept. 14 and final site-plan action due by Oct. 4, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "City of Inver Grove Heights - Proposed Data Center Development", url: "https://www.ighmn.gov/CivicAlerts.aspx?AID=2896" },
+            { name: "July 27, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2165/overview" },
+            { name: "August 10, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2154/overview" },
+            { name: "August 10 Litigation and Ordinance Report", url: "https://ighmn.portal.civicclerk.com/event/2154/files/report/8403" },
+            { name: "KSTP - Data Center Lawsuit and Settlement Path", url: "https://kstp.com/tracking-your-tax-dollars/data-center-lawsuit-could-cost-inver-grove-heights-taxpayers-millions-path-to-avoid-it-moves-forward/" },
             { name: "June 26, 2026 Item 7D Moratorium Packet (PDF)", url: "https://www.ighmn.gov/DocumentCenter/View/20108/June-26---Item-7D---Third-Reading-of-an-Interim-Ordinance-Authoring-Study-of-Data-Centers" },
             { name: "May 11, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20014/2026-05-11-City-Council-Actions" },
             { name: "May 26, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20051/2026-05-26-Council-Actions?bidId=" },
             { name: "Data Center Dynamics - Inver Grove Heights Moratorium", url: "https://www.datacenterdynamics.com/en/news/one-year-data-center-moratorium-approved-in-city-near-minneapolis/" }
         ],
-        lastUpdated: "2026-06-29"
+        lastUpdated: "2026-08-17"
     },
     {
         id: 29,
