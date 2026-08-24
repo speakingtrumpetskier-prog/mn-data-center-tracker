@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: August 3, 2026
+// Last updated: August 24, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -286,8 +286,8 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA lawsuit remains active in Wright County District Court challenging AUAR adequacy. The city found Monticello Tech LLC's July 6 development applications incomplete on July 20 and sent additional clarification July 23. The applications will not be processed until complete, and no public hearing dates are set.",
-        notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
+        currentStatus: "MCEA lawsuit remains active in Wright County District Court challenging AUAR adequacy. Monticello Tech's August 3 resubmission, supplemented August 11, is complete and under detailed city review. The decision deadline is December 8, 2026; no public hearing is scheduled.",
+        notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. The current review covers a DCPUD conditional use permit, rezoning, and preliminary plat; final plat is subject to a future application. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
             court: "Wright County District Court",
@@ -295,6 +295,8 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
+            { date: "2026-08-11", event: "Applicant provided supplemental materials; City determined the land-use applications complete and extended the decision deadline to December 8, 2026" },
+            { date: "2026-08-03", event: "City received a second submission of Monticello Tech's land-use applications" },
             { date: "2026-07-23", event: "City sent the applicant additional clarification regarding incomplete application items" },
             { date: "2026-07-20", event: "City determined the July 6 development applications were incomplete" },
             { date: "2026-07-06", event: "City received rezoning, conditional use permit, and plat applications from Monticello Tech LLC" },
@@ -311,11 +313,12 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
-            localZoning: { status: "in_progress", detail: "City found the July 6 applications incomplete; they will not be processed and hearings will not be scheduled until a complete submission is received" },
+            localZoning: { status: "in_progress", detail: "DCPUD conditional use permit, rezoning, and preliminary plat applications are complete and under review; decision deadline is Dec. 8, 2026, and no public hearing is scheduled" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City - Monticello Tech", url: "https://www.monticellomn.gov/753/Monticello-Tech" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/264408?siId=264408-PROJ0000000001" },
             { name: "Open House Presentation", url: "https://www.monticellomn.gov/DocumentCenter/View/8755" },
             { name: "City Environmental Reviews", url: "https://www.monticellomn.gov/712/Environmental-Reviews" },
@@ -326,7 +329,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-07-27"
+        lastUpdated: "2026-08-24"
     },
     {
         id: 8,
@@ -731,25 +734,28 @@ const projectData = [
         lng: -92.0080,
         acres: 60,
         sqft: null,
-        currentStatus: "Early-stage Economic Development Authority exploration; city voted to annex land Oct 14, 2025",
-        notes: "Southeast Minnesota location near Iowa border. No AUAR/EAW filed yet.",
+        currentStatus: "No specific development has been confirmed. MiEnergy has an option to purchase approximately 60 acres, and the City is reviewing a draft data center ordinance after public comments closed August 19. A joint review meeting is scheduled for August 26.",
+        notes: "MiEnergy Cooperative and Dairyland Power Cooperative asked the City to initiate annexation and industrial rezoning for land near Harmony. MiEnergy holds an option to purchase approximately 60 acres, but no data center developer or project application has been confirmed. No AUAR or EAW has been filed.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-08-19", event: "Public comment period on the draft data center ordinance closed ahead of an August 26 joint review meeting" },
+            { date: "2026-08-05", event: "City Council, Planning and Zoning Commission, and EDA reviewed a draft data center ordinance" },
             { date: "2025-10-14", event: "City voted to annex land" },
             { date: "2025-10-07", event: "Community members raise concerns at meeting" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "Annexation in progress" },
+            localZoning: { status: "in_progress", detail: "City is drafting data center standards while annexation and industrial rezoning are considered for the approximately 60-acre site" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "Harmony Economic Development Authority Project Page", url: "https://harmonymn.gov/eda/ongoing-projects/harmony-eda-project-data-center/" },
+            { name: "Fillmore County Journal - Draft Ordinance", url: "https://fillmorecountyjournal.com/harmony-considers-data-center-ordinance/" },
             { name: "Root River Current", url: "https://rootrivercurrent.org/harmony-minnesota-annexs-land-for-possible-data-center/" },
             { name: "Fillmore County Journal", url: "https://fillmorecountyjournal.com/concerns-raised-over-proposed-data-center/" }
         ],
-        lastUpdated: "2026-01-22"
+        lastUpdated: "2026-08-24"
     },
     {
         id: 18,
@@ -978,23 +984,27 @@ const projectData = [
         acres: 13,
         sqft: 396559,
         mw: 20,
-        currentStatus: "Legacy Investing has a purchase agreement for the former Star Tribune Heritage printing plant at 800 N. 1st St. and plans a mixed-use redevelopment centered on a data center. Closing is expected in the fourth quarter of 2026, subject to conditions including city approval of a conditional use permit.",
+        currentStatus: "Legacy Investing has a purchase agreement for the former Star Tribune Heritage printing plant at 800 N. 1st St. and plans a mixed-use redevelopment centered on a data center. The conditional fourth-quarter closing remains pending. The developer presented its plans at an August 19 neighborhood meeting; no conditional use permit or final site plan has been approved.",
         notes: "Legacy expects approximately 20 MW of data center capacity over two to three years. The existing printing-plant property covers approximately 13 acres. The developer has discussed housing or retail as possible additional uses, but no final site plan has been approved. Coordinates mark the approximate site location.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-08-21", event: "City's updated data center page listed preliminary zoning recommendations and an open public-comment process" },
+            { date: "2026-08-19", event: "Legacy presented its data center and mixed-use concept to the North Loop Neighborhood Association Planning and Zoning Committee" },
             { date: "2026-07-29", event: "Star Tribune reported that Legacy Investing signed a purchase agreement for the Heritage printing plant and plans a mixed-use redevelopment centered on a data center" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "Expected closing is subject to conditions including city approval of a conditional use permit" },
+            localZoning: { status: "in_progress", detail: "No conditional use permit or site plan has been approved; the proposed redevelopment remains subject to the City's temporary pause and pending data center zoning standards" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City of Minneapolis - Data Center Zoning", url: "https://www.minneapolismn.gov/business-services/planning-zoning/amendments/proposed-adopted/data-centers/" },
+            { name: "North Loop Neighborhood Association - Legacy Project Update", url: "https://northloop.org/heres-what-the-potential-data-center-developer-is-telling-us/" },
             { name: "Minnesota Star Tribune - Legacy Purchase Agreement", url: "https://www.startribune.com/data-center-developer-signs-deal-to-buy-minnesota-star-tribunes-shuttered-north-loop-printing-plant/601872895" },
             { name: "Heritage Building Property Listing", url: "https://warehousespaces.com/warehouse-for-rent/United-States/MN/Minneapolis/800-North-1st-Street-Minneapolis-MN-55401/" }
         ],
-        lastUpdated: "2026-08-03"
+        lastUpdated: "2026-08-24"
     },
     {
         id: 24,
