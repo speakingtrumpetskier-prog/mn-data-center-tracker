@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: August 24, 2026
+// Last updated: September 7, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -77,7 +77,7 @@ const projectData = [
         lng: -92.2950,
         acres: 234,
         sqft: 1635000,
-        currentStatus: "The city submitted the final updated AUAR to EQB on Aug. 4 and posted updated project application materials Aug. 12. August city meetings are informational; no project action will occur until environmental review is complete. Separate resident litigation remains active.",
+        currentStatus: "The city submitted the final updated AUAR to EQB Aug. 4 and posted updated application materials Aug. 12. Informational presentations and work sessions were held Aug. 17-20; no project action will occur until environmental review is complete. Separate resident litigation remains active.",
         notes: "Google confirmed as the company behind the proposed Hermantown data center in March 2026. The filed special-use permit application covers approximately 234 acres. Site plans show three 375,000-square-foot data center buildings, three 150,000-square-foot mechanical buildings, a 30,000-square-foot office building, and two 15,000-square-foot support buildings, totaling 1.635 million square feet. The final updated AUAR continues to analyze a broader 278-acre, 1.8-million-square-foot maximum-build scenario.",
         litigation: {
             active: true,
@@ -87,7 +87,8 @@ const projectData = [
             filedDate: "2025-11-05"
         },
         timeline: [
-            { date: "2026-08-12", event: "City posted updated special-use permit application and site-development materials; August meetings are informational" },
+            { date: "2026-08-20", event: "City completed Aug. 17-20 informational presentations and work sessions; no project action was taken" },
+            { date: "2026-08-12", event: "City posted updated special-use permit application and site-development materials" },
             { date: "2026-08-04", event: "City submitted the final updated AUAR to the Environmental Quality Board" },
             { date: "2026-07-16", event: "Draft AUAR and mitigation plan comment period closed" },
             { date: "2026-06-11", event: "City posted draft AUAR and mitigation plan and opened comment period through July 16, 2026" },
@@ -109,9 +110,9 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "in_progress", type: "AUAR", detail: "City submitted the final updated AUAR to EQB on Aug. 4, 2026; environmental review must be completed before project action" },
-            localZoning: { status: "in_progress", detail: "Updated special-use permit application and site-development materials posted Aug. 12, 2026; August meetings are informational pending environmental-review completion" },
+            localZoning: { status: "in_progress", detail: "Updated special-use permit application and site-development materials posted Aug. 12, 2026; Aug. 17-20 informational sessions completed, with project action pending environmental-review completion" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "Minnesota Power filed PUC electric service agreement docket 26-159 for Harmony Group LLC on Mar. 26, 2026; comments open through Aug. 28, 2026" }
+            utilities: { status: "in_progress", detail: "Minnesota Power filed PUC electric service agreement docket 26-159 for Harmony Group LLC on Mar. 26, 2026; public comment period closed Aug. 28, 2026, and a Commission decision is pending" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
@@ -131,7 +132,7 @@ const projectData = [
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-08-17"
+        lastUpdated: "2026-09-07"
     },
     {
         id: 3,
@@ -237,7 +238,7 @@ const projectData = [
         lng: -92.6180,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Temporary injunction issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. Google-backed facility (Ryan Companies developer) cannot proceed while the injunction remains in effect.",
+        currentStatus: "Temporary injunction issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. The Google-backed facility cannot proceed while the injunction remains in effect. Separate utility reviews remain active: ESA comments run through Sept. 8, and PUC route-permit public meetings are scheduled Sept. 14-15.",
         notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records.",
         litigation: {
             active: true,
@@ -247,6 +248,8 @@ const projectData = [
             filedDate: "2025-10-16"
         },
         timeline: [
+            { date: "2026-09-14", event: "PUC route-permit public meetings scheduled for Sept. 14-15, 2026" },
+            { date: "2026-08-18", event: "PUC posted a draft route permit for the 1.2-mile Skyway 345-kV transmission line" },
             { date: "2026-05-22", event: "Temporary injunction issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
             { date: "2026-04-20", event: "Summary judgment hearing (defendants' motion denied)" },
             { date: "2026-04-14", event: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC" },
@@ -262,7 +265,7 @@ const projectData = [
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025; adequacy challenged in court" },
             localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by temporary injunction May 2026" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC on Apr. 14, 2026; comments open through Sept. 8, 2026" }
+            utilities: { status: "in_progress", detail: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC on Apr. 14, 2026; comments remain open through Sept. 8. PUC route-permit docket 26-135 is active for the 1.2-mile Skyway 345-kV line; a draft permit was posted Aug. 18 and public meetings are scheduled Sept. 14-15, 2026" }
         },
         sources: [
             { name: "MPR - Construction Halted by Judge", url: "https://www.mprnews.org/story/2026/05/26/pine-island-hyperscale-data-center-construction-halted-by-judge" },
@@ -272,9 +275,11 @@ const projectData = [
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/12/MCEA-Pine-Island-Complaint_MCRO_25-CV-25-2298_Complaint-Civil_2025-10-16_20251230105028.pdf" },
             { name: "Post Bulletin - Flurry of Filings", url: "https://www.postbulletin.com/news/local/flurry-of-filings-come-as-court-dates-draw-near-for-pine-island-data-center" },
             { name: "Minnesota PUC - Data Center Dockets", url: "https://mn.gov/puc/activities/v-l-e-c/data-centers/" },
+            { name: "Minnesota PUC - Skyway 345 kV Transmission Line", url: "https://puc.eip.mn.gov/web/project/26135" },
+            { name: "Xcel Energy - Skyway Transmission Line", url: "https://xcelenergytransmission.com/projects/skyway/" },
             { name: "Planning & Zoning CUP Notice", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/1.13.26_PZ_Notice_-_CUP.pdf" }
         ],
-        lastUpdated: "2026-07-20"
+        lastUpdated: "2026-09-07"
     },
 
     // ============================================
@@ -739,28 +744,32 @@ const projectData = [
         lng: -92.0080,
         acres: 60,
         sqft: null,
-        currentStatus: "No specific development has been confirmed. MiEnergy has an option to purchase approximately 60 acres, and the City is reviewing a draft data center ordinance after public comments closed August 19. A joint review meeting is scheduled for August 26.",
+        currentStatus: "No specific development has been confirmed. MiEnergy has an option to purchase approximately 60 acres. City leaders reviewed public feedback on the draft data center ordinance Aug. 26 and returned it to counsel; a fifth draft is scheduled for review Sept. 16.",
         notes: "MiEnergy Cooperative and Dairyland Power Cooperative asked the City to initiate annexation and industrial rezoning for land near Harmony. MiEnergy holds an option to purchase approximately 60 acres, but no data center developer or project application has been confirmed. No AUAR or EAW has been filed.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-08-19", event: "Public comment period on the draft data center ordinance closed ahead of an August 26 joint review meeting" },
+            { date: "2026-09-16", event: "Joint planning session scheduled to review the fifth draft of the data center ordinance" },
+            { date: "2026-08-26", event: "City leaders reviewed public feedback and returned the draft data center ordinance to counsel for revisions" },
+            { date: "2026-08-19", event: "Public comment period on the draft data center ordinance closed" },
             { date: "2026-08-05", event: "City Council, Planning and Zoning Commission, and EDA reviewed a draft data center ordinance" },
             { date: "2025-10-14", event: "City voted to annex land" },
             { date: "2025-10-07", event: "Community members raise concerns at meeting" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "City is drafting data center standards while annexation and industrial rezoning are considered for the approximately 60-acre site" },
+            localZoning: { status: "in_progress", detail: "City returned the draft data center ordinance to counsel after the Aug. 26 feedback review; a fifth draft is scheduled for joint review Sept. 16" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "Harmony Economic Development Authority Project Page", url: "https://harmonymn.gov/eda/ongoing-projects/harmony-eda-project-data-center/" },
+            { name: "Harmony Meetings and Reports", url: "https://harmonymn.gov/eda/meetings-reports/" },
+            { name: "KTTC - August 26 Feedback Review", url: "https://www.kttc.com/2026/08/27/harmony-city-leaders-face-flood-feedback-over-proposed-data-center/" },
             { name: "Fillmore County Journal - Draft Ordinance", url: "https://fillmorecountyjournal.com/harmony-considers-data-center-ordinance/" },
             { name: "Root River Current", url: "https://rootrivercurrent.org/harmony-minnesota-annexs-land-for-possible-data-center/" },
             { name: "Fillmore County Journal", url: "https://fillmorecountyjournal.com/concerns-raised-over-proposed-data-center/" }
         ],
-        lastUpdated: "2026-08-24"
+        lastUpdated: "2026-09-07"
     },
     {
         id: 18,
@@ -1095,8 +1104,8 @@ const projectData = [
         sqft: 54070,
         sqftDisplay: "54,000-55,000 SF",
         mw: 5,
-        currentStatus: "The city denied the EAW petition July 27 after finding the project exempt from mandatory environmental review. QLevr and FIG Ion Timber are suing the city over the moratorium. Council gave first reading Aug. 10 to a settlement ordinance excluding this application; two readings and final site-plan action remain.",
-        notes: "QLevr proposes a 54,070-square-foot, 5 MW data center on the 13.9-acre former Travel Tags property at 5890 Carmen Avenue. The city's one-year data center moratorium includes the application unless the proposed ordinance amendment completes adoption. The settlement schedule calls for additional ordinance readings Aug. 24 and Sept. 14 and final site-plan action by Oct. 4, 2026.",
+        currentStatus: "The city denied the EAW petition July 27 after finding the project exempt from mandatory environmental review. QLevr and FIG Ion Timber are suing the city over the moratorium. Council approved the settlement ordinance's second reading 4-1 on Aug. 24; a final reading Sept. 14 and final site-plan action remain.",
+        notes: "QLevr proposes a 54,070-square-foot, 5 MW data center on the 13.9-acre former Travel Tags property at 5890 Carmen Avenue. The city's one-year data center moratorium includes the application unless the proposed ordinance amendment completes adoption. Council approved the second reading Aug. 24; a final reading is scheduled Sept. 14, with final site-plan action due by Oct. 4, 2026.",
         litigation: {
             active: true,
             caseNumber: "19HA-CV-26-4605",
@@ -1104,6 +1113,8 @@ const projectData = [
             status: "Active; proposed settlement would dismiss the case if the city exempts the application from the moratorium and approves the major site plan"
         },
         timeline: [
+            { date: "2026-09-14", event: "Final reading of the settlement ordinance scheduled" },
+            { date: "2026-08-24", event: "City Council approved 4-1 the second reading of the settlement ordinance excluding the application from the moratorium" },
             { date: "2026-08-10", event: "City Council gave first reading to an ordinance excluding the application from the moratorium as part of a proposed lawsuit settlement" },
             { date: "2026-07-27", event: "City Council denied the EAW petition after finding the project exempt from mandatory environmental review" },
             { date: "2026-06-26", event: "City Council approved a one-year moratorium covering the proposed data center" },
@@ -1116,7 +1127,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "exempt", type: "EAW", detail: "City Council denied the EAW petition July 27, 2026 after finding the project exempt from mandatory environmental review" },
-            localZoning: { status: "in_progress", detail: "Moratorium remains in effect; first reading of an ordinance excluding the application passed Aug. 10, with additional readings scheduled Aug. 24 and Sept. 14 and final site-plan action due by Oct. 4, 2026" },
+            localZoning: { status: "in_progress", detail: "Moratorium remains in effect; the settlement ordinance passed its second reading 4-1 on Aug. 24, with a final reading scheduled Sept. 14 and final site-plan action due by Oct. 4, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -1124,6 +1135,7 @@ const projectData = [
             { name: "City of Inver Grove Heights - Proposed Data Center Development", url: "https://www.ighmn.gov/CivicAlerts.aspx?AID=2896" },
             { name: "July 27, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2165/overview" },
             { name: "August 10, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2154/overview" },
+            { name: "August 24, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2166/overview" },
             { name: "August 10 Litigation and Ordinance Report", url: "https://ighmn.portal.civicclerk.com/event/2154/files/report/8403" },
             { name: "KSTP - Data Center Lawsuit and Settlement Path", url: "https://kstp.com/tracking-your-tax-dollars/data-center-lawsuit-could-cost-inver-grove-heights-taxpayers-millions-path-to-avoid-it-moves-forward/" },
             { name: "June 26, 2026 Item 7D Moratorium Packet (PDF)", url: "https://www.ighmn.gov/DocumentCenter/View/20108/June-26---Item-7D---Third-Reading-of-an-Interim-Ordinance-Authoring-Study-of-Data-Centers" },
@@ -1131,22 +1143,23 @@ const projectData = [
             { name: "May 26, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20051/2026-05-26-Council-Actions?bidId=" },
             { name: "Data Center Dynamics - Inver Grove Heights Moratorium", url: "https://www.datacenterdynamics.com/en/news/one-year-data-center-moratorium-approved-in-city-near-minneapolis/" }
         ],
-        lastUpdated: "2026-08-17"
+        lastUpdated: "2026-09-07"
     },
     {
         id: 29,
         name: "Elk River Industrial Blvd Data Center",
-        status: "watching",
+        status: "suspended",
         city: "Elk River",
         county: "Sherburne",
         lat: 45.3186,
         lng: -93.5863,
         acres: 3.223,
         sqft: 58000,
-        currentStatus: "After City Council rejected the zoning text amendment on July 6, 2026, the applicant withdrew both the ordinance amendment and CUP applications on July 10. No city approval for a data center at 19178 Industrial Blvd NW is pending.",
-        notes: "Applicant Michael Margulies, representing Elk River Capital LLC (Swervo Development), seeks to repurpose part of an existing industrial building into a 58,000-square-foot data center. City materials describe demolition of about 5,000 square feet to improve the loading dock area and closed-loop glycol cooling equipment at the southwest corner of the building.",
+        currentStatus: "The applicant withdrew both the ordinance amendment and CUP applications July 10 after City Council rejected the zoning text amendment. On Aug. 3, the council adopted a one-year moratorium on data center land-use approvals. No approval for a data center at 19178 Industrial Blvd NW is pending.",
+        notes: "Applicant Michael Margulies, representing Elk River Capital LLC (Swervo Development), proposed repurposing part of an existing industrial building into a 58,000-square-foot data center. The applications were withdrawn July 10, 2026, and the city subsequently adopted a one-year data center moratorium.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-08-03", event: "City Council adopted Ordinance 26-17, establishing a one-year moratorium on data center land-use approvals" },
             { date: "2026-07-10", event: "Applicant withdrew ordinance amendment and conditional use permit applications" },
             { date: "2026-07-06", event: "City Council rejected the ordinance amendment that would have allowed a data center; conditional use permit remained pending at that point" },
             { date: "2026-06-15", event: "City Council public hearing opened and was continued to July 6, 2026" },
@@ -1154,18 +1167,19 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "withdrawn", detail: "Applicant withdrew the ordinance amendment and CUP applications July 10, 2026 after City Council rejected the ordinance amendment July 6" },
+            localZoning: { status: "withdrawn", detail: "Applications withdrawn July 10 after the ordinance amendment was rejected; Ordinance 26-17 established a one-year moratorium on data center land-use approvals Aug. 3, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "Elk River Data Center - Timeline", url: "https://elkriverdatacenter.com/timeline/" },
             { name: "City Council Meeting - July 6, 2026", url: "https://elkriver.viebit.com/watch?hash=wyb78XEL9d2ntnS5" },
+            { name: "August 3, 2026 City Council Record", url: "https://elkrivermn.portal.civicclerk.com/event/613/overview" },
             { name: "MPR - Elk River Rejects Data Center Ordinance Change", url: "https://www.mprnews.org/story/2026/07/07/elk-river-rejects-changing-rules-to-allow-data-centers" },
             { name: "City of Elk River - Public Hearings", url: "https://www.elkrivermn.gov/1678/Public-Hearings" },
             { name: "Notice of Public Hearing (PDF)", url: "https://www.elkrivermn.gov/DocumentCenter/View/19540/Notice-of-Public-Hearing-Conditional-Use-Permit-and-Ordinance-Amendment-for-Michael-Margulies---data-center" }
         ],
-        lastUpdated: "2026-07-20"
+        lastUpdated: "2026-09-07"
     }
 ];
 
