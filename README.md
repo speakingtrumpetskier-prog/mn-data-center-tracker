@@ -77,5 +77,5 @@ MIT License - Feel free to use and modify.
 
 Built with:
 - [Leaflet](https://leafletjs.com/) - Interactive maps
-- [CARTO](https://carto.com/) - Dark map tiles
+- [OpenStreetMap](https://www.openstreetmap.org/) - Standard map tiles
 - [Inter](https://rsms.me/inter/) - Typography
