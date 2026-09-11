@@ -1,13 +1,14 @@
 // Minnesota Data Center Tracker - Application Logic
 
-// Initialize map with OpenStreetMap's standard public tiles
+// Initialize map with CARTO's understated Positron basemap.
 const map = L.map('map', {
     zoomControl: true,
     scrollWheelZoom: true
 }).setView([45.0, -93.5], 7);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+// Public browser key restricted to speakingtrumpetskier-prog.github.io.
+L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_3hur_1_6e4ee6188ee43baf860f2184', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions/">CARTO</a>',
     maxZoom: 19
 }).addTo(map);
 
