@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: September 7, 2026
+// Last updated: September 14, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -77,7 +77,7 @@ const projectData = [
         lng: -92.2950,
         acres: 234,
         sqft: 1635000,
-        currentStatus: "The city submitted the final updated AUAR to EQB Aug. 4 and posted updated application materials Aug. 12. Informational presentations and work sessions were held Aug. 17-20; no project action will occur until environmental review is complete. Separate resident litigation remains active.",
+        currentStatus: "The final updated AUAR drew an Aug. 25 DNR clarification letter identifying remaining information and mitigation concerns, but DNR did not file a formal objection. After Sept. 2 discussions and Sept. 4 and Sept. 10 follow-up letters, the city says the clarifications will be included in the final AUAR. Local permit action has not occurred; separate resident litigation remains active.",
         notes: "Google confirmed as the company behind the proposed Hermantown data center in March 2026. The filed special-use permit application covers approximately 234 acres. Site plans show three 375,000-square-foot data center buildings, three 150,000-square-foot mechanical buildings, a 30,000-square-foot office building, and two 15,000-square-foot support buildings, totaling 1.635 million square feet. The final updated AUAR continues to analyze a broader 278-acre, 1.8-million-square-foot maximum-build scenario.",
         litigation: {
             active: true,
@@ -87,6 +87,8 @@ const projectData = [
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-09-10", event: "DNR confirmed it did not object to the updated AUAR and provided technical recommendations after Sept. 2 discussions and the City's Sept. 4 response" },
+            { date: "2026-08-25", event: "DNR submitted a clarification letter identifying remaining information, alternatives, and mitigation concerns without filing a formal AUAR objection" },
             { date: "2026-08-20", event: "City completed Aug. 17-20 informational presentations and work sessions; no project action was taken" },
             { date: "2026-08-12", event: "City posted updated special-use permit application and site-development materials" },
             { date: "2026-08-04", event: "City submitted the final updated AUAR to the Environmental Quality Board" },
@@ -109,13 +111,15 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "City submitted the final updated AUAR to EQB on Aug. 4, 2026; environmental review must be completed before project action" },
+            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Final updated AUAR submitted Aug. 4; DNR's Aug. 25 letter was not a formal objection, and Sept. 2-10 follow-up correspondence will be included as clarifications before project action" },
             localZoning: { status: "in_progress", detail: "Updated special-use permit application and site-development materials posted Aug. 12, 2026; Aug. 17-20 informational sessions completed, with project action pending environmental-review completion" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Minnesota Power filed PUC electric service agreement docket 26-159 for Harmony Group LLC on Mar. 26, 2026; public comment period closed Aug. 28, 2026, and a Commission decision is pending" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
+            { name: "DNR Aug. 25 AUAR Clarification Letter (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/09/2026-08-25-Updated-Hermantown-Industrial-AUAR.pdf" },
+            { name: "DNR Sept. 10 AUAR Follow-up (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/09/2026-09-10-Hermantown-AUAR-follow-up.pdf" },
             { name: "Final Updated AUAR (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/2026-08-04-Hermantown-Industrial-Final-AUAR-1.pdf" },
             { name: "Special Use Permit Application (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/Application-SUP.pdf" },
             { name: "Site Development Plans (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/Site-Development-Plans.pdf" },
@@ -132,7 +136,7 @@ const projectData = [
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-09-07"
+        lastUpdated: "2026-09-14"
     },
     {
         id: 3,
@@ -238,7 +242,7 @@ const projectData = [
         lng: -92.6180,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Temporary injunction issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. The Google-backed facility cannot proceed while the injunction remains in effect. Separate utility reviews remain active: ESA comments run through Sept. 8, and PUC route-permit public meetings are scheduled Sept. 14-15.",
+        currentStatus: "Temporary injunction issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. The Google-backed facility cannot proceed while the injunction remains in effect. Separate utility reviews remain active: the ESA comment period closed Sept. 8 with a Commission decision pending, and route-permit public meetings are scheduled Sept. 14-15.",
         notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records.",
         litigation: {
             active: true,
@@ -249,6 +253,7 @@ const projectData = [
         },
         timeline: [
             { date: "2026-09-14", event: "PUC route-permit public meetings scheduled for Sept. 14-15, 2026" },
+            { date: "2026-09-08", event: "PUC public-comment period closed on Xcel Energy's electric service agreement with Echo Zone; Commission decision pending" },
             { date: "2026-08-18", event: "PUC posted a draft route permit for the 1.2-mile Skyway 345-kV transmission line" },
             { date: "2026-05-22", event: "Temporary injunction issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
             { date: "2026-04-20", event: "Summary judgment hearing (defendants' motion denied)" },
@@ -265,7 +270,7 @@ const projectData = [
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025; adequacy challenged in court" },
             localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by temporary injunction May 2026" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC on Apr. 14, 2026; comments remain open through Sept. 8. PUC route-permit docket 26-135 is active for the 1.2-mile Skyway 345-kV line; a draft permit was posted Aug. 18 and public meetings are scheduled Sept. 14-15, 2026" }
+            utilities: { status: "in_progress", detail: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC on Apr. 14, 2026; the public-comment period closed Sept. 8 and a Commission decision is pending. PUC route-permit docket 26-135 remains active for the 1.2-mile Skyway 345-kV line; a draft permit was posted Aug. 18 and public meetings are scheduled Sept. 14-15, 2026" }
         },
         sources: [
             { name: "MPR - Construction Halted by Judge", url: "https://www.mprnews.org/story/2026/05/26/pine-island-hyperscale-data-center-construction-halted-by-judge" },
@@ -279,7 +284,7 @@ const projectData = [
             { name: "Xcel Energy - Skyway Transmission Line", url: "https://xcelenergytransmission.com/projects/skyway/" },
             { name: "Planning & Zoning CUP Notice", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/1.13.26_PZ_Notice_-_CUP.pdf" }
         ],
-        lastUpdated: "2026-09-07"
+        lastUpdated: "2026-09-14"
     },
 
     // ============================================
@@ -296,7 +301,7 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA lawsuit remains active in Wright County District Court challenging AUAR adequacy. Monticello Tech's August 3 resubmission, supplemented August 11, is complete and under detailed city review. The decision deadline is December 8, 2026; no public hearing is scheduled.",
+        currentStatus: "MCEA's Wright County lawsuit challenging AUAR adequacy remains active. Monticello Tech's completed DCPUD conditional use permit, rezoning, and preliminary-plat applications are under city review. The Planning Commission will hold a public hearing Oct. 6; City Council action is not yet scheduled, and the decision deadline is Dec. 8.",
         notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. The current review covers a DCPUD conditional use permit, rezoning, and preliminary plat; final plat is subject to a future application. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
         litigation: {
             active: true,
@@ -305,6 +310,8 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
+            { date: "2026-10-06", event: "Planning Commission public hearing scheduled on the DCPUD CUP, rezoning, and preliminary plat applications" },
+            { date: "2026-09-04", event: "City Council authorized an escrow agreement to recover application-review expenses" },
             { date: "2026-08-11", event: "Applicant provided supplemental materials; City determined the land-use applications complete and extended the decision deadline to December 8, 2026" },
             { date: "2026-08-03", event: "City received a second submission of Monticello Tech's land-use applications" },
             { date: "2026-07-23", event: "City sent the applicant additional clarification regarding incomplete application items" },
@@ -323,7 +330,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
-            localZoning: { status: "in_progress", detail: "DCPUD conditional use permit, rezoning, and preliminary plat applications are complete and under review; decision deadline is Dec. 8, 2026, and no public hearing is scheduled" },
+            localZoning: { status: "in_progress", detail: "DCPUD conditional use permit, rezoning, and preliminary plat applications are complete and under review; the Planning Commission hearing is Oct. 6, City Council action is not yet scheduled, and the decision deadline is Dec. 8, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -339,7 +346,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-08-24"
+        lastUpdated: "2026-09-14"
     },
     {
         id: 8,
@@ -990,7 +997,7 @@ const projectData = [
     {
         id: 30,
         name: "Legacy / Star Tribune Heritage Data Center",
-        status: "watching",
+        status: "suspended",
         city: "Minneapolis",
         county: "Hennepin",
         lat: 44.9910,
@@ -998,27 +1005,30 @@ const projectData = [
         acres: 13,
         sqft: 396559,
         mw: 20,
-        currentStatus: "Legacy Investing has a purchase agreement for the former Star Tribune Heritage printing plant at 800 N. 1st St. and plans a mixed-use redevelopment centered on a data center. The conditional fourth-quarter closing remains pending. The developer presented its plans at an August 19 neighborhood meeting; no conditional use permit or final site plan has been approved.",
-        notes: "Legacy expects approximately 20 MW of data center capacity over two to three years. The existing printing-plant property covers approximately 13 acres. The developer has discussed housing or retail as possible additional uses, but no final site plan has been approved. Coordinates mark the approximate site location.",
+        currentStatus: "Legacy Investing withdrew its land-use application and terminated its purchase agreement for the former Star Tribune Heritage printing plant on Sept. 11, 2026. The city says no additional applications have been received for the site.",
+        notes: "Legacy had proposed a 20 MW data center with additional mixed uses on the roughly 13-acre former printing-plant property at 800 N. 1st St. The proposal ended when the application and purchase agreement were withdrawn. Coordinates mark the approximate site location.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-09-11", event: "Legacy withdrew its land-use application and terminated the Heritage plant purchase agreement; the city reported no replacement application" },
             { date: "2026-08-21", event: "City's updated data center page listed preliminary zoning recommendations and an open public-comment process" },
             { date: "2026-08-19", event: "Legacy presented its data center and mixed-use concept to the North Loop Neighborhood Association Planning and Zoning Committee" },
             { date: "2026-07-29", event: "Star Tribune reported that Legacy Investing signed a purchase agreement for the Heritage printing plant and plans a mixed-use redevelopment centered on a data center" }
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "No conditional use permit or site plan has been approved; the proposed redevelopment remains subject to the City's temporary pause and pending data center zoning standards" },
+            localZoning: { status: "withdrawn", detail: "Legacy withdrew the land-use application Sept. 11, 2026; no conditional use permit or site plan was approved" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "MPR News - Legacy Withdraws Proposal", url: "https://www.mprnews.org/story/2026/09/11/developer-legacy-investing-withdraws-proposed-star-tribune-data-center" },
+            { name: "Minnesota Star Tribune - Application and Purchase Agreement Withdrawn", url: "https://www.startribune.com/data-center-developer-legacy-investing-star-tribune-printing-plant-deal-backing-out/601888372" },
             { name: "City of Minneapolis - Data Center Zoning", url: "https://www.minneapolismn.gov/business-services/planning-zoning/amendments/proposed-adopted/data-centers/" },
             { name: "North Loop Neighborhood Association - Legacy Project Update", url: "https://northloop.org/heres-what-the-potential-data-center-developer-is-telling-us/" },
             { name: "Minnesota Star Tribune - Legacy Purchase Agreement", url: "https://www.startribune.com/data-center-developer-signs-deal-to-buy-minnesota-star-tribunes-shuttered-north-loop-printing-plant/601872895" },
             { name: "Heritage Building Property Listing", url: "https://warehousespaces.com/warehouse-for-rent/United-States/MN/Minneapolis/800-North-1st-Street-Minneapolis-MN-55401/" }
         ],
-        lastUpdated: "2026-08-24"
+        lastUpdated: "2026-09-14"
     },
     {
         id: 24,
