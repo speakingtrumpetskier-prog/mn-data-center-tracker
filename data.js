@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: September 14, 2026
+// Last updated: October 2, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -1114,16 +1114,17 @@ const projectData = [
         sqft: 54070,
         sqftDisplay: "54,000-55,000 SF",
         mw: 5,
-        currentStatus: "The city denied the EAW petition July 27 after finding the project exempt from mandatory environmental review. QLevr and FIG Ion Timber are suing the city over the moratorium. Council approved the settlement ordinance's second reading 4-1 on Aug. 24; a final reading Sept. 14 and final site-plan action remain.",
-        notes: "QLevr proposes a 54,070-square-foot, 5 MW data center on the 13.9-acre former Travel Tags property at 5890 Carmen Avenue. The city's one-year data center moratorium includes the application unless the proposed ordinance amendment completes adoption. Council approved the second reading Aug. 24; a final reading is scheduled Sept. 14, with final site-plan action due by Oct. 4, 2026.",
+        currentStatus: "The city denied the EAW petition July 27 after finding the project exempt from mandatory environmental review. Council excluded the application from the data center moratorium Sept. 14 and approved the major site plan Sept. 28. A development contract and building permit are still required. The developer lawsuit remains active pending dismissal under the proposed settlement.",
+        notes: "QLevr proposes a 54,070-square-foot, 5 MW data center on the 13.9-acre former Travel Tags property at 5890 Carmen Avenue. Council completed adoption of an ordinance removing the application from the city's one-year data center moratorium Sept. 14 and approved the major site plan Sept. 28. An approved development contract and building permit are still required before construction.",
         litigation: {
             active: true,
             caseNumber: "19HA-CV-26-4605",
             court: "Dakota County District Court",
-            status: "Active; proposed settlement would dismiss the case if the city exempts the application from the moratorium and approves the major site plan"
+            status: "Major site plan approved Sept. 28; proposed settlement calls for dismissal, with court dismissal still pending"
         },
         timeline: [
-            { date: "2026-09-14", event: "Final reading of the settlement ordinance scheduled" },
+            { date: "2026-09-28", event: "City Council approved the major site plan and began the citywide data center moratorium study" },
+            { date: "2026-09-14", event: "City Council approved the third and final reading of the ordinance excluding the application from the moratorium" },
             { date: "2026-08-24", event: "City Council approved 4-1 the second reading of the settlement ordinance excluding the application from the moratorium" },
             { date: "2026-08-10", event: "City Council gave first reading to an ordinance excluding the application from the moratorium as part of a proposed lawsuit settlement" },
             { date: "2026-07-27", event: "City Council denied the EAW petition after finding the project exempt from mandatory environmental review" },
@@ -1137,7 +1138,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "exempt", type: "EAW", detail: "City Council denied the EAW petition July 27, 2026 after finding the project exempt from mandatory environmental review" },
-            localZoning: { status: "in_progress", detail: "Moratorium remains in effect; the settlement ordinance passed its second reading 4-1 on Aug. 24, with a final reading scheduled Sept. 14 and final site-plan action due by Oct. 4, 2026" },
+            localZoning: { status: "approved", detail: "Council excluded the application from the moratorium Sept. 14 and approved the major site plan Sept. 28; a development contract and building permit are still required" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -1146,6 +1147,7 @@ const projectData = [
             { name: "July 27, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2165/overview" },
             { name: "August 10, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2154/overview" },
             { name: "August 24, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2166/overview" },
+            { name: "September 28, 2026 City Council Record", url: "https://ighmn.portal.civicclerk.com/event/2167/overview" },
             { name: "August 10 Litigation and Ordinance Report", url: "https://ighmn.portal.civicclerk.com/event/2154/files/report/8403" },
             { name: "KSTP - Data Center Lawsuit and Settlement Path", url: "https://kstp.com/tracking-your-tax-dollars/data-center-lawsuit-could-cost-inver-grove-heights-taxpayers-millions-path-to-avoid-it-moves-forward/" },
             { name: "June 26, 2026 Item 7D Moratorium Packet (PDF)", url: "https://www.ighmn.gov/DocumentCenter/View/20108/June-26---Item-7D---Third-Reading-of-an-Interim-Ordinance-Authoring-Study-of-Data-Centers" },
@@ -1153,7 +1155,7 @@ const projectData = [
             { name: "May 26, 2026 City Council Actions", url: "https://www.ighmn.gov/DocumentCenter/View/20051/2026-05-26-Council-Actions?bidId=" },
             { name: "Data Center Dynamics - Inver Grove Heights Moratorium", url: "https://www.datacenterdynamics.com/en/news/one-year-data-center-moratorium-approved-in-city-near-minneapolis/" }
         ],
-        lastUpdated: "2026-09-07"
+        lastUpdated: "2026-10-02"
     },
     {
         id: 29,
