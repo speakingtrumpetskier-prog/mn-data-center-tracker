@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: October 2, 2026
+// Last updated: November 9, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -68,25 +68,29 @@ const projectData = [
     {
         id: 2,
         name: "Hermantown Data Center",
-        status: "in_review",
-        secondaryStatus: "in_litigation",
-        tertiaryStatus: "review_complete",
+        status: "in_litigation",
+        secondaryStatus: "review_complete",
         city: "Hermantown",
         county: "St. Louis",
         lat: 46.7730,
         lng: -92.2950,
         acres: 234,
         sqft: 1635000,
-        currentStatus: "The final updated AUAR drew an Aug. 25 DNR clarification letter identifying remaining information and mitigation concerns, but DNR did not file a formal objection. After Sept. 2 discussions and Sept. 4 and Sept. 10 follow-up letters, the city says the clarifications will be included in the final AUAR. Local permit action has not occurred; separate resident litigation remains active.",
+        currentStatus: "The City adopted the final updated AUAR Oct. 5 and approved the special-use permit, preliminary plat, development agreement, and decommissioning agreement Oct. 30. Environmental groups filed a new lawsuit Nov. 4 challenging the updated review. Minnesota Power's PUC electric-service-agreement docket remains pending, and construction has not been confirmed.",
         notes: "Google confirmed as the company behind the proposed Hermantown data center in March 2026. The filed special-use permit application covers approximately 234 acres. Site plans show three 375,000-square-foot data center buildings, three 150,000-square-foot mechanical buildings, a 30,000-square-foot office building, and two 15,000-square-foot support buildings, totaling 1.635 million square feet. The final updated AUAR continues to analyze a broader 278-acre, 1.8-million-square-foot maximum-build scenario.",
         litigation: {
             active: true,
-            caseNumber: "69DU-CV-25-3448",
+            caseNumber: "69DU-CV-25-3448; 69DU-CV-26-2040",
             court: "St. Louis County District Court",
-            status: "MCEA lawsuit on hold while updated AUAR proceeds; separate resident lawsuit filed Apr 29, 2026",
+            status: "Multiple active challenges, including a Nov. 4, 2026 lawsuit over the updated AUAR",
             filedDate: "2025-11-05"
         },
         timeline: [
+            { date: "2026-11-04", event: "Environmental groups filed a new lawsuit challenging the updated AUAR" },
+            { date: "2026-10-30", event: "City Council approved the special-use permit, preliminary plat, development agreement, and decommissioning agreement and rejected an EAW petition" },
+            { date: "2026-10-20", event: "Planning Commission recommended approval of the special-use permit and preliminary plat" },
+            { date: "2026-10-19", event: "Google withdrew its tax-abatement request and advanced a decommissioning agreement" },
+            { date: "2026-10-05", event: "City Council adopted the final updated AUAR" },
             { date: "2026-09-10", event: "DNR confirmed it did not object to the updated AUAR and provided technical recommendations after Sept. 2 discussions and the City's Sept. 4 response" },
             { date: "2026-08-25", event: "DNR submitted a clarification letter identifying remaining information, alternatives, and mitigation concerns without filing a formal AUAR objection" },
             { date: "2026-08-20", event: "City completed Aug. 17-20 informational presentations and work sessions; no project action was taken" },
@@ -111,13 +115,15 @@ const projectData = [
             { date: "2025-10-06", event: "AUAR adopted (Resolution 2025-147)" }
         ],
         permits: {
-            environmentalReview: { status: "in_progress", type: "AUAR", detail: "Final updated AUAR submitted Aug. 4; DNR's Aug. 25 letter was not a formal objection, and Sept. 2-10 follow-up correspondence will be included as clarifications before project action" },
-            localZoning: { status: "in_progress", detail: "Updated special-use permit application and site-development materials posted Aug. 12, 2026; Aug. 17-20 informational sessions completed, with project action pending environmental-review completion" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final updated AUAR adopted Oct. 5, 2026; challenged in court Nov. 4" },
+            localZoning: { status: "approved", detail: "Special-use permit, preliminary plat, development agreement, and decommissioning agreement approved Oct. 30, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "in_progress", detail: "Minnesota Power filed PUC electric service agreement docket 26-159 for Harmony Group LLC on Mar. 26, 2026; public comment period closed Aug. 28, 2026, and a Commission decision is pending" }
         },
         sources: [
             { name: "City Project Page", url: "https://hermantownmn.com/project/" },
+            { name: "MPR - City Approvals", url: "https://www.mprnews.org/story/2026/10/31/hermantown-approves-controversial-google-data-center-during-late-night-meeting" },
+            { name: "KAXE - Updated AUAR Lawsuit", url: "https://www.kaxe.org/local-news/2026-11-05/environmental-groups-sue-hermantown-google-over-data-center-review" },
             { name: "DNR Aug. 25 AUAR Clarification Letter (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/09/2026-08-25-Updated-Hermantown-Industrial-AUAR.pdf" },
             { name: "DNR Sept. 10 AUAR Follow-up (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/09/2026-09-10-Hermantown-AUAR-follow-up.pdf" },
             { name: "Final Updated AUAR (PDF)", url: "https://hermantownmn.com/wp-content/uploads/2026/08/2026-08-04-Hermantown-Industrial-Final-AUAR-1.pdf" },
@@ -136,7 +142,7 @@ const projectData = [
             { name: "KAXE Coverage", url: "https://www.kaxe.org/local-news/2025-10-23/public-petition-against-hermantown-data-center-pumps-brakes-on-project" },
             { name: "MPR News", url: "https://www.mprnews.org/story/2025/10/22/hermantown-delays-permits-for-disputed-data-center" }
         ],
-        lastUpdated: "2026-09-14"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 3,
@@ -149,36 +155,37 @@ const projectData = [
         lng: -93.2310,
         acres: 152,
         sqft: 1360000,
-        currentStatus: "Data center plans inactive. Judge ruled AUAR is adequate. MCEA watching for future data center projects.",
-        notes: "Olam Holdings 1, LLC / Terawatt Infrastructure project. MCEA alleged the City's AUAR used vague 'light industrial' description to conceal a data center, and that the climate analysis assumed only 3 MW when data centers require 100-500 MW. Judge dismissed the case in May 2026.",
+        currentStatus: "The Dakota County District Court granted summary judgment to the City and Olam Oct. 7, 2026, upholding the AUAR. No specific data center end user or active project has been identified.",
+        notes: "Olam Holdings 1, LLC / Terawatt Infrastructure project. The final AUAR was approved July 7, 2025. The district court resolved the legal challenge in favor of the City and Olam on Oct. 7, 2026.",
         litigation: {
             active: false,
             caseNumber: "19HA-CV-25-5103",
             court: "Dakota County District Court",
-            status: "Dismissed by judge, May 2026",
+            status: "Summary judgment granted to City and Olam, Oct. 7, 2026",
             filedDate: "2025-08-05"
         },
         timeline: [
-            { date: "2026-05", event: "Judge dismissed MCEA lawsuit; AUAR upheld" },
+            { date: "2026-10-07", event: "District court granted summary judgment to the City and Olam; AUAR upheld" },
             { date: "2026-01-15", event: "MCEA filed summary judgment motion" },
             { date: "2025-12-12", event: "Summary judgment scheduling order entered" },
             { date: "2025-08-05", event: "Lawsuit filed" },
             { date: "2025-07-07", event: "Final AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 7, 2025; legal challenge dismissed May 2026" },
+            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Final AUAR approved July 7, 2025; legal challenge resolved by summary judgment Oct. 7, 2026" },
             localZoning: { status: "unknown" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "City of Lakeville - Summary Judgment", url: "https://www.lakevillemn.gov/m/newsflash/Home/Detail/1124" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/261688?siId=261688-PROJ0000000001" },
             { name: "Complaint (PDF)", url: "https://legalectric.org/f/2025/08/Lakeville_MCRO_19HA-CV-25-5103_Complaint-Civil_2025-08-05_20250819063829.pdf" },
             { name: "Summary Judgment Scheduling Order (PDF)", url: "https://legalectric.org/f/2025/12/Lakeaville_Order_SJ-Hearing_CV-25-5103_Order-Other_2025-12-12_20251230105817.pdf" },
             { name: "Summary Judgment Motion (PDF)", url: "https://raw.githubusercontent.com/speakingtrumpetskier-prog/mn-data-center-tracker/main/docs/2026-01-15-Memo-ISO-SJ-Motion.pdf" },
             { name: "Hometown Source - Lakeville Defends AUAR", url: "https://www.hometownsource.com/sun_thisweek/community/lakeville/lakeville-defends-its-environmental-review-of-an-alleged-data-center-project/article_64f3b99d-6cef-4669-bac3-6bd1d21b2554.html" }
         ],
-        lastUpdated: "2026-05-27"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 4,
@@ -191,8 +198,8 @@ const projectData = [
         lng: -94.0445,
         acres: 678,
         sqft: 4000000,
-        currentStatus: "No data center coming per city officials; MCEA voluntarily dismissed lawsuit in May 2026 because no data center proposal is active. Project remains dead unless facts change.",
-        notes: "One of the largest proposed data center developments in Minnesota at 4 million square feet. Oppidan Investment withdrew from project citing concerns about backup generator permit timelines. AUAR approved but lawsuit challenged its adequacy. No formal application was ever filed. At a March 2026 State of the Cities summit, North Mankato City Administrator Kevin McCann confirmed 'no data center' is coming to North Mankato. In May 2026, MCEA agreed to voluntarily dismiss the lawsuit without prejudice because no data center was proposed at the site; dismissal did not decide the merits of AUAR adequacy.",
+        currentStatus: "The developer withdrew, and no data center application is active. The City Council adopted a one-year data center moratorium Sept. 21, 2026.",
+        notes: "The AUAR analyzed up to 4 million square feet. Oppidan Investment withdrew, no formal development application was filed, and the related lawsuit was voluntarily dismissed without prejudice in May 2026.",
         litigation: {
             active: false,
             caseNumber: "52-CV-25-568",
@@ -201,6 +208,7 @@ const projectData = [
             filedDate: "2025-08-05"
         },
         timeline: [
+            { date: "2026-09-21", event: "City Council adopted a one-year moratorium on data center development" },
             { date: "2026-05-15", event: "MCEA published legal update explaining voluntary dismissal without prejudice because no data center was proposed" },
             { date: "2026-05-11", event: "KEYC reported lawsuit challenging North Mankato AUAR was dropped" },
             { date: "2026-03-18", event: "City Administrator confirms 'no data center' coming to North Mankato at State of the Cities summit (KEYC)" },
@@ -217,6 +225,7 @@ const projectData = [
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "KEYC - Data Center Moratorium", url: "https://www.keyc.com/2026/09/22/north-mankato-city-council-adopts-data-center-moratorium/" },
             { name: "Mankato Free Press - MCEA Drops Lawsuit", url: "https://www.mankatofreepress.com/news/local_news/mcea-drops-lawsuit-against-north-mankato/article_0b7c615a-5dbe-41b6-96cf-c5a8d6da6ae6.html" },
             { name: "KEYC - Lawsuit Dropped", url: "https://www.keyc.com/2026/05/11/lawsuit-challenging-north-mankato-environmental-review-dropped/" },
             { name: "KEYC - No data center, no Costco, no Texas Roadhouse (Mar 2026)", url: "https://www.keyc.com/2026/03/18/no-data-center-no-costco-no-texas-roadhouse-city-officials-say-state-cities-summit/" },
@@ -229,12 +238,12 @@ const projectData = [
             { name: "City Answer (PDF)", url: "https://legalectric.org/f/2025/12/N-Mankato_MCRO_52-CV-25-568_Answer_2025-09-05_20251230110725.pdf" },
             { name: "Project Deacon Answer (PDF)", url: "https://legalectric.org/f/2025/12/Project-Deacon-Answer-to-Complaint40475555.4-MCRO_52-CV-25-568_Answer_2025-09-09_20251230110752.pdf" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 5,
         name: "Pine Island Project Skyway AUAR",
-        status: "in_litigation",
+        status: "in_review",
         secondaryStatus: "review_complete",
         city: "Pine Island",
         county: "Goodhue",
@@ -242,18 +251,19 @@ const projectData = [
         lng: -92.6180,
         acres: 482,
         sqft: 3000000,
-        currentStatus: "Temporary injunction issued May 22, 2026 by Judge Biren; all construction halted. Judge rejected defendants' summary judgment. The Google-backed facility cannot proceed while the injunction remains in effect. Separate utility reviews remain active: the ESA comment period closed Sept. 8 with a Commission decision pending, and route-permit public meetings are scheduled Sept. 14-15.",
-        notes: "Google data center (Project Skyway), developed by Ryan Companies LLC. Google confirmed as client Feb 2026 after Nov 2024 NDA between Ryan Companies and city. MCEA argued Google was known before AUAR began, meaning EAW/EIS may have been required instead. First building: 250,000 sqft on min. 100 acres; estimated project value over $1 billion. Judge Biren found MCEA showed likelihood of success on the merits and cited failure to disclose data practices records.",
+        currentStatus: "The parties settled the AUAR lawsuit Oct. 28, 2026. A new state-led EAW and mitigation plan, including public comment, are required before construction. The City cannot authorize construction until it approves the mitigation plan. PUC electric-service-agreement and transmission-route proceedings remain pending.",
+        notes: "Google is the identified end user and Ryan Companies is the developer. The original AUAR remains the foundation for a new state environmental assessment, mitigation plan, and public-comment process required by the settlement.",
         litigation: {
-            active: true,
+            active: false,
             caseNumber: "25-CV-25-2298",
             court: "Goodhue County District Court",
-            status: "Temporary injunction issued May 22, 2026; construction halted.",
+            status: "Settled Oct. 28, 2026; court challenge ended.",
             filedDate: "2025-10-16"
         },
         timeline: [
-            { date: "2026-09-14", event: "PUC route-permit public meetings scheduled for Sept. 14-15, 2026" },
-            { date: "2026-09-08", event: "PUC public-comment period closed on Xcel Energy's electric service agreement with Echo Zone; Commission decision pending" },
+            { date: "2026-10-28", event: "Parties settled the lawsuit; settlement requires a new state EAW, mitigation plan, and public-comment process before construction" },
+            { date: "2026-09-15", event: "PUC route-permit public meetings concluded" },
+            { date: "2026-09-08", event: "PUC public-comment period closed on Xcel Energy's electric service agreement with Echo Zone; decision pending" },
             { date: "2026-08-18", event: "PUC posted a draft route permit for the 1.2-mile Skyway 345-kV transmission line" },
             { date: "2026-05-22", event: "Temporary injunction issued by Judge Patrick M. Biren; all construction/pre-construction halted" },
             { date: "2026-04-20", event: "Summary judgment hearing (defendants' motion denied)" },
@@ -267,12 +277,15 @@ const projectData = [
             { date: "2025-09-16", event: "Revised AUAR approved" }
         ],
         permits: {
-            environmentalReview: { status: "review_complete", type: "AUAR", detail: "Revised AUAR approved Sept 2025; adequacy challenged in court" },
-            localZoning: { status: "approved", detail: "CUP approved Jan 2026; halted by temporary injunction May 2026" },
+            environmentalReview: { status: "in_progress", type: "EAW", detail: "Settlement approved Oct. 28, 2026 requires a new state-led environmental assessment, mitigation plan, and public-comment process" },
+            localZoning: { status: "approved", detail: "CUP approved Jan. 2026; settlement bars construction until the City approves the required mitigation plan" },
             buildingPermit: { status: "not_started" },
-            utilities: { status: "in_progress", detail: "Xcel Energy filed PUC electric service agreement docket 26-170 for Echo Zone LLC on Apr. 14, 2026; the public-comment period closed Sept. 8 and a Commission decision is pending. PUC route-permit docket 26-135 remains active for the 1.2-mile Skyway 345-kV line; a draft permit was posted Aug. 18 and public meetings are scheduled Sept. 14-15, 2026" }
+            utilities: { status: "in_progress", detail: "Xcel Energy's electric service agreement docket 26-170 and the 1.2-mile Skyway 345-kV route-permit docket 26-135 remain pending; route-permit public meetings concluded Sept. 15, 2026" }
         },
         sources: [
+            { name: "City of Pine Island - Settlement Agreement", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/City_of_Pine_Island_City_Council_Approves_MCEA_Lawsuit_Settlement_Agreement(1).pdf" },
+            { name: "MPR - New Environmental Review", url: "https://www.mprnews.org/story/2026/10/29/pine-island-google-data-center-to-get-new-environmental-review" },
+            { name: "KTTC - Lawsuit Settlement", url: "https://www.kttc.com/2026/10/29/pine-island-settles-project-skyway-lawsuit-clears-way-state-data-center-review/" },
             { name: "MPR - Construction Halted by Judge", url: "https://www.mprnews.org/story/2026/05/26/pine-island-hyperscale-data-center-construction-halted-by-judge" },
             { name: "Star Tribune - Work Halted", url: "https://www.startribune.com/minnesota-data-center-pine-island-restraining-order/601849201" },
             { name: "Post Bulletin - Restraining Order", url: "https://www.postbulletin.com/news/local/court-grants-restraining-order-to-halt-project-skyway-progress-in-pine-island" },
@@ -284,7 +297,7 @@ const projectData = [
             { name: "Xcel Energy - Skyway Transmission Line", url: "https://xcelenergytransmission.com/projects/skyway/" },
             { name: "Planning & Zoning CUP Notice", url: "https://pineislandmn.gov/vertical/sites/%7B52A5D060-3422-4069-8E86-A961C2752B7F%7D/uploads/1.13.26_PZ_Notice_-_CUP.pdf" }
         ],
-        lastUpdated: "2026-09-14"
+        lastUpdated: "2026-11-09"
     },
 
     // ============================================
@@ -301,16 +314,20 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA's Wright County lawsuit challenging AUAR adequacy remains active. Monticello Tech's completed DCPUD conditional use permit, rezoning, and preliminary-plat applications are under city review. The Planning Commission will hold a public hearing Oct. 6; City Council action is not yet scheduled, and the decision deadline is Dec. 8.",
-        notes: "Proposed by Monticello Tech LLC (Frattalone Companies). 550 acres south of 85th St NE and east of Hwy 25. AUAR analyzed two scenarios: 3M sqft tech campus and 5M sqft light industrial. Adoption does not approve a data center, rezone land, or allow construction. Council approved Resolution 2026-27 on Apr 13 finding the AUAR qualifies as completed environmental review for Monticello Tech. Council then approved a Data Center Ordinance on Apr 27 to regulate future applications. The current review covers a DCPUD conditional use permit, rezoning, and preliminary plat; final plat is subject to a future application. MCEA's sixth statewide data center AUAR lawsuit remains active, with motions expected by late Sept 2026. Separate from Scannell Technology Park proposal.",
+        currentStatus: "MCEA's Wright County lawsuit challenging AUAR adequacy remains active. The Planning Commission recommended approval of Monticello Tech's DCPUD conditional use permit, rezoning, and preliminary plat 4-1 on Oct. 6. The City Council scheduled a Nov. 9 public hearing and consideration of the applications and annexation.",
+        notes: "Proposed by Monticello Tech LLC (Frattalone Companies) on 550 acres south of 85th Street NE and east of Highway 25. The AUAR analyzed a 3 million-square-foot technology campus and a 5 million-square-foot light-industrial scenario. The current applications cover a DCPUD conditional use permit, rezoning, and preliminary plat; a final plat would require a future application. Separate from the Scannell Technology Park proposal.",
         litigation: {
             active: true,
+            caseNumber: "86-CV-26-1130",
             court: "Wright County District Court",
             status: "Lawsuit filed Feb 25, 2026",
             filedDate: "2026-02-25"
         },
         timeline: [
-            { date: "2026-10-06", event: "Planning Commission public hearing scheduled on the DCPUD CUP, rezoning, and preliminary plat applications" },
+            { date: "2026-11-09", event: "City Council public hearing and consideration scheduled for the land-use applications and annexation" },
+            { date: "2026-10-19", event: "City posted supplemental application materials for City Council review" },
+            { date: "2026-10-15", event: "Applicant submitted supplemental materials" },
+            { date: "2026-10-06", event: "Planning Commission recommended approval of the DCPUD CUP, rezoning, and preliminary plat 4-1" },
             { date: "2026-09-04", event: "City Council authorized an escrow agreement to recover application-review expenses" },
             { date: "2026-08-11", event: "Applicant provided supplemental materials; City determined the land-use applications complete and extended the decision deadline to December 8, 2026" },
             { date: "2026-08-03", event: "City received a second submission of Monticello Tech's land-use applications" },
@@ -330,7 +347,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
-            localZoning: { status: "in_progress", detail: "DCPUD conditional use permit, rezoning, and preliminary plat applications are complete and under review; the Planning Commission hearing is Oct. 6, City Council action is not yet scheduled, and the decision deadline is Dec. 8, 2026" },
+            localZoning: { status: "in_progress", detail: "Planning Commission recommended approval 4-1 on Oct. 6; City Council public hearing and consideration of the land-use applications and annexation were scheduled for Nov. 9, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -346,7 +363,7 @@ const projectData = [
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
             { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
         ],
-        lastUpdated: "2026-09-14"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 8,
@@ -505,24 +522,24 @@ const projectData = [
     {
         id: 11,
         name: "Farmington Technology Park (Tract)",
-        status: "in_litigation",
-        secondaryStatus: "review_complete",
+        status: "review_complete",
         city: "Farmington",
         county: "Dakota",
         lat: 44.6165,
         lng: -93.1540,
         acres: 347,
         sqft: 2530000,
-        currentStatus: "Legal challenge remains active. City approvals continue to move forward: the court denied the city's motion to dismiss in Nov 2025, and the City Council approved a final-plat split and updated development contracts in Apr 2026.",
-        notes: "Tract's proposed $5B hyperscale campus (12 buildings, 708MW). Lawsuit challenges annexation agreement violation and environmental impacts. Castle Rock Township also filed separate legal action. The city says it has not received an application for a specific development proposal within the Technology Park area.",
+        currentStatus: "Plaintiffs filed dismissals in both court cases Sept. 16, 2026, with final court directions pending. The City says it has not received an application for a specific development proposal within the Technology Park area.",
+        notes: "The approved plans contemplate up to 12 data center buildings and 708 MW. Broader PUD and plat entitlements are in place, but a specific site plan and building-permit application would require future City review.",
         litigation: {
-            active: true,
-            caseNumber: "Dakota County District Court",
+            active: false,
+            caseNumber: "19HA-CV-24-5838; 19HA-CV-25-992",
             court: "Dakota County District Court",
-            status: "Motion to dismiss denied Nov 13, 2025; legal proceedings continue",
+            status: "Plaintiffs filed dismissals Sept. 16, 2026; final court directions pending",
             filedDate: "2024-11-29"
         },
         timeline: [
+            { date: "2026-09-16", event: "Plaintiffs filed dismissals in both court cases; final court directions remain pending" },
             { date: "2026-04-20", event: "City Council approves final-plat split into two additions and updated development contracts" },
             { date: "2026-04-14", event: "Planning Commission recommends approval of final-plat split" },
             { date: "2025-11-13", event: "Dakota County judge denies city's motion to dismiss" },
@@ -533,7 +550,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Nov 4, 2024" },
-            localZoning: { status: "in_progress", detail: "PUD/final plat approved; final plat split and updated development contracts approved Apr 20, 2026; approvals challenged in litigation" },
+            localZoning: { status: "approved", detail: "PUD and final-plat entitlements approved; a specific site plan and building-permit application would require future City approval" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -545,7 +562,7 @@ const projectData = [
             { name: "Streets.mn Deep Dive", url: "https://streets.mn/2025/11/07/deep-dive-the-farmington-push-for-responsible-hyper-scale-data-centers/" },
             { name: "Hometown Source - Motion to Dismiss Denied", url: "https://www.hometownsource.com/sun_thisweek/community/dakota_county/judge-denies-farmingtons-motion-to-dismiss-lawsuit/article_54651c1e-c9af-4516-9409-6eaf4c0c83a7.html" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 12,
@@ -716,26 +733,29 @@ const projectData = [
         lng: -93.1750,
         acres: 530,
         sqft: null,
-        currentStatus: "Xcel Energy/City of Northfield AUAR adopted 2023. City passed data center zoning standards in December 2024. No specific developer announced.",
-        notes: "Proactive AUAR completed by City of Northfield in partnership with Xcel Energy for the Northwest Area Business Park (EQB Project 255525). 530 acres total, ~265 acres shovel-ready for data center development.",
+        currentStatus: "The AUAR was adopted in 2023. City Council approved Ordinance 1098 on Oct. 20, 2026, reducing the recreation-facility setback from 3,950 feet to 200 feet; the ordinance is scheduled to take effect Nov. 27. No specific data center developer has been announced.",
+        notes: "The City of Northfield and Xcel Energy completed an AUAR for the 530-acre Northwest Area Business Park. Approximately 265 acres are identified for potential data center development.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-10-20", event: "City Council approved Ordinance 1098, reducing the recreation-facility setback from 3,950 feet to 200 feet" },
+            { date: "2026-10-06", event: "City Council completed the first reading of the setback amendment" },
             { date: "2024-12-10", event: "City Council approved zoning allowing data centers in Northwest Industrial Area; highest efficiency standards in MN adopted" },
             { date: "2023", event: "Xcel Energy/City of Northfield AUAR adopted (30-day public comment period; 18 responses)" }
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Xcel Energy/City of Northfield AUAR adopted 2023 (EQB Project 255525)" },
-            localZoning: { status: "approved", detail: "Data centers permitted in Northwest Industrial Area as of Dec 2024" },
+            localZoning: { status: "approved", detail: "Data centers permitted in the Northwest Industrial Area; Ordinance 1098 reduces the recreation-facility setback to 200 feet effective Nov. 27, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "Northfield City Council - Ordinance 1098", url: "https://northfield.legistar.com/LegislationDetail.aspx?FullText=1&GUID=E0926389-FC89-4C08-B89C-7B8C7EF23827&ID=8287617&Options=&Search=" },
             { name: "EQB Project Page", url: "https://webapp.pca.state.mn.us/eqb-search/project-detail/255525?siId=255525-PROJ0000000001" },
             { name: "City Northwest Business Park Page", url: "https://www.northfieldmn.gov/1578/Xcel-Energy-City-of-Northfield-Alternati" },
             { name: "KYMN - City Allows Data Centers (Dec 2024)", url: "https://kymnradio.net/2024/12/10/city-allows-data-centers-in-the-northwest-industrial-area-highest-efficency-standards-in-mn-implemented/" },
             { name: "KYMN - Northfield an Outlier (Apr 2026)", url: "https://kymnradio.net/2026/04/08/northfield-an-outlier-and-potential-model-in-minnesotas-data-center-debacle/" }
         ],
-        lastUpdated: "2026-05-27"
+        lastUpdated: "2026-11-09"
     },
 
     // ============================================
@@ -751,11 +771,12 @@ const projectData = [
         lng: -92.0080,
         acres: 60,
         sqft: null,
-        currentStatus: "No specific development has been confirmed. MiEnergy has an option to purchase approximately 60 acres. City leaders reviewed public feedback on the draft data center ordinance Aug. 26 and returned it to counsel; a fifth draft is scheduled for review Sept. 16.",
+        currentStatus: "No specific development has been confirmed. The Planning Commission advanced a sixth draft of the data center ordinance Oct. 28, with City Council consideration scheduled for Nov. 10.",
         notes: "MiEnergy Cooperative and Dairyland Power Cooperative asked the City to initiate annexation and industrial rezoning for land near Harmony. MiEnergy holds an option to purchase approximately 60 acres, but no data center developer or project application has been confirmed. No AUAR or EAW has been filed.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-09-16", event: "Joint planning session scheduled to review the fifth draft of the data center ordinance" },
+            { date: "2026-11-10", event: "City Council consideration of the draft data center ordinance scheduled" },
+            { date: "2026-10-28", event: "Planning Commission advanced a sixth draft of the data center ordinance" },
             { date: "2026-08-26", event: "City leaders reviewed public feedback and returned the draft data center ordinance to counsel for revisions" },
             { date: "2026-08-19", event: "Public comment period on the draft data center ordinance closed" },
             { date: "2026-08-05", event: "City Council, Planning and Zoning Commission, and EDA reviewed a draft data center ordinance" },
@@ -764,11 +785,12 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "City returned the draft data center ordinance to counsel after the Aug. 26 feedback review; a fifth draft is scheduled for joint review Sept. 16" },
+            localZoning: { status: "in_progress", detail: "Planning Commission advanced the sixth draft Oct. 28; City Council consideration is scheduled for Nov. 10, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
         sources: [
+            { name: "KTTC - Draft Data Center Ordinance", url: "https://www.kttc.com/2026/10/29/harmony-planning-commission-approves-draft-data-center-ordinance/?outputType=amp" },
             { name: "Harmony Economic Development Authority Project Page", url: "https://harmonymn.gov/eda/ongoing-projects/harmony-eda-project-data-center/" },
             { name: "Harmony Meetings and Reports", url: "https://harmonymn.gov/eda/meetings-reports/" },
             { name: "KTTC - August 26 Feedback Review", url: "https://www.kttc.com/2026/08/27/harmony-city-leaders-face-flood-feedback-over-proposed-data-center/" },
@@ -776,7 +798,7 @@ const projectData = [
             { name: "Root River Current", url: "https://rootrivercurrent.org/harmony-minnesota-annexs-land-for-possible-data-center/" },
             { name: "Fillmore County Journal", url: "https://fillmorecountyjournal.com/concerns-raised-over-proposed-data-center/" }
         ],
-        lastUpdated: "2026-09-07"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 18,
@@ -816,17 +838,20 @@ const projectData = [
     {
         id: 19,
         name: "Glencoe AI Data Center",
-        status: "watching",
+        status: "construction",
         city: "Glencoe",
         county: "McLeod",
         lat: 44.7650,
         lng: -94.1400,
-        acres: 6.2,
-        sqft: null,
-        currentStatus: "Planned/monitoring: City approved Industrial-1 zoning Nov 6, 2024 for a proposed $40-60M Revolve Labs AI/colocation expansion. Public records show zoning and utility-extension coordination, not a confirmed construction start.",
-        notes: "Revolve Labs operates an existing crypto/high-performance compute facility in Glencoe and has proposed an AI and colocation data center expansion on 6.2 acres of former Seneca Foods land on the west side of Glencoe. City rezoning was approved Nov 2024 and city staff were working with Revolve Labs on water and sanitary sewer extensions. Construction start not confirmed.",
+        acres: 6.25,
+        sqft: 94100,
+        mw: 40,
+        currentStatus: "Construction is underway at 670 11th Street West for three data center buildings totaling approximately 94,100 square feet. Revolve Labs' September presentation listed an April 2027 target for completion.",
+        notes: "Revolve Labs is developing an AI and high-performance-computing campus on former Seneca Foods land on the west side of Glencoe.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-11-05", event: "Local reporting confirmed construction underway" },
+            { date: "2026-09-08", event: "Revolve Labs presented plans for three buildings and an April 2027 completion target" },
             { date: "2025-03-27", event: "Star Tribune reports Revolve Labs focusing on Glencoe expansion" },
             { date: "2024-11-06", event: "City approved rezoning of 6.2-acre site" },
             { date: "2024-09-27", event: "Economic Development Authority reviewed concept plans" }
@@ -834,10 +859,13 @@ const projectData = [
         permits: {
             environmentalReview: { status: "not_started" },
             localZoning: { status: "approved", detail: "Rezoning approved Nov 6, 2024" },
-            buildingPermit: { status: "unknown" },
-            utilities: { status: "unknown" }
+            buildingPermit: { status: "approved", detail: "Construction underway at 670 11th Street West" },
+            utilities: { status: "in_progress", detail: "MISO materials identify a 40 MW West Glencoe load and related substation work" }
         },
         sources: [
+            { name: "Revolve Labs - Glencoe Community Presentation", url: "https://www.revolvelabs.ai/assets/images/community/glencoe/glencoe-community-presentation-2026-09-08.pdf" },
+            { name: "MISO - West Glencoe Load", url: "https://cdn.misoenergy.org/20251202%20EPR-TSTF%20Item%2002%20EPR%20Results%20and%20MISO%20Recommendation729010.pdf" },
+            { name: "Blandin on Broadband - Glencoe Construction", url: "https://blandinonbroadband.org/2026/11/06/city-leaders-and-citizens-chime-in-on-new-ai-data-center-coming-to-glencoe-mcleod-county/" },
             { name: "Glencoe News - New Data Center Announced", url: "https://www.glencoenews.com/articles/featured-mcc/revolve-labs-announces-new-high-performance-data-center-in-glencoe/" },
             { name: "Glencoe News - EDA Concept Review", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-eda-reviews-concept-plans-for-50-60-million-ai-data-center/" },
             { name: "Glencoe News - Rezoning Approval", url: "https://www.glencoenews.com/articles/featured-mcc/glencoe-approves-rezoning-request-for-site-of-revolve-labs-planned-ai-data-center/" },
@@ -845,7 +873,7 @@ const projectData = [
             { name: "City Council Minutes - Rezoning Approval", url: "https://www.glencoemn.org/wp-content/uploads/2025/01/11.6.24-Minutes.pdf" },
             { name: "Revolve Labs - Company Site", url: "https://www.revolvelabs.ai/" }
         ],
-        lastUpdated: "2026-06-04"
+        lastUpdated: "2026-11-09"
     },
     {
         id: 20,
@@ -1192,6 +1220,187 @@ const projectData = [
             { name: "Notice of Public Hearing (PDF)", url: "https://www.elkrivermn.gov/DocumentCenter/View/19540/Notice-of-Public-Hearing-Conditional-Use-Permit-and-Ordinance-Amendment-for-Michael-Margulies---data-center" }
         ],
         lastUpdated: "2026-09-07"
+    },
+    {
+        id: 31,
+        name: "AAIM Minnesota 1 Energy Park",
+        status: "operational",
+        city: "Blue Earth",
+        county: "Faribault",
+        lat: 43.6350,
+        lng: -94.0980,
+        acres: null,
+        sqft: 10000,
+        sqftDisplay: "Nearly 10,000 SF",
+        mw: 15,
+        currentStatus: "The 15 MW facility has been operating since June 2025. AAIM announced an 80 MW expansion in design with a target of the third quarter of 2027; the expansion is not operational.",
+        notes: "AAIM's first Minnesota Energy Park is located along Highway 169 near a Blue Earth Light and Water substation.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-08-15", event: "AAIM announced an 80 MW expansion in design with a third-quarter 2027 target" },
+            { date: "2025-06", event: "15 MW Minnesota 1 facility opened" }
+        ],
+        permits: {
+            environmentalReview: { status: "unknown" },
+            localZoning: { status: "approved" },
+            buildingPermit: { status: "approved" },
+            utilities: { status: "approved", detail: "15 MW facility operating; announced 80 MW expansion remains in design" }
+        },
+        sources: [
+            { name: "AAIM - Minnesota 1 Energy Park", url: "https://www.aaimdc.com/data-centers/minnesota-1/" },
+            { name: "AAIM - Minnesota 1 Opening", url: "https://www.aaimdc.com/news/aaim-celebrates-the-opening-of-a-15-mw-data-center-in-blue-earth-minnesota/" }
+        ],
+        lastUpdated: "2026-11-09"
+    },
+    {
+        id: 32,
+        name: "AAIM Minnesota 2 Energy Park",
+        status: "watching",
+        city: "Hutchinson",
+        county: "McLeod",
+        lat: 44.8870,
+        lng: -94.3520,
+        acres: 1.946,
+        sqft: 7500,
+        mw: 20,
+        currentStatus: "The City approved a conditional use permit and final permits Aug. 26, 2025, and a power-purchase agreement was signed Sept. 24, 2025. AAIM describes the project as in development, but a construction start has not been confirmed.",
+        notes: "The proposed air-cooled facility is at 1025 Fifth Avenue SE. Expansion beyond 7,500 square feet, up to 15,000 square feet, would require a new conditional use permit.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2025-09-24", event: "Power-purchase agreement signed" },
+            { date: "2025-08-26", event: "City approved the conditional use permit and final permits" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started", detail: "City materials do not identify a separate environmental review" },
+            localZoning: { status: "approved", detail: "Conditional use permit and final permits approved Aug. 26, 2025" },
+            buildingPermit: { status: "unknown", detail: "Construction start not confirmed" },
+            utilities: { status: "approved", detail: "Power-purchase agreement signed Sept. 24, 2025" }
+        },
+        sources: [
+            { name: "City of Hutchinson - Data Center Q&A", url: "https://hutchinsonmn.gov/wp-content/uploads/2026/06/Data-Center-Document-Q-A.pdf" },
+            { name: "AAIM - Minnesota 2 Energy Park", url: "https://www.aaimdc.com/data-centers/minnesota-2/" }
+        ],
+        lastUpdated: "2026-11-09"
+    },
+    {
+        id: 33,
+        name: "AAIM Minnesota 3 Energy Park",
+        status: "watching",
+        city: "Mountain Lake",
+        county: "Cottonwood",
+        lat: 43.9420,
+        lng: -94.9150,
+        acres: null,
+        sqft: 12000,
+        mw: 10,
+        currentStatus: "The City Council approved a conditional use permit Nov. 17, 2025, for a data center at 2203 Third Avenue. A construction start has not been confirmed.",
+        notes: "City records identify C-MN, LLC as the applicant, and local reporting identifies AAIM as the project operator. The approved concept is up to 12,000 square feet and 10 MW.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-07", event: "City Council received public comments about the project; no new project action was taken" },
+            { date: "2025-11-17", event: "City Council approved the conditional use permit" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started" },
+            localZoning: { status: "approved", detail: "Conditional use permit approved Nov. 17, 2025" },
+            buildingPermit: { status: "unknown", detail: "Construction start not confirmed" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "Mountain Lake City Council Minutes - Nov. 17, 2025", url: "https://mountainlakemn.com/wp-content/uploads/11-17-25-City-Council-Minutes.pdf" },
+            { name: "KEYC - Mountain Lake Public Comments", url: "https://www.keyc.com/2026/07/16/community-raises-concern-about-public-notice-data-center-mountain-lake/?outputType=amp" }
+        ],
+        lastUpdated: "2026-11-09"
+    },
+    {
+        id: 34,
+        name: "Nodiac Albertville Modular Data Center",
+        status: "watching",
+        city: "Albertville",
+        county: "Wright",
+        lat: 45.2350,
+        lng: -93.6640,
+        acres: 3.66,
+        sqft: null,
+        mw: 20,
+        currentStatus: "City Council reviewed the concept Sept. 8, 2026, without taking formal action. A data center is not currently permitted at the site without a code amendment or planned unit development approval.",
+        notes: "Nodiac's concept places two modular buildings with 20 modules near 70th Street NE and Karment Avenue NE, adjacent to a substation. The concept does not include municipal water or sewer service.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-09-08", event: "City Council reviewed the modular data center concept without taking formal action" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started" },
+            localZoning: { status: "in_progress", detail: "Concept review only; a code amendment or planned unit development approval would be required" },
+            buildingPermit: { status: "not_started" },
+            utilities: { status: "unknown" }
+        },
+        sources: [
+            { name: "Nodiac - Oakwood", url: "https://www.nodiac.ai/oakwood" },
+            { name: "Blandin on Broadband - Albertville Concept Review", url: "https://blandinonbroadband.org/2026/09/15/albertville-city-council-reviews-data-center-concept-in-sep-8-meeting-wright-county/" }
+        ],
+        lastUpdated: "2026-11-09"
+    },
+    {
+        id: 35,
+        name: "Shakopee Dean Lakes Data Center",
+        status: "construction",
+        city: "Shakopee",
+        county: "Scott",
+        lat: 44.7810,
+        lng: -93.4600,
+        acres: null,
+        sqft: 136092,
+        mw: 25,
+        currentStatus: "Swervo is converting the existing industrial building at 5201 Dean Lakes Boulevard into a data center. Construction is underway on an initial 25 MW build-out; another 25 MW phase is planned for 2027-28.",
+        notes: "The project reuses a 136,092-square-foot industrial building. The map marker is address-derived and approximate.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-11-04", event: "City Council received an informational data center update" },
+            { date: "2026-07-24", event: "City published project information for the Dean Lakes conversion" },
+            { date: "2026-05", event: "Property sale for the conversion project completed" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started" },
+            localZoning: { status: "approved", detail: "Conversion is proceeding within an existing industrial building" },
+            buildingPermit: { status: "in_progress", detail: "Construction underway" },
+            utilities: { status: "in_progress", detail: "Initial 25 MW build-out underway; a second 25 MW phase is planned" }
+        },
+        sources: [
+            { name: "City of Shakopee - Data Center Projects", url: "https://shakopeemn.gov/news_detail_T18_R96.php" },
+            { name: "Prior Lake Events - Shakopee Data Centers", url: "https://priorlakeevents.com/news/two-more-data-centers-are-going-up-in-shakopee-neither-of-them-hyper-scale/" }
+        ],
+        lastUpdated: "2026-11-09"
+    },
+    {
+        id: 36,
+        name: "Shakopee Emery Way Data Center",
+        status: "construction",
+        city: "Shakopee",
+        county: "Scott",
+        lat: 44.7890,
+        lng: -93.4340,
+        acres: null,
+        sqft: 148800,
+        mw: 20,
+        currentStatus: "An existing industrial building at 3000 Emery Way is being converted into a 20 MW data center. Construction is underway.",
+        notes: "The project reuses a 148,800-square-foot industrial building. The map marker is address-derived and approximate.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2026-11-04", event: "City Council received an informational data center update" },
+            { date: "2026-11-02", event: "Shakopee Public Utilities reviewed the data center conversion" }
+        ],
+        permits: {
+            environmentalReview: { status: "not_started" },
+            localZoning: { status: "approved", detail: "Conversion is proceeding within an existing industrial building" },
+            buildingPermit: { status: "in_progress", detail: "Construction underway" },
+            utilities: { status: "in_progress", detail: "20 MW service build-out underway" }
+        },
+        sources: [
+            { name: "Shakopee Public Utilities - Nov. 2, 2026 Packet", url: "https://shakopeeutilities.com/wp-content/uploads/2026/10/Commission-Packet-11-02-26.pdf" },
+            { name: "Prior Lake Events - Shakopee Data Centers", url: "https://priorlakeevents.com/news/two-more-data-centers-are-going-up-in-shakopee-neither-of-them-hyper-scale/" }
+        ],
+        lastUpdated: "2026-11-09"
     }
 ];
 
