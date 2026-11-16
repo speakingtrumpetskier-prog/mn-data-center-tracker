@@ -1,5 +1,5 @@
 // Minnesota Data Center Tracker - Project Data
-// Last updated: November 10, 2026
+// Last updated: November 16, 2026
 // Auto-updated weekly via GitHub Actions
 
 /*
@@ -314,7 +314,7 @@ const projectData = [
         lng: -93.7600,
         acres: 550,
         sqft: 3000000,
-        currentStatus: "MCEA's Wright County lawsuit challenging AUAR adequacy remains active. The Planning Commission recommended approval of Monticello Tech's DCPUD conditional use permit, rezoning, and preliminary plat 4-1 on Oct. 6. The City Council scheduled a Nov. 9 public hearing and consideration of the applications and annexation.",
+        currentStatus: "MCEA's Wright County lawsuit challenging AUAR adequacy remains active. On Nov. 9, the City Council closed the public hearing and voted 3-1 to direct staff to prepare approval documents for annexation, preliminary plat, rezoning, and the DCPUD conditional use permit. The votes did not grant final approval; final consideration is scheduled for a Nov. 30 special meeting.",
         notes: "Proposed by Monticello Tech LLC (Frattalone Companies) on 550 acres south of 85th Street NE and east of Highway 25. The AUAR analyzed a 3 million-square-foot technology campus and a 5 million-square-foot light-industrial scenario. The current applications cover a DCPUD conditional use permit, rezoning, and preliminary plat; a final plat would require a future application. Separate from the Scannell Technology Park proposal.",
         litigation: {
             active: true,
@@ -324,7 +324,8 @@ const projectData = [
             filedDate: "2026-02-25"
         },
         timeline: [
-            { date: "2026-11-09", event: "City Council public hearing and consideration scheduled for the land-use applications and annexation" },
+            { date: "2026-11-30", event: "Special City Council meeting scheduled for final consideration of annexation and land-use applications" },
+            { date: "2026-11-09", event: "City Council closed the public hearing and voted 3-1 to direct staff to prepare approval documents; no final land-use approval was granted" },
             { date: "2026-10-19", event: "City posted supplemental application materials for City Council review" },
             { date: "2026-10-15", event: "Applicant submitted supplemental materials" },
             { date: "2026-10-06", event: "Planning Commission recommended approval of the DCPUD CUP, rezoning, and preliminary plat 4-1" },
@@ -347,7 +348,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "Adopted Jan 26, 2026; challenged in court Feb 25, 2026" },
-            localZoning: { status: "in_progress", detail: "Planning Commission recommended approval 4-1 on Oct. 6; City Council public hearing and consideration of the land-use applications and annexation were scheduled for Nov. 9, 2026" },
+            localZoning: { status: "in_progress", detail: "City Council directed staff 3-1 on Nov. 9 to prepare approval documents without granting final approval; final consideration is scheduled for Nov. 30, 2026" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -361,9 +362,10 @@ const projectData = [
             { name: "KARE 11 Coverage", url: "https://www.kare11.com/article/news/local/proposed-data-centers-in-monticello-spark-community-backlash/89-9f0aa475-3d16-4ab5-8b06-27f4cea6b408" },
             { name: "Hometown Source - AUAR Adoption", url: "https://www.hometownsource.com/monticello_times/council-adopts-auar-planning-study-for-possible-data-center/article_df3d6460-7c9e-442d-b460-f1d3585d63cc.html" },
             { name: "Hometown Source - MCEA Lawsuit", url: "https://www.hometownsource.com/monticello_times/environmental-group-files-lawsuit-challenging-monticello-data-center-review/article_d5ffa609-757b-485d-b8b4-ef8e3ead2694.html" },
-            { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" }
+            { name: "MCEA Data Centers Page", url: "https://www.mncenter.org/data-centers" },
+            { name: "Monticello Times - Nov. 9 Council Action", url: "https://www.newsbreak.com/monticello-times-1593291/4997596480598-monticello-data-center-decision-delayed-until-nov-30-after-divided-council-vote" }
         ],
-        lastUpdated: "2026-11-09"
+        lastUpdated: "2026-11-16"
     },
     {
         id: 8,
@@ -446,10 +448,11 @@ const projectData = [
         lng: -93.0743,
         acres: 280,
         sqft: 715000,
-        currentStatus: "Meta's UMore Park data center remains under construction, with July 2026 reports of construction nearing completion.",
+        currentStatus: "The City of Rosemount reported Nov. 2 that construction on Meta's UMore Park data center was concluding and accepted completed Blaine Avenue public improvements. The action did not establish building completion or operation.",
         notes: "Formerly code-named Project Bigfoot / Jimnist. The 280-acre UMore Park campus is a separate named project from the Rosemount Industrial, Rich Valley East, and Dakota East AUAR areas already tracked elsewhere on the map.",
         litigation: { active: false },
         timeline: [
+            { date: "2026-11-02", event: "City accepted completed Blaine Avenue public improvements as construction on the Meta project was concluding" },
             { date: "2026-07", event: "Reports describe construction as nearing completion" },
             { date: "2026", event: "Expected opening year" },
             { date: "2024-03-14", event: "State publicly announces Meta's Rosemount data center" },
@@ -459,7 +462,7 @@ const projectData = [
         permits: {
             environmentalReview: { status: "review_complete", type: "AUAR", detail: "UMore Park AUAR update covers the Project Bigfoot area" },
             localZoning: { status: "approved", detail: "City approvals issued for Project Bigfoot / Jimnist" },
-            buildingPermit: { status: "in_progress" },
+            buildingPermit: { status: "in_progress", detail: "City described construction as concluding Nov. 2; completion and occupancy have not been confirmed" },
             utilities: { status: "in_progress", detail: "Xcel and city infrastructure upgrades planned for the UMore area" }
         },
         sources: [
@@ -468,9 +471,10 @@ const projectData = [
             { name: "City of Rosemount - Development Page", url: "https://rosemountmn.gov/progress" },
             { name: "City of Rosemount - Environmental Review", url: "https://www.rosemountmn.gov/689/Environmental-Review" },
             { name: "UMore Park AUAR Update", url: "https://www.rosemountmn.gov/DocumentCenter/View/6791/UMore-Park-AUAR-2023-Draft" },
-            { name: "Data Center Dynamics - Council Approval", url: "https://www.datacenterdynamics.com/en/news/rosemount-city-council-approves-meta-data-center-project/" }
+            { name: "Data Center Dynamics - Council Approval", url: "https://www.datacenterdynamics.com/en/news/rosemount-city-council-approves-meta-data-center-project/" },
+            { name: "City of Rosemount - Nov. 2 Council Agenda", url: "https://www.rosemountmn.gov/m/calendar/event/detail/8662" }
         ],
-        lastUpdated: "2026-07-27"
+        lastUpdated: "2026-11-16"
     },
 
     // ============================================
@@ -771,11 +775,11 @@ const projectData = [
         lng: -92.0080,
         acres: 60,
         sqft: null,
-        currentStatus: "No specific development has been confirmed. The Planning Commission advanced a sixth draft of the data center ordinance Oct. 28, with City Council consideration scheduled for Nov. 10.",
+        currentStatus: "No specific development has been confirmed. On Nov. 10, the City Council tabled the draft data center ordinance because members wanted revised sound-regulation language; it will return at a later regular meeting.",
         notes: "MiEnergy Cooperative and Dairyland Power Cooperative asked the City to initiate annexation and industrial rezoning for land near Harmony. MiEnergy holds an option to purchase approximately 60 acres, but no data center developer or project application has been confirmed. No AUAR or EAW has been filed.",
         litigation: { active: false },
         timeline: [
-            { date: "2026-11-10", event: "City Council consideration of the draft data center ordinance scheduled" },
+            { date: "2026-11-10", event: "City Council tabled the draft data center ordinance over the wording of its sound regulations" },
             { date: "2026-10-28", event: "Planning Commission advanced a sixth draft of the data center ordinance" },
             { date: "2026-08-26", event: "City leaders reviewed public feedback and returned the draft data center ordinance to counsel for revisions" },
             { date: "2026-08-19", event: "Public comment period on the draft data center ordinance closed" },
@@ -785,7 +789,7 @@ const projectData = [
         ],
         permits: {
             environmentalReview: { status: "not_started" },
-            localZoning: { status: "in_progress", detail: "Planning Commission advanced the sixth draft Oct. 28; City Council consideration is scheduled for Nov. 10, 2026" },
+            localZoning: { status: "in_progress", detail: "City Council tabled the draft Nov. 10 over sound-regulation wording and plans to revisit it at a later regular meeting" },
             buildingPermit: { status: "not_started" },
             utilities: { status: "unknown" }
         },
@@ -796,9 +800,10 @@ const projectData = [
             { name: "KTTC - August 26 Feedback Review", url: "https://www.kttc.com/2026/08/27/harmony-city-leaders-face-flood-feedback-over-proposed-data-center/" },
             { name: "Fillmore County Journal - Draft Ordinance", url: "https://fillmorecountyjournal.com/harmony-considers-data-center-ordinance/" },
             { name: "Root River Current", url: "https://rootrivercurrent.org/harmony-minnesota-annexs-land-for-possible-data-center/" },
-            { name: "Fillmore County Journal", url: "https://fillmorecountyjournal.com/concerns-raised-over-proposed-data-center/" }
+            { name: "Fillmore County Journal", url: "https://fillmorecountyjournal.com/concerns-raised-over-proposed-data-center/" },
+            { name: "KTTC - Ordinance Tabled", url: "https://www.kttc.com/2026/11/11/harmony-tables-data-center-ordinance-over-sound-regulations/" }
         ],
-        lastUpdated: "2026-11-09"
+        lastUpdated: "2026-11-16"
     },
     {
         id: 18,
@@ -1293,7 +1298,7 @@ const projectData = [
         acres: null,
         sqft: 12000,
         mw: 10,
-        currentStatus: "The City Council approved a conditional use permit Nov. 17, 2025, for a data center at 2203 Third Avenue. A construction start has not been confirmed.",
+        currentStatus: "The City Council approved a conditional use permit Nov. 17, 2025. AAIM describes the 10 MW facility as in development with a Q4 2026 target, but a construction start has not been confirmed.",
         notes: "City records identify C-MN, LLC as the applicant, and local reporting identifies AAIM as the project operator. The approved concept is up to 12,000 square feet and 10 MW.",
         litigation: { active: false },
         timeline: [
@@ -1303,14 +1308,15 @@ const projectData = [
         permits: {
             environmentalReview: { status: "not_started" },
             localZoning: { status: "approved", detail: "Conditional use permit approved Nov. 17, 2025" },
-            buildingPermit: { status: "unknown", detail: "Construction start not confirmed" },
+            buildingPermit: { status: "unknown", detail: "AAIM lists the facility as in development; construction start not confirmed" },
             utilities: { status: "unknown" }
         },
         sources: [
             { name: "Mountain Lake City Council Minutes - Nov. 17, 2025", url: "https://mountainlakemn.com/wp-content/uploads/11-17-25-City-Council-Minutes.pdf" },
-            { name: "KEYC - Mountain Lake Public Comments", url: "https://www.keyc.com/2026/07/16/community-raises-concern-about-public-notice-data-center-mountain-lake/?outputType=amp" }
+            { name: "KEYC - Mountain Lake Public Comments", url: "https://www.keyc.com/2026/07/16/community-raises-concern-about-public-notice-data-center-mountain-lake/?outputType=amp" },
+            { name: "AAIM - Minnesota 3 Energy Park", url: "https://www.aaimdc.com/data-centers/minnesota-3/" }
         ],
-        lastUpdated: "2026-11-09"
+        lastUpdated: "2026-11-16"
     },
     {
         id: 34,
@@ -1401,6 +1407,39 @@ const projectData = [
             { name: "Prior Lake Events - Shakopee Data Centers", url: "https://priorlakeevents.com/news/two-more-data-centers-are-going-up-in-shakopee-neither-of-them-hyper-scale/" }
         ],
         lastUpdated: "2026-11-09"
+    },
+    {
+        id: 37,
+        name: "Connect Data Centers / Oppidan Eagan",
+        status: "construction",
+        city: "Eagan",
+        county: "Dakota",
+        lat: 44.82615,
+        lng: -93.10678,
+        acres: 14.5,
+        sqft: 61554,
+        mw: 5,
+        currentStatus: "Construction is underway on the 5 MW, 61,554-square-foot build-to-suit facility at 3621 Argenta Trail. The City still lists it as under construction; occupancy and operation have not been confirmed.",
+        notes: "Oppidan is developing the edge data center for an unnamed tenant on the 14.5-acre southern lot created by the YMCA 4th Addition.",
+        litigation: { active: false },
+        timeline: [
+            { date: "2025-06-05", event: "Oppidan announced groundbreaking for the facility" },
+            { date: "2025-01-21", event: "City Council approved the YMCA 4th Addition preliminary subdivision" }
+        ],
+        permits: {
+            environmentalReview: { status: "unknown", detail: "No separate project-level environmental review is identified in City materials" },
+            localZoning: { status: "approved", detail: "Preliminary subdivision approved Jan. 21, 2025; data centers are permitted in the I-1 zoning district" },
+            buildingPermit: { status: "in_progress", detail: "Construction underway" },
+            utilities: { status: "in_progress", detail: "Public utilities are available for the 5 MW facility" }
+        },
+        sources: [
+            { name: "City of Eagan - Recent Development Sites", url: "https://www.eaganmn.gov/recent-community-development-sites-around-eagan" },
+            { name: "City of Eagan - Jan. 21, 2025 Council Memo", url: "https://eagan.granicus.com/MetaViewer.php?clip_id=2588&meta_id=145944&view_id=8" },
+            { name: "City of Eagan - Dec. 19, 2024 Planning Report", url: "https://eagan.granicus.com/MetaViewer.php?clip_id=2586&meta_id=145341&view_id=8" },
+            { name: "City of Eagan - Aug.-Sept. 2025 Newsletter", url: "https://www.eaganmn.gov/images/Newsletters/2025ExperienceEagan/august-september/Aug-Sept-2025-EE-and-insert.pdf" },
+            { name: "Oppidan - June 5, 2025 Groundbreaking", url: "https://oppidan.com/blog/connect-data-centers-powered-by-oppidan-breaks-ground-on-new-data-center-in-eagan" }
+        ],
+        lastUpdated: "2026-11-16"
     }
 ];
 
